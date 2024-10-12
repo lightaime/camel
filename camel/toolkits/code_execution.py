@@ -15,6 +15,7 @@ from typing import List, Literal
 
 from camel.interpreters import InternalPythonInterpreter
 from camel.toolkits import OpenAIFunction
+from camel.utils.commons import export_to_toolkit
 
 from .base import BaseToolkit
 
@@ -42,6 +43,7 @@ class CodeExecutionToolkit(BaseToolkit):
                 f"The sandbox type `{sandbox}` is not supported."
             )
 
+    @export_to_toolkit
     def execute_code(self, code: str) -> str:
         r"""Execute a given code snippet.
 

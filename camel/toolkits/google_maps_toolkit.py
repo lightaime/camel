@@ -18,6 +18,7 @@ from typing import Any, Callable, List, Optional, Union
 from camel.toolkits.base import BaseToolkit
 from camel.toolkits.openai_function import OpenAIFunction
 from camel.utils import dependencies_required
+from camel.utils.commons import export_to_toolkit
 
 
 def handle_googlemaps_exceptions(
@@ -115,6 +116,7 @@ class GoogleMapsToolkit(BaseToolkit):
 
         self.gmaps = googlemaps.Client(key=api_key)
 
+    @export_to_toolkit
     @handle_googlemaps_exceptions
     def get_address_description(
         self,
@@ -195,6 +197,7 @@ class GoogleMapsToolkit(BaseToolkit):
 
         return description
 
+    @export_to_toolkit
     @handle_googlemaps_exceptions
     def get_elevation(self, lat: float, lng: float) -> str:
         r"""Retrieves elevation data for a given latitude and longitude.
@@ -237,6 +240,7 @@ class GoogleMapsToolkit(BaseToolkit):
 
         return description
 
+    @export_to_toolkit
     @handle_googlemaps_exceptions
     def get_timezone(self, lat: float, lng: float) -> str:
         r"""Retrieves timezone information for a given latitude and longitude.
@@ -300,3 +304,6 @@ class GoogleMapsToolkit(BaseToolkit):
             OpenAIFunction(self.get_elevation),
             OpenAIFunction(self.get_timezone),
         ]
+
+
+__all__: list[str] = []

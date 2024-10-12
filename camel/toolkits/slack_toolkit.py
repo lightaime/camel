@@ -20,6 +20,7 @@ import os
 from typing import TYPE_CHECKING, List, Optional
 
 from camel.toolkits.base import BaseToolkit
+from camel.utils.commons import export_to_toolkit
 
 if TYPE_CHECKING:
     from ssl import SSLContext
@@ -81,6 +82,7 @@ class SlackToolkit(BaseToolkit):
         logger.info("Slack login successful.")
         return client
 
+    @export_to_toolkit
     def create_slack_channel(
         self, name: str, is_private: Optional[bool] = True
     ) -> str:
@@ -112,6 +114,7 @@ class SlackToolkit(BaseToolkit):
         except SlackApiError as e:
             return f"Error creating conversation: {e.response['error']}"
 
+    @export_to_toolkit
     def join_slack_channel(self, channel_id: str) -> str:
         r"""Joins an existing Slack channel.
 
@@ -135,6 +138,7 @@ class SlackToolkit(BaseToolkit):
         except SlackApiError as e:
             return f"Error creating conversation: {e.response['error']}"
 
+    @export_to_toolkit
     def leave_slack_channel(self, channel_id: str) -> str:
         r"""Leaves an existing Slack channel.
 
@@ -158,6 +162,7 @@ class SlackToolkit(BaseToolkit):
         except SlackApiError as e:
             return f"Error creating conversation: {e.response['error']}"
 
+    @export_to_toolkit
     def get_slack_channel_information(self) -> str:
         r"""Retrieve Slack channels and return relevant information in JSON
             format.
@@ -191,6 +196,7 @@ class SlackToolkit(BaseToolkit):
         except SlackApiError as e:
             return f"Error creating conversation: {e.response['error']}"
 
+    @export_to_toolkit
     def get_slack_channel_message(self, channel_id: str) -> str:
         r"""Retrieve messages from a Slack channel.
 
@@ -220,6 +226,7 @@ class SlackToolkit(BaseToolkit):
         except SlackApiError as e:
             return f"Error retrieving messages: {e.response['error']}"
 
+    @export_to_toolkit
     def send_slack_message(
         self,
         message: str,
@@ -257,6 +264,7 @@ class SlackToolkit(BaseToolkit):
         except SlackApiError as e:
             return f"Error creating conversation: {e.response['error']}"
 
+    @export_to_toolkit
     def delete_slack_message(
         self,
         time_stamp: str,

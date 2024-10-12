@@ -18,6 +18,7 @@ from camel.toolkits import OpenAIFunction
 from camel.toolkits.base import BaseToolkit
 from camel.types import StorageType
 from camel.utils import Constants
+from camel.utils.commons import export_to_toolkit
 
 
 class RetrievalToolkit(BaseToolkit):
@@ -34,6 +35,7 @@ class RetrievalToolkit(BaseToolkit):
             storage_type=StorageType.QDRANT,
         )
 
+    @export_to_toolkit
     def information_retrieval(
         self,
         query: str,

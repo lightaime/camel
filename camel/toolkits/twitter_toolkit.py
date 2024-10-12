@@ -21,6 +21,7 @@ import requests
 
 from camel.toolkits import OpenAIFunction
 from camel.toolkits.base import BaseToolkit
+from camel.utils.commons import export_to_toolkit
 
 TWEET_TEXT_LIMIT = 280
 
@@ -32,6 +33,7 @@ class TwitterToolkit(BaseToolkit):
     getting the authenticated user's profile information.
     """
 
+    @export_to_toolkit
     def create_tweet(
         self,
         *,
@@ -162,6 +164,7 @@ class TwitterToolkit(BaseToolkit):
 
         return response_str
 
+    @export_to_toolkit
     def delete_tweet(self, tweet_id: str) -> str:
         r"""Deletes a tweet with the specified ID for an authorized user.
 
@@ -226,6 +229,7 @@ class TwitterToolkit(BaseToolkit):
         )
         return response_str
 
+    @export_to_toolkit
     def get_my_user_profile(self) -> str:
         r"""Retrieves and formats the authenticated user's Twitter
         profile info.

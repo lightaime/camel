@@ -11,6 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # =========== Copyright 2023 @ CAMEL-AI.org. All Rights Reserved. ===========
+import functools
 import importlib
 import os
 import platform
@@ -577,3 +578,13 @@ def handle_http_error(response: requests.Response) -> str:
         return "Too Many Requests. You have hit the rate limit."
     else:
         return "HTTP Error"
+
+
+def export_to_toolkit(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result
+
+    wrapper._is_exported = True
+    return wrapper

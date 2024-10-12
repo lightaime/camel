@@ -20,6 +20,7 @@ from requests.exceptions import RequestException
 
 from camel.toolkits import OpenAIFunction
 from camel.toolkits.base import BaseToolkit
+from camel.utils.commons import export_to_toolkit
 
 
 class RedditToolkit(BaseToolkit):
@@ -85,6 +86,7 @@ class RedditToolkit(BaseToolkit):
                 else:
                     raise
 
+    @export_to_toolkit
     def collect_top_posts(
         self,
         subreddit_name: str,
@@ -132,6 +134,7 @@ class RedditToolkit(BaseToolkit):
 
         return data
 
+    @export_to_toolkit
     def perform_sentiment_analysis(
         self, data: List[Dict[str, Any]]
     ) -> List[Dict[str, Any]]:
@@ -156,6 +159,7 @@ class RedditToolkit(BaseToolkit):
 
         return data
 
+    @export_to_toolkit
     def track_keyword_discussions(
         self,
         subreddits: List[str],

@@ -18,10 +18,31 @@ from typing import List, Optional
 
 from pydantic import BaseModel
 
+from camel.toolkits.base import BaseToolkit
+from camel.toolkits.openai_function import OpenAIFunction
 from camel.utils import dependencies_required
+from camel.utils.commons import export_to_toolkit
 
-from .base import BaseToolkit
-from .openai_function import OpenAIFunction
+
+def get_github_access_token() -> str:
+    r"""Retrieve the GitHub access token from environment variables.
+
+    Returns:
+        str: A string containing the GitHub access token.
+
+    Raises:
+        ValueError: If the API key or secret is not found in the environment
+            variables.
+    """
+    # Get `GITHUB_ACCESS_TOKEN` here: https://github.com/settings/tokens
+    github_token = os.environ.get("GITHUB_ACCESS_TOKEN")
+
+    if not github_token:
+        raise ValueError(
+            "`GITHUB_ACCESS_TOKEN` not found in environment variables. Get it "
+            "here: `https://github.com/settings/tokens`."
+        )
+    return github_token
 
 
 class GithubIssue(BaseModel):
@@ -69,18 +90,16 @@ class GithubPullRequestDiff(BaseModel):
     patch: str
 
     def __str__(self) -> str:
-        r"""Returns a string representation of this diff."""
         return f"Filename: {self.filename}\nPatch: {self.patch}"
 
 
 class GithubPullRequest(BaseModel):
-    r"""Represents a pull request on Github.
+    r"""Represents a pull request on GitHub.
 
     Attributes:
         title (str): The title of the GitHub pull request.
         body (str): The body/content of the GitHub pull request.
-        diffs (List[GithubPullRequestDiff]): A list of diffs for the pull
-            request.
+        diffs (List[GithubPullRequestDiff]): A list of diffs for the PR.
     """
 
     title: str
@@ -88,7 +107,6 @@ class GithubPullRequest(BaseModel):
     diffs: List[GithubPullRequestDiff]
 
     def __str__(self) -> str:
-        r"""Returns a string representation of the pull request."""
         diff_summaries = '\n'.join(str(diff) for diff in self.diffs)
         return (
             f"Title: {self.title}\n"
@@ -99,16 +117,15 @@ class GithubPullRequest(BaseModel):
 
 class GithubToolkit(BaseToolkit):
     r"""A class representing a toolkit for interacting with GitHub
-    repositories.
-
-    This class provides methods for retrieving open issues, retrieving
-        specific issues, and creating pull requests in a GitHub repository.
+    repositories. This class provides methods for retrieving open issues,
+    retrieving specific issues, and creating pull requests in a GitHub
+    repository.
 
     Args:
         repo_name (str): The name of the GitHub repository.
-        access_token (str, optional): The access token to authenticate with
-            GitHub. If not provided, it will be obtained using the
-            `get_github_access_token` method.
+        access_token (Optional[str], optional): The access token to
+            authenticate with GitHub. If not provided, it will be obtained
+            using the `get_github_access_token` method. (default: :obj:`None`)
     """
 
     @dependencies_required('github')
@@ -119,12 +136,13 @@ class GithubToolkit(BaseToolkit):
 
         Args:
             repo_name (str): The name of the GitHub repository.
-            access_token (str, optional): The access token to authenticate
-                with GitHub. If not provided, it will be obtained using the
-                `get_github_access_token` method.
+            access_token (Optional[str], optional): The access token to
+                authenticate with GitHub. If not provided, it will be obtained
+                using the `get_github_access_token` method.
+                (default: :obj:`None`)
         """
         if access_token is None:
-            access_token = self.get_github_access_token()
+            access_token = get_github_access_token()
 
         from github import Auth, Github
 
@@ -146,31 +164,13 @@ class GithubToolkit(BaseToolkit):
             OpenAIFunction(self.retrieve_pull_requests),
         ]
 
-    def get_github_access_token(self) -> str:
-        r"""Retrieve the GitHub access token from environment variables.
-
-        Returns:
-            str: A string containing the GitHub access token.
-
-        Raises:
-            ValueError: If the API key or secret is not found in the
-                environment variables.
-        """
-        # Get `GITHUB_ACCESS_TOKEN` here: https://github.com/settings/tokens
-        GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN")
-
-        if not GITHUB_ACCESS_TOKEN:
-            raise ValueError(
-                "`GITHUB_ACCESS_TOKEN` not found in environment variables. Get"
-                " it here: `https://github.com/settings/tokens`."
-            )
-        return GITHUB_ACCESS_TOKEN
-
+    @export_to_toolkit
     def retrieve_issue_list(self) -> List[GithubIssue]:
         r"""Retrieve a list of open issues from the repository.
 
         Returns:
-            A list of GithubIssue objects representing the open issues.
+            List[GithubIssue]: A list of GithubIssue objects representing
+                the open issues.
         """
         issues = self.repo.get_issues(state='open')
         return [
@@ -187,17 +187,16 @@ class GithubToolkit(BaseToolkit):
             if not issue.pull_request
         ]
 
+    @export_to_toolkit
     def retrieve_issue(self, issue_number: int) -> Optional[str]:
-        r"""Retrieves an issue from a GitHub repository.
-
-        This function retrieves an issue from a specified repository using the
-        issue number.
+        r"""Retrieves an issue from a GitHub repository. This function
+        retrieves an issue from a specified repository using the issue number.
 
         Args:
             issue_number (int): The number of the issue to retrieve.
 
         Returns:
-            str: A formatted report of the retrieved issue.
+            Optional[str]: A formatted report of the retrieved issue.
         """
         issues = self.retrieve_issue_list()
         for issue in issues:
@@ -205,6 +204,7 @@ class GithubToolkit(BaseToolkit):
                 return str(issue)
         return None
 
+    @export_to_toolkit
     def retrieve_pull_requests(
         self, days: int, state: str, max_prs: int
     ) -> List[str]:
@@ -212,10 +212,8 @@ class GithubToolkit(BaseToolkit):
         The summary will be provided for the last specified number of days.
 
         Args:
-            days (int): The number of days to retrieve merged pull requests
-                for.
-            state (str): A specific state of PRs to retrieve. Can be open or
-                closed.
+            days (int): Number of days to retrieve merged PRs for.
+            state (str): The state of PRs to retrieve. Can be open or closed.
             max_prs (int): The maximum number of PRs to retrieve.
 
         Returns:
@@ -247,6 +245,7 @@ class GithubToolkit(BaseToolkit):
                 merged_prs.append(str(pr_details))
         return merged_prs
 
+    @export_to_toolkit
     def create_pull_request(
         self,
         file_path: str,
@@ -255,11 +254,10 @@ class GithubToolkit(BaseToolkit):
         body: str,
         branch_name: str,
     ) -> str:
-        r"""Creates a pull request.
-
-        This function creates a pull request in specified repository, which
-        updates a file in the specific path with new content. The pull request
-        description contains information about the issue title and number.
+        r"""Creates a pull request. This function creates a pull request in
+        specified repository, which updates a file in the specific path with
+        new content. The pull request description contains information about
+        the issue title and number.
 
         Args:
             file_path (str): The path of the file to be updated in the

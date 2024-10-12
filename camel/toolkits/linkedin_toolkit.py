@@ -22,6 +22,7 @@ import requests
 from camel.toolkits import OpenAIFunction
 from camel.toolkits.base import BaseToolkit
 from camel.utils import handle_http_error
+from camel.utils.commons import export_to_toolkit
 
 LINKEDIN_POST_LIMIT = 1300
 
@@ -36,6 +37,7 @@ class LinkedInToolkit(BaseToolkit):
     def __init__(self):
         self._access_token = self._get_access_token()
 
+    @export_to_toolkit
     def create_post(self, text: str) -> dict:
         r"""Creates a post on LinkedIn for the authenticated user.
 
@@ -86,6 +88,7 @@ class LinkedInToolkit(BaseToolkit):
                 f"Response: {response.text}"
             )
 
+    @export_to_toolkit
     def delete_post(self, post_id: str) -> str:
         r"""Deletes a LinkedIn post with the specified ID
         for an authorized user.
@@ -136,6 +139,7 @@ class LinkedInToolkit(BaseToolkit):
 
         return f"Post deleted successfully. Post ID: {post_id}."
 
+    @export_to_toolkit
     def get_profile(self, include_id: bool = False) -> dict:
         r"""Retrieves the authenticated user's LinkedIn profile info.
 

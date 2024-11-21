@@ -43,24 +43,34 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
-    'myst_parser',
-    'nbsphinx',
+    'sphinxawesome_theme',
+    'myst_nb',
 ]
+
+myst_enable_extensions = [
+    "dollarmath",
+    "colon_fence",
+]
+nb_execution_mode = "off"
+nb_render_unexecuted_notebooks = False
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
+html_permalinks_icon = "<span>^</span>"
+html_theme = "sphinxawesome_theme"
 
-html_theme = 'sphinx_book_theme'
+# Update theme options for sphinx_awesome_theme
+html_static_path = ['_static']
 
+html_css_files = [
+    'custom.css',
+]
 html_theme_options = {
-    "logo": {
-        "text": f"CAMEL {release}",
-        "image_light": "https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png",
-        "image_dark": "https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png",
-    }
+    "logo_light": "_static/logo_primary_light.svg",
+    "logo_dark": "_static/logo_primary_dark.svg",
 }
 
 nbsphinx_execute = 'never'

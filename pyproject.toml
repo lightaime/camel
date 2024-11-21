@@ -346,11 +346,14 @@ types-requests = "^2"
 [tool.poetry.group.docs]
 optional = true
 [tool.poetry.group.docs.dependencies]
+sphinxawesome-theme = "*" 
+recommonmark = "*"
 sphinx = "^7"
 sphinx_book_theme = "*"
 docutils = "<0.20.0"
 myst-parser = "*"
 nbsphinx = "*"
+myst_nb = "*"
 
 [tool.ruff]
 line-length = 79

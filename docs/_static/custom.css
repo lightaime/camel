@@ -1,0 +1,31 @@
+.mr-2 {
+  width: auto;
+  height: 24px;
+}
+
+.highlight .err {
+    border: none !important;
+    background-color: transparent !important;
+}
+html.dark div.cell div.cell_input,
+html.dark div.cell details.above-input > summary  {
+    border: #22594d solid; !important;
+    background-color: #222323; !important;
+    border-left-color: #2acda9; !important;
+}
+
+html.dark div.cell div.cell_output > div {
+    border: rgba(255, 255, 255, 0) solid; !important;
+    background-color: #222323; !important;
+}
+
+table.indextable {
+    width: 100% !important;
+    border-collapse: collapse;
+}
+
+table.indextable td {
+    width: 100% !important;
+    display: block !important;
+    vertical-align: top;
+}

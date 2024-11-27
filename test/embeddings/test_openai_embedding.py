@@ -11,6 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # =========== Copyright 2023 @ CAMEL-AI.org. All Rights Reserved. ===========
+import os
+from unittest.mock import MagicMock, patch
 from camel.embeddings import OpenAIEmbedding
 
 
@@ -24,3 +26,65 @@ def test_openai_embedding():
     text = "test 2"
     vector = embedding_model.embed(text)
     assert len(vector) == embedding_model.get_output_dim() == 256
+    
+
+@patch.dict(os.environ, {
+    "OPENAI_API_KEY": "fake_openai_api_key",
+    "OPENAI_API_BASE_URL": "https://fake-openai-api.com/v1"
+})
+@patch('openai.OpenAI', autospec=True)
+def test_openai_embedding_with_env_url(mock_openai):
+    mock_client_instance = mock_openai.return_value
+    mock_embeddings = MagicMock()
+    mock_embeddings.create.return_value = MagicMock(
+        data=[
+            MagicMock(embedding=[0.1, 0.2, 0.3]),
+        ]
+    )
+    mock_client_instance.embeddings = mock_embeddings
+
+    embedding = OpenAIEmbedding()
+    result = embedding.embed("test text")
+
+    mock_openai.assert_called_once_with(
+        timeout=60,
+        max_retries=3,
+        api_key="fake_openai_api_key",
+        base_url="https://fake-openai-api.com/v1"
+    )
+
+    assert result == [0.1, 0.2, 0.3]
+
+
+@patch('openai.OpenAI', autospec=True)
+def test_openai_embedding_with_custom_url(mock_openai):
+    mock_client_instance = mock_openai.return_value
+    mock_embeddings = MagicMock()
+    mock_embeddings.create.return_value = MagicMock(
+        data=[
+            MagicMock(embedding=[0.4, 0.5, 0.6]),
+        ]
+    )
+    mock_client_instance.embeddings = mock_embeddings
+
+    custom_url = "https://custom-openai-api.com/v1"
+    embedding = OpenAIEmbedding(url=custom_url)
+    result = embedding.embed("test text")
+
+    mock_openai.assert_called_once_with(
+        timeout=60,
+        max_retries=3,
+        api_key=None,
+        base_url=custom_url
+    )
+
+    assert result == [0.4, 0.5, 0.6]
+
+
+def test_openai_embedding_output_dim():
+    embedding = OpenAIEmbedding()
+    assert embedding.get_output_dim() == embedding.model_type.output_dim
+
+    custom_dim = 256
+    embedding = OpenAIEmbedding(dimensions=custom_dim)
+    assert embedding.get_output_dim() == custom_dim

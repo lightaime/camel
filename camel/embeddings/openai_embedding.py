@@ -45,6 +45,7 @@ class OpenAIEmbedding(BaseEmbedding[str]):
             EmbeddingModelType.TEXT_EMBEDDING_3_SMALL
         ),
         api_key: str | None = None,
+        url: str | None = None,
         dimensions: int | NotGiven = NOT_GIVEN,
     ) -> None:
         if not model_type.is_openai:
@@ -56,7 +57,11 @@ class OpenAIEmbedding(BaseEmbedding[str]):
             assert isinstance(dimensions, int)
             self.output_dim = dimensions
         self._api_key = api_key or os.environ.get("OPENAI_API_KEY")
-        self.client = OpenAI(timeout=60, max_retries=3, api_key=self._api_key)
+        self._url = url or os.environ.get("OPENAI_API_BASE_URL")
+        client_kwargs = {"timeout": 60, "max_retries": 3, "api_key": self._api_key}
+		if self._url:
+			client_kwargs["base_url"] = self._url
+		self.client = OpenAI(**client_kwargs)
 
     @api_keys_required("OPENAI_API_KEY")
     def embed_list(

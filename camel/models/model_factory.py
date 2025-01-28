@@ -14,6 +14,7 @@
 from typing import Dict, Optional, Type, Union
 
 from camel.models.anthropic_model import AnthropicModel
+from camel.models.aws_bedrock_model import AWSBedrockModel
 from camel.models.azure_openai_model import AzureOpenAIModel
 from camel.models.base_model import BaseModelBackend
 from camel.models.cohere_model import CohereModel
@@ -98,6 +99,8 @@ class ModelFactory:
             model_class = TogetherAIModel
         elif model_platform.is_litellm:
             model_class = LiteLLMModel
+        elif model_platform.is_aws_bedrock:
+            model_class = AWSBedrockModel
         elif model_platform.is_nvidia:
             model_class = NvidiaModel
 

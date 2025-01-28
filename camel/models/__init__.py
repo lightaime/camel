@@ -12,6 +12,7 @@
 # limitations under the License.
 # ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========
 from .anthropic_model import AnthropicModel
+from .aws_bedrock_model import AWSBedrockModel
 from .azure_openai_model import AzureOpenAIModel
 from .base_model import BaseModelBackend
 from .cohere_model import CohereModel
@@ -66,6 +67,7 @@ __all__ = [
     'TogetherAIModel',
     'YiModel',
     'QwenModel',
+    'AWSBedrockModel',
     'ModelProcessingError',
     'DeepSeekModel',
     'FishAudioModel',

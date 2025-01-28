@@ -87,7 +87,7 @@ The following table lists currently supported model platforms by CAMEL.
 | Together AI | https://docs.together.ai/docs/chat-models | ----- |
 | LiteLLM | https://docs.litellm.ai/docs/providers | ----- |
 | SGLang | https://sgl-project.github.io/references/supported_models.html | ----- |
-
+| AWSBedrock | https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html | ----- |
 ## 3. Using Models by API calling
 
 Here is an example code to use a specific model (gpt-4o-mini). If you want to use another model, you can simply change these three parameters: `model_platform`, `model_type`, `model_config_dict` .

@@ -764,6 +764,7 @@ class ModelPlatformType(Enum):
     DEEPSEEK = "deepseek"
     SGLANG = "sglang"
     INTERNLM = "internlm"
+    AWS_BEDROCK = "aws-bedrock"
 
     @property
     def is_openai(self) -> bool:
@@ -870,6 +871,11 @@ class ModelPlatformType(Enum):
     def is_internlm(self) -> bool:
         r"""Returns whether this platform is InternLM."""
         return self is ModelPlatformType.INTERNLM
+
+    @property
+    def is_aws_bedrock(self) -> bool:
+        r"""Returns whether this platform is AWS Bedrock."""
+        return self is ModelPlatformType.AWS_BEDROCK
 
 
 class AudioModelType(Enum):

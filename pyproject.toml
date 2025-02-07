@@ -98,6 +98,7 @@ imageio = { extras = ["pyav"], version = "^2.34.2", optional = true }
 pydub = { version = "^0.25.1", optional = true }
 yt-dlp = { version = "^2024.11.4", optional = true }
 ffmpeg-python = { version = "^0.2.0", optional = true }
+scenedetect = { version = "^0.6.5.2", optional = true }
 
 # Web and API tools
 wikipedia = { version = "^1", optional = true }
@@ -206,6 +207,7 @@ media_tools = [
     "pydub",
     "yt-dlp",
     "ffmpeg-python",
+    "scenedetect",
 ]
 
 # Communication platform tools
@@ -341,6 +343,7 @@ all = [
     "notion-client",
     "yt-dlp",
     "ffmpeg-python",
+    "scenedetect",
     "datacommons",
     "datacommons_pandas",
     "tavily-python",

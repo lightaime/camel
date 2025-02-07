@@ -18,6 +18,7 @@ import re
 import tempfile
 from pathlib import Path
 from typing import List, Optional
+from urllib.parse import urlparse
 
 from PIL import Image
 
@@ -117,7 +118,7 @@ class VideoDownloaderToolkit(BaseToolkit):
         if self._cleanup:
             shutil.rmtree(self._download_directory, ignore_errors=True)
 
-    def _download_video(self, url: str) -> str:
+    def download_video(self, url: str) -> str:
         r"""Download the video and optionally split it into chunks.
 
         yt-dlp will detect if the video is downloaded automatically so there
@@ -147,7 +148,7 @@ class VideoDownloaderToolkit(BaseToolkit):
 
     def get_video_bytes(
         self,
-        video_url: str,
+        video_path: str,
     ) -> bytes:
         r"""Download video by the URL, and return the content in bytes.
 
@@ -157,8 +158,11 @@ class VideoDownloaderToolkit(BaseToolkit):
         Returns:
             bytes: The video file content in bytes.
         """
-        url = _standardize_url(video_url)
-        video_file = self._download_video(url)
+        parsed_url = urlparse(video_path)
+        is_url = all([parsed_url.scheme, parsed_url.netloc])
+        if is_url:
+            video_path = self.download_video(video_path)
+        video_file = video_path
 
         with open(video_file, 'rb') as f:
             video_bytes = f.read()
@@ -166,7 +170,7 @@ class VideoDownloaderToolkit(BaseToolkit):
         return video_bytes
 
     def get_video_screenshots(
-        self, video_url: str, amount: int
+        self, video_path: str, amount: int
     ) -> List[Image.Image]:
         r"""Capture screenshots from the video at specified timestamps or by
         dividing the video into equal parts if an integer is provided.
@@ -180,8 +184,11 @@ class VideoDownloaderToolkit(BaseToolkit):
         """
         import ffmpeg
 
-        url = _standardize_url(video_url)
-        video_file = self._download_video(url)
+        parsed_url = urlparse(video_path)
+        is_url = all([parsed_url.scheme, parsed_url.netloc])
+        if is_url:
+            video_path = self.download_video(video_path)
+        video_file = video_path
 
         # Get the video length
         try:
@@ -206,6 +213,7 @@ class VideoDownloaderToolkit(BaseToolkit):
                 the functions in the toolkit.
         """
         return [
+            FunctionTool(self.download_video),
             FunctionTool(self.get_video_bytes),
             FunctionTool(self.get_video_screenshots),
         ]

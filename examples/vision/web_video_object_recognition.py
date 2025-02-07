@@ -16,7 +16,7 @@ import argparse
 from camel.agents import ChatAgent
 from camel.generators import PromptTemplateGenerator
 from camel.messages import BaseMessage
-from camel.toolkits.video_toolkit import VideoDownloaderToolkit
+from camel.toolkits import VideoDownloaderToolkit
 from camel.types import (
     RoleType,
     TaskType,

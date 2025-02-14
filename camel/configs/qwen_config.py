@@ -13,10 +13,9 @@
 # ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========
 from __future__ import annotations
 
-from typing import ClassVar, Optional, Union
+from typing import Dict, List, Optional, Union
 
 from camel.configs.base_config import BaseConfig
-from camel.types import NOT_GIVEN, NotGiven
 
 
 class QwenConfig(BaseConfig):
@@ -27,58 +26,59 @@ class QwenConfig(BaseConfig):
     Args:
         stream (bool, optional): Whether to stream the response.
             (default: :obj:`False`)
-        temperature (float, optional): Controls the diversity and focus of
-            the generated results. Lower values make the output more focused,
-            while higher values make it more diverse. (default: :obj:`0.3`)
-        top_p (float, optional): Controls the diversity and focus of the
-            generated results. Higher values make the output more diverse,
+        temperature (float, optional): Controls the diversity and
+            focus of the generated results. Lower values make the output more
+            focused, while higher values make it more diverse.
+            (default: :obj:`0.3`)
+        top_p (float, optional): Controls the diversity and focus of
+            the generated results. Higher values make the output more diverse,
             while lower values make it more focused. (default: :obj:`0.9`)
-        presence_penalty (float, optional): Controls the repetition of
+        presence_penalty (float, optional): Controls the repetition
             content in the generated results. Positive values reduce the
             repetition of content, while negative values increase it.
             (default: :obj:`0.0`)
-        response_format (object, optional): Specifies the format of the
-            returned content. The available values are `{"type": "text"}` or
-            `{"type": "json_object"}`. Setting it to `{"type": "json_object"}`
-            will output a standard JSON string.
-            (default: :obj:`{"type": "text"}`)
-        max_tokens (Union[int, NotGiven], optional): Allows the model to
+        response_format (Optional[Dict[str, str]], optional): Specifies the
+            format of the returned content. The available values are
+            `{"type": "text"}` or `{"type": "json_object"}`. Setting it to
+            `{"type": "json_object"}` will output a standard JSON string.
+            (default: :obj:`None`)
+        max_tokens (Optional[int], optional): Allows the model to
             generate the maximum number of tokens.
-            (default: :obj:`NOT_GIVEN`)
-        seed (int, optional): Sets the seed parameter to make the text
-            generation process more deterministic, typically used to ensure
-            that the results are consistent across model runs. By passing the
-            same seed value (specified by you) in each model call while
-            keeping other parameters unchanged, the model is likely to return
-            the same result.
             (default: :obj:`None`)
-        stop (str or list, optional): Using the stop parameter, the model will
-            automatically stop generating text when it is about to include the
-            specified string or token_id. You can use the stop parameter to
-            control the output of the model by passing sensitive words.
+        seed (Optional[int], optional): Sets the seed parameter to make the
+            text generation process more deterministic, typically used to
+            ensure that the results are consistent across model runs. By
+            passing the same seed value (specified by you) in each model call
+            while keeping other parameters unchanged, the model is likely to
+            return the same result.
             (default: :obj:`None`)
-        tools (list, optional): Specifies an array of tools that the model can
+        stop (Optional[Union[str, List]], optional): Using the stop parameter,
+            the model will automatically stop generating text when it is about
+            to include the specified string or token_id. You can use the stop
+            parameter to control the output of the model by passing sensitive
+            words. (default: :obj:`None`)
+        tools (List, optional): Specifies an array of tools that the model can
             call. It can contain one or more tool objects. During a function
             call process, the model will select one tool from the array.
             (default: :obj:`None`)
-        extra_body (dict, optional): Additional parameters to be sent to the
-            Qwen API. If you want to enable internet search, you can set this
-            parameter to `{"enable_search": True}`.
-            (default: :obj:`{"enable_search": False}`)
+        extra_body (Optional[Dict[str, str]], optional): Additional parameters
+            to be sent to the Qwen API. If you want to enable internet search,
+            you can set this parameter to `{"enable_search": True}`.
+            (default: :obj:`None`)
         include_usage (bool, optional): When streaming, specifies whether to
-            include usage information in `stream_options`. (default:
-            :obj:`True`)
+            include usage information in `stream_options`.
+            (default: :obj:`True`)
     """
 
     stream: bool = False
     temperature: float = 0.3
     top_p: float = 0.9
     presence_penalty: float = 0.0
-    response_format: ClassVar[dict] = {"type": "text"}
-    max_tokens: Union[int, NotGiven] = NOT_GIVEN
+    response_format: Optional[Dict[str, str]] = None
+    max_tokens: Optional[int] = None
     seed: Optional[int] = None
-    stop: Optional[Union[str, list]] = None
-    extra_body: ClassVar[dict] = {"enable_search": False}
+    stop: Optional[Union[str, List]] = None
+    extra_body: Optional[Dict[str, str]] = None
 
     def __init__(self, include_usage: bool = True, **kwargs):
         super().__init__(**kwargs)

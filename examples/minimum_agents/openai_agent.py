@@ -12,14 +12,25 @@
 # limitations under the License.
 # ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========
 
-from .base import BaseNode
-from .role_playing_worker import RolePlayingWorker
-from .single_agent_worker import SingleAgentWorker
-from .workforce import Workforce
+from pydantic import BaseModel
 
-__all__ = [
-    "Workforce",
-    "SingleAgentWorker",
-    "RolePlayingWorker",
-    "BaseNode",
-]
+from camel.agents import ChatAgent
+from camel.toolkits import WeatherToolkit
+
+
+class ResponseFormat(BaseModel):
+    max_temp: str
+    min_temp: str
+
+
+agent = ChatAgent(
+    "You are a helpful assistant.",
+    tools=[WeatherToolkit().get_weather_data],
+)
+
+resp = agent.step(
+    "What's the temperature in New York today?",
+    response_format=ResponseFormat,
+)
+
+print(resp.msg.parsed)

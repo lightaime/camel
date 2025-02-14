@@ -138,7 +138,7 @@ def test_model_factory(model_platform, model_type):
             "content": "Hello",
         },
     ]
-    response = model_inst.run(messages).model_dump()
+    response = model_inst._run(messages).model_dump()
     assert isinstance(response, dict)
     assert 'id' in response
     assert isinstance(response['id'], str)

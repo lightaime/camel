@@ -16,7 +16,9 @@ import json
 import logging
 import os
 import uuid
-from typing import TYPE_CHECKING, Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Type, Union
+
+from pydantic import BaseModel
 
 if TYPE_CHECKING:
     from cohere.types import ChatMessageV2, ChatResponse
@@ -24,6 +26,7 @@ if TYPE_CHECKING:
 from camel.configs import COHERE_API_PARAMS, CohereConfig
 from camel.messages import OpenAIMessage
 from camel.models import BaseModelBackend
+from camel.models._utils import try_modify_message_with_format
 from camel.types import ChatCompletion, ModelType
 from camel.utils import (
     BaseTokenCounter,
@@ -67,6 +70,7 @@ class CohereModel(BaseModelBackend):
             model_type, model_config_dict, api_key, url, token_counter
         )
         self._client = cohere.ClientV2(api_key=self._api_key)
+        self._async_client = cohere.AsyncClientV2(api_key=self._api_key)
 
     def _to_openai_response(self, response: 'ChatResponse') -> ChatCompletion:
         if response.usage and response.usage.tokens:
@@ -215,7 +219,30 @@ class CohereModel(BaseModelBackend):
             )
         return self._token_counter
 
-    def run(self, messages: List[OpenAIMessage]) -> ChatCompletion:
+    def _prepare_request(
+        self,
+        messages: List[OpenAIMessage],
+        response_format: Optional[Type[BaseModel]],
+        tools: Optional[List[Dict[str, Any]]],
+    ) -> Dict[str, Any]:
+        request_config = self.model_config_dict.copy()
+        if tools:
+            for tool in tools:
+                function_dict = tool.get('function', {})
+                function_dict.pop("strict", None)
+            request_config["tools"] = tools
+        elif response_format:
+            try_modify_message_with_format(messages[-1], response_format)
+            request_config["response_format"] = {"type": "json_object"}
+
+        return request_config
+
+    def _run(
+        self,
+        messages: List[OpenAIMessage],
+        response_format: Optional[Type[BaseModel]] = None,
+        tools: Optional[List[Dict[str, Any]]] = None,
+    ) -> ChatCompletion:
         r"""Runs inference of Cohere chat completion.
 
         Args:
@@ -226,21 +253,71 @@ class CohereModel(BaseModelBackend):
         """
         from cohere.core.api_error import ApiError
 
-        cohere_messages = self._to_cohere_chatmessage(messages)
+        request_config = self._prepare_request(
+            messages, response_format, tools
+        )
 
-        # Removing 'strict': True from the dictionary for
-        # cohere client
-        if self.model_config_dict.get('tools') is not None:
-            for tool in self.model_config_dict.get('tools', []):
-                function_dict = tool.get('function', {})
-                if 'strict' in function_dict:
-                    del function_dict['strict']
+        cohere_messages = self._to_cohere_chatmessage(messages)
 
         try:
             response = self._client.chat(
                 messages=cohere_messages,
                 model=self.model_type,
-                **self.model_config_dict,
+                **request_config,
+            )
+        except ApiError as e:
+            logging.error(f"Cohere API Error: {e.status_code}")
+            logging.error(f"Error body: {e.body}")
+            raise
+        except Exception as e:
+            logging.error(f"Unexpected error when calling Cohere API: {e!s}")
+            raise
+
+        openai_response = self._to_openai_response(response)
+
+        # Add AgentOps LLM Event tracking
+        if LLMEvent:
+            llm_event = LLMEvent(
+                thread_id=openai_response.id,
+                prompt=" ".join(
+                    [message.get("content") for message in messages]  # type: ignore[misc]
+                ),
+                prompt_tokens=openai_response.usage.prompt_tokens,  # type: ignore[union-attr]
+                completion=openai_response.choices[0].message.content,
+                completion_tokens=openai_response.usage.completion_tokens,  # type: ignore[union-attr]
+                model=self.model_type,
+            )
+            record(llm_event)
+
+        return openai_response
+
+    async def _arun(
+        self,
+        messages: List[OpenAIMessage],
+        response_format: Optional[Type[BaseModel]] = None,
+        tools: Optional[List[Dict[str, Any]]] = None,
+    ) -> ChatCompletion:
+        r"""Runs inference of Cohere chat completion.
+
+        Args:
+            messages (List[OpenAIMessage]): Message list with the chat history
+                in OpenAI API format.
+        Returns:
+            ChatCompletion.
+        """
+        from cohere.core.api_error import ApiError
+
+        request_config = self._prepare_request(
+            messages, response_format, tools
+        )
+
+        cohere_messages = self._to_cohere_chatmessage(messages)
+
+        try:
+            response = await self._async_client.chat(
+                messages=cohere_messages,
+                model=self.model_type,
+                **request_config,
             )
         except ApiError as e:
             logging.error(f"Cohere API Error: {e.status_code}")

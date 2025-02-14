@@ -73,8 +73,8 @@ __all__ = [
     'AudioModelType',
     'VoiceType',
     'UnifiedModelType',
-    'NOT_GIVEN',
-    'NotGiven',
     'ParsedChatCompletion',
     'HuggingFaceRepoType',
+    'NOT_GIVEN',
+    'NotGiven',
 ]

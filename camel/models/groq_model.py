@@ -14,7 +14,8 @@
 import os
 from typing import Any, Dict, List, Optional, Union
 
-from openai import OpenAI, Stream
+from openai import AsyncOpenAI, AsyncStream, OpenAI, Stream
+from pydantic import BaseModel
 
 from camel.configs import GROQ_API_PARAMS, GroqConfig
 from camel.messages import OpenAIMessage
@@ -79,6 +80,12 @@ class GroqModel(BaseModelBackend):
             api_key=self._api_key,
             base_url=self._url,
         )
+        self._async_client = AsyncOpenAI(
+            timeout=180,
+            max_retries=3,
+            api_key=self._api_key,
+            base_url=self._url,
+        )
 
     @property
     def token_counter(self) -> BaseTokenCounter:
@@ -92,9 +99,11 @@ class GroqModel(BaseModelBackend):
             self._token_counter = OpenAITokenCounter(ModelType.GPT_4O_MINI)
         return self._token_counter
 
-    def run(
+    def _run(
         self,
         messages: List[OpenAIMessage],
+        response_format: Optional[type[BaseModel]] = None,
+        tools: Optional[List[Dict[str, Any]]] = None,
     ) -> Union[ChatCompletion, Stream[ChatCompletionChunk]]:
         r"""Runs inference of OpenAI chat completion.
 
@@ -108,6 +117,31 @@ class GroqModel(BaseModelBackend):
                 `Stream[ChatCompletionChunk]` in the stream mode.
         """
         response = self._client.chat.completions.create(
+            messages=messages,
+            model=self.model_type,
+            **self.model_config_dict,
+        )
+
+        return response
+
+    async def _arun(
+        self,
+        messages: List[OpenAIMessage],
+        response_format: Optional[type[BaseModel]] = None,
+        tools: Optional[List[Dict[str, Any]]] = None,
+    ) -> Union[ChatCompletion, AsyncStream[ChatCompletionChunk]]:
+        r"""Runs inference of OpenAI chat completion.
+
+        Args:
+            messages (List[OpenAIMessage]): Message list with the chat history
+                in OpenAI API format.
+
+        Returns:
+            Union[ChatCompletion, AsyncStream[ChatCompletionChunk]]:
+                `ChatCompletion` in the non-stream mode, or
+                `AsyncStream[ChatCompletionChunk]` in the stream mode.
+        """
+        response = await self._async_client.chat.completions.create(
             messages=messages,
             model=self.model_type,
             **self.model_config_dict,

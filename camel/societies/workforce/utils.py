@@ -16,6 +16,9 @@ from typing import Callable
 
 from pydantic import BaseModel, Field
 
+from camel.agents import ChatAgent
+from camel.messages.base import BaseMessage
+
 
 class WorkerConf(BaseModel):
     r"""The configuration of a worker."""
@@ -71,3 +74,22 @@ def check_if_running(running: bool) -> Callable:
         return wrapper
 
     return decorator
+
+
+def get_template_coordinator_agent() -> ChatAgent:
+    coord_agent_sys_msg = BaseMessage.make_assistant_message(
+        role_name="Workforce Coordinator",
+        content="You are coordinating a group of workers. A worker can be "
+        "a group of agents or a single agent. Each worker is created to "
+        "solve a specific kind of task. Your job includes assigning tasks "
+        "to a existing worker, creating a new worker for a task, etc.",
+    )
+    return ChatAgent(coord_agent_sys_msg)
+
+
+def get_template_task_agent() -> ChatAgent:
+    task_agent_sys_msg = BaseMessage.make_assistant_message(
+        role_name="Task Planner",
+        content="You are going to compose and decompose tasks.",
+    )
+    return ChatAgent(task_agent_sys_msg)

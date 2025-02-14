@@ -38,6 +38,8 @@ from camel.societies.workforce.utils import (
     TaskAssignResult,
     WorkerConf,
     check_if_running,
+    get_template_coordinator_agent,
+    get_template_task_agent,
 )
 from camel.societies.workforce.worker import Worker
 from camel.tasks.task import Task, TaskState
@@ -74,8 +76,8 @@ class Workforce(BaseNode):
         self,
         description: str,
         children: Optional[List[BaseNode]] = None,
-        coordinator_agent_kwargs: Optional[Dict] = None,
-        task_agent_kwargs: Optional[Dict] = None,
+        coordinator_agent: Optional[ChatAgent] = None,
+        task_agent: Optional[ChatAgent] = None,
         new_worker_agent_kwargs: Optional[Dict] = None,
     ) -> None:
         super().__init__(description)
@@ -83,23 +85,10 @@ class Workforce(BaseNode):
         self._children = children or []
         self.new_worker_agent_kwargs = new_worker_agent_kwargs
 
-        coord_agent_sys_msg = BaseMessage.make_assistant_message(
-            role_name="Workforce Manager",
-            content="You are coordinating a group of workers. A worker can be "
-            "a group of agents or a single agent. Each worker is "
-            "created to solve a specific kind of task. Your job "
-            "includes assigning tasks to a existing worker, creating "
-            "a new worker for a task, etc.",
+        self.coordinator_agent = (
+            coordinator_agent or get_template_coordinator_agent()
         )
-        self.coordinator_agent = ChatAgent(
-            coord_agent_sys_msg, **(coordinator_agent_kwargs or {})
-        )
-
-        task_sys_msg = BaseMessage.make_assistant_message(
-            role_name="Task Planner",
-            content="You are going to compose and decompose tasks.",
-        )
-        self.task_agent = ChatAgent(task_sys_msg, **(task_agent_kwargs or {}))
+        self.task_agent = task_agent or get_template_task_agent()
 
         # If there is one, will set by the workforce class wrapping this
         self._task: Optional[Task] = None

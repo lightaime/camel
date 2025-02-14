@@ -11,7 +11,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Type, Union
+
+from pydantic import BaseModel
 
 from camel.configs import LITELLM_API_PARAMS, LiteLLMConfig
 from camel.messages import OpenAIMessage
@@ -106,9 +108,14 @@ class LiteLLMModel(BaseModelBackend):
             self._token_counter = LiteLLMTokenCounter(self.model_type)
         return self._token_counter
 
-    def run(
+    async def _arun(self) -> None:  # type: ignore[override]
+        raise NotImplementedError
+
+    def _run(
         self,
         messages: List[OpenAIMessage],
+        response_format: Optional[Type[BaseModel]] = None,
+        tools: Optional[List[Dict[str, Any]]] = None,
     ) -> ChatCompletion:
         r"""Runs inference of LiteLLM chat completion.
 

@@ -14,7 +14,7 @@
 import os
 from typing import Any, List, Optional, Union
 
-from openai import OpenAI, _legacy_response
+from openai import AsyncOpenAI, OpenAI, _legacy_response
 
 from camel.types import AudioModelType, VoiceType
 
@@ -32,6 +32,12 @@ class OpenAIAudioModels:
         self._url = url or os.environ.get("OPENAI_API_BASE_URL")
         self._api_key = api_key or os.environ.get("OPENAI_API_KEY")
         self._client = OpenAI(
+            timeout=120,
+            max_retries=3,
+            base_url=self._url,
+            api_key=self._api_key,
+        )
+        self._async_client = AsyncOpenAI(
             timeout=120,
             max_retries=3,
             base_url=self._url,

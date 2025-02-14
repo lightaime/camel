@@ -12,9 +12,10 @@
 # limitations under the License.
 # ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========
 import time
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Type, Union
 
-from openai import Stream
+from openai import AsyncStream, Stream
+from pydantic import BaseModel
 
 from camel.messages import OpenAIMessage
 from camel.models import BaseModelBackend
@@ -74,8 +75,49 @@ class StubModel(BaseModelBackend):
             self._token_counter = StubTokenCounter()
         return self._token_counter
 
-    def run(
-        self, messages: List[OpenAIMessage]
+    async def _arun(
+        self,
+        messages: List[OpenAIMessage],
+        response_format: Optional[Type[BaseModel]] = None,
+        tools: Optional[List[Dict[str, Any]]] = None,
+    ) -> Union[ChatCompletion, AsyncStream[ChatCompletionChunk]]:
+        r"""Run fake inference by returning a fixed string.
+        All arguments are unused for the dummy model.
+
+        Returns:
+            Union[ChatCompletion, AsyncStream[ChatCompletionChunk]]:
+                The response from the dummy model.
+        """
+        ARBITRARY_STRING = "Lorem Ipsum"
+        response: ChatCompletion = ChatCompletion(
+            id="stub_model_id",
+            model="stub",
+            object="chat.completion",
+            created=int(time.time()),
+            choices=[
+                Choice(
+                    finish_reason="stop",
+                    index=0,
+                    message=ChatCompletionMessage(
+                        content=ARBITRARY_STRING,
+                        role="assistant",
+                    ),
+                    logprobs=None,
+                )
+            ],
+            usage=CompletionUsage(
+                completion_tokens=10,
+                prompt_tokens=10,
+                total_tokens=20,
+            ),
+        )
+        return response
+
+    def _run(
+        self,
+        messages: List[OpenAIMessage],
+        response_format: Optional[Type[BaseModel]] = None,
+        tools: Optional[List[Dict[str, Any]]] = None,
     ) -> Union[ChatCompletion, Stream[ChatCompletionChunk]]:
         r"""Run fake inference by returning a fixed string.
         All arguments are unused for the dummy model.

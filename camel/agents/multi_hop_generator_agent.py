@@ -75,7 +75,7 @@ class MultiHopGeneratorAgent(ProgrammableChatAgent):
             Supporting Facts: [List of relevant text segments used]
             """  # noqa: E501
         )
-        self.system_message = BaseMessage.make_assistant_message(
+        self._system_message = BaseMessage.make_assistant_message(
             role_name='Assistant', content=system_text
         )
 

@@ -869,39 +869,3 @@ def download_github_subdirectory(
             download_github_subdirectory(
                 repo, f'{subdir}/{file["name"]}', file_path, branch
             )
-
-
-def generate_prompt_for_structured_output(
-    response_format: Optional[Type[BaseModel]],
-    user_message: str,
-) -> str:
-    """
-    This function generates a prompt based on the provided Pydantic model and
-    user message.
-
-    Args:
-        response_format (Type[BaseModel]): The Pydantic model class.
-        user_message (str): The user message to be used in the prompt.
-
-    Returns:
-        str: A prompt string for the LLM.
-    """
-    if response_format is None:
-        return user_message
-
-    json_schema = response_format.model_json_schema()
-    sys_prompt = (
-        "Given the user message, please generate a JSON response adhering "
-        "to the following JSON schema:\n"
-        f"{json_schema}\n"
-        "Make sure the JSON response is valid and matches the EXACT structure "
-        "defined in the schema. Your result should only be a valid json "
-        "object, without any other text or comments.\n"
-    )
-    user_prompt = f"User message: {user_message}\n"
-
-    final_prompt = f"""
-    {sys_prompt}
-    {user_prompt}
-    """
-    return final_prompt

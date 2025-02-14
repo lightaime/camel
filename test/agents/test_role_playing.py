@@ -148,7 +148,7 @@ def test_role_playing_step(
     step_call_count=3,
 ):
     if model is not None:
-        model.run = MagicMock(return_value=model_backend_rsp)
+        model._run = MagicMock(return_value=model_backend_rsp)
 
     role_playing = RolePlaying(
         assistant_role_name="AI Assistant",
@@ -196,7 +196,7 @@ def test_role_playing_step(
 @pytest.mark.model_backend
 def test_role_playing_with_function(step_call_count=3):
     if model is not None:
-        model.run = MagicMock(return_value=model_backend_rsp)
+        model._run = MagicMock(return_value=model_backend_rsp)
 
     tools = MathToolkit().get_tools()
 

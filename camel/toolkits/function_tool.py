@@ -398,6 +398,10 @@ class FunctionTool:
                     f"Error: {e}"
                 )
 
+    @property
+    def is_async(self) -> bool:
+        return inspect.iscoroutinefunction(self.func)
+
     @staticmethod
     def validate_openai_tool_schema(
         openai_tool_schema: Dict[str, Any],

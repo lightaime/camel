@@ -14,12 +14,11 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, Sequence, Type, Union
+from typing import Optional, Sequence, Type, Union
 
 from pydantic import BaseModel
 
 from camel.configs.base_config import BaseConfig
-from camel.types import NOT_GIVEN, NotGiven
 
 
 class DeepSeekConfig(BaseConfig):
@@ -89,10 +88,10 @@ class DeepSeekConfig(BaseConfig):
     temperature: float = 1.0  # deepseek default: 1.0
     top_p: float = 1.0
     stream: bool = False
-    stop: Union[str, Sequence[str], NotGiven] = NOT_GIVEN
-    max_tokens: Union[int, NotGiven] = NOT_GIVEN
+    stop: Optional[Union[str, Sequence[str]]] = None
+    max_tokens: Optional[int] = None
     presence_penalty: float = 0.0
-    response_format: Union[Type[BaseModel], dict, NotGiven] = NOT_GIVEN
+    response_format: Optional[Union[Type[BaseModel], dict]] = None
     frequency_penalty: float = 0.0
     tool_choice: Optional[Union[dict[str, str], str]] = None
     logprobs: bool = False
@@ -104,31 +103,6 @@ class DeepSeekConfig(BaseConfig):
         # Otherwise, it will raise error when calling the API
         if self.stream:
             self.stream_options = {"include_usage": include_usage}
-
-    def as_dict(self) -> dict[str, Any]:
-        r"""Convert the current configuration to a dictionary.
-
-        This method converts the current configuration object to a dictionary
-        representation, which can be used for serialization or other purposes.
-
-        Returns:
-            dict[str, Any]: A dictionary representation of the current
-                configuration.
-        """
-        config_dict = self.model_dump()
-        if self.tools:
-            from camel.toolkits import FunctionTool
-
-            tools_schema = []
-            for tool in self.tools:
-                if not isinstance(tool, FunctionTool):
-                    raise ValueError(
-                        f"The tool {tool} should "
-                        "be an instance of `FunctionTool`."
-                    )
-                tools_schema.append(tool.get_openai_tool_schema())
-        config_dict["tools"] = NOT_GIVEN
-        return config_dict
 
 
 DEEPSEEK_API_PARAMS = {param for param in DeepSeekConfig.model_fields.keys()}

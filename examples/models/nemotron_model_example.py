@@ -26,7 +26,7 @@ message = [
     },
 ]
 
-ans = nemotron.run(message)
+ans = nemotron._run(message)
 print(ans)
 '''
 ===============================================================================

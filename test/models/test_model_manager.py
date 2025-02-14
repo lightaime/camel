@@ -68,8 +68,8 @@ def test_model_manager(
         assert model_manager.scheduling_strategy.__name__ == "round_robin"
         for model in model_manager.models:
             if TYPE_CHECKING:
-                assert isinstance(model.run, Mock)
-            assert model.run.call_count == times_each_model_called
+                assert isinstance(model._run, Mock)
+            assert model._run.call_count == times_each_model_called
     if strategy == "always_first":
         assert model_manager.scheduling_strategy.__name__ == "always_first"
         assert models[0].run.call_count == times_each_model_called
@@ -79,8 +79,8 @@ def test_model_manager(
         total_calls = 0
         for model in model_manager.models:
             if TYPE_CHECKING:
-                assert isinstance(model.run, Mock)
-            total_calls += model.run.call_count
+                assert isinstance(model._run, Mock)
+            total_calls += model._run.call_count
         assert total_calls == times_each_model_called
 
 

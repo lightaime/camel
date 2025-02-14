@@ -15,7 +15,7 @@ import base64
 import io
 import re
 from dataclasses import dataclass
-from typing import Any, Dict, List, Literal, Optional, Tuple, Type, Union
+from typing import Any, Dict, List, Literal, Optional, Tuple, Union
 
 import numpy as np
 from PIL import Image
@@ -72,7 +72,7 @@ class BaseMessage:
     image_list: Optional[List[Image.Image]] = None
     image_detail: Literal["auto", "low", "high"] = "auto"
     video_detail: Literal["auto", "low", "high"] = "low"
-    parsed: Optional[Union[Type[BaseModel], dict]] = None
+    parsed: Optional[Union[BaseModel, dict]] = None
 
     @classmethod
     def make_user_message(

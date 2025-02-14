@@ -335,7 +335,7 @@ def test_chat_agent_step_with_external_tools(step_call_count=3):
         ),
     )
 
-    model.run = MagicMock(
+    model._run = MagicMock(
         side_effect=[model_backend_external1, model_backend_external2]
         * step_call_count
     )
@@ -476,7 +476,7 @@ def test_chat_agent_multiple_return_messages(n, step_call_count=3):
             total_tokens=47,
         ),
     )
-    model.run = MagicMock(return_value=model_backend_rsp_tool)
+    model._run = MagicMock(return_value=model_backend_rsp_tool)
 
     system_msg = BaseMessage(
         "Assistant",
@@ -542,7 +542,7 @@ def test_chat_agent_multiple_return_message_error(n, step_call_count=3):
             ),
         )
     )
-    model.run = MagicMock(return_value=model_backend_multi_messages)
+    model._run = MagicMock(return_value=model_backend_multi_messages)
 
     system_msg = BaseMessage(
         "Assistant",
@@ -594,7 +594,7 @@ def test_chat_agent_stream_output(step_call_count=3):
         model_type=ModelType.GPT_4O_MINI,
         model_config_dict=stream_model_config.as_dict(),
     )
-    model.run = MagicMock(return_value=model_backend_rsp_base)
+    model._run = MagicMock(return_value=model_backend_rsp_base)
     stream_assistant = ChatAgent(system_msg, model=model)
     stream_assistant.reset()
     for i in range(step_call_count):
@@ -845,7 +845,7 @@ def test_tool_calling_sync(step_call_count=3):
         ),
     )
 
-    model.run = MagicMock(
+    model._run = MagicMock(
         side_effect=[
             model_backend_rsp_tool,
             model_backend_rsp_tool1,
@@ -971,7 +971,7 @@ async def test_tool_calling_math_async(step_call_count=3):
         ),
     )
 
-    model.run = MagicMock(
+    model._run = MagicMock(
         side_effect=[
             model_backend_rsp_tool,
             model_backend_rsp_tool1,
@@ -980,7 +980,7 @@ async def test_tool_calling_math_async(step_call_count=3):
     )
 
     for i in range(step_call_count):
-        agent_response = await agent.step_async(user_msg)
+        agent_response = await agent.astep(user_msg)
 
         tool_calls = agent_response.info['tool_calls']
 
@@ -1026,7 +1026,7 @@ async def test_tool_calling_async(step_call_count=3):
     # Mock tool calling
     def mock_run_tool_calling_async(*args, **kwargs):
         # Reset tool_calls at the beginning of each new round of step() call
-        if model.run.call_count % 2 == 1:
+        if model._run.call_count % 2 == 1:
             model_backend_rsp_tool_async.choices[0].message.tool_calls = [
                 ChatCompletionMessageToolCall(
                     id='call_mock_123456',
@@ -1049,7 +1049,7 @@ async def test_tool_calling_async(step_call_count=3):
 
         return model_backend_rsp_tool_async
 
-    model.run = MagicMock(side_effect=mock_run_tool_calling_async)
+    model._run = MagicMock(side_effect=mock_run_tool_calling_async)
 
     agent = ChatAgent(
         system_message=system_message,
@@ -1068,7 +1068,7 @@ async def test_tool_calling_async(step_call_count=3):
     )
 
     for i in range(step_call_count):
-        agent_response = await agent.step_async(user_msg)
+        agent_response = await agent.astep(user_msg)
 
         tool_calls = agent_response.info['tool_calls']
 

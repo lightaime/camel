@@ -66,6 +66,8 @@ class BaseConfig(ABC, BaseModel):
 
         This method converts the current configuration object to a dictionary
         representation, which can be used for serialization or other purposes.
+        The dictionary won't contain None values, as some API does not support
+        None values. (Like tool in OpenAI beta API)
 
         Returns:
             dict[str, Any]: A dictionary representation of the current
@@ -73,17 +75,12 @@ class BaseConfig(ABC, BaseModel):
         """
         config_dict = self.model_dump()
 
-        tools_schema = None
-        if self.tools:
-            from camel.toolkits import FunctionTool
+        # Convert tools to OpenAI tool schema
+        config_dict["tools"] = (
+            [tool.get_openai_tool_schema() for tool in self.tools]
+            if self.tools
+            else None
+        )
 
-            tools_schema = []
-            for tool in self.tools:
-                if not isinstance(tool, FunctionTool):
-                    raise ValueError(
-                        f"The tool {tool} should "
-                        "be an instance of `FunctionTool`."
-                    )
-                tools_schema.append(tool.get_openai_tool_schema())
-        config_dict["tools"] = tools_schema
-        return config_dict
+        # Remove None values
+        return {k: v for k, v in config_dict.items() if v is not None}

@@ -20,10 +20,13 @@ from typing import (
     Callable,
     Dict,
     List,
+    Optional,
+    Type,
     Union,
 )
 
-from openai import Stream
+from openai import AsyncStream, Stream
+from pydantic import BaseModel
 
 from camel.messages import OpenAIMessage
 from camel.models.base_model import BaseModelBackend
@@ -178,7 +181,10 @@ class ModelManager:
         return choice(self.models)
 
     def run(
-        self, messages: List[OpenAIMessage]
+        self,
+        messages: List[OpenAIMessage],
+        response_format: Optional[Type[BaseModel]] = None,
+        tools: Optional[List[Dict[str, Any]]] = None,
     ) -> Union[ChatCompletion, Stream[ChatCompletionChunk]]:
         r"""Process a list of messages by selecting a model based on
             the scheduling strategy.
@@ -198,7 +204,46 @@ class ModelManager:
 
         # Pass all messages to the selected model and get the response
         try:
-            response = self.current_model.run(messages)
+            response = self.current_model.run(messages, response_format, tools)
+        except Exception as exc:
+            logger.error(f"Error processing with model: {self.current_model}")
+            if self.scheduling_strategy == self.always_first:
+                self.scheduling_strategy = self.round_robin
+                logger.warning(
+                    "The scheduling strategy has been changed to 'round_robin'"
+                )
+                # Skip already used one
+                self.current_model = self.scheduling_strategy()
+            raise exc
+        return response
+
+    async def arun(
+        self,
+        messages: List[OpenAIMessage],
+        response_format: Optional[Type[BaseModel]] = None,
+        tools: Optional[List[Dict[str, Any]]] = None,
+    ) -> Union[ChatCompletion, AsyncStream[ChatCompletionChunk]]:
+        r"""Process a list of messages by selecting a model based on
+            the scheduling strategy.
+            Sends the entire list of messages to the selected model,
+            and returns a single response.
+
+        Args:
+            messages (List[OpenAIMessage]): Message list with the chat
+                history in OpenAI API format.
+
+        Returns:
+            Union[ChatCompletion, AsyncStream[ChatCompletionChunk]]:
+                `ChatCompletion` in the non-stream mode, or
+                `AsyncStream[ChatCompletionChunk]` in the stream mode.
+        """
+        self.current_model = self.scheduling_strategy()
+
+        # Pass all messages to the selected model and get the response
+        try:
+            response = await self.current_model.arun(
+                messages, response_format, tools
+            )
         except Exception as exc:
             logger.error(f"Error processing with model: {self.current_model}")
             if self.scheduling_strategy == self.always_first:

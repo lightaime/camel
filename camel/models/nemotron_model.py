@@ -12,9 +12,10 @@
 # limitations under the License.
 # ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========
 import os
-from typing import List, Optional, Union
+from typing import Any, Dict, List, Optional, Type, Union
 
-from openai import OpenAI
+from openai import AsyncOpenAI, OpenAI
+from pydantic import BaseModel
 
 from camel.messages import OpenAIMessage
 from camel.models import BaseModelBackend
@@ -62,10 +63,38 @@ class NemotronModel(BaseModelBackend):
             base_url=self._url,
             api_key=self._api_key,
         )
+        self._async_client = AsyncOpenAI(
+            timeout=180,
+            max_retries=3,
+            base_url=self._url,
+            api_key=self._api_key,
+        )
 
-    def run(
+    async def _arun(
         self,
         messages: List[OpenAIMessage],
+        response_format: Optional[Type[BaseModel]] = None,
+        tools: Optional[List[Dict[str, Any]]] = None,
+    ) -> ChatCompletion:
+        r"""Runs inference of OpenAI chat completion asynchronously.
+
+        Args:
+            messages (List[OpenAIMessage]): Message list.
+
+        Returns:
+            ChatCompletion.
+        """
+        response = await self._async_client.chat.completions.create(
+            messages=messages,
+            model=self.model_type,
+        )
+        return response
+
+    def _run(
+        self,
+        messages: List[OpenAIMessage],
+        response_format: Optional[Type[BaseModel]] = None,
+        tools: Optional[List[Dict[str, Any]]] = None,
     ) -> ChatCompletion:
         r"""Runs inference of OpenAI chat completion.
 

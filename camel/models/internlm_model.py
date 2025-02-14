@@ -13,9 +13,10 @@
 # ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========
 
 import os
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Type, Union
 
-from openai import OpenAI, Stream
+from openai import AsyncStream, OpenAI, Stream
+from pydantic import BaseModel
 
 from camel.configs import INTERNLM_API_PARAMS, InternLMConfig
 from camel.messages import OpenAIMessage
@@ -82,9 +83,11 @@ class InternLMModel(BaseModelBackend):
             base_url=self._url,
         )
 
-    def run(
+    def _run(
         self,
         messages: List[OpenAIMessage],
+        response_format: Optional[Type[BaseModel]],
+        tools: Optional[List[Dict[str, Any]]],
     ) -> Union[ChatCompletion, Stream[ChatCompletionChunk]]:
         r"""Runs inference of InternLM chat completion.
 
@@ -103,6 +106,14 @@ class InternLMModel(BaseModelBackend):
             **self.model_config_dict,
         )
         return response
+
+    async def _arun(
+        self,
+        messages: List[OpenAIMessage],
+        response_format: Optional[Type[BaseModel]],
+        tools: Optional[List[Dict[str, Any]]],
+    ) -> Union[ChatCompletion, AsyncStream[ChatCompletionChunk]]:
+        raise NotImplementedError("InternLM does not support async inference.")
 
     @property
     def token_counter(self) -> BaseTokenCounter:

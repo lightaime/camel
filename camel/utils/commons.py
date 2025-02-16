@@ -546,10 +546,14 @@ try:
             ToolEvent,
             record,
         )
+        from agentops import (
+            track_agent as agentops_track_agent,
+        )
     else:
         raise ImportError
 except (ImportError, AttributeError):
     ToolEvent = None
+    agentops_track_agent = None
 
 
 def agentops_decorator(func):
@@ -594,10 +598,20 @@ class AgentOpsMeta(type):
         return super().__new__(cls, name, bases, dct)
 
 
-def track_agent(*args, **kwargs):
-    r"""Mock track agent decorator for AgentOps."""
+def track_agent(name: str) -> Callable:
+    r"""Track agent decorator for AgentOps.
 
-    def noop(f):
+    Args:
+        name (str): The name of the agent to track.
+
+    Returns:
+        Callable: A decorator function that either tracks the agent using
+            AgentOps or acts as a no-op if AgentOps is not available.
+    """
+    if agentops_track_agent is not None:
+        return agentops_track_agent(name=name)
+
+    def noop(f: Callable) -> Callable:
         return f
 
     return noop

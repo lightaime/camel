@@ -20,19 +20,9 @@ from camel.messages import BaseMessage
 from camel.models import BaseModelBackend
 from camel.prompts import TextPrompt
 from camel.types import RoleType
+from camel.utils import track_agent
 
 logger = get_logger(__name__)
-
-# AgentOps decorator setting
-try:
-    import os
-
-    if os.getenv("AGENTOPS_API_KEY") is not None:
-        from agentops import track_agent
-    else:
-        raise ImportError
-except (ImportError, AttributeError):
-    from camel.utils import track_agent
 
 
 @track_agent(name="DeductiveReasonerAgent")

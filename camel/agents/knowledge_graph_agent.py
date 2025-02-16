@@ -26,18 +26,7 @@ from camel.storages.graph_storages.graph_element import (
     Relationship,
 )
 from camel.types import RoleType
-
-# AgentOps decorator setting
-try:
-    import os
-
-    if os.getenv("AGENTOPS_API_KEY") is not None:
-        from agentops import track_agent
-    else:
-        raise ImportError
-except (ImportError, AttributeError):
-    from camel.utils import track_agent
-
+from camel.utils import track_agent
 
 text_prompt = """
 You are tasked with extracting nodes and relationships from given content and 

@@ -40,7 +40,8 @@ Ensuring excellent documentation and thorough testing is absolutely crucial. Her
   - Update any affected example console scripts in the `examples` directory, Gradio demos in the `apps` directory, and documentation in the `docs` directory.
   - Update unit tests when relevant.
 - If you add a feature:
-  - Include unit tests in the `test` directory. 
+  - Include unit tests in the `test/unit` directory, which can be run locally.
+  - Include integration tests in the `test/integration` directory, which needs web requests like OpenAI.
   - Add a demo script in the `examples` directory.
  
 We're a small team focused on building great things. If you have something in mind that you'd like to add or modify, opening a pull request is the ideal way to catch our attention. 🚀
@@ -291,7 +292,7 @@ pre-commit install
 # Run camel's pre-commit before push
 pre-commit run --all-files
 
-# Run camel's unit tests
+# Run all tests, expect most of them would fail
 pytest test
 
 # Exit the virtual environment
@@ -349,7 +350,7 @@ pytest --cov --cov-report=html
 
 The coverage report will be generated at `htmlcov/index.html`.
 
-### Tests 🧪
+## Tests 🧪
 
 Unit tests cover modular logic that doesn't require calls to outside APIs. Currently, the test setup requires an OpenAI API key to test the framework, making them resemble integration tests.
 
@@ -363,6 +364,11 @@ To quickly run only local isolated unit and integration tests:
 ```bash
 pytest --fast-test-mode .
 ```
+this is defined in `conftest.py`.
+which is equivalent to
+```bash
+pytest -m "not optional and not model_backend"
+```
 
 If you're developing with VSCode, make sure to create a `.env` file in the repository root and include your OpenAI API key:
 
@@ -370,6 +376,23 @@ If you're developing with VSCode, make sure to create a `.env` file in the repos
 OPENAI_API_KEY=sk-XXXXXXXX
 OPENAI_API_BASE_URL=https://XXXXXXXX (Should you utilize an OpenAI proxy service, kindly specify this)
 ```
+
+### Unit & Integration
+As integration tests require token and third-party setup, it is costly to run locally. Ideally, developers should run unit test locally and run integration tests in github/CI/CD.
+
+The recommended way to run the integration tests is to create a draft PR and all tests will be run on github. It is not recommended to run integration tests locally.
+
+To run a single unit test locally, use
+```bash
+pytest ./test/agents/test_agent_base.py
+``**
+
+**From now on, a developer is expected to add unit tests under `test/unit` and integration tests under `test/integration`.** We would probably fix the existing tests, but we do want to make sure the tests in the future are categorized correctly.
+
+Note: We have some tech debt that unit tests and integration tests are not decoupled. 
+
+### Use Decorator
+Ideally you should use pytest decorators for all the tests, check pytest.ini for marker definitions. For example, you should use unit for unit tests and integration for integration tests.
 
 ## Documentation 📚
 

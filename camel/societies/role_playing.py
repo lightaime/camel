@@ -19,6 +19,7 @@ from camel.agents import (
     CriticAgent,
     TaskPlannerAgent,
     TaskSpecifyAgent,
+    DebateAgent,
 )
 from camel.generators import SystemMessageGenerator
 from camel.human import Human
@@ -549,3 +550,74 @@ class RolePlaying:
                 info=user_response.info,
             ),
         )
+
+
+class MultiAgentDebate:
+    r"""Manages a debate session between multiple agents.
+
+    Args:
+        agent_configs (List[Dict[str, Any]]): A list of dictionaries
+            containing agent configurations.
+        task_prompt (str): The task prompt for the debate.
+        max_turns (int): The maximum number of turns for the debate.
+        output_language (str, optional): The language to be output by the
+            agents. (default: :obj:`None`)
+    """
+
+    def __init__(
+        self,
+        agent_configs: List[Dict[str, Any]],
+        task_prompt: str,
+        max_turns: int,
+        output_language: Optional[str] = None,
+    ) -> None:
+        self.agents = []
+        self.task_prompt = task_prompt
+        self.max_turns = max_turns
+        self.output_language = output_language
+        self.initialize_agents(agent_configs)
+
+    def initialize_agents(self, agent_configs: List[Dict[str, Any]]) -> None:
+        r"""Initializes multiple agents for the debate.
+
+        Args:
+            agent_configs (List[Dict[str, Any]]): A list of dictionaries
+                containing agent configurations.
+        """
+        self.agents = []
+        for config in agent_configs:
+            agent = DebateAgent(
+                system_message=config.get("system_message"),
+                model=config.get("model"),
+                memory=config.get("memory"),
+                message_window_size=config.get("message_window_size"),
+                token_limit=config.get("token_limit"),
+                output_language=config.get("output_language"),
+                tools=config.get("tools"),
+                external_tools=config.get("external_tools"),
+                response_terminators=config.get("response_terminators"),
+                scheduling_strategy=config.get("scheduling_strategy"),
+                single_iteration=config.get("single_iteration"),
+            )
+            self.agents.append(agent)
+
+    def handle_turns(self) -> List[BaseMessage]:
+        r"""Handles turns for multiple agents in the debate.
+
+        Returns:
+            List[BaseMessage]: A list of messages from the agents.
+        """
+        messages = []
+        for agent in self.agents:
+            response = agent.step("Your turn to debate.")
+            messages.append(response.msgs[0])
+        return messages
+
+    def determine_winner(self) -> Optional[DebateAgent]:
+        r"""Determines the winner of the debate.
+
+        Returns:
+            Optional[DebateAgent]: The winning agent, if any.
+        """
+        # Implement your logic to determine the winner
+        return None

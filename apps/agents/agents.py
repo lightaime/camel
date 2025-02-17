@@ -29,7 +29,7 @@ from apps.agents.text_utils import split_markdown_code
 from camel.agents import TaskSpecifyAgent
 from camel.logger import get_logger
 from camel.messages import BaseMessage
-from camel.societies import RolePlaying
+from camel.societies import RolePlaying, MultiAgentDebate
 from camel.types import TaskType
 
 REPO_ROOT = os.path.realpath(
@@ -392,6 +392,107 @@ def stop_session(state: State) -> Tuple[State, Dict, Dict]:
 
     state.session = None
     return state, gr.update(visible=False), gr.update(interactive=True)
+
+
+def multi_agent_debate(
+    state: State,
+    society_name: str,
+    agents: List[str],
+    original_task: str,
+    max_messages: float,
+    with_task_specifier: bool,
+    word_limit: int,
+    language: str,
+) -> Union[Dict, Tuple[State, str, Union[str, Dict], ChatBotHistory, Dict]]:
+    """Creates a multi-agent debate session.
+
+    Args:
+        state (State): Role playing state.
+        society_name:
+        agents (List[str]): List of agent roles.
+        original_task (str): Original task field.
+        with_task_specifier (bool): Enable/Disable task specifier.
+        word_limit (int): Limit of words for task specifier.
+
+    Returns:
+        Union[Dict, Tuple[State, str, Union[str, Dict], ChatBotHistory, Dict]]:
+            - Updated state.
+            - Generated specified task.
+            - Planned task (if any).
+            - Chatbot window contents.
+            - Progress bar contents.
+    """
+
+    if state.session is not None:
+        logger.info("Double click")
+        return {}  # may fail
+
+    if society_name not in {"AI Society", "Code"}:
+        logger.error(f"Unrecognezed society {society_name}")
+        return {}
+
+    meta_dict: Optional[Dict[str, str]]
+    extend_sys_msg_meta_dicts: Optional[List[Dict]]
+    task_type: TaskType
+    if society_name == "AI Society":
+        meta_dict = None
+        extend_sys_msg_meta_dicts = None
+        task_type = TaskType.AI_SOCIETY
+    else:  # "Code"
+        meta_dict = {"language": agents[0], "domain": agents[1]}
+        extend_sys_msg_meta_dicts = [meta_dict, meta_dict]
+        agents = [f"{agent} Programmer" for agent in agents]
+        task_type = TaskType.CODE
+
+    try:
+        task_specify_kwargs = (
+            dict(word_limit=word_limit) if with_task_specifier else None
+        )
+
+        session = MultiAgentDebate(
+            agents,
+            task_prompt=original_task,
+            with_task_specify=with_task_specifier,
+            task_specify_agent_kwargs=task_specify_kwargs,
+            with_task_planner=False,
+            task_type=task_type,
+            extend_sys_msg_meta_dicts=extend_sys_msg_meta_dicts,
+            extend_task_specify_meta_dict=meta_dict,
+            output_language=language,
+        )
+    except (openai.RateLimitError, RuntimeError) as ex:
+        logger.info("OpenAI API exception 0 " + str(ex))
+        return (state, str(ex), "", [], gr.update())
+
+    State.construct_inplace(state, session, int(max_messages), [], None)
+
+    specified_task_prompt = (
+        session.specified_task_prompt
+        if session.specified_task_prompt is not None
+        else ""
+    )
+    planned_task_prompt = (
+        session.planned_task_prompt
+        if session.planned_task_prompt is not None
+        else ""
+    )
+
+    planned_task_upd = gr.update(
+        value=planned_task_prompt,
+        visible=session.planned_task_prompt is not None,
+    )
+
+    progress_update = gr.update(
+        maximum=state.max_messages, value=1, visible=True
+    )
+
+    return (
+        state,
+        specified_task_prompt,
+        planned_task_upd,
+        state.chat,
+        progress_update,
+    )
 
 
 def construct_ui(blocks, api_key: Optional[str] = None) -> None:

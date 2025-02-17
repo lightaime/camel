@@ -200,3 +200,61 @@ class CriticAgent(ChatAgent):
             terminated=False,
             info={},
         )
+
+    def score_debate_round(self, user_output: str) -> int:
+        r"""Scores each round of user output during the debate.
+
+        Args:
+            user_output (str): The output from the user in the current round.
+
+        Returns:
+            int: The score for the current round.
+        """
+        # Implement your scoring logic here
+        score = 0
+        if "helpful" in user_output:
+            score += 1
+        if "task completion" in user_output:
+            score += 1
+        return score
+
+    def save_score_as_reward(self, score: int, json_file: str) -> None:
+        r"""Saves the score as a reward in the JSON file.
+
+        Args:
+            score (int): The score to be saved.
+            json_file (str): The path to the JSON file.
+        """
+        import json
+
+        with open(json_file, "r") as file:
+            data = json.load(file)
+
+        if "rewards" not in data:
+            data["rewards"] = []
+
+        data["rewards"].append(score)
+
+        with open(json_file, "w") as file:
+            json.dump(data, file, indent=4)
+
+    def generate_output(self, user_question: str, current_content: str) -> str:
+        r"""Generates output through LLM based on the overall user question and current content.
+
+        Args:
+            user_question (str): The overall user question.
+            current_content (str): The current content up to now.
+
+        Returns:
+            str: The generated output.
+        """
+        input_message = BaseMessage(
+            role_name="user",
+            role_type="user",
+            meta_dict={},
+            content=f"Question: {user_question}\nContent: {current_content}",
+        )
+        response = self.step(input_message)
+        if response.msgs is None or len(response.msgs) == 0:
+            raise RuntimeError("Got None output messages.")
+        return response.msgs[0].content

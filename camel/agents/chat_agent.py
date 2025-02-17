@@ -1075,3 +1075,117 @@ class ChatAgent(BaseAgent):
         return (
             f"ChatAgent({self.role_name}, {self.role_type}, {self.model_type})"
         )
+
+
+class DebateAgent(ChatAgent):
+    r"""Class for managing debates between multiple CAMEL Chat Agents.
+
+    Args:
+        system_message (Union[BaseMessage, str], optional): The system message
+            for the chat agent.
+        model (BaseModelBackend, optional): The model backend to use for
+            generating responses. (default: :obj:`ModelPlatformType.DEFAULT`
+            with `ModelType.DEFAULT`)
+        memory (AgentMemory, optional): The agent memory for managing chat
+            messages. If `None`, a :obj:`ChatHistoryMemory` will be used.
+            (default: :obj:`None`)
+        message_window_size (int, optional): The maximum number of previous
+            messages to include in the context window. If `None`, no windowing
+            is performed. (default: :obj:`None`)
+        token_limit (int, optional): The maximum number of tokens in a context.
+            The context will be automatically pruned to fulfill the limitation.
+            If `None`, it will be set according to the backend model.
+            (default: :obj:`None`)
+        output_language (str, optional): The language to be output by the
+            agent. (default: :obj:`None`)
+        tools (Optional[List[Union[FunctionTool, Callable]]], optional): List
+            of available :obj:`FunctionTool` or :obj:`Callable`. (default:
+            :obj:`None`)
+        external_tools (Optional[List[Union[FunctionTool, Callable]]],
+            optional): List of external tools (:obj:`FunctionTool` or or
+            :obj:`Callable`) bind to one chat agent. When these tools are
+            called, the agent will directly return the request instead of
+            processing it. (default: :obj:`None`)
+        response_terminators (List[ResponseTerminator], optional): List of
+            :obj:`ResponseTerminator` bind to one chat agent.
+            (default: :obj:`None`)
+        scheduling_strategy (str): name of function that defines how to select
+            the next model in ModelManager. (default: :str:`round_robin`)
+        single_iteration (bool): Whether to let the agent perform only one
+            model calling at each step. (default: :obj:`False`)
+    """
+
+    def __init__(
+        self,
+        system_message: Optional[Union[BaseMessage, str]] = None,
+        model: Optional[
+            Union[BaseModelBackend, List[BaseModelBackend]]
+        ] = None,
+        memory: Optional[AgentMemory] = None,
+        message_window_size: Optional[int] = None,
+        token_limit: Optional[int] = None,
+        output_language: Optional[str] = None,
+        tools: Optional[List[Union[FunctionTool, Callable]]] = None,
+        external_tools: Optional[List[Union[FunctionTool, Callable]]] = None,
+        response_terminators: Optional[List[ResponseTerminator]] = None,
+        scheduling_strategy: str = "round_robin",
+        single_iteration: bool = False,
+    ) -> None:
+        super().__init__(
+            system_message=system_message,
+            model=model,
+            memory=memory,
+            message_window_size=message_window_size,
+            token_limit=token_limit,
+            output_language=output_language,
+            tools=tools,
+            external_tools=external_tools,
+            response_terminators=response_terminators,
+            scheduling_strategy=scheduling_strategy,
+            single_iteration=single_iteration,
+        )
+
+    def initialize_agents(self, agent_configs: List[Dict[str, Any]]) -> None:
+        r"""Initializes multiple agents for the debate.
+
+        Args:
+            agent_configs (List[Dict[str, Any]]): A list of dictionaries
+                containing agent configurations.
+        """
+        self.agents = []
+        for config in agent_configs:
+            agent = ChatAgent(
+                system_message=config.get("system_message"),
+                model=config.get("model"),
+                memory=config.get("memory"),
+                message_window_size=config.get("message_window_size"),
+                token_limit=config.get("token_limit"),
+                output_language=config.get("output_language"),
+                tools=config.get("tools"),
+                external_tools=config.get("external_tools"),
+                response_terminators=config.get("response_terminators"),
+                scheduling_strategy=config.get("scheduling_strategy"),
+                single_iteration=config.get("single_iteration"),
+            )
+            self.agents.append(agent)
+
+    def handle_turns(self) -> List[BaseMessage]:
+        r"""Handles turns for multiple agents in the debate.
+
+        Returns:
+            List[BaseMessage]: A list of messages from the agents.
+        """
+        messages = []
+        for agent in self.agents:
+            response = agent.step("Your turn to debate.")
+            messages.append(response.msgs[0])
+        return messages
+
+    def determine_winner(self) -> Optional[ChatAgent]:
+        r"""Determines the winner of the debate.
+
+        Returns:
+            Optional[ChatAgent]: The winning agent, if any.
+        """
+        # Implement your logic to determine the winner
+        return None

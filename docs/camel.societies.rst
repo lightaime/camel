@@ -20,6 +20,19 @@ camel.societies.role\_playing module
    :undoc-members:
    :show-inheritance:
 
+   Classes
+   -------
+
+   .. autoclass:: camel.societies.role_playing.RolePlaying
+      :members:
+      :undoc-members:
+      :show-inheritance:
+
+   .. autoclass:: camel.societies.role_playing.MultiAgentDebate
+      :members:
+      :undoc-members:
+      :show-inheritance:
+
 Subpackages
 -----------
 

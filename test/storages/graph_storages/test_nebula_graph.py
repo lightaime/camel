@@ -112,6 +112,42 @@ class TestNebulaGraph(unittest.TestCase):
         )
         self.graph.query.assert_called_with(insert_stmt)
 
+    def test_add_node_with_time_label_not_in_schema(self):
+        node_id = 'node1'
+        tag_name = 'Tag1'
+        time_label = '2025-01-21T12:00:00'
+
+        # Mock dependencies
+        self.graph.ensure_tag_exists = Mock()
+        self.graph.ensure_field_in_schema = Mock()
+        self.graph.query = Mock()
+        self.graph._validate_time_label = Mock(return_value=time_label)
+
+        # Mock query success
+        self.graph.query.return_value.is_succeeded = Mock(return_value=True)
+
+        # Call the method
+        self.graph.add_node(node_id, tag_name, time_label)
+
+        # Ensure the tag existence check was performed
+        self.graph.ensure_tag_exists.assert_called_once_with(tag_name)
+
+        # Ensure the time_label field was added to the schema
+        self.graph.ensure_field_in_schema.assert_called_once_with(
+            tag_name, "time_label", "string"
+        )
+
+        # Validate the time_label
+        self.graph._validate_time_label.assert_called_once_with(time_label)
+
+        # Ensure the correct query was executed
+        insert_stmt = (
+            f'INSERT VERTEX IF NOT EXISTS {tag_name}(time_label) VALUES '
+            f'"{node_id}":("{time_label}")'
+        )
+
+        self.graph.query.assert_called_once_with(insert_stmt)
+
     def test_ensure_tag_exists_success(self):
         tag_name = 'Tag1'
         # Mock query to return a successful result

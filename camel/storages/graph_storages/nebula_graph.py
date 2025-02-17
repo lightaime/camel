@@ -292,10 +292,15 @@ class NebulaGraph(BaseGraphStorage):
         node_id = re.sub(r'[^a-zA-Z0-9\u4e00-\u9fa5]', '', node_id)
         tag_name = re.sub(r'[^a-zA-Z0-9\u4e00-\u9fa5]', '', tag_name)
 
-        self.ensure_tag_exists(tag_name, time_label)
+        # Ensure the tag exists
+        self.ensure_tag_exists(tag_name)
 
-        # Insert node with or without time_label property
-        if time_label is not None:
+        # Add `time_label` to schema if it's provided and not in the schema
+        if time_label:
+            self.ensure_field_in_schema(tag_name, "time_label", "string")
+
+        # Construct the insert query based on the presence of `time_label`
+        if time_label:
             time_label = self._validate_time_label(time_label)
             insert_stmt = (
                 f'INSERT VERTEX IF NOT EXISTS {tag_name}(time_label) VALUES '
@@ -307,6 +312,7 @@ class NebulaGraph(BaseGraphStorage):
                 f'"{node_id}":()'
             )
 
+        # Execute the insert query with retries
         for attempt in range(MAX_RETRIES):
             res = self.query(insert_stmt)
             if res.is_succeeded():
@@ -319,6 +325,39 @@ class NebulaGraph(BaseGraphStorage):
                 raise Exception(
                     f"Failed to add node `{node_id}` after"
                     f" {MAX_RETRIES} attempts: {res.error_msg()}"
+                )
+
+    def ensure_field_in_schema(
+        self, tag_name: str, field_name: str, field_type: str
+    ) -> None:
+        r"""Ensure a field exists in the tag's schema.
+
+        Args:
+            tag_name (str): The tag name to check.
+            field_name (str): The field name to ensure exists.
+            field_type (str): The type of the field (e.g., 'string', 'int').
+        """
+        # Describe the tag to check its schema
+        schema_stmt = f"DESCRIBE TAG {tag_name}"
+        res = self.query(schema_stmt)
+
+        if not res.is_succeeded():
+            raise Exception(
+                f"Failed to describe tag `{tag_name}`: {res.error_msg()}"
+            )
+
+        # Parse the schema fields
+        schema_fields = [field.strip().split()[0] for field in res.rows()]
+        if field_name not in schema_fields:
+            # Add the field to the schema
+            alter_stmt = (
+                f"ALTER TAG {tag_name} ADD ({field_name} {field_type})"
+            )
+            alter_res = self.query(alter_stmt)
+            if not alter_res.is_succeeded():
+                raise Exception(
+                    f"Failed to add field `{field_name}` to tag `{tag_name}`: "
+                    f"{alter_res.error_msg()}"
                 )
 
     def _extract_nodes(self, graph_elements: List[Any]) -> List[Dict]:

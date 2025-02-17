@@ -1,0 +1,18 @@
+[
+    {
+        "problem": "A bag contains 6 red balls, 4 blue balls, and 5 green balls. If you draw 3 balls without replacement, what is the probability of drawing exactly 2 red balls and 1 blue ball? Express your answer as a fraction in simplest form.",
+        "final_answer": "1/11"
+    },
+    {
+        "problem": "In how many ways can 8 different books be arranged on a shelf if 3 specific books must always be next to each other (in any order among themselves)?",
+        "final_answer": "720"
+    },
+    {
+        "problem": "A palindrome is a number that reads the same forwards and backwards. How many palindromes are there between 100 and 999?",
+        "final_answer": "90"
+    },
+    {
+        "problem": "Three fair coins are tossed. What is the probability of getting at least two heads? Express your answer as a fraction in simplest form.",
+        "final_answer": "1/2"
+    }
+]

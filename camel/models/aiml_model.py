@@ -100,9 +100,20 @@ class AIMLModel(BaseModelBackend):
         # Process model configuration parameters
         model_config = self.model_config_dict.copy()
 
-        # Handle special case for tools parameter
-        if model_config.get('tools') is None:
-            model_config['tools'] = []
+        # Remove tools parameter if None
+        if 'tools' in model_config and model_config['tools'] is None:
+            model_config.pop('tools')
+
+        if model_config.get("response_format"):
+            # stream is not supported in beta.chat.completions.parse
+            if "stream" in model_config:
+                del model_config["stream"]
+
+            response = self._client.beta.chat.completions.parse(
+                messages=messages, model=self.model_type, **model_config
+            )
+
+            return self._to_chat_completion(response)
 
         response = self._client.chat.completions.create(
             messages=messages, model=self.model_type, **model_config

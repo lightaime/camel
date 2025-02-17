@@ -4,6 +4,7 @@
 [![Discord][discord-image]][discord-url]
 [![Wechat][wechat-image]][wechat-url]
 [![Twitter][twitter-image]][twitter-url]
+[![Gurubase][gurubase-image]][gurubase-url]
 
 ______________________________________________________________________
 
@@ -399,3 +400,5 @@ For more information please contact camel.ai.team@gmail.com.
 [wechat-image]: https://img.shields.io/badge/WeChat-CamelAIOrg-brightgreen?logo=wechat&logoColor=white
 [twitter-url]: https://twitter.com/CamelAIOrg
 [twitter-image]: https://img.shields.io/twitter/follow/CamelAIOrg?style=social&color=brightgreen&logo=twitter
+[gurubase-url]: https://gurubase.io/g/camel
+[gurubase-image]: https://img.shields.io/badge/Gurubase-Ask%20CAMEL%20Guru-006BFF

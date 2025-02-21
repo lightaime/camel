@@ -21,6 +21,7 @@ from camel.bots import SlackApp
 class TestSlackApp(unittest.TestCase):
     def setUp(self):
         # Temporarily set environment variables for testing
+        os.environ["SLACK_APP_TOKEN"] = "fake_app_token"
         os.environ["SLACK_TOKEN"] = "fake_token"
         os.environ["SLACK_SCOPES"] = "channels:read,chat:write"
         os.environ["SLACK_SIGNING_SECRET"] = "fake_signing_secret"
@@ -31,6 +32,7 @@ class TestSlackApp(unittest.TestCase):
         # Clean up environment variables after the tests, if they exist
         for var in [
             "SLACK_TOKEN",
+            "SLACK_APP_TOKEN",
             "SLACK_SCOPES",
             "SLACK_SIGNING_SECRET",
             "SLACK_CLIENT_ID",
@@ -45,6 +47,7 @@ class TestSlackApp(unittest.TestCase):
         # to test the ValueError
         for var in [
             "SLACK_TOKEN",
+            "SLACK_APP_TOKEN",
             "SLACK_SCOPES",
             "SLACK_SIGNING_SECRET",
         ]:
@@ -58,6 +61,7 @@ class TestSlackApp(unittest.TestCase):
     def test_init_with_token(self, mock_async_app):
         app = SlackApp(
             token="fake_token1",
+            app_token="fake_app_token1",
             scopes="channels:read,chat:write,commands",
             signing_secret="fake_signing_secret1",
             client_id="fake_client_id1",
@@ -65,6 +69,7 @@ class TestSlackApp(unittest.TestCase):
         )
         # Assert correct initialization of SlackApp attributes
         self.assertEqual(app.token, "fake_token1")
+        self.assertEqual(app.app_token, "fake_app_token1")
         self.assertEqual(app.scopes, "channels:read,chat:write,commands")
         self.assertEqual(app.signing_secret, "fake_signing_secret1")
         self.assertEqual(app.client_id, "fake_client_id1")

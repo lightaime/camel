@@ -41,7 +41,8 @@ from camel.societies.workforce.utils import (
 )
 from camel.societies.workforce.worker import Worker
 from camel.tasks.task import Task, TaskState
-from camel.toolkits import GoogleMapsToolkit, SearchToolkit, WeatherToolkit
+
+# from camel.toolkits import GoogleMapsToolkit, SearchToolkit, WeatherToolkit
 from camel.types import ModelPlatformType, ModelType
 
 logger = logging.getLogger(__name__)
@@ -345,15 +346,7 @@ class Workforce(BaseNode):
         if self.new_worker_agent_kwargs is not None:
             return ChatAgent(worker_sys_msg, **self.new_worker_agent_kwargs)
 
-        # Default tools for a new agent
-        function_list = [
-            *SearchToolkit().get_tools(),
-            *WeatherToolkit().get_tools(),
-            *GoogleMapsToolkit().get_tools(),
-        ]
-
         model_config_dict = ChatGPTConfig(
-            tools=function_list,
             temperature=0.0,
         ).as_dict()
 
@@ -363,7 +356,7 @@ class Workforce(BaseNode):
             model_config_dict=model_config_dict,
         )
 
-        return ChatAgent(worker_sys_msg, model=model, tools=function_list)  # type: ignore[arg-type]
+        return ChatAgent(worker_sys_msg, model=model)  # type: ignore[arg-type]
 
     async def _get_returned_task(self) -> Task:
         r"""Get the task that's published by this node and just get returned

@@ -84,7 +84,7 @@ class SearchAgent(ChatAgent):
                 role_name="User",
                 content=prompt,
             )
-            result = self.step(user_msg).msg.content
+            result = self.step(user_msg).msg.content.text
             results += result + "\n"
 
         # Final summarization
@@ -101,7 +101,7 @@ class SearchAgent(ChatAgent):
             role_name="User",
             content=prompt,
         )
-        response = self.step(user_msg).msg.content
+        response = self.step(user_msg).msg.content.text
 
         return response
 
@@ -127,7 +127,7 @@ class SearchAgent(ChatAgent):
             role_name="User",
             content=prompt,
         )
-        response = self.step(user_msg).msg.content
+        response = self.step(user_msg).msg.content.text
         if "yes" in str(response).lower():
             return False
         return True

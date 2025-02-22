@@ -312,7 +312,7 @@ class NexusBenchmark(BaseBenchmark):
                 try:
                     # Generate response
                     response = agent.step(prompt)
-                    agent_call = response.msgs[0].content
+                    agent_call = response.msgs[0].content.text
 
                     # Evaluate response
                     if agent_call:

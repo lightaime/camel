@@ -179,7 +179,7 @@ class SelfInstructPipeline:
         self.agent.reset()
         generated_tasks = [
             line.strip()
-            for line in response.msgs[0].content.split("\n")
+            for line in response.msgs[0].content.text.split("\n")
             if line.strip()
         ]
         return [prompt, generated_tasks[0]]
@@ -206,7 +206,7 @@ class SelfInstructPipeline:
         self.agent.reset()
         try:
             structured_response = AgentResponse.parse_raw(
-                response.msgs[0].content.strip()
+                response.msgs[0].content.text.strip()
             )
             return structured_response.answer
         except ValueError as e:
@@ -248,8 +248,7 @@ class SelfInstructPipeline:
             )
 
         response = self.agent.step(prompt)
-        self.agent.reset()
-        generated_text = response.msgs[0].content.strip()
+        generated_text = response.msgs[0].content.text.strip()
 
         if classification:
             return self.parse_classification_output(generated_text)

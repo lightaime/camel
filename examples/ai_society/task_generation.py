@@ -46,7 +46,7 @@ def generate_tasks(
     if assistant_response.terminated or len(assistant_response.msgs) == 0:
         raise RuntimeError("Assistant agent terminated unexpectedly.")
 
-    tasks = assistant_response.msg.content.split("\n")
+    tasks = assistant_response.msg.content.text.split("\n")
 
     # Filter out the generated response to include the tasks only
     for i, task in enumerate(tasks):

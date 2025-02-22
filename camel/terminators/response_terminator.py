@@ -82,9 +82,9 @@ class ResponseWordsTerminator(ResponseTerminator):
             special_word = word if self.case_sensitive else word.lower()
             for i, message in enumerate(messages):
                 if self.case_sensitive:
-                    content = message.content
+                    content = message.content.text
                 else:
-                    content = message.content.lower()
+                    content = message.content.text.lower()
                 if special_word in content:
                     self._word_count_dict[i][word] += 1
 

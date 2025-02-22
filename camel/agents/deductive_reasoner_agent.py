@@ -256,7 +256,7 @@ square brackets)
                 "Deduction failed. Error:\n" + f"{response.info}"
             )
         msg: BaseMessage = response.msg
-        logger.info(f"Message content:\n{msg.content}")
+        logger.info(f"Message content:\n{msg.content.text}")
 
         # Extract the conditions from the message
         conditions_dict = {
@@ -266,7 +266,7 @@ square brackets)
             .strip('\n')
             for i, cdt in re.findall(
                 r"condition (\d+):\s*(.+?)(?=condition \d+|- Entity)",
-                msg.content,
+                msg.content.text,
                 re.DOTALL,
             )
         }
@@ -276,7 +276,7 @@ square brackets)
             label.strip().strip('\n').strip("\"'")
             for label in re.findall(
                 r"Entity/Label Recognition of Conditions:\n\[(.+?)\]",
-                msg.content,
+                msg.content.text,
                 re.DOTALL,
             )[0].split(",")
         ]
@@ -287,7 +287,7 @@ square brackets)
             for q in re.findall(
                 r"Quality Assessment \(\$Q\$\) \(do not use symbols\):"
                 r"\n(.+?)- Iterative",
-                msg.content,
+                msg.content.text,
                 re.DOTALL,
             )
         )

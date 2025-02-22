@@ -32,7 +32,8 @@ python = ">=3.10,<3.13"
 numpy = "^1.26"
 openai = "^1.59.7"
 tiktoken = "^0.7.0"
-colorama = "^0.4.6"
+tzlocal = "^5.2"
+colorama = "^0"
 jsonschema = "^4"
 protobuf = "^5"
 docstring-parser = "^0.15"
@@ -469,6 +470,7 @@ module = [
     "_pytest.config",
     "_pytest.nodes",
     "numpy",
+    "tzlocal",
     "torch",
     "sqlalchemy",
     "google.cloud.sql.connector",

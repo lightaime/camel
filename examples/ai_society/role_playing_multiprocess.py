@@ -148,7 +148,7 @@ def generate_data(
             print(f"Assistant:\n{assistant_response.msg.content}\n")
 
         # Condition 3: Break if user does not give instruction
-        if user_no_instruct_word not in user_response.msg.content:
+        if user_no_instruct_word not in user_response.msg.content.text:
             user_no_instruct_counter += 1
             if user_no_instruct_counter == user_no_instruct_threshold:
                 message_dict['termination_reason'] = (
@@ -159,7 +159,7 @@ def generate_data(
             user_no_instruct_counter = 0
 
         # Condition 4: Break if assistant gives instruction (flipped role)
-        if assistant_instruct_word in assistant_response.msg.content:
+        if assistant_instruct_word in assistant_response.msg.content.text:
             assistant_instruct_counter += 1
             if assistant_instruct_counter == assistant_instruct_threshold:
                 message_dict['termination_reason'] = (
@@ -172,8 +172,8 @@ def generate_data(
         # Condition 5: Repeat word observed
         for repeat_word in repeat_word_list:
             if (
-                repeat_word in user_response.msg.content.lower()
-                or repeat_word in assistant_response.msg.content.lower()
+                repeat_word in user_response.msg.content.text.lower()
+                or repeat_word in assistant_response.msg.content.text.lower()
             ):
                 repeat_word_counter += 1
                 if repeat_word_counter == repeat_word_threshold:
@@ -191,7 +191,7 @@ def generate_data(
         )
 
         # Condition 5: End token observed
-        if "<CAMEL_TASK_DONE>" in user_response.msg.content:
+        if "<CAMEL_TASK_DONE>" in user_response.msg.content.text:
             message_dict['termination_reason'] = "<CAMEL_TASK_DONE>"
             break
 

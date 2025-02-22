@@ -59,7 +59,7 @@ class Human:
         Returns:
             None
         """
-        options = [message.content for message in messages]
+        options = [message.content.text for message in messages]
         options.append(self.input_button)
         options.append(self.kill_button)
         print_text_animated(

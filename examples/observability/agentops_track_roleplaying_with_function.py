@@ -133,7 +133,7 @@ while n < chat_turn_limit:
         print_text_animated(f"{func_record}")
     print_text_animated(f"{assistant_response.msg.content}\n")
 
-    if "CAMEL_TASK_DONE" in user_response.msg.content:
+    if "CAMEL_TASK_DONE" in user_response.msg.content.text:
         break
 
     input_msg = assistant_response.msg

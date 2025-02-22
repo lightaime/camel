@@ -95,7 +95,7 @@ class EmbodiedAgent(ChatAgent):
     def _set_tool_agents(self, system_message: BaseMessage) -> BaseMessage:
         action_space_prompt = self._get_tool_agents_prompt()
         result_message = system_message.create_new_instance(
-            content=system_message.content.format(
+            content=system_message.content.text.format(
                 action_space=action_space_prompt
             )
         )
@@ -166,7 +166,7 @@ class EmbodiedAgent(ChatAgent):
                     self.logger_color + f"> Explanation:\n{explanations[-1]}"
                 )
 
-        content = response.msg.content
+        content = response.msg.content.text
 
         if codes is not None:
             try:
@@ -187,12 +187,14 @@ class EmbodiedAgent(ChatAgent):
                 )
 
         # TODO: Handle errors
-        content = input_message.content + f"\n> Embodied Actions:\n{content}"
+        content = (
+            input_message.content.text + f"\n> Embodied Actions:\n{content}"
+        )
         message = BaseMessage(
-            input_message.role_name,
-            input_message.role_type,
-            input_message.meta_dict,
-            content,
+            role_name=input_message.role_name,
+            role_type=input_message.role_type,
+            meta_dict=input_message.meta_dict,
+            content=content,
         )
         return ChatAgentResponse(
             msgs=[message],

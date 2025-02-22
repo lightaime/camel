@@ -15,6 +15,7 @@ from PIL import Image
 
 from camel.agents.chat_agent import ChatAgent
 from camel.generators import PromptTemplateGenerator
+from camel.messages.acl_parameter import Content
 from camel.messages.base import BaseMessage
 from camel.models import ModelFactory
 from camel.toolkits import DalleToolkit
@@ -47,11 +48,15 @@ def main(image_paths: list[str]) -> list[str]:
 
     image_list = [Image.open(image_path) for image_path in image_paths]
 
+    content = Content(
+        text="Please generate an image based on the provided images and \
+            text, make the backgroup of this image is in the morning'",
+        image_list=image_list,
+    )
+
     user_msg = BaseMessage.make_user_message(
         role_name="User",
-        content='''Please generate an image based on the provided images and 
-        text, make the backgroup of this image is in the morning''',
-        image_list=image_list,
+        content=content,
     )
 
     response = dalle_agent.step(user_msg)

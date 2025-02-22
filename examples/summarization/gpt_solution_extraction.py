@@ -143,7 +143,7 @@ def solution_extraction(
         os.makedirs(args.solution_dir)
 
     # Append to the original JSON conversation file
-    conversation['solution_extraction'] = assistant_response.msg.content
+    conversation['solution_extraction'] = assistant_response.msg.content.text
 
     # Save new dictionary as JSON file
     save_path = os.path.join(args.solution_dir, f'{file_name}.json')

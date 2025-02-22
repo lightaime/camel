@@ -81,7 +81,7 @@ class AlpacaDataCollector(BaseDataCollector):
 
         input_message, output_message = history
         instruction = (
-            self.system_message.content if self.system_message else ""
+            self.system_message.content.text if self.system_message else ""
         ) + str(input_message.message)
 
         data = {

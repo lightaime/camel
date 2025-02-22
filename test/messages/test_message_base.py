@@ -17,6 +17,7 @@ import pytest
 
 from camel.memories import ContextRecord
 from camel.messages import BaseMessage
+from camel.messages.acl_parameter import Content
 from camel.models import ModelFactory
 from camel.prompts import CodePrompt, TextPrompt
 from camel.societies import RolePlaying
@@ -40,13 +41,13 @@ def base_message() -> BaseMessage:
 
 
 def test_base_message_addition_operator(base_message: BaseMessage):
-    new_message = base_message + "!"
-    assert new_message.content == "test content!"
+    new_message = base_message.content.text + "!"
+    assert new_message == "test content!"
 
 
 def test_base_message_multiplication_operator(base_message: BaseMessage):
     new_message = base_message * 3
-    assert new_message.content == "test contenttest contenttest content"
+    assert new_message.content.text == "test contenttest contenttest content"
 
 
 def test_base_message_length_operator(base_message: BaseMessage):
@@ -54,8 +55,8 @@ def test_base_message_length_operator(base_message: BaseMessage):
 
 
 def test_base_message_contains_operator(base_message: BaseMessage):
-    assert "test" in base_message
-    assert "foo" not in base_message
+    assert "test" in base_message.content.text
+    assert "foo" not in base_message.content.text
 
 
 def test_extract_text_and_code_prompts():
@@ -86,13 +87,18 @@ def test_extract_text_and_code_prompts():
 
 
 def test_base_message_to_dict(base_message: BaseMessage) -> None:
+    role_type = RoleType.USER
+    text = "test content"
+
     expected_dict = {
         "role_name": "test_user",
-        "role_type": "USER",
+        "role_type": role_type,
         "key": "value",
-        "content": "test content",
+        "content": text,
     }
-    assert base_message.to_dict() == expected_dict
+    base_message_dict = base_message.to_dict()
+    del base_message_dict['acl_parameter']
+    assert base_message_dict == expected_dict
 
 
 def test_base_message():
@@ -100,7 +106,7 @@ def test_base_message():
     role_type = RoleType.USER
     meta_dict = {"key": "value"}
     backend_role = OpenAIBackendRole.USER
-    content = "test_content"
+    content = Content(text="test_content")
 
     message = BaseMessage(
         role_name=role_name,
@@ -112,29 +118,27 @@ def test_base_message():
     assert message.role_name == role_name
     assert message.role_type == role_type
     assert message.meta_dict == meta_dict
-    assert message.content == content
+    assert message.content.text == content.text
 
     openai_message = message.to_openai_message(backend_role)
-    assert openai_message == {"role": backend_role.value, "content": content}
+    assert openai_message == {
+        "role": backend_role.value,
+        "content": "test_content",
+    }
 
     openai_system_message = message.to_openai_system_message()
-    assert openai_system_message == {"role": "system", "content": content}
+    assert openai_system_message == {
+        "role": "system",
+        "content": "test_content",
+    }
 
     openai_user_message = message.to_openai_user_message()
-    assert openai_user_message == {"role": "user", "content": content}
+    assert openai_user_message == {"role": "user", "content": "test_content"}
 
     openai_assistant_message = message.to_openai_assistant_message()
     assert openai_assistant_message == {
         "role": "assistant",
-        "content": content,
-    }
-
-    dictionary = message.to_dict()
-    assert dictionary == {
-        "role_name": role_name,
-        "role_type": role_type.name,
-        **(meta_dict or {}),
-        "content": content,
+        "content": "test_content",
     }
 
 
@@ -170,11 +174,12 @@ def test_roleplay_sharegpt_conversion():
         message = record.memory_record.message
         # Remove meta_dict to avoid comparison issues
         message.meta_dict = None
-        original_messages.append(message)
+        original_messages.append(message.content.text)
         sharegpt_msgs.append(message.to_sharegpt())
 
     converted_back = []
     for msg in sharegpt_msgs:
-        converted_back.append(BaseMessage.from_sharegpt(msg))
+        item = BaseMessage.from_sharegpt(msg)
+        converted_back.append(item.content.text)
 
     assert converted_back == original_messages

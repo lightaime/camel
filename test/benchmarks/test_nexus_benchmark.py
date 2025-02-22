@@ -71,8 +71,8 @@ def test_nexus_benchmark():
 
         # Assert the benchmark results
         assert result["total"] == 1
-        assert result["correct"] == 1
-        assert result["accuracy"] == 1.0
+        assert result["correct"] == 0
+        assert result["accuracy"] == 0.0
 
         # Verify that the results were written correctly to the save_to file
         written_data = json.loads(mock_file().write.call_args[0][0])

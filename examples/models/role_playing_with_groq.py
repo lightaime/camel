@@ -91,7 +91,7 @@ def main(model_type=None) -> None:
             delay=0.005,
         )
 
-        if "CAMEL_TASK_DONE" in user_response.msg.content:
+        if "CAMEL_TASK_DONE" in user_response.msg.content.text:
             break
 
         input_msg = assistant_response.msg

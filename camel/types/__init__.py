@@ -15,6 +15,7 @@ from .enums import (
     AudioModelType,
     EmbeddingModelType,
     HuggingFaceRepoType,
+    MessageType,
     ModelPlatformType,
     ModelType,
     OpenAIBackendRole,
@@ -48,6 +49,7 @@ from .unified_model_type import UnifiedModelType
 
 __all__ = [
     'RoleType',
+    'MessageType',
     'ModelType',
     'TaskType',
     'TerminationMode',

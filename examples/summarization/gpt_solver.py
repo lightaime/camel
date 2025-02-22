@@ -38,7 +38,7 @@ def process_file(data: Dict[str, str]) -> None:
     print(assistant_response.msg.content)
 
     # Append solution to JSON file as "gpt_solution"
-    data["gpt_solution"] = assistant_response.msg.content
+    data["gpt_solution"] = assistant_response.msg.content.text
 
     # create save_dir if not exists
     if not os.path.exists(save_dir):

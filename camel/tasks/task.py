@@ -107,7 +107,7 @@ class Task(BaseModel):
         Returns:
             Task
         """
-        return cls(content=message.content, id="0")
+        return cls(content=message.content.text, id="0")
 
     @staticmethod
     def to_message():
@@ -239,7 +239,7 @@ class Task(BaseModel):
             role_name=role_name, content=content
         )
         response = agent.step(msg)
-        tasks = task_parser(response.msg.content, self.id)
+        tasks = task_parser(response.msg.content.text, self.id)
         for task in tasks:
             task.additional_info = self.additional_info
         return tasks
@@ -276,7 +276,7 @@ class Task(BaseModel):
             role_name=role_name, content=content
         )
         response = agent.step(msg)
-        result = response.msg.content
+        result = response.msg.content.text
         if result_parser:
             result = result_parser(result)
         self.update_result(result)
@@ -424,7 +424,7 @@ class TaskManager:
         response = agent.step(msg)
         if task_parser is None:
             task_parser = parse_response
-        tasks = task_parser(response.msg.content, task.id)
+        tasks = task_parser(response.msg.content.text, task.id)
         if tasks:
             return tasks[0]
         return None

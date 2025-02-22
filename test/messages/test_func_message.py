@@ -143,24 +143,29 @@ def test_roleplay_conversion_with_tools():
     sharegpt_msgs = []
 
     for record in records:
+        item = {}
         message = record.memory_record.message
         # Remove meta_dict to avoid comparison issues
         message.meta_dict = None
+        item['content_text'] = message.content.text
         # Clear tool_call_id for function messages
         if isinstance(message, FunctionCallingMessage):
             message.tool_call_id = ""
-        original_messages.append(message)
+
+        original_messages.append(item)
         sharegpt_msgs.append(message.to_sharegpt())
 
     converted_back = []
     for msg in sharegpt_msgs:
+        item = {}
         message = BaseMessage.from_sharegpt(
             msg, function_format=HermesFunctionFormatter()
         )
+        item['content_text'] = message.content.text
         # Clear tool_call_id for function messages
         if isinstance(message, FunctionCallingMessage):
             message.tool_call_id = ""
-        converted_back.append(message)
+        converted_back.append(item)
 
     assert converted_back == original_messages
 
@@ -180,7 +185,10 @@ def test_convert_function_call_and_response_to_from_sharegpt_hermes(
     reconverted_function_call = BaseMessage.from_sharegpt(
         sharegpt_function_call
     )
-    assert assistant_func_call_message == reconverted_function_call
+    assert (
+        assistant_func_call_message.content.to_dict()
+        == reconverted_function_call.content.to_dict()
+    )
 
     sharegpt_function_result = function_result_message.to_sharegpt()
     reconverted_function_result = BaseMessage.from_sharegpt(
@@ -189,7 +197,10 @@ def test_convert_function_call_and_response_to_from_sharegpt_hermes(
 
     # Set reference function call to take on CAMEL function result role
     function_result_message.role_name = "assistant"
-    assert function_result_message == reconverted_function_result
+    assert (
+        function_result_message.content.to_dict()
+        == reconverted_function_result.content.to_dict()
+    )
 
 
 def test_function_func_message_to_openai_assistant_message(

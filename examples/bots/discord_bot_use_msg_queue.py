@@ -132,7 +132,7 @@ class BotAgent:
             )
 
         assistant_response = self._agent.step(user_raw_msg)
-        return assistant_response.msg.content
+        return assistant_response.msg.content.text
 
 
 class DiscordBot(DiscordApp):

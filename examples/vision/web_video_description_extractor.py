@@ -13,6 +13,7 @@
 # ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========
 from camel.agents import ChatAgent
 from camel.messages import BaseMessage
+from camel.messages.acl_parameter import Content
 from camel.prompts import PromptTemplateGenerator
 from camel.toolkits import VideoDownloaderToolkit
 from camel.types import RoleType, TaskType
@@ -31,12 +32,16 @@ sys_msg = PromptTemplateGenerator().get_prompt_from_key(
 
 camel_agent = ChatAgent(sys_msg)
 
+content = Content(
+    text="These are frames from a video that I want to upload. Generate a \
+        compelling description that I can upload along with the video.",
+    video_bytes=video_bytes,
+)
+
 # Create user message with video bytes
 user_msg = BaseMessage.make_user_message(
     role_name="User",
-    content="These are frames from a video that I want to upload. Generate a"
-    " compelling description that I can upload along with the video.",
-    video_bytes=video_bytes,
+    content=content,
 )
 
 # Get response information

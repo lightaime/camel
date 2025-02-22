@@ -76,7 +76,7 @@ def main() -> None:
         )
         print(f"Generating positive and negative documents for '{task}'")
         assistant_response = assistant_agent.step("Start to generate!")
-        content = assistant_response.msg.content
+        content = assistant_response.msg.content.text
         try:
             data = json.loads(content)
             os.makedirs("./text_embedding_data/tasks/", exist_ok=True)

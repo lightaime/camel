@@ -56,4 +56,4 @@ def test_reduce_step(monkeypatch):
 
     monkeypatch.setattr('builtins.input', lambda _: str(1))
     human_response = human.reduce_step(msgs)
-    assert human_response.msg.content == "Hello"
+    assert human_response.msg.content.text == "Hello"

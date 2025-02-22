@@ -35,6 +35,7 @@ from camel.configs import ChatGPTConfig
 from camel.generators import SystemMessageGenerator
 from camel.memories import MemoryRecord
 from camel.messages import BaseMessage
+from camel.messages.acl_parameter import Content
 from camel.models import ModelFactory
 from camel.terminators import ResponseWordsTerminator
 from camel.toolkits import (
@@ -219,7 +220,7 @@ def test_chat_agent_step_with_structure_response(step_call_count=3):
 
     for i in range(step_call_count):
         response = assistant.step(user_msg, response_format=JokeResponse)
-        response_content_json = json.loads(response.msg.content)
+        response_content_json = json.loads(response.msg.content.text)
         joke_response_keys = set(
             JokeResponse.model_json_schema()["properties"].keys()
         )
@@ -359,7 +360,7 @@ def test_chat_agent_step_with_external_tools(step_call_count=3):
 
     for i in range(step_call_count):
         response = external_tool_agent.step(usr_msg)
-        assert not response.msg.content
+        assert not response.msg.content.text
 
         external_tool_call_request = response.info[
             "external_tool_call_request"
@@ -589,7 +590,7 @@ def test_chat_agent_stream_output(step_call_count=3):
         stream_assistant_response = stream_assistant.step(user_msg)
 
         for msg in stream_assistant_response.msgs:
-            assert len(msg.content) > 0, f"Error in calling round {i+1}"
+            assert len(msg.content.text) > 0, f"Error in calling round {i+1}"
 
         stream_usage = stream_assistant_response.info["usage"]
         assert (
@@ -1109,13 +1110,16 @@ def test_chat_agent_vision(step_call_count=3):
     image = Image.open(img_byte_arr)
     image_list.append(image)
 
+    content = Content(
+        text="Is this image blue? Just answer yes or no.",
+        image_list=image_list,
+        image_detail="low",
+    )
     user_msg = BaseMessage(
         role_name="User",
         role_type=RoleType.USER,
         meta_dict=dict(),
-        content="Is this image blue? Just answer yes or no.",
-        image_list=image_list,
-        image_detail="low",
+        content=content,
     )
     # Mock the OpenAI model return value:
     agent.model_backend.run = MagicMock(
@@ -1147,5 +1151,5 @@ def test_chat_agent_vision(step_call_count=3):
     for i in range(step_call_count):
         agent_response = agent.step(user_msg)
         assert (
-            agent_response.msgs[0].content == "Yes."
+            agent_response.msgs[0].content.text == "Yes."
         ), f"Error in calling round {i+1}"

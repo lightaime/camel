@@ -49,7 +49,9 @@ collector.reset()
 # Manually record the message
 collector.step("user", "Tools calling operator", usr_msg)
 
-collector.step("assistant", "Tools calling operator", resp.msgs[0].content)
+collector.step(
+    "assistant", "Tools calling operator", resp.msgs[0].content.text
+)
 
 print(collector.convert())
 

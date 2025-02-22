@@ -40,7 +40,7 @@ def generate_tasks(
 
     assistant_response = assistant_agent.step(task_generator_prompt)
 
-    tasks = assistant_response.msg.content.split("\n")
+    tasks = assistant_response.msg.content.text.split("\n")
 
     # Filter out the generated response to include the tasks only
     for i, task in enumerate(tasks):

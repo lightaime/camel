@@ -93,10 +93,9 @@ class TestChatHistoryBlock:
         records_to_write = [
             MemoryRecord(
                 message=BaseMessage(
-                    "user",
-                    RoleType.USER,
-                    None,
-                    "test message {}".format(i),
+                    role_name="user",
+                    role_type=RoleType.USER,
+                    content="test message {}".format(i),
                 ),
                 role_at_backend=OpenAIBackendRole.USER,
             )
@@ -158,8 +157,12 @@ class TestVectorDBBlock:
         records = vector_db.retrieve("keyword", limit=2)
         assert len(records) == 2
         assert all(isinstance(record, ContextRecord) for record in records)
-        assert records[0].memory_record.message.content == "test message 0"
-        assert records[1].memory_record.message.content == "test message 1"
+        assert (
+            records[0].memory_record.message.content.text == "test message 0"
+        )
+        assert (
+            records[1].memory_record.message.content.text == "test message 1"
+        )
 
     def test_write_records(self, mock_storage, mock_embedding):
         vector_db = VectorDBBlock(
@@ -168,10 +171,9 @@ class TestVectorDBBlock:
         records_to_write = [
             MemoryRecord(
                 message=BaseMessage(
-                    "user",
-                    RoleType.USER,
-                    None,
-                    "test message {}".format(i),
+                    role_name="user",
+                    role_type=RoleType.USER,
+                    content="test message {}".format(i),
                 ),
                 role_at_backend=OpenAIBackendRole.USER,
             )

@@ -138,7 +138,7 @@ def translate_content(
         assistant_response = assistant_agent.step(user_msg)
         assistant_msg = assistant_response.msg
 
-        json_data[f"message_{i+1}"]["content"] = assistant_msg.content
+        json_data[f"message_{i+1}"]["content"] = assistant_msg.content.text
 
     with codecs.open(save_path, 'w', encoding='utf-8') as f:
         json.dump(json_data, f, ensure_ascii=False, indent=4)

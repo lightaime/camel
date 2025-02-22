@@ -163,7 +163,7 @@ class CoTDataGenerator:
         """
         self.generator_agent.reset()
         response = self.generator_agent.step(prompt)
-        answer = response.msgs[0].content
+        answer = response.msgs[0].content.text
         logger.info("AI thought process:\n%s", answer)
         return answer
 

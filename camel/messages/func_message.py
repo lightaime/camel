@@ -12,8 +12,9 @@
 # limitations under the License.
 # ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========
 import json
-from dataclasses import dataclass
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
+
+from pydantic import BaseModel
 
 from camel.messages import (
     BaseMessage,
@@ -22,6 +23,7 @@ from camel.messages import (
     OpenAIMessage,
     OpenAIToolMessageParam,
 )
+from camel.messages.acl_parameter import ACLParameter, Content
 from camel.messages.conversion import (
     ShareGPTMessage,
     ToolCall,
@@ -30,15 +32,30 @@ from camel.messages.conversion import (
 from camel.messages.conversion.sharegpt.function_call_formatter import (
     FunctionCallFormatter,
 )
-from camel.types import OpenAIBackendRole
+from camel.types import (
+    OpenAIBackendRole,
+    RoleType,
+)
 
 
-@dataclass
 class FunctionCallingMessage(BaseMessage):
     r"""Class for message objects used specifically for
     function-related messages.
 
     Args:
+        role_name (str): The name of the user or assistant role.
+        role_type (RoleType): The type of role, either `RoleType.ASSISTANT`
+            or `RoleType.USER`.
+        meta_dict (Optional[Dict[str, Any]]): Additional metadata dictionary
+            for the message.
+        content (Union[str, Content]): Represents the content of a message,
+            which can include text, images, videos, and audio.
+        acl_parameter (Optional[ACLParameter]): Access control parameter
+            associated with the message, defining sender details.
+        parsed (Optional[Union[Type[BaseModel], dict]]): An optional parsed
+            object extracted from the content.
+        message_id (UUID4): A unique identifier for the message, generated
+            automatically and not set by the user.
         func_name (Optional[str]): The name of the function used.
             (default: :obj:`None`)
         args (Optional[Dict]): The dictionary of arguments passed to the
@@ -49,10 +66,36 @@ class FunctionCallingMessage(BaseMessage):
             (default: :obj:`None`)
     """
 
-    func_name: Optional[str] = None
-    args: Optional[Dict] = None
-    result: Optional[Any] = None
-    tool_call_id: Optional[str] = None
+    def __init__(
+        self,
+        role_name: str,
+        role_type: RoleType,
+        content: Union[str, Content],
+        acl_parameter: Optional[ACLParameter] = None,
+        meta_dict: Optional[Dict[str, Any]] = None,
+        parsed: Optional[Union[BaseModel, dict]] = None,
+        message_id: Optional[str] = None,
+        func_name: Optional[str] = None,
+        args: Optional[Dict] = None,
+        result: Optional[Any] = None,
+        tool_call_id: Optional[str] = None,
+    ):
+        # Initialize the base class
+        super().__init__(
+            role_name=role_name,
+            role_type=role_type,
+            content=content,
+            acl_parameter=acl_parameter,
+            meta_dict=meta_dict,
+            parsed=parsed,
+            message_id=message_id,
+        )
+
+        # Initialize function-specific attributes
+        self.func_name = func_name
+        self.args = args
+        self.result = result
+        self.tool_call_id = tool_call_id
 
     def to_openai_message(
         self,
@@ -96,7 +139,7 @@ class FunctionCallingMessage(BaseMessage):
             # TODO: split the incoming types to be more specific
             #  and remove the type ignores
             content = function_format.format_tool_call(
-                self.content or "",  # type: ignore[arg-type]
+                self.content.text or "",  # type: ignore[arg-type]
                 self.func_name,  # type: ignore[arg-type]
                 self.args,  # type: ignore[arg-type]
             )
@@ -126,7 +169,7 @@ class FunctionCallingMessage(BaseMessage):
 
         return {
             "role": "assistant",
-            "content": self.content or "",
+            "content": self.content.text or "",
             "tool_calls": [
                 {
                     "id": self.tool_call_id or "null",
@@ -160,4 +203,24 @@ class FunctionCallingMessage(BaseMessage):
             "role": "tool",
             "content": result_content,
             "tool_call_id": self.tool_call_id or "null",
+        }
+
+    def to_dict(self) -> Dict:
+        r"""Converts the message to a dictionary.
+
+        Returns:
+            dict: The converted dictionary.
+        """
+        return {
+            "role_name": self.role_name,
+            "role_type": self.role_type,
+            **(self.meta_dict or {}),
+            "content": self.content.to_dict()
+            if self.content.image_list or self.content.video_bytes
+            else self.content.text,
+            "acl_parameter": self.acl_parameter.model_dump_json(),  # type: ignore[union-attr]
+            "func_name": self.func_name,
+            "args": self.args,
+            "result": self.result,
+            "tool_call_id": self.tool_call_id,
         }

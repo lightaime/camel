@@ -133,11 +133,11 @@ class RolePlayingWorker(Worker):
                 break
 
             print_text_animated(
-                f"{Fore.BLUE}AI User:\n\n{user_response.msg.content}"
+                f"{Fore.BLUE}AI User:\n\n{user_response.msg.content.text}"
                 f"{Fore.RESET}\n",
                 delay=0.005,
             )
-            chat_history.append(f"AI User: {user_response.msg.content}")
+            chat_history.append(f"AI User: {user_response.msg.content.text}")
 
             print_text_animated(
                 f"{Fore.GREEN}AI Assistant:{Fore.RESET}", delay=0.005
@@ -147,15 +147,15 @@ class RolePlayingWorker(Worker):
                 print(func_record)
 
             print_text_animated(
-                f"\n{Fore.GREEN}{assistant_response.msg.content}"
+                f"\n{Fore.GREEN}{assistant_response.msg.content.text}"
                 f"{Fore.RESET}\n",
                 delay=0.005,
             )
             chat_history.append(
-                f"AI Assistant: {assistant_response.msg.content}"
+                f"AI Assistant: {assistant_response.msg.content.text}"
             )
 
-            if "CAMEL_TASK_DONE" in user_response.msg.content:
+            if "CAMEL_TASK_DONE" in user_response.msg.content.text:
                 break
 
             input_msg = assistant_response.msg
@@ -171,7 +171,7 @@ class RolePlayingWorker(Worker):
         response = self.summarize_agent.step(
             prompt, response_format=TaskResult
         )
-        result_dict = json.loads(response.msg.content)
+        result_dict = json.loads(response.msg.content.text)
         task_result = TaskResult(**result_dict)
         task.result = task_result.content
 

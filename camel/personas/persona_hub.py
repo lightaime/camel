@@ -130,7 +130,7 @@ class PersonaHub:
                 text_to_persona_prompt_instruction,
                 response_format=PersonaResponse,  # type: ignore[arg-type]
             )
-            parsed_content = json.loads(response.msg.content)
+            parsed_content = json.loads(response.msg.content.text)
             persona.name = parsed_content["persona_name"]
             persona.description = parsed_content["persona_description"]
         except Exception as e:
@@ -181,7 +181,7 @@ persona_description: <BLANK>
             )
             # Structured output (TODO: Use a more robust parser)
             pattern = r"(\d+)\.\s*persona_name:\s*(.*?)\s*persona_description:\s*(.*?)\s*(?=\d+\.|$)"  # noqa: E501
-            matches = re.findall(pattern, response.msg.content, re.DOTALL)
+            matches = re.findall(pattern, response.msg.content.text, re.DOTALL)
 
             personas: Dict[uuid.UUID, Persona] = {}
             for match in matches:

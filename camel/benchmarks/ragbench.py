@@ -313,7 +313,7 @@ class RAGBenchBenchmark(BaseBenchmark):
         def answer_call(example: Dict[str, Any]) -> str:
             user_msg = str(example)
             assistant_response = agent.step(user_msg)
-            return assistant_response.msg.content
+            return assistant_response.msg.content.text
 
         # Annotate the dataset
         annotated_ds = annotate_dataset(

@@ -82,7 +82,7 @@ class SingleAgentWorker(Worker):
 
         print(f"======\n{Fore.GREEN}Reply from {self}:{Fore.RESET}")
 
-        result_dict = json.loads(response.msg.content)
+        result_dict = json.loads(response.msg.content.text)
         task_result = TaskResult(**result_dict)
 
         color = Fore.RED if task_result.failed else Fore.GREEN

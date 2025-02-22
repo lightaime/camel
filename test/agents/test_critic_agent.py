@@ -24,13 +24,10 @@ def critic_agent() -> CriticAgent:
         BaseMessage(
             "critic",
             RoleType.CRITIC,
-            None,
-            content=(
-                "You are a critic who assists in selecting an option "
-                "and provides explanations. "
-                "Your favorite fruit is Apple. "
-                "You always have to choose an option."
-            ),
+            content="You are a critic who assists in selecting an option "
+            + "and provides explanations. "
+            + "Your favorite fruit is Apple. "
+            + "You always have to choose an option.",
         )
     )
 
@@ -120,6 +117,6 @@ def test_reduce_step(critic_agent: CriticAgent):
     ]
 
     critic_response = critic_agent.reduce_step(messages)
-    assert (critic_response.msg == messages[0]) or (
-        critic_response.msg == messages[1]
+    assert (critic_response.msg.content.text == messages[0].content.text) or (
+        critic_response.msg.content.text == messages[1].content.text
     )

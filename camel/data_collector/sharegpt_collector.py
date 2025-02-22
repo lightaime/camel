@@ -104,7 +104,9 @@ class ShareGPTDataCollector(BaseDataCollector):
             raise ValueError("No data collected.")
 
         data = dict(
-            system=self.system_message.content if self.system_message else "",
+            system=self.system_message.content.text
+            if self.system_message
+            else "",
             tools=json.dumps(
                 [t.get_openai_tool_schema()["function"] for t in self.tools]
             ),

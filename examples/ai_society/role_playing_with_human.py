@@ -88,7 +88,7 @@ def main() -> None:
             Fore.GREEN + f"AI Assistant:\n\n{assistant_response.msg.content}\n"
         )
 
-        if "CAMEL_TASK_DONE" in user_response.msg.content:
+        if "CAMEL_TASK_DONE" in user_response.msg.content.text:
             break
 
         input_msg = assistant_response.msg

@@ -17,6 +17,7 @@ from PIL import Image
 
 from camel.agents import ChatAgent
 from camel.messages import BaseMessage
+from camel.messages.acl_parameter import Content
 from camel.prompts import PromptTemplateGenerator
 from camel.toolkits import SearchToolkit, VideoDownloaderToolkit
 from camel.types import RoleType, TaskType
@@ -30,12 +31,15 @@ def detect_image_obj(image_list: List[Image.Image]) -> None:
     print(sys_msg)
     print("=" * 49)
     agent = ChatAgent(sys_msg)
+    content = Content(
+        text="Please start the object detection for the following images!",
+        image_list=image_list,
+        image_detail="high",
+    )
 
     user_msg = BaseMessage.make_user_message(
         role_name="User",
-        content="Please start the object detection for the following images!",
-        image_list=image_list,
-        image_detail="high",
+        content=content,
     )
 
     assistant_response = agent.step(user_msg)

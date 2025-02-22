@@ -117,14 +117,14 @@ PROMPT: here is the updated prompt!
         pattern = r'''\(.*?/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-
         [0-9a-fA-F]{4}-[0-9a-fA-F]{12})(\.jpg|\.png)\)'''
         response = self.artist.step(artist_user_msg)
-        matches = re.findall(pattern, response.msg.content)
+        matches = re.findall(pattern, response.msg.content.text)
 
         image_paths = [f"./img/{uuid}{ext}" for uuid, ext in matches]
         tmp_paths = deepcopy(image_paths)
         response_msg = re.sub(
             pattern,
             lambda x: "(" + image_paths.pop(0) + ")",
-            response.msg.content,
+            response.msg.content.text,
         )
         image_paths = deepcopy(tmp_paths)
 
@@ -168,7 +168,7 @@ PROMPT: here is the updated prompt!
                 + "CRITIC SYS"
                 + "=" * 10
                 + "\n"
-                + self.critic_sys_msg.content
+                + self.critic_sys_msg.content.text
             )
             print(
                 Fore.RED
@@ -176,9 +176,9 @@ PROMPT: here is the updated prompt!
                 + "CRITIC USR"
                 + "=" * 10
                 + "\n"
-                + critic_user_msg.content
+                + critic_user_msg.content.text
             )
-            prompt = self.critic.step(critic_user_msg).msg.content
+            prompt = self.critic.step(critic_user_msg).msg.content.text
             print_text_animated(
                 Fore.CYAN
                 + "=" * 10
@@ -197,7 +197,7 @@ PROMPT: here is the updated prompt!
             )
             response = self.artist.step(artist_user_msg)
 
-            matches = re.findall(pattern, response.msg.content)
+            matches = re.findall(pattern, response.msg.content.text)
             image_paths = [f"./img/{uuid}{ext}" for uuid, ext in matches]
             tmp_paths = deepcopy(image_paths)
             response_msg = re.sub(
@@ -205,7 +205,7 @@ PROMPT: here is the updated prompt!
                 lambda x, image_paths=image_paths: "("
                 + image_paths.pop(0)
                 + ")",
-                response.msg.content,
+                response.msg.content.text,
             )
             image_paths = deepcopy(tmp_paths)
             print_text_animated(

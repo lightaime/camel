@@ -65,7 +65,7 @@ def generate_questions(
         print(assistant_response.msg.content)
 
         parsed_assistant_msg = parse_question_string(
-            assistant_response.msg.content, category
+            assistant_response.msg.content.text, category
         )
 
         # save json file

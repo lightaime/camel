@@ -344,7 +344,9 @@ class ChatAgent(BaseAgent):
         )
 
         if self._original_system_message is not None:
-            content = self._original_system_message.content + language_prompt
+            content = (
+                self._original_system_message.content.text + language_prompt
+            )
             return self._original_system_message.create_new_instance(content)
         else:
             return BaseMessage.make_assistant_message(
@@ -385,7 +387,7 @@ class ChatAgent(BaseAgent):
 
         try:
             message.parsed = response_format.model_validate_json(
-                message.content
+                message.content.text
             )
             return True
         except ValidationError:
@@ -409,15 +411,17 @@ class ChatAgent(BaseAgent):
             if self._try_format_message(message, response_format):
                 continue
 
-            prompt = SIMPLE_FORMAT_PROMPT.format(content=message.content)
+            prompt = SIMPLE_FORMAT_PROMPT.format(content=message.content.text)
             openai_message: OpenAIMessage = {"role": "user", "content": prompt}
             # Explicitly set the tools to empty list to avoid calling tools
             response = self._get_model_response(
                 [openai_message], 0, response_format, []
             )
-            message.content = response.output_messages[0].content
+            message.content.text = response.output_messages[0].content.text
             if not self._try_format_message(message, response_format):
-                logger.warning(f"Failed to parse response: {message.content}")
+                logger.warning(
+                    f"Failed to parse response: {message.content.text}"
+                )
 
     async def _aformat_response_if_needed(
         self,
@@ -434,12 +438,12 @@ class ChatAgent(BaseAgent):
             if message.parsed:
                 continue
 
-            prompt = SIMPLE_FORMAT_PROMPT.format(content=message.content)
+            prompt = SIMPLE_FORMAT_PROMPT.format(content=message.content.text)
             openai_message: OpenAIMessage = {"role": "user", "content": prompt}
             response = await self._aget_model_response(
                 [openai_message], 0, response_format, []
             )
-            message.content = response.output_messages[0].content
+            message.content.text = response.output_messages[0].content.text
             self._try_format_message(message, response_format)
 
     def step(

@@ -124,7 +124,7 @@ class TaskSpecifyAgent(ChatAgent):
 
         specified_task_msg = specifier_response.msgs[0]
 
-        return TextPrompt(specified_task_msg.content)
+        return TextPrompt(specified_task_msg.content.text)
 
 
 @track_agent(name="TaskPlannerAgent")
@@ -194,7 +194,7 @@ class TaskPlannerAgent(ChatAgent):
             raise RuntimeError("Got no task planning message.")
 
         sub_tasks_msg = task_response.msgs[0]
-        return TextPrompt(sub_tasks_msg.content)
+        return TextPrompt(sub_tasks_msg.content.text)
 
 
 @track_agent(name="TaskCreationAgent")
@@ -309,7 +309,7 @@ Be concrete.
             raise RuntimeError("Got no task creation message.")
 
         sub_tasks_msg = task_response.msgs[0]
-        return get_task_list(sub_tasks_msg.content)
+        return get_task_list(sub_tasks_msg.content.text)
 
 
 @track_agent(name="TaskPrioritizationAgent")
@@ -407,4 +407,4 @@ with any other output."""
             raise RuntimeError("Got no task prioritization message.")
 
         sub_tasks_msg = task_response.msgs[0]
-        return get_task_list(sub_tasks_msg.content)
+        return get_task_list(sub_tasks_msg.content.text)

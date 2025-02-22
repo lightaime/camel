@@ -70,9 +70,9 @@ class TelegramBot:
         """
         self.chat_agent.reset()
 
-        if not message.text:
+        if not message:
             return
 
-        assistant_response = self.chat_agent.step(message.text)
+        assistant_response = self.chat_agent.step(message)
 
         self.bot.reply_to(message, assistant_response.msg.content)

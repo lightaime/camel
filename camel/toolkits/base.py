@@ -49,3 +49,22 @@ class BaseToolkit(metaclass=AgentOpsMeta):
                 representing the functions in the toolkit.
         """
         raise NotImplementedError("Subclasses must implement this method.")
+
+    def list_tools(self) -> List[str]:
+        r"""Retrieve a list of tool names available in the current class."""
+        tools = self.get_tools()
+        tool_names = [tool.func.__name__ for tool in tools]
+        return tool_names
+
+    def get_a_tool(self, func_name: str) -> List[OpenAIFunction]:
+        r"""Retrieve a tool by its function name if it exists within the
+        current class.
+        """
+        tools = self.get_tools()
+        for tool in tools:
+            if tool.func.__name__ == func_name:
+                return [tool]
+        raise AttributeError(
+            f"{func_name} is not a valid tool name or is not part of "
+            f"{self.__class__.__name__}'s module."
+        )

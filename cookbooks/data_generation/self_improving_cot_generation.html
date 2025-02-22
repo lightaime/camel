@@ -1,0 +1,989 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀 &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=30d83864"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cookbooks/data_generation/self_improving_cot_generation';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Applications" href="../applications/index.html" />
+    <link rel="prev" title="Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL" href="self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../camel.html">camel package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/edit/main/cookbooks/data_generation/self_improving_cot_generation.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2Fcookbooks/data_generation/self_improving_cot_generation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/cookbooks/data_generation/self_improving_cot_generation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-the-end-to-end-pipeline">1. Overview of the End-to-End Pipeline 🔍</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-an-iterative-cot-pipeline">1.1 Why an Iterative CoT Pipeline?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-components">1.2 Core Components</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generation-of-cot-data-the-heart-of-the-pipeline">2. Generation of CoT Data: The Heart of the Pipeline 🤖</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-trace-generation">2.1 Initial Trace Generation 🐣</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-of-the-initial-trace">2.2 Evaluation of the Initial Trace 📒</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#agent-based-evaluation">2.2.1 Agent-Based Evaluation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reward-model-evaluation">2.2.2 Reward Model Evaluation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-refinement-the-self-improving-cycle">2.3 Iterative Refinement: The Self-Improving Cycle 🔁</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-this-iterative-refinement-work">How does this iterative refinement work?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-setup-in-code">3. Pipeline Setup in Code 💻</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-processing-api-request-handling">4. Batch Processing &amp; API Request Handling 📦</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-batch-processing">4.1 The Need for Batch Processing ⏰</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-api-instability">4.2 Handling API Instability 🚨</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-switching-dynamic-file-writing">5. Model Switching &amp; Dynamic File Writing 📝</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flexible-model-scheduling">5.1 Flexible Model Scheduling 🕒</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-time-json-updates">5.2 Real-Time JSON Updates 🔄</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camels-next-steps-in-cot-data-generation">6. CAMEL’s Next Steps in CoT Data Generation 🚀</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion 📚</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="deep-dive-into-camels-practices-for-self-improving-cot-generation">
+<h1>Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀<a class="headerlink" href="#deep-dive-into-camels-practices-for-self-improving-cot-generation" title="Link to this heading">#</a></h1>
+<p>The field of AI is rapidly evolving, with reasoning models playing a crucial role in enhancing the problem-solving capabilities of large language models (LLMs). Recent developments, such as DeepSeek’s R1 and OpenAI’s o3-mini, demonstrate the industry’s commitment to advancing reasoning through innovative approaches.</p>
+<p>DeepSeek’s R1 model, introduced in January 2025, has shown remarkable proficiency in tasks that require complex reasoning and code generation. Its exceptional performance in areas like mathematics, science, and programming is particularly noteworthy.</p>
+<p>By distilling Chain-of-Thought (CoT) data from reasoning models, we can generate high-quality reasoning traces that are more accurate in solving complex problems. These generated data can be used to further fine-tune another LLM with less parameters, thereby enhancing its reasoning ability.</p>
+<p>CAMEL developed an approach leverages iterative refinement, self-assessment, and efficient batch processing to enable the continuous improvement of reasoning traces. In this blog, we will delve into how CAMEL implements its self-improving CoT pipeline.</p>
+<hr class="docutils" />
+<section id="overview-of-the-end-to-end-pipeline">
+<h2>1. Overview of the End-to-End Pipeline 🔍<a class="headerlink" href="#overview-of-the-end-to-end-pipeline" title="Link to this heading">#</a></h2>
+<section id="why-an-iterative-cot-pipeline">
+<h3>1.1 Why an Iterative CoT Pipeline?<a class="headerlink" href="#why-an-iterative-cot-pipeline" title="Link to this heading">#</a></h3>
+<p>One-time CoT generation often leads to incomplete or suboptimal solutions. CAMEL addresses this challenge by employing a multi-step, iterative approach:</p>
+<ol class="arabic simple">
+<li><p><strong>Generate</strong> an initial reasoning trace.</p></li>
+<li><p><strong>Evaluate</strong> the trace through either a dedicated evaluation agent or a specialized reward model.</p></li>
+<li><p><strong>Refine</strong> the trace based on the feedback provided.</p></li>
+</ol>
+<p>This self-improving methodology ensures that the reasoning process improves progressively, meeting specific thresholds for correctness, clarity, and completeness. Each iteration enhances the model’s ability to solve the problem by learning from the previous outputs and evaluations.</p>
+</section>
+<section id="core-components">
+<h3>1.2 Core Components<a class="headerlink" href="#core-components" title="Link to this heading">#</a></h3>
+<p>The self-improving pipeline consists of three key components:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">reason_agent</span></code>:</strong> This agent is responsible for generating or improving reasoning traces.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">evaluate_agent</span></code>:</strong> An optional agent that evaluates the quality of the reasoning trace. This can be replaced by a reward model if needed.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">reward_model</span></code>:</strong> An optional model that provides numerical feedback on the trace, evaluating dimensions such as correctness, coherence, complexity, and verbosity.</p></li>
+</ol>
+<p>Here’s a high-level diagram of the pipeline:</p>
+<p><img alt="Self-Improving CoT Pipeline" src="https://i.postimg.cc/DygTcWd6/download.png" /></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="generation-of-cot-data-the-heart-of-the-pipeline">
+<h2>2. Generation of CoT Data: The Heart of the Pipeline 🤖<a class="headerlink" href="#generation-of-cot-data-the-heart-of-the-pipeline" title="Link to this heading">#</a></h2>
+<p>Generating CoT data is at the core of the pipeline. Below, we outline the process in detail.</p>
+<section id="initial-trace-generation">
+<h3>2.1 Initial Trace Generation 🐣<a class="headerlink" href="#initial-trace-generation" title="Link to this heading">#</a></h3>
+<p>The first step in the process is the generation of an initial reasoning trace. The <strong><code class="docutils literal notranslate"><span class="pre">reason_agent</span></code></strong> plays a central role here, creating a coherent and logical explanation of how to solve a given problem. The agent breaks down the problem into smaller steps, illustrating the thought process at each stage. We also support the use of non-reasoning LLMs to generate traces through prompt engineering.</p>
+<p>The generation could also guided by <strong>few-shot examples</strong>, which provide context and help the agent understand the desired reasoning style. Here’s how this is accomplished:</p>
+<ul class="simple">
+<li><p><strong>Input</strong>: The problem statement is provided to the <strong><code class="docutils literal notranslate"><span class="pre">reason_agent</span></code></strong>, we can optionally provide the ground truth to guide the reasoning process.</p></li>
+<li><p><strong>Output</strong>: The agent generates a sequence of reasoning content.</p></li>
+</ul>
+<p>This initial generation serves as a foundational reasoning process that can be directly useful or further refined.</p>
+</section>
+<section id="evaluation-of-the-initial-trace">
+<h3>2.2 Evaluation of the Initial Trace 📒<a class="headerlink" href="#evaluation-of-the-initial-trace" title="Link to this heading">#</a></h3>
+<p>Once the reasoning trace is generated, it is evaluated for its quality. This evaluation serves two purposes:</p>
+<ul class="simple">
+<li><p><strong>Detecting weaknesses</strong>: The evaluation identifies areas where the reasoning trace could be further improved.</p></li>
+<li><p><strong>Providing feedback</strong>: The evaluation produces feedback that guides the agent in refining the reasoning trace. This feedback can come from either the <strong><code class="docutils literal notranslate"><span class="pre">evaluate_agent</span></code></strong> or a <strong><code class="docutils literal notranslate"><span class="pre">reward_model</span></code></strong>.</p></li>
+</ul>
+<section id="agent-based-evaluation">
+<h4>2.2.1 Agent-Based Evaluation<a class="headerlink" href="#agent-based-evaluation" title="Link to this heading">#</a></h4>
+<p>If an <strong><code class="docutils literal notranslate"><span class="pre">evaluate_agent</span></code></strong> is available, it examines the reasoning trace for:</p>
+<ol class="arabic simple">
+<li><p><strong>Correctness</strong>: Does the trace logically solve the problem?</p></li>
+<li><p><strong>Clarity</strong>: Is the reasoning easy to follow and well-structured?</p></li>
+<li><p><strong>Completeness</strong>: Are all necessary steps included in the reasoning?</p></li>
+</ol>
+<p>The feedback from the agent provides insights into areas for improvement, such as unclear reasoning or incorrect answers, offering a more generalized approach compared to rule-based matching.</p>
+</section>
+<section id="reward-model-evaluation">
+<h4>2.2.2 Reward Model Evaluation<a class="headerlink" href="#reward-model-evaluation" title="Link to this heading">#</a></h4>
+<p>Alternatively, the pipeline supports using a <strong>reward model</strong> to evaluate the trace. The reward model outputs scores based on predefined dimensions such as correctness, coherence, complexity, and verbosity.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="iterative-refinement-the-self-improving-cycle">
+<h3>2.3 Iterative Refinement: The Self-Improving Cycle 🔁<a class="headerlink" href="#iterative-refinement-the-self-improving-cycle" title="Link to this heading">#</a></h3>
+<p>The key to CAMEL’s success in CoT generation is its <strong>self-improving loop</strong>. After the initial trace is generated and evaluated, the model refines the trace based on the evaluation feedback. This process is repeated in a loop.</p>
+<section id="how-does-this-iterative-refinement-work">
+<h4>How does this iterative refinement work?<a class="headerlink" href="#how-does-this-iterative-refinement-work" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Feedback Integration</strong>: The feedback from the evaluation phase is used to refine the reasoning. This could involve rewording unclear parts, adding missing steps, or adjusting the logic to make it more correct or complete.</p></li>
+<li><p><strong>Improvement through Reasoning</strong>: After receiving feedback, the <strong><code class="docutils literal notranslate"><span class="pre">reason_agent</span></code></strong> is used again to generate an improved version of the reasoning trace. This trace incorporates the feedback provided, refining the earlier steps and enhancing the overall reasoning.</p></li>
+<li><p><strong>Re-evaluation</strong>: Once the trace is improved, the new version is evaluated again using the same process (either agent-based evaluation or reward model). This new trace is assessed against the same criteria to ensure the improvements have been made.</p></li>
+<li><p><strong>Threshold Check</strong>: The iterative process continues until the desired quality thresholds are met or reached the maximum number of iterations.</p></li>
+</ol>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="pipeline-setup-in-code">
+<h2>3. Pipeline Setup in Code 💻<a class="headerlink" href="#pipeline-setup-in-code" title="Link to this heading">#</a></h2>
+<p>Below is a truncated version of our pipeline initialization. We encapsulate logic in a class called <code class="docutils literal notranslate"><span class="pre">SelfImprovingCoTPipeline</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SelfImprovingCoTPipeline</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">reason_agent</span><span class="p">:</span> <span class="n">ChatAgent</span><span class="p">,</span>
+        <span class="n">problems</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">],</span>
+        <span class="n">max_iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="n">score_threshold</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span>
+        <span class="n">evaluate_agent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ChatAgent</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">reward_model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">BaseRewardModel</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">output_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">few_shot_examples</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_workers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">solution_pattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">boxed{(.*?)}&#39;</span><span class="p">,</span>
+        <span class="n">trace_pattern</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Initialize the STaR pipeline.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            reason_agent (ChatAgent): The chat agent used for generating and</span>
+<span class="sd">                improving reasoning traces.</span>
+<span class="sd">            problems (List[Dict]): List of problem dictionaries to process.</span>
+<span class="sd">            max_iterations (int, optional): Maximum number of improvement</span>
+<span class="sd">                iterations. If set to `0`, the pipeline will generate an</span>
+<span class="sd">                initial trace without any improvement iterations.</span>
+<span class="sd">                (default: :obj:`3`)</span>
+<span class="sd">            score_threshold (Union[float, Dict[str, float]], optional):</span>
+<span class="sd">                Quality threshold. Can be either a single float value applied</span>
+<span class="sd">                to average score, or a dictionary mapping score dimensions to</span>
+<span class="sd">                their thresholds. For example: {&quot;correctness&quot;: 0.8,</span>
+<span class="sd">                &quot;coherence&quot;: 0.7}. If using reward model and threshold for a</span>
+<span class="sd">                dimension is not specified, will use the default value 0.7.</span>
+<span class="sd">                (default: :obj:`0.7`)</span>
+<span class="sd">            evaluate_agent (Optional[ChatAgent]): The chat agent used for</span>
+<span class="sd">                evaluating reasoning traces. (default: :obj:`None`)</span>
+<span class="sd">            reward_model (BaseRewardModel, optional): Model used to evaluate</span>
+<span class="sd">                reasoning traces. If `None`, uses Agent self-evaluation.</span>
+<span class="sd">                (default: :obj:`None`)</span>
+<span class="sd">            output_path (str, optional): Output path for saving traces. If</span>
+<span class="sd">                `None`, results will only be returned without saving to file.</span>
+<span class="sd">                (default: :obj:`None`)</span>
+<span class="sd">            few_shot_examples (str, optional): Examples to use for few-shot</span>
+<span class="sd">                generation. (default: :obj:`None`)</span>
+<span class="sd">            batch_size (int, optional): Batch size for parallel processing.</span>
+<span class="sd">                (default: :obj:`None`)</span>
+<span class="sd">            max_workers (int, optional): Maximum number of worker threads.</span>
+<span class="sd">                (default: :obj:`None`)</span>
+<span class="sd">            solution_pattern (str, optional): Regular expression pattern with</span>
+<span class="sd">                one capture group to extract answers from solution text.</span>
+<span class="sd">                (default: :obj:`r&#39;\\boxed{(.*?)}&#39;`)</span>
+<span class="sd">            trace_pattern (str, optional): Regular expression pattern with one</span>
+<span class="sd">                capture group to extract answers from trace text. If `None`,</span>
+<span class="sd">                uses the same pattern as solution_pattern.</span>
+<span class="sd">                (default: :obj:`None`)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p><strong>Example usage:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.datagen</span><span class="w"> </span><span class="kn">import</span> <span class="n">SelfImprovingCoTPipeline</span>
+
+<span class="c1"># Initialize agents</span>
+<span class="n">reason_agent</span> <span class="o">=</span> <span class="n">ChatAgent</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Answer my question and give your </span>
+<span class="sd">    final answer within \\boxed{}.&quot;&quot;&quot;</span>
+<span class="p">)</span>
+
+<span class="n">evaluate_agent</span> <span class="o">=</span> <span class="n">ChatAgent</span><span class="p">(</span>
+    <span class="s2">&quot;You are a highly critical teacher who evaluates the student&#39;s answers &quot;</span>
+    <span class="s2">&quot;with a meticulous and demanding approach.&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Prepare your problems</span>
+<span class="n">problems</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;problem&quot;</span><span class="p">:</span> <span class="s2">&quot;Your problem text here&quot;</span><span class="p">},</span>
+    <span class="c1"># Add more problems...</span>
+<span class="p">]</span>
+
+<span class="c1"># Create and run the pipeline</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">SelfImprovingCoTPipeline</span><span class="p">(</span>
+    <span class="n">reason_agent</span><span class="o">=</span><span class="n">reason_agent</span><span class="p">,</span>
+    <span class="n">evaluate_agent</span><span class="o">=</span><span class="n">evaluate_agent</span><span class="p">,</span>
+    <span class="n">problems</span><span class="o">=</span><span class="n">problems</span><span class="p">,</span>
+    <span class="n">max_iterations</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;star_output.json&quot;</span>
+<span class="p">)</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="batch-processing-api-request-handling">
+<h2>4. Batch Processing &amp; API Request Handling 📦<a class="headerlink" href="#batch-processing-api-request-handling" title="Link to this heading">#</a></h2>
+<section id="the-need-for-batch-processing">
+<h3>4.1 The Need for Batch Processing ⏰<a class="headerlink" href="#the-need-for-batch-processing" title="Link to this heading">#</a></h3>
+<p>Early on, we tried generating CoT reasoning for each problem one by one. This approach quickly revealed two major issues:</p>
+<ol class="arabic simple">
+<li><p><strong>Time consumption</strong>: Sequential processing doesn’t scale to large problem sets.</p></li>
+<li><p><strong>API request bottlenecks</strong>: Slowdowns or occasional disconnections occurred when handling numerous calls.</p></li>
+</ol>
+<p>Hence, we introduced a parallel <strong><code class="docutils literal notranslate"><span class="pre">BatchProcessor</span></code></strong> to:</p>
+<ul class="simple">
+<li><p>Split the tasks into manageable batches.</p></li>
+<li><p>Dynamically adjust batch size (<code class="docutils literal notranslate"><span class="pre">batch_size</span></code>) based on the success/failure rates and system resource usage (CPU/memory).</p></li>
+<li><p>Retry on transient errors or API timeouts to maintain a stable flow.</p></li>
+</ul>
+<p>Below shows how we batch-process multiple problems:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_batch_process_problems</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">problems</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">],</span> <span class="n">rationalization</span><span class="p">:</span> <span class="nb">bool</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ProblemResult</span><span class="p">]:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">total_problems</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">problems</span><span class="p">)</span>
+    <span class="n">processed</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">processed</span> <span class="o">&lt;</span> <span class="n">total_problems</span><span class="p">:</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_processor</span><span class="o">.</span><span class="n">batch_size</span>
+        <span class="n">batch</span> <span class="o">=</span> <span class="n">problems</span><span class="p">[</span><span class="n">processed</span> <span class="p">:</span> <span class="n">processed</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">]</span>
+        <span class="n">batch_start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+        <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_processor</span><span class="o">.</span><span class="n">max_workers</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+            <span class="n">futures</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">process_problem</span><span class="p">,</span>
+                    <span class="n">problem</span><span class="o">=</span><span class="n">problem</span><span class="p">,</span>
+                    <span class="n">rationalization</span><span class="o">=</span><span class="n">rationalization</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">for</span> <span class="n">problem</span> <span class="ow">in</span> <span class="n">batch</span>
+            <span class="p">]</span>
+            <span class="o">...</span>
+        <span class="n">processed</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+        <span class="o">...</span>
+        <span class="c1"># Log progress &amp; performance</span>
+</pre></div>
+</div>
+</section>
+<section id="handling-api-instability">
+<h3>4.2 Handling API Instability 🚨<a class="headerlink" href="#handling-api-instability" title="Link to this heading">#</a></h3>
+<p>Even with batching, API requests for LLMs can fail due to network fluctuations or remote server instability. We implemented a <code class="docutils literal notranslate"><span class="pre">retry_on_error</span></code> decorator:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">retry_on_error</span><span class="p">(</span>
+    <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">initial_delay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">delay</span> <span class="o">=</span> <span class="n">initial_delay</span>
+            <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_retries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">max_retries</span><span class="p">:</span>
+                        <span class="k">raise</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+                    <span class="n">delay</span> <span class="o">*=</span> <span class="mi">2</span>
+            <span class="k">raise</span>
+        <span class="k">return</span> <span class="n">wrapper</span>
+    <span class="k">return</span> <span class="n">decorator</span>
+</pre></div>
+</div>
+<p>Whenever we invoke LLM calls for generation, evaluation, or improvement, these decorated methods gracefully handle transient errors by retrying with exponential backoff (doubling the wait time after each failed attempt).</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="model-switching-dynamic-file-writing">
+<h2>5. Model Switching &amp; Dynamic File Writing 📝<a class="headerlink" href="#model-switching-dynamic-file-writing" title="Link to this heading">#</a></h2>
+<section id="flexible-model-scheduling">
+<h3>5.1 Flexible Model Scheduling 🕒<a class="headerlink" href="#flexible-model-scheduling" title="Link to this heading">#</a></h3>
+<p>In CAMEL’s CoT pipeline, adding models to the <code class="docutils literal notranslate"><span class="pre">ChatAgent</span></code> is useful for handling errors and ensuring smooth operation. This setup allows the system to switch between models as needed, maintaining reasoning continuity.</p>
+<p>To add models to a <code class="docutils literal notranslate"><span class="pre">ChatAgent</span></code>, you can create instances of models and include them in the agent’s model list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model1</span> <span class="o">=</span> <span class="n">ModelFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model_platform</span><span class="o">=</span><span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">DEEPSEEK</span><span class="p">,</span>
+    <span class="n">model_type</span><span class="o">=</span><span class="s2">&quot;deepseek-reasoner&quot;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+
+<span class="n">model2</span> <span class="o">=</span> <span class="n">ModelFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model_platform</span><span class="o">=</span><span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">TOGETHER</span><span class="p">,</span>
+    <span class="n">model_type</span><span class="o">=</span><span class="s2">&quot;deepseek-reasoner&quot;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">ChatAgent</span><span class="p">(</span>
+    <span class="n">system_message</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="p">[</span><span class="n">model1</span><span class="p">,</span> <span class="n">model2</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>By incorporating multiple models, CAMEL can effectively manage model availability and ensure robust error handling.</p>
+</section>
+<section id="real-time-json-updates">
+<h3>5.2 Real-Time JSON Updates 🔄<a class="headerlink" href="#real-time-json-updates" title="Link to this heading">#</a></h3>
+<p>As soon as a problem’s results are ready, we lock the file (<code class="docutils literal notranslate"><span class="pre">output_path</span></code>) and update it in-place—rather than saving everything at the very end. This ensures data integrity if the process is interrupted partway through.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">safe_write_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">temp_path</span> <span class="o">=</span> <span class="n">file_path</span> <span class="o">+</span> <span class="s2">&quot;.tmp&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">temp_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">temp_path</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This two-step write (to a <code class="docutils literal notranslate"><span class="pre">.tmp</span></code> file then replace) prevents partial writes from corrupting the output file.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="camels-next-steps-in-cot-data-generation">
+<h2>6. CAMEL’s Next Steps in CoT Data Generation 🚀<a class="headerlink" href="#camels-next-steps-in-cot-data-generation" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Real-Time Monitoring Dashboard</strong>: Visualize throughput, error rates, running cost, data quality, etc. for smooth operational oversight.</p></li>
+<li><p><strong>Performance Enhancements</strong>: Further improve performance and add more error handling to make the system more robust.</p></li>
+<li><p><strong>Cutting-Edge Research Solutions</strong>: Integrate more cutting-edge research solutions for synthetic data generation.</p></li>
+<li><p><strong>Rejection Sampling</strong>: Integrate rejection sampling method to the SelfImprovingCoT pipeline.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="conclusion">
+<h2>Conclusion 📚<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>CAMEL’s self-improving pipeline exemplifies a comprehensive approach to Chain-of-Thought data generation:</p>
+<ul class="simple">
+<li><p><strong>Flexible Evaluation</strong>: Utilizing agent-based or reward-model-based evaluation provides adaptable scoring and feedback loops.</p></li>
+<li><p><strong>Continuous Improvement</strong>: Iterative refinement ensures each reasoning trace is enhanced until it meets the desired quality.</p></li>
+<li><p><strong>Efficient Processing</strong>: Batched concurrency increases throughput while maintaining system balance.</p></li>
+<li><p><strong>Robust Stability</strong>: Error-tolerant mechanisms with retries enhance system reliability.</p></li>
+<li><p><strong>Consistent Output</strong>: Dynamic file writing ensures partial results are consistently preserved and valid.</p></li>
+</ul>
+<p>Looking ahead, CAMEL’s roadmap is dedicated to pioneering advanced synthetic data generation methods, integrating cutting-edge research and technology.</p>
+<p><em>Stay tuned for more updates on CAMEL’s journey in advancing agentic synthetic data generation!</em></p>
+<hr class="docutils" />
+<p><strong>Further Reading &amp; Resources</strong></p>
+<ul class="simple">
+<li><p><strong>CAMEL GitHub</strong>: Explore our open-source projects on <a class="reference external" href="https://github.com/camel-ai/camel">GitHub</a> and give us a 🌟star.</p></li>
+</ul>
+<p><strong>Data Generation Cookbooks</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.camel-ai.org/cookbooks/data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation</a></p></li>
+<li><p><a class="reference external" href="https://docs.camel-ai.org/cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Generating High-Quality SFT Data with CAMEL</a></p></li>
+<li><p><a class="reference external" href="https://docs.camel-ai.org/cookbooks/data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Function Call Data Generation and Evaluation</a></p></li>
+<li><p><a class="reference external" href="https://docs.camel-ai.org/cookbooks/data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../applications/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Applications</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-the-end-to-end-pipeline">1. Overview of the End-to-End Pipeline 🔍</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-an-iterative-cot-pipeline">1.1 Why an Iterative CoT Pipeline?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-components">1.2 Core Components</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generation-of-cot-data-the-heart-of-the-pipeline">2. Generation of CoT Data: The Heart of the Pipeline 🤖</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-trace-generation">2.1 Initial Trace Generation 🐣</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-of-the-initial-trace">2.2 Evaluation of the Initial Trace 📒</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#agent-based-evaluation">2.2.1 Agent-Based Evaluation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reward-model-evaluation">2.2.2 Reward Model Evaluation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-refinement-the-self-improving-cycle">2.3 Iterative Refinement: The Self-Improving Cycle 🔁</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-this-iterative-refinement-work">How does this iterative refinement work?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-setup-in-code">3. Pipeline Setup in Code 💻</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-processing-api-request-handling">4. Batch Processing &amp; API Request Handling 📦</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-batch-processing">4.1 The Need for Batch Processing ⏰</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-api-instability">4.2 Handling API Instability 🚨</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-switching-dynamic-file-writing">5. Model Switching &amp; Dynamic File Writing 📝</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flexible-model-scheduling">5.1 Flexible Model Scheduling 🕒</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-time-json-updates">5.2 Real-Time JSON Updates 🔄</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camels-next-steps-in-cot-data-generation">6. CAMEL’s Next Steps in CoT Data Generation 🚀</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion 📚</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1677 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>camel.retrievers package &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=30d83864"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'camel.retrievers';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="camel.societies package" href="camel.societies.html" />
+    <link rel="prev" title="camel.responses package" href="camel.responses.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="camel.html">camel package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/edit/main/camel.retrievers.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2Fcamel.retrievers.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/camel.retrievers.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>camel.retrievers package</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.retrievers.auto_retriever">camel.retrievers.auto_retriever module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.auto_retriever.AutoRetriever"><code class="docutils literal notranslate"><span class="pre">AutoRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.auto_retriever.AutoRetriever.url_and_api_key"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.url_and_api_key</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.auto_retriever.AutoRetriever.vector_storage_local_path"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.vector_storage_local_path</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.auto_retriever.AutoRetriever.storage_type"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.storage_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.auto_retriever.AutoRetriever.embedding_model"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.embedding_model</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.auto_retriever.AutoRetriever.run_vector_retriever"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.run_vector_retriever()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.retrievers.base">camel.retrievers.base module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.base.BaseRetriever"><code class="docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.base.BaseRetriever.process"><code class="docutils literal notranslate"><span class="pre">BaseRetriever.process()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.base.BaseRetriever.query"><code class="docutils literal notranslate"><span class="pre">BaseRetriever.query()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.retrievers.bm25_retriever">camel.retrievers.bm25_retriever module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.bm25_retriever.BM25Retriever"><code class="docutils literal notranslate"><span class="pre">BM25Retriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.bm25_retriever.BM25Retriever.bm25"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.bm25</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.bm25_retriever.BM25Retriever.content_input_path"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.content_input_path</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.bm25_retriever.BM25Retriever.unstructured_modules"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.unstructured_modules</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.bm25_retriever.BM25Retriever.process"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.process()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.bm25_retriever.BM25Retriever.query"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.query()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.retrievers.cohere_rerank_retriever">camel.retrievers.cohere_rerank_retriever module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever.model_name"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever.model_name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever.api_key"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever.api_key</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever.query"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever.query()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.retrievers.vector_retriever">camel.retrievers.vector_retriever module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.vector_retriever.VectorRetriever"><code class="docutils literal notranslate"><span class="pre">VectorRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.vector_retriever.VectorRetriever.embedding_model"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.embedding_model</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.vector_retriever.VectorRetriever.storage"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.storage</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.vector_retriever.VectorRetriever.unstructured_modules"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.unstructured_modules</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.vector_retriever.VectorRetriever.process"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.process()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.vector_retriever.VectorRetriever.query"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.query()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.retrievers">Module contents</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.AutoRetriever"><code class="docutils literal notranslate"><span class="pre">AutoRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.AutoRetriever.url_and_api_key"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.url_and_api_key</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.AutoRetriever.vector_storage_local_path"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.vector_storage_local_path</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.AutoRetriever.storage_type"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.storage_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.AutoRetriever.embedding_model"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.embedding_model</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.AutoRetriever.run_vector_retriever"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.run_vector_retriever()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BM25Retriever"><code class="docutils literal notranslate"><span class="pre">BM25Retriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BM25Retriever.bm25"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.bm25</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BM25Retriever.content_input_path"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.content_input_path</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BM25Retriever.unstructured_modules"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.unstructured_modules</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BM25Retriever.process"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.process()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BM25Retriever.query"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.query()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BaseRetriever"><code class="docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BaseRetriever.process"><code class="docutils literal notranslate"><span class="pre">BaseRetriever.process()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BaseRetriever.query"><code class="docutils literal notranslate"><span class="pre">BaseRetriever.query()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.CohereRerankRetriever"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.CohereRerankRetriever.model_name"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever.model_name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.CohereRerankRetriever.api_key"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever.api_key</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.CohereRerankRetriever.query"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever.query()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.HybridRetriever"><code class="docutils literal notranslate"><span class="pre">HybridRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.HybridRetriever.process"><code class="docutils literal notranslate"><span class="pre">HybridRetriever.process()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.HybridRetriever.query"><code class="docutils literal notranslate"><span class="pre">HybridRetriever.query()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.VectorRetriever"><code class="docutils literal notranslate"><span class="pre">VectorRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.VectorRetriever.embedding_model"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.embedding_model</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.VectorRetriever.storage"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.storage</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.VectorRetriever.unstructured_modules"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.unstructured_modules</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.VectorRetriever.process"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.process()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.VectorRetriever.query"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.query()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="camel-retrievers-package">
+<h1>camel.retrievers package<a class="headerlink" href="#camel-retrievers-package" title="Link to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-camel.retrievers.auto_retriever">
+<span id="camel-retrievers-auto-retriever-module"></span><h2>camel.retrievers.auto_retriever module<a class="headerlink" href="#module-camel.retrievers.auto_retriever" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.retrievers.auto_retriever.AutoRetriever">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.retrievers.auto_retriever.</span></span><span class="sig-name descname"><span class="pre">AutoRetriever</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url_and_api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_storage_local_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.types.html#camel.types.enums.StorageType" title="camel.types.enums.StorageType"><span class="pre">StorageType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.embeddings.html#camel.embeddings.base.BaseEmbedding" title="camel.embeddings.base.BaseEmbedding"><span class="pre">BaseEmbedding</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/retrievers/auto_retriever.html#AutoRetriever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.auto_retriever.AutoRetriever" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Facilitates the automatic retrieval of information using a
+query-based approach with pre-defined elements.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.auto_retriever.AutoRetriever.url_and_api_key">
+<span class="sig-name descname"><span class="pre">url_and_api_key</span></span><a class="headerlink" href="#camel.retrievers.auto_retriever.AutoRetriever.url_and_api_key" title="Link to this definition">#</a></dt>
+<dd><p>URL and API key for
+accessing the vector storage remotely.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[Tuple[str, str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.auto_retriever.AutoRetriever.vector_storage_local_path">
+<span class="sig-name descname"><span class="pre">vector_storage_local_path</span></span><a class="headerlink" href="#camel.retrievers.auto_retriever.AutoRetriever.vector_storage_local_path" title="Link to this definition">#</a></dt>
+<dd><p>Local path for vector
+storage, if applicable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.auto_retriever.AutoRetriever.storage_type">
+<span class="sig-name descname"><span class="pre">storage_type</span></span><a class="headerlink" href="#camel.retrievers.auto_retriever.AutoRetriever.storage_type" title="Link to this definition">#</a></dt>
+<dd><p>The type of vector storage to
+use. Defaults to <cite>StorageType.QDRANT</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="camel.types.html#camel.types.enums.StorageType" title="camel.types.enums.StorageType">StorageType</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.auto_retriever.AutoRetriever.embedding_model">
+<span class="sig-name descname"><span class="pre">embedding_model</span></span><a class="headerlink" href="#camel.retrievers.auto_retriever.AutoRetriever.embedding_model" title="Link to this definition">#</a></dt>
+<dd><p>Model used for embedding
+queries and documents. Defaults to <cite>OpenAIEmbedding()</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="camel.embeddings.html#camel.embeddings.base.BaseEmbedding" title="camel.embeddings.base.BaseEmbedding">BaseEmbedding</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.auto_retriever.AutoRetriever.run_vector_retriever">
+<span class="sig-name descname"><span class="pre">run_vector_retriever</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Element</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_detailed_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_characters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/retrievers/auto_retriever.html#AutoRetriever.run_vector_retriever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.auto_retriever.AutoRetriever.run_vector_retriever" title="Link to this definition">#</a></dt>
+<dd><p>Executes the automatic vector retriever process using vector
+storage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – Query string for information retriever.</p></li>
+<li><p><strong>contents</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>, </em><em>Element</em><em>, </em><em>List</em><em>[</em><em>Element</em><em>]</em><em>]</em>) – Local
+file paths, remote URLs, string contents or Element objects.</p></li>
+<li><p><strong>top_k</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of top results to return during
+retrieve. Must be a positive integer. Defaults to
+<cite>DEFAULT_TOP_K_RESULTS</cite>.</p></li>
+<li><p><strong>similarity_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – The similarity threshold
+for filtering results. Defaults to
+<cite>DEFAULT_SIMILARITY_THRESHOLD</cite>.</p></li>
+<li><p><strong>return_detailed_info</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to return detailed
+information including similarity score, content path and
+metadata. Defaults to <cite>False</cite>.</p></li>
+<li><p><strong>max_characters</strong> (<em>int</em>) – Max number of characters in each chunk.
+Defaults to <cite>500</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>By default, returns</dt><dd><p>only the text information. If <cite>return_detailed_info</cite> is
+<cite>True</cite>, return detailed information including similarity
+score, content path and metadata.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, Sequence[Collection[str]]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – If there’s an vector storage existing with content
+    name in the vector path but the payload is None. If
+    <cite>contents</cite> is empty.</p></li>
+<li><p><strong>RuntimeError</strong> – If any errors occur during the retrieve process.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.retrievers.base">
+<span id="camel-retrievers-base-module"></span><h2>camel.retrievers.base module<a class="headerlink" href="#module-camel.retrievers.base" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.retrievers.base.BaseRetriever">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.retrievers.base.</span></span><span class="sig-name descname"><span class="pre">BaseRetriever</span></span><a class="reference internal" href="_modules/camel/retrievers/base.html#BaseRetriever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.base.BaseRetriever" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Abstract base class for implementing various types of information
+retrievers.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.base.BaseRetriever.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#camel.retrievers.base.BaseRetriever.process" title="Link to this definition">#</a></dt>
+<dd><p>Defines the process behavior performed at every call.</p>
+<dl class="simple">
+<dt>Processes content from a file or URL, divides it into chunks by</dt><dd><p>using <cite>Unstructured IO</cite>,then stored internally. This method must be
+called before executing queries with the retriever.</p>
+</dd>
+</dl>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <a class="reference internal" href="#camel.retrievers.base.BaseRetriever" title="camel.retrievers.base.BaseRetriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a> instance
+afterwards instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.base.BaseRetriever.query">
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#camel.retrievers.base.BaseRetriever.query" title="Link to this definition">#</a></dt>
+<dd><p>Defines the query behavior performed at every call.</p>
+<dl class="simple">
+<dt>Query the results. Subclasses should implement this</dt><dd><p>method according to their specific needs.</p>
+</dd>
+</dl>
+<p>It should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <a class="reference internal" href="#camel.retrievers.base.BaseRetriever" title="camel.retrievers.base.BaseRetriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a> instance
+afterwards instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.retrievers.bm25_retriever">
+<span id="camel-retrievers-bm25-retriever-module"></span><h2>camel.retrievers.bm25_retriever module<a class="headerlink" href="#module-camel.retrievers.bm25_retriever" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.retrievers.bm25_retriever.BM25Retriever">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.retrievers.bm25_retriever.</span></span><span class="sig-name descname"><span class="pre">BM25Retriever</span></span><a class="reference internal" href="_modules/camel/retrievers/bm25_retriever.html#BM25Retriever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.bm25_retriever.BM25Retriever" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.retrievers.base.BaseRetriever" title="camel.retrievers.base.BaseRetriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a></p>
+<p>An implementation of the <cite>BaseRetriever</cite> using the <cite>BM25</cite> model.</p>
+<p>This class facilitates the retriever of relevant information using a
+query-based approach, it ranks documents based on the occurrence and
+frequency of the query terms.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.bm25_retriever.BM25Retriever.bm25">
+<span class="sig-name descname"><span class="pre">bm25</span></span><a class="headerlink" href="#camel.retrievers.bm25_retriever.BM25Retriever.bm25" title="Link to this definition">#</a></dt>
+<dd><p>An instance of the BM25Okapi class used for
+calculating document scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>BM25Okapi</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.bm25_retriever.BM25Retriever.content_input_path">
+<span class="sig-name descname"><span class="pre">content_input_path</span></span><a class="headerlink" href="#camel.retrievers.bm25_retriever.BM25Retriever.content_input_path" title="Link to this definition">#</a></dt>
+<dd><p>The path to the content that has been
+processed and stored.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.bm25_retriever.BM25Retriever.unstructured_modules">
+<span class="sig-name descname"><span class="pre">unstructured_modules</span></span><a class="headerlink" href="#camel.retrievers.bm25_retriever.BM25Retriever.unstructured_modules" title="Link to this definition">#</a></dt>
+<dd><p>A module for parsing files and
+URLs and chunking content based on specified parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="camel.loaders.html#camel.loaders.unstructured_io.UnstructuredIO" title="camel.loaders.unstructured_io.UnstructuredIO">UnstructuredIO</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">References</p>
+<p><a class="github reference external" href="https://github.com/dorianbrown/rank_bm25">dorianbrown/rank_bm25</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.bm25_retriever.BM25Retriever.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content_input_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'chunk_by_title'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/retrievers/bm25_retriever.html#BM25Retriever.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.bm25_retriever.BM25Retriever.process" title="Link to this definition">#</a></dt>
+<dd><p>Processes content from a file or URL, divides it into chunks by
+using <cite>Unstructured IO</cite>,then stored internally. This method must be
+called before executing queries with the retriever.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>content_input_path</strong> (<em>str</em>) – File path or URL of the content to be
+processed.</p></li>
+<li><p><strong>chunk_type</strong> (<em>str</em>) – Type of chunking going to apply. Defaults to
+“chunk_by_title”.</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em>) – Additional keyword arguments for content parsing.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.bm25_retriever.BM25Retriever.query">
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/retrievers/bm25_retriever.html#BM25Retriever.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.bm25_retriever.BM25Retriever.query" title="Link to this definition">#</a></dt>
+<dd><p>Executes a query and compiles the results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – Query string for information retriever.</p></li>
+<li><p><strong>top_k</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of top results to return during
+retriever. Must be a positive integer. Defaults to
+<cite>DEFAULT_TOP_K_RESULTS</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Concatenated list of the query results.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Dict[str]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If <cite>top_k</cite> is less than or equal to 0, if the BM25
+    model has not been initialized by calling <cite>process</cite>
+    first.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.retrievers.cohere_rerank_retriever">
+<span id="camel-retrievers-cohere-rerank-retriever-module"></span><h2>camel.retrievers.cohere_rerank_retriever module<a class="headerlink" href="#module-camel.retrievers.cohere_rerank_retriever" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.retrievers.cohere_rerank_retriever.</span></span><span class="sig-name descname"><span class="pre">CohereRerankRetriever</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'rerank-multilingual-v2.0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/retrievers/cohere_rerank_retriever.html#CohereRerankRetriever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.retrievers.base.BaseRetriever" title="camel.retrievers.base.BaseRetriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a></p>
+<p>An implementation of the <cite>BaseRetriever</cite> using the <cite>Cohere Re-ranking</cite>
+model.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever.model_name">
+<span class="sig-name descname"><span class="pre">model_name</span></span><a class="headerlink" href="#camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever.model_name" title="Link to this definition">#</a></dt>
+<dd><p>The model name to use for re-ranking.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever.api_key">
+<span class="sig-name descname"><span class="pre">api_key</span></span><a class="headerlink" href="#camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever.api_key" title="Link to this definition">#</a></dt>
+<dd><p>The API key for authenticating with the
+Cohere service.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">References</p>
+<p><a class="reference external" href="https://txt.cohere.com/rerank/">https://txt.cohere.com/rerank/</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever.query">
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retrieved_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/retrievers/cohere_rerank_retriever.html#CohereRerankRetriever.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever.query" title="Link to this definition">#</a></dt>
+<dd><p>Queries and compiles results using the Cohere re-ranking model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – Query string for information retriever.</p></li>
+<li><p><strong>retrieved_result</strong> (<em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – The content to be
+re-ranked, should be the output from <cite>BaseRetriever</cite> like
+<cite>VectorRetriever</cite>.</p></li>
+<li><p><strong>top_k</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of top results to return during
+retriever. Must be a positive integer. Defaults to
+<cite>DEFAULT_TOP_K_RESULTS</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Concatenated list of the query results.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Dict[str, Any]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.retrievers.vector_retriever">
+<span id="camel-retrievers-vector-retriever-module"></span><h2>camel.retrievers.vector_retriever module<a class="headerlink" href="#module-camel.retrievers.vector_retriever" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.retrievers.vector_retriever.VectorRetriever">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.retrievers.vector_retriever.</span></span><span class="sig-name descname"><span class="pre">VectorRetriever</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embedding_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.embeddings.html#camel.embeddings.base.BaseEmbedding" title="camel.embeddings.base.BaseEmbedding"><span class="pre">BaseEmbedding</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.storages.vectordb_storages.html#camel.storages.vectordb_storages.base.BaseVectorStorage" title="camel.storages.vectordb_storages.base.BaseVectorStorage"><span class="pre">BaseVectorStorage</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/retrievers/vector_retriever.html#VectorRetriever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.vector_retriever.VectorRetriever" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.retrievers.base.BaseRetriever" title="camel.retrievers.base.BaseRetriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a></p>
+<p>An implementation of the <cite>BaseRetriever</cite> by using vector storage and
+embedding model.</p>
+<p>This class facilitates the retriever of relevant information using a
+query-based approach, backed by vector embeddings.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.vector_retriever.VectorRetriever.embedding_model">
+<span class="sig-name descname"><span class="pre">embedding_model</span></span><a class="headerlink" href="#camel.retrievers.vector_retriever.VectorRetriever.embedding_model" title="Link to this definition">#</a></dt>
+<dd><p>Embedding model used to generate
+vector embeddings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="camel.embeddings.html#camel.embeddings.base.BaseEmbedding" title="camel.embeddings.base.BaseEmbedding">BaseEmbedding</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.vector_retriever.VectorRetriever.storage">
+<span class="sig-name descname"><span class="pre">storage</span></span><a class="headerlink" href="#camel.retrievers.vector_retriever.VectorRetriever.storage" title="Link to this definition">#</a></dt>
+<dd><p>Vector storage to query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="camel.storages.html#camel.storages.BaseVectorStorage" title="camel.storages.BaseVectorStorage">BaseVectorStorage</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.vector_retriever.VectorRetriever.unstructured_modules">
+<span class="sig-name descname"><span class="pre">unstructured_modules</span></span><a class="headerlink" href="#camel.retrievers.vector_retriever.VectorRetriever.unstructured_modules" title="Link to this definition">#</a></dt>
+<dd><p>A module for parsing files and
+URLs and chunking content based on specified parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="camel.loaders.html#camel.loaders.unstructured_io.UnstructuredIO" title="camel.loaders.unstructured_io.UnstructuredIO">UnstructuredIO</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.vector_retriever.VectorRetriever.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Element</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">IO</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'chunk_by_title'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_characters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embed_batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">should_chunk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/retrievers/vector_retriever.html#VectorRetriever.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.vector_retriever.VectorRetriever.process" title="Link to this definition">#</a></dt>
+<dd><p>Processes content from local file path, remote URL, string
+content, Element object, or a binary file object, divides it into
+chunks by using <cite>Unstructured IO</cite>, and stores their embeddings in the
+specified vector storage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>content</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Element</em><em>, </em><em>IO</em><em>[</em><em>bytes</em><em>]</em><em>]</em>) – Local file path, remote
+URL, string content, Element object, or a binary file object.</p></li>
+<li><p><strong>chunk_type</strong> (<em>str</em>) – Type of chunking going to apply. Defaults to
+“chunk_by_title”.</p></li>
+<li><p><strong>max_characters</strong> (<em>int</em>) – Max number of characters in each chunk.
+Defaults to <cite>500</cite>.</p></li>
+<li><p><strong>embed_batch</strong> (<em>int</em>) – Size of batch for embeddings. Defaults to <cite>50</cite>.</p></li>
+<li><p><strong>should_chunk</strong> (<em>bool</em>) – If True, divide the content into chunks,
+otherwise skip chunking. Defaults to True.</p></li>
+<li><p><strong>extra_info</strong> (<em>Optional</em><em>[</em><em>dict</em><em>]</em>) – Extra information to be added
+to the payload. Defaults to None.</p></li>
+<li><p><strong>metadata_filename</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The metadata filename to be
+used for storing metadata. Defaults to None.</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em>) – Additional keyword arguments for content parsing.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.vector_retriever.VectorRetriever.query">
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.7</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/retrievers/vector_retriever.html#VectorRetriever.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.vector_retriever.VectorRetriever.query" title="Link to this definition">#</a></dt>
+<dd><p>Executes a query in vector storage and compiles the retrieved
+results into a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – Query string for information retriever.</p></li>
+<li><p><strong>similarity_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – The similarity threshold
+for filtering results. Defaults to
+<cite>DEFAULT_SIMILARITY_THRESHOLD</cite>.</p></li>
+<li><p><strong>top_k</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of top results to return during
+retriever. Must be a positive integer. Defaults to
+<cite>DEFAULT_TOP_K_RESULTS</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Concatenated list of the query results.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Dict[str, Any]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If ‘top_k’ is less than or equal to 0, if vector
+    storage is empty, if payload of vector storage is None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.retrievers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-camel.retrievers" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.retrievers.AutoRetriever">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.retrievers.</span></span><span class="sig-name descname"><span class="pre">AutoRetriever</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url_and_api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_storage_local_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.types.html#camel.types.enums.StorageType" title="camel.types.enums.StorageType"><span class="pre">StorageType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.embeddings.html#camel.embeddings.base.BaseEmbedding" title="camel.embeddings.base.BaseEmbedding"><span class="pre">BaseEmbedding</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/retrievers/auto_retriever.html#AutoRetriever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.AutoRetriever" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Facilitates the automatic retrieval of information using a
+query-based approach with pre-defined elements.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.AutoRetriever.url_and_api_key">
+<span class="sig-name descname"><span class="pre">url_and_api_key</span></span><a class="headerlink" href="#camel.retrievers.AutoRetriever.url_and_api_key" title="Link to this definition">#</a></dt>
+<dd><p>URL and API key for
+accessing the vector storage remotely.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[Tuple[str, str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.AutoRetriever.vector_storage_local_path">
+<span class="sig-name descname"><span class="pre">vector_storage_local_path</span></span><a class="headerlink" href="#camel.retrievers.AutoRetriever.vector_storage_local_path" title="Link to this definition">#</a></dt>
+<dd><p>Local path for vector
+storage, if applicable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.AutoRetriever.storage_type">
+<span class="sig-name descname"><span class="pre">storage_type</span></span><a class="headerlink" href="#camel.retrievers.AutoRetriever.storage_type" title="Link to this definition">#</a></dt>
+<dd><p>The type of vector storage to
+use. Defaults to <cite>StorageType.QDRANT</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="camel.types.html#camel.types.enums.StorageType" title="camel.types.enums.StorageType">StorageType</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.AutoRetriever.embedding_model">
+<span class="sig-name descname"><span class="pre">embedding_model</span></span><a class="headerlink" href="#camel.retrievers.AutoRetriever.embedding_model" title="Link to this definition">#</a></dt>
+<dd><p>Model used for embedding
+queries and documents. Defaults to <cite>OpenAIEmbedding()</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="camel.embeddings.html#camel.embeddings.base.BaseEmbedding" title="camel.embeddings.base.BaseEmbedding">BaseEmbedding</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.AutoRetriever.run_vector_retriever">
+<span class="sig-name descname"><span class="pre">run_vector_retriever</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Element</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Element</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_detailed_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_characters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/retrievers/auto_retriever.html#AutoRetriever.run_vector_retriever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.AutoRetriever.run_vector_retriever" title="Link to this definition">#</a></dt>
+<dd><p>Executes the automatic vector retriever process using vector
+storage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – Query string for information retriever.</p></li>
+<li><p><strong>contents</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>, </em><em>Element</em><em>, </em><em>List</em><em>[</em><em>Element</em><em>]</em><em>]</em>) – Local
+file paths, remote URLs, string contents or Element objects.</p></li>
+<li><p><strong>top_k</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of top results to return during
+retrieve. Must be a positive integer. Defaults to
+<cite>DEFAULT_TOP_K_RESULTS</cite>.</p></li>
+<li><p><strong>similarity_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – The similarity threshold
+for filtering results. Defaults to
+<cite>DEFAULT_SIMILARITY_THRESHOLD</cite>.</p></li>
+<li><p><strong>return_detailed_info</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to return detailed
+information including similarity score, content path and
+metadata. Defaults to <cite>False</cite>.</p></li>
+<li><p><strong>max_characters</strong> (<em>int</em>) – Max number of characters in each chunk.
+Defaults to <cite>500</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>By default, returns</dt><dd><p>only the text information. If <cite>return_detailed_info</cite> is
+<cite>True</cite>, return detailed information including similarity
+score, content path and metadata.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, Sequence[Collection[str]]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – If there’s an vector storage existing with content
+    name in the vector path but the payload is None. If
+    <cite>contents</cite> is empty.</p></li>
+<li><p><strong>RuntimeError</strong> – If any errors occur during the retrieve process.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.retrievers.BM25Retriever">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.retrievers.</span></span><span class="sig-name descname"><span class="pre">BM25Retriever</span></span><a class="reference internal" href="_modules/camel/retrievers/bm25_retriever.html#BM25Retriever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.BM25Retriever" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.retrievers.base.BaseRetriever" title="camel.retrievers.base.BaseRetriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a></p>
+<p>An implementation of the <cite>BaseRetriever</cite> using the <cite>BM25</cite> model.</p>
+<p>This class facilitates the retriever of relevant information using a
+query-based approach, it ranks documents based on the occurrence and
+frequency of the query terms.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.BM25Retriever.bm25">
+<span class="sig-name descname"><span class="pre">bm25</span></span><a class="headerlink" href="#camel.retrievers.BM25Retriever.bm25" title="Link to this definition">#</a></dt>
+<dd><p>An instance of the BM25Okapi class used for
+calculating document scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>BM25Okapi</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.BM25Retriever.content_input_path">
+<span class="sig-name descname"><span class="pre">content_input_path</span></span><a class="headerlink" href="#camel.retrievers.BM25Retriever.content_input_path" title="Link to this definition">#</a></dt>
+<dd><p>The path to the content that has been
+processed and stored.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.BM25Retriever.unstructured_modules">
+<span class="sig-name descname"><span class="pre">unstructured_modules</span></span><a class="headerlink" href="#camel.retrievers.BM25Retriever.unstructured_modules" title="Link to this definition">#</a></dt>
+<dd><p>A module for parsing files and
+URLs and chunking content based on specified parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="camel.loaders.html#camel.loaders.unstructured_io.UnstructuredIO" title="camel.loaders.unstructured_io.UnstructuredIO">UnstructuredIO</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">References</p>
+<p><a class="github reference external" href="https://github.com/dorianbrown/rank_bm25">dorianbrown/rank_bm25</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.BM25Retriever.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content_input_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'chunk_by_title'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/retrievers/bm25_retriever.html#BM25Retriever.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.BM25Retriever.process" title="Link to this definition">#</a></dt>
+<dd><p>Processes content from a file or URL, divides it into chunks by
+using <cite>Unstructured IO</cite>,then stored internally. This method must be
+called before executing queries with the retriever.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>content_input_path</strong> (<em>str</em>) – File path or URL of the content to be
+processed.</p></li>
+<li><p><strong>chunk_type</strong> (<em>str</em>) – Type of chunking going to apply. Defaults to
+“chunk_by_title”.</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em>) – Additional keyword arguments for content parsing.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.BM25Retriever.query">
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/retrievers/bm25_retriever.html#BM25Retriever.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.BM25Retriever.query" title="Link to this definition">#</a></dt>
+<dd><p>Executes a query and compiles the results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – Query string for information retriever.</p></li>
+<li><p><strong>top_k</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of top results to return during
+retriever. Must be a positive integer. Defaults to
+<cite>DEFAULT_TOP_K_RESULTS</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Concatenated list of the query results.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Dict[str]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If <cite>top_k</cite> is less than or equal to 0, if the BM25
+    model has not been initialized by calling <cite>process</cite>
+    first.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.retrievers.BaseRetriever">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.retrievers.</span></span><span class="sig-name descname"><span class="pre">BaseRetriever</span></span><a class="reference internal" href="_modules/camel/retrievers/base.html#BaseRetriever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.BaseRetriever" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Abstract base class for implementing various types of information
+retrievers.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.BaseRetriever.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#camel.retrievers.BaseRetriever.process" title="Link to this definition">#</a></dt>
+<dd><p>Defines the process behavior performed at every call.</p>
+<dl class="simple">
+<dt>Processes content from a file or URL, divides it into chunks by</dt><dd><p>using <cite>Unstructured IO</cite>,then stored internally. This method must be
+called before executing queries with the retriever.</p>
+</dd>
+</dl>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <a class="reference internal" href="#camel.retrievers.BaseRetriever" title="camel.retrievers.BaseRetriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a> instance
+afterwards instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.BaseRetriever.query">
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#camel.retrievers.BaseRetriever.query" title="Link to this definition">#</a></dt>
+<dd><p>Defines the query behavior performed at every call.</p>
+<dl class="simple">
+<dt>Query the results. Subclasses should implement this</dt><dd><p>method according to their specific needs.</p>
+</dd>
+</dl>
+<p>It should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <a class="reference internal" href="#camel.retrievers.BaseRetriever" title="camel.retrievers.BaseRetriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a> instance
+afterwards instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.retrievers.CohereRerankRetriever">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.retrievers.</span></span><span class="sig-name descname"><span class="pre">CohereRerankRetriever</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'rerank-multilingual-v2.0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/retrievers/cohere_rerank_retriever.html#CohereRerankRetriever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.CohereRerankRetriever" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.retrievers.base.BaseRetriever" title="camel.retrievers.base.BaseRetriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a></p>
+<p>An implementation of the <cite>BaseRetriever</cite> using the <cite>Cohere Re-ranking</cite>
+model.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.CohereRerankRetriever.model_name">
+<span class="sig-name descname"><span class="pre">model_name</span></span><a class="headerlink" href="#camel.retrievers.CohereRerankRetriever.model_name" title="Link to this definition">#</a></dt>
+<dd><p>The model name to use for re-ranking.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.CohereRerankRetriever.api_key">
+<span class="sig-name descname"><span class="pre">api_key</span></span><a class="headerlink" href="#camel.retrievers.CohereRerankRetriever.api_key" title="Link to this definition">#</a></dt>
+<dd><p>The API key for authenticating with the
+Cohere service.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">References</p>
+<p><a class="reference external" href="https://txt.cohere.com/rerank/">https://txt.cohere.com/rerank/</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.CohereRerankRetriever.query">
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retrieved_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/retrievers/cohere_rerank_retriever.html#CohereRerankRetriever.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.CohereRerankRetriever.query" title="Link to this definition">#</a></dt>
+<dd><p>Queries and compiles results using the Cohere re-ranking model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – Query string for information retriever.</p></li>
+<li><p><strong>retrieved_result</strong> (<em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – The content to be
+re-ranked, should be the output from <cite>BaseRetriever</cite> like
+<cite>VectorRetriever</cite>.</p></li>
+<li><p><strong>top_k</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of top results to return during
+retriever. Must be a positive integer. Defaults to
+<cite>DEFAULT_TOP_K_RESULTS</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Concatenated list of the query results.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Dict[str, Any]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.retrievers.HybridRetriever">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.retrievers.</span></span><span class="sig-name descname"><span class="pre">HybridRetriever</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embedding_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.embeddings.html#camel.embeddings.base.BaseEmbedding" title="camel.embeddings.base.BaseEmbedding"><span class="pre">BaseEmbedding</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_storage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.storages.vectordb_storages.html#camel.storages.vectordb_storages.base.BaseVectorStorage" title="camel.storages.vectordb_storages.base.BaseVectorStorage"><span class="pre">BaseVectorStorage</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/retrievers/hybrid_retrival.html#HybridRetriever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.HybridRetriever" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.retrievers.base.BaseRetriever" title="camel.retrievers.base.BaseRetriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.HybridRetriever.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content_input_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/retrievers/hybrid_retrival.html#HybridRetriever.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.HybridRetriever.process" title="Link to this definition">#</a></dt>
+<dd><p>Processes the content input path for both vector and BM25
+retrievers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>content_input_path</strong> (<em>str</em>) – File path or URL of the content to be
+processed.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the content_input_path is empty.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.HybridRetriever.query">
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bm25_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank_smoothing_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_retriever_top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_retriever_similarity_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bm25_retriever_top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_detailed_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/retrievers/hybrid_retrival.html#HybridRetriever.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.HybridRetriever.query" title="Link to this definition">#</a></dt>
+<dd><p>Executes a hybrid retrieval query using both vector and BM25
+retrievers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – The search query.</p></li>
+<li><p><strong>top_k</strong> (<em>int</em>) – Number of top results to return (default 20).</p></li>
+<li><p><strong>vector_weight</strong> (<em>float</em>) – Weight for vector retriever results in RRF.</p></li>
+<li><p><strong>bm25_weight</strong> (<em>float</em>) – Weight for BM25 retriever results in RRF.</p></li>
+<li><p><strong>rank_smoothing_factor</strong> (<em>int</em>) – RRF hyperparameter for rank smoothing.</p></li>
+<li><p><strong>vector_retriever_top_k</strong> (<em>int</em>) – Top results from vector retriever.</p></li>
+<li><p><strong>vector_retriever_similarity_threshold</strong> (<em>float</em>) – Similarity
+threshold for vector retriever.</p></li>
+<li><p><strong>bm25_retriever_top_k</strong> (<em>int</em>) – Top results from BM25 retriever.</p></li>
+<li><p><strong>return_detailed_info</strong> (<em>bool</em>) – Return detailed info if True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Union[</dt><dd><p>dict[str, Sequence[Collection[str]]],
+dict[str, Sequence[Union[str, float]]]</p>
+</dd>
+<dt>]: By default, returns only the text information. If</dt><dd><p><cite>return_detailed_info</cite> is <cite>True</cite>, return detailed information
+including rrf scores.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.retrievers.VectorRetriever">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.retrievers.</span></span><span class="sig-name descname"><span class="pre">VectorRetriever</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embedding_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.embeddings.html#camel.embeddings.base.BaseEmbedding" title="camel.embeddings.base.BaseEmbedding"><span class="pre">BaseEmbedding</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.storages.vectordb_storages.html#camel.storages.vectordb_storages.base.BaseVectorStorage" title="camel.storages.vectordb_storages.base.BaseVectorStorage"><span class="pre">BaseVectorStorage</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/retrievers/vector_retriever.html#VectorRetriever"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.VectorRetriever" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.retrievers.base.BaseRetriever" title="camel.retrievers.base.BaseRetriever"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a></p>
+<p>An implementation of the <cite>BaseRetriever</cite> by using vector storage and
+embedding model.</p>
+<p>This class facilitates the retriever of relevant information using a
+query-based approach, backed by vector embeddings.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.VectorRetriever.embedding_model">
+<span class="sig-name descname"><span class="pre">embedding_model</span></span><a class="headerlink" href="#camel.retrievers.VectorRetriever.embedding_model" title="Link to this definition">#</a></dt>
+<dd><p>Embedding model used to generate
+vector embeddings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="camel.embeddings.html#camel.embeddings.base.BaseEmbedding" title="camel.embeddings.base.BaseEmbedding">BaseEmbedding</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.VectorRetriever.storage">
+<span class="sig-name descname"><span class="pre">storage</span></span><a class="headerlink" href="#camel.retrievers.VectorRetriever.storage" title="Link to this definition">#</a></dt>
+<dd><p>Vector storage to query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="camel.storages.html#camel.storages.BaseVectorStorage" title="camel.storages.BaseVectorStorage">BaseVectorStorage</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.retrievers.VectorRetriever.unstructured_modules">
+<span class="sig-name descname"><span class="pre">unstructured_modules</span></span><a class="headerlink" href="#camel.retrievers.VectorRetriever.unstructured_modules" title="Link to this definition">#</a></dt>
+<dd><p>A module for parsing files and
+URLs and chunking content based on specified parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="camel.loaders.html#camel.loaders.unstructured_io.UnstructuredIO" title="camel.loaders.unstructured_io.UnstructuredIO">UnstructuredIO</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.VectorRetriever.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Element</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">IO</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'chunk_by_title'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_characters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embed_batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">should_chunk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/retrievers/vector_retriever.html#VectorRetriever.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.VectorRetriever.process" title="Link to this definition">#</a></dt>
+<dd><p>Processes content from local file path, remote URL, string
+content, Element object, or a binary file object, divides it into
+chunks by using <cite>Unstructured IO</cite>, and stores their embeddings in the
+specified vector storage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>content</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Element</em><em>, </em><em>IO</em><em>[</em><em>bytes</em><em>]</em><em>]</em>) – Local file path, remote
+URL, string content, Element object, or a binary file object.</p></li>
+<li><p><strong>chunk_type</strong> (<em>str</em>) – Type of chunking going to apply. Defaults to
+“chunk_by_title”.</p></li>
+<li><p><strong>max_characters</strong> (<em>int</em>) – Max number of characters in each chunk.
+Defaults to <cite>500</cite>.</p></li>
+<li><p><strong>embed_batch</strong> (<em>int</em>) – Size of batch for embeddings. Defaults to <cite>50</cite>.</p></li>
+<li><p><strong>should_chunk</strong> (<em>bool</em>) – If True, divide the content into chunks,
+otherwise skip chunking. Defaults to True.</p></li>
+<li><p><strong>extra_info</strong> (<em>Optional</em><em>[</em><em>dict</em><em>]</em>) – Extra information to be added
+to the payload. Defaults to None.</p></li>
+<li><p><strong>metadata_filename</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The metadata filename to be
+used for storing metadata. Defaults to None.</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em>) – Additional keyword arguments for content parsing.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.retrievers.VectorRetriever.query">
+<span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.7</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/retrievers/vector_retriever.html#VectorRetriever.query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.retrievers.VectorRetriever.query" title="Link to this definition">#</a></dt>
+<dd><p>Executes a query in vector storage and compiles the retrieved
+results into a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – Query string for information retriever.</p></li>
+<li><p><strong>similarity_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – The similarity threshold
+for filtering results. Defaults to
+<cite>DEFAULT_SIMILARITY_THRESHOLD</cite>.</p></li>
+<li><p><strong>top_k</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of top results to return during
+retriever. Must be a positive integer. Defaults to
+<cite>DEFAULT_TOP_K_RESULTS</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Concatenated list of the query results.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Dict[str, Any]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If ‘top_k’ is less than or equal to 0, if vector
+    storage is empty, if payload of vector storage is None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="camel.responses.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">camel.responses package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="camel.societies.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">camel.societies package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.retrievers.auto_retriever">camel.retrievers.auto_retriever module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.auto_retriever.AutoRetriever"><code class="docutils literal notranslate"><span class="pre">AutoRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.auto_retriever.AutoRetriever.url_and_api_key"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.url_and_api_key</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.auto_retriever.AutoRetriever.vector_storage_local_path"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.vector_storage_local_path</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.auto_retriever.AutoRetriever.storage_type"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.storage_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.auto_retriever.AutoRetriever.embedding_model"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.embedding_model</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.auto_retriever.AutoRetriever.run_vector_retriever"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.run_vector_retriever()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.retrievers.base">camel.retrievers.base module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.base.BaseRetriever"><code class="docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.base.BaseRetriever.process"><code class="docutils literal notranslate"><span class="pre">BaseRetriever.process()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.base.BaseRetriever.query"><code class="docutils literal notranslate"><span class="pre">BaseRetriever.query()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.retrievers.bm25_retriever">camel.retrievers.bm25_retriever module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.bm25_retriever.BM25Retriever"><code class="docutils literal notranslate"><span class="pre">BM25Retriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.bm25_retriever.BM25Retriever.bm25"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.bm25</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.bm25_retriever.BM25Retriever.content_input_path"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.content_input_path</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.bm25_retriever.BM25Retriever.unstructured_modules"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.unstructured_modules</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.bm25_retriever.BM25Retriever.process"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.process()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.bm25_retriever.BM25Retriever.query"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.query()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.retrievers.cohere_rerank_retriever">camel.retrievers.cohere_rerank_retriever module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever.model_name"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever.model_name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever.api_key"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever.api_key</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.cohere_rerank_retriever.CohereRerankRetriever.query"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever.query()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.retrievers.vector_retriever">camel.retrievers.vector_retriever module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.vector_retriever.VectorRetriever"><code class="docutils literal notranslate"><span class="pre">VectorRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.vector_retriever.VectorRetriever.embedding_model"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.embedding_model</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.vector_retriever.VectorRetriever.storage"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.storage</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.vector_retriever.VectorRetriever.unstructured_modules"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.unstructured_modules</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.vector_retriever.VectorRetriever.process"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.process()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.vector_retriever.VectorRetriever.query"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.query()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.retrievers">Module contents</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.AutoRetriever"><code class="docutils literal notranslate"><span class="pre">AutoRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.AutoRetriever.url_and_api_key"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.url_and_api_key</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.AutoRetriever.vector_storage_local_path"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.vector_storage_local_path</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.AutoRetriever.storage_type"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.storage_type</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.AutoRetriever.embedding_model"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.embedding_model</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.AutoRetriever.run_vector_retriever"><code class="docutils literal notranslate"><span class="pre">AutoRetriever.run_vector_retriever()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BM25Retriever"><code class="docutils literal notranslate"><span class="pre">BM25Retriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BM25Retriever.bm25"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.bm25</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BM25Retriever.content_input_path"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.content_input_path</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BM25Retriever.unstructured_modules"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.unstructured_modules</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BM25Retriever.process"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.process()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BM25Retriever.query"><code class="docutils literal notranslate"><span class="pre">BM25Retriever.query()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BaseRetriever"><code class="docutils literal notranslate"><span class="pre">BaseRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BaseRetriever.process"><code class="docutils literal notranslate"><span class="pre">BaseRetriever.process()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.BaseRetriever.query"><code class="docutils literal notranslate"><span class="pre">BaseRetriever.query()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.CohereRerankRetriever"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.CohereRerankRetriever.model_name"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever.model_name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.CohereRerankRetriever.api_key"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever.api_key</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.CohereRerankRetriever.query"><code class="docutils literal notranslate"><span class="pre">CohereRerankRetriever.query()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.HybridRetriever"><code class="docutils literal notranslate"><span class="pre">HybridRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.HybridRetriever.process"><code class="docutils literal notranslate"><span class="pre">HybridRetriever.process()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.HybridRetriever.query"><code class="docutils literal notranslate"><span class="pre">HybridRetriever.query()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.VectorRetriever"><code class="docutils literal notranslate"><span class="pre">VectorRetriever</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.VectorRetriever.embedding_model"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.embedding_model</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.VectorRetriever.storage"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.storage</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.VectorRetriever.unstructured_modules"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.unstructured_modules</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.VectorRetriever.process"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.process()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.retrievers.VectorRetriever.query"><code class="docutils literal notranslate"><span class="pre">VectorRetriever.query()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

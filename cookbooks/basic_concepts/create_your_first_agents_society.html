@@ -1,0 +1,1242 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Creating Your First Agent Society &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=30d83864"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cookbooks/basic_concepts/create_your_first_agents_society';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Message Cookbook" href="agents_message.html" />
+    <link rel="prev" title="Creating Your First Agent" href="create_your_first_agent.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../camel.html">camel package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/edit/main/cookbooks/basic_concepts/create_your_first_agents_society.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2Fcookbooks/basic_concepts/create_your_first_agents_society.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/cookbooks/basic_concepts/create_your_first_agents_society.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Creating Your First Agent Society</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Philosophical-Bits">Philosophical Bits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#📦-Installation">📦 Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#🔑-Setting-Up-API-Keys">🔑 Setting Up API Keys</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Quick-Start">Quick Start</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#🕹-Step-1:-Configure-the-Role-Playing-Session">🕹 Step 1: Configure the Role-Playing Session</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#Set-the-Task-Arguments">Set the <code class="docutils literal notranslate"><span class="pre">Task</span></code> Arguments</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#Set-the-User-Arguments">Set the <code class="docutils literal notranslate"><span class="pre">User</span></code> Arguments</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#Set-the-Assistant-Arguments">Set the <code class="docutils literal notranslate"><span class="pre">Assistant</span></code> Arguments</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-2:-Kickstart-Your-Society">Step 2: Kickstart Your Society</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-3:-Solving-Tasks-with-Your-Society">Step 3: Solving Tasks with Your Society</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#🌟-Highlights">🌟 Highlights</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <style>
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    display: none;
+}
+</style><section id="Creating-Your-First-Agent-Society">
+<h1>Creating Your First Agent Society<a class="headerlink" href="#Creating-Your-First-Agent-Society" title="Link to this heading">#</a></h1>
+<p>You can also check this cookbook in colab <a class="reference external" href="https://colab.research.google.com/drive/1cmWPxXEsyMbmjPhD2bWfHuhd_Uz6FaJQ?usp=sharing">here</a>.</p>
+<div class="align-center"><p><img alt="377d33a35c0a4d7ba6db3cc109674e13" class="no-scaled-link" src="https://i.postimg.cc/KzQ5rfBC/button.png" style="width: 150px;" /> <img alt="9d9663c8fbcf4e01b4cc5e54508a7210" class="no-scaled-link" src="https://i.postimg.cc/L4wPdG9N/join-2.png" style="width: 150px;" /></p>
+<p>⭐ Star us on <a class="reference external" href="https://github.com/camel-ai/camel">Github</a>, join our <a class="reference external" href="https://discord.camel-ai.org">Discord</a> or follow our <a class="reference external" href="https://x.com/camelaiorg">X</a></p>
+</div><p>This notebook demonstrates how to set up and leverage CAMEL’s ability to create your first agent society through <code class="docutils literal notranslate"><span class="pre">RolePlaying()</span></code>class.</p>
+<p>In this notebook, you’ll explore:</p>
+<ul class="simple">
+<li><p><strong>CAMEL</strong>: A powerful multi-agent framework that enables Retrieval-Augmented Generation and multi-agent role-playing scenarios, allowing for sophisticated AI-driven tasks.</p></li>
+<li><p><strong>Agent Society</strong>: Enabling multi-agent communication for the task solving.</p></li>
+</ul>
+<section id="Philosophical-Bits">
+<h2>Philosophical Bits<a class="headerlink" href="#Philosophical-Bits" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p><em>What magical trick makes us intelligent? The trick is that there is no trick. The power of intelligence stems from our vast diversity, not from any single, perfect principle.</em></p>
+<p class="attribution">—Marvin Minsky, The Society of Mind, p. 308</p>
+</div></blockquote>
+<p>In this section, we will take a spite of the task-oriented <code class="docutils literal notranslate"><span class="pre">RolePlaying()</span></code> class. We design this in an instruction-following manner. The essence is that to solve a complex task, you can enable two communicative agents collabratively working together step by step to reach solutions. The main concepts include:</p>
+<ul class="simple">
+<li><p><strong>Task</strong>: a task can be as simple as an idea, initialized by an inception prompt.</p></li>
+<li><p><strong>AI User</strong>: the agent who is expected to provide instructions.</p></li>
+<li><p><strong>AI Assistant</strong>: the agent who is expected to respond with solutions that fulfills the instructions.</p></li>
+</ul>
+</section>
+<section id="📦-Installation">
+<h2>📦 Installation<a class="headerlink" href="#📦-Installation" title="Link to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;camel-ai==0.2.16&quot;</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="🔑-Setting-Up-API-Keys">
+<h2>🔑 Setting Up API Keys<a class="headerlink" href="#🔑-Setting-Up-API-Keys" title="Link to this heading">#</a></h2>
+<p>You’ll need to set up your API keys for OpenAI.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">getpass</span><span class="w"> </span><span class="kn">import</span> <span class="n">getpass</span>
+
+<span class="c1"># Prompt for the API key securely</span>
+<span class="n">openai_api_key</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s1">&#39;Enter your API key: &#39;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">openai_api_key</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Enter your API key: ··········
+</pre></div></div>
+</div>
+</section>
+<section id="Quick-Start">
+<h2>Quick Start<a class="headerlink" href="#Quick-Start" title="Link to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary classes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.societies</span><span class="w"> </span><span class="kn">import</span> <span class="n">RolePlaying</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskType</span><span class="p">,</span> <span class="n">ModelType</span><span class="p">,</span> <span class="n">ModelPlatformType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.configs</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatGPTConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelFactory</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ModelFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model_platform</span><span class="o">=</span><span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">OPENAI</span><span class="p">,</span>
+    <span class="n">model_type</span><span class="o">=</span><span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4O_MINI</span><span class="p">,</span>
+    <span class="n">model_config_dict</span><span class="o">=</span><span class="n">ChatGPTConfig</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span><span class="o">.</span><span class="n">as_dict</span><span class="p">(),</span> <span class="c1"># [Optional] the config for model</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<section id="🕹-Step-1:-Configure-the-Role-Playing-Session">
+<h3>🕹 Step 1: Configure the Role-Playing Session<a class="headerlink" href="#🕹-Step-1:-Configure-the-Role-Playing-Session" title="Link to this heading">#</a></h3>
+<section id="Set-the-Task-Arguments">
+<h4>Set the <code class="docutils literal notranslate"><span class="pre">Task</span></code> Arguments<a class="headerlink" href="#Set-the-Task-Arguments" title="Link to this heading">#</a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">task_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;task_prompt&#39;</span><span class="p">:</span> <span class="s1">&#39;Develop a plan to TRAVEL TO THE PAST and make changes.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;with_task_specify&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;task_specify_agent_kwargs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">model</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Set-the-User-Arguments">
+<h4>Set the <code class="docutils literal notranslate"><span class="pre">User</span></code> Arguments<a class="headerlink" href="#Set-the-User-Arguments" title="Link to this heading">#</a></h4>
+<p>You may think the user as the <code class="docutils literal notranslate"><span class="pre">instruction</span> <span class="pre">sender</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">user_role_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;user_role_name&#39;</span><span class="p">:</span> <span class="s1">&#39;an ambitious aspiring TIME TRAVELER&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;user_agent_kwargs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">model</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Set-the-Assistant-Arguments">
+<h4>Set the <code class="docutils literal notranslate"><span class="pre">Assistant</span></code> Arguments<a class="headerlink" href="#Set-the-Assistant-Arguments" title="Link to this heading">#</a></h4>
+<p>Again, you may think the assistant as the <code class="docutils literal notranslate"><span class="pre">instruction</span> <span class="pre">executor</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant_role_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;assistant_role_name&#39;</span><span class="p">:</span> <span class="s1">&#39;the best-ever experimental physicist&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;assistant_agent_kwargs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">model</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Step-2:-Kickstart-Your-Society">
+<h3>Step 2: Kickstart Your Society<a class="headerlink" href="#Step-2:-Kickstart-Your-Society" title="Link to this heading">#</a></h3>
+<p>Putting them altogether – your role-playing session is ready to go!</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">society</span> <span class="o">=</span> <span class="n">RolePlaying</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">task_kwargs</span><span class="p">,</span>             <span class="c1"># The task arguments</span>
+    <span class="o">**</span><span class="n">user_role_kwargs</span><span class="p">,</span>        <span class="c1"># The instruction sender&#39;s arguments</span>
+    <span class="o">**</span><span class="n">assistant_role_kwargs</span><span class="p">,</span>   <span class="c1"># The instruction receiver&#39;s arguments</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Step-3:-Solving-Tasks-with-Your-Society">
+<h3>Step 3: Solving Tasks with Your Society<a class="headerlink" href="#Step-3:-Solving-Tasks-with-Your-Society" title="Link to this heading">#</a></h3>
+<p>Hold your bytes. Prior to our travel, let’s define a small helper function.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">is_terminated</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Give alerts when the session should be terminated.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">terminated</span><span class="p">:</span>
+        <span class="n">role</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">role_type</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">reason</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;termination_reasons&#39;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;AI </span><span class="si">{</span><span class="n">role</span><span class="si">}</span><span class="s1"> terminated due to </span><span class="si">{</span><span class="n">reason</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">terminated</span>
+</pre></div>
+</div>
+</div>
+<p>Time to chart our course – writing a simple loop for our society to proceed:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">society</span><span class="p">,</span> <span class="n">round_limit</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+
+    <span class="c1"># Get the initial message from the ai assistant to the ai user</span>
+    <span class="n">input_msg</span> <span class="o">=</span> <span class="n">society</span><span class="o">.</span><span class="n">init_chat</span><span class="p">()</span>
+
+    <span class="c1"># Starting the interactive session</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">round_limit</span><span class="p">):</span>
+
+        <span class="c1"># Get the both responses for this round</span>
+        <span class="n">assistant_response</span><span class="p">,</span> <span class="n">user_response</span> <span class="o">=</span> <span class="n">society</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">input_msg</span><span class="p">)</span>
+
+        <span class="c1"># Check the termination condition</span>
+        <span class="k">if</span> <span class="n">is_terminated</span><span class="p">(</span><span class="n">assistant_response</span><span class="p">)</span> <span class="ow">or</span> <span class="n">is_terminated</span><span class="p">(</span><span class="n">user_response</span><span class="p">):</span>
+            <span class="k">break</span>
+
+        <span class="c1"># Get the results</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[AI User] </span><span class="si">{</span><span class="n">user_response</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s1">.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="c1"># Check if the task is end</span>
+        <span class="k">if</span> <span class="s1">&#39;CAMEL_TASK_DONE&#39;</span> <span class="ow">in</span> <span class="n">user_response</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[AI Assistant] </span><span class="si">{</span><span class="n">assistant_response</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s1">.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+
+        <span class="c1"># Get the input message for the next round</span>
+        <span class="n">input_msg</span> <span class="o">=</span> <span class="n">assistant_response</span><span class="o">.</span><span class="n">msg</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="n">society</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[AI User] Instruction: Research the principles of quantum entanglement and wormhole theory to understand their potential applications in time travel.
+Input: None.
+
+[AI Assistant] Solution: To understand the potential applications of quantum entanglement and wormhole theory in time travel, we need to delve into the fundamental principles of each concept.
+
+1. **Quantum Entanglement**:
+   - **Definition**: Quantum entanglement is a phenomenon where two or more particles become interconnected in such a way that the state of one particle instantly influences the state of another, regardless of the distance separating them.
+   - **Key Principles**:
+     - **Non-locality**: Changes to one entangled particle affect its partner instantaneously, suggesting a form of communication that transcends space.
+     - **Superposition**: Particles exist in multiple states until measured, which could theoretically allow for multiple timelines or outcomes.
+   - **Potential Applications in Time Travel**:
+     - **Information Transfer**: If we could manipulate entangled particles, we might send information back in time without physically traveling, potentially influencing past events subtly.
+     - **Quantum Teleportation**: This process could allow for the transfer of quantum states across time, which might be a stepping stone toward more complex time travel mechanisms.
+
+2. **Wormhole Theory**:
+   - **Definition**: A wormhole is a hypothetical tunnel-like structure in spacetime that connects two separate points in space and time.
+   - **Key Principles**:
+     - **Einstein-Rosen Bridge**: This concept suggests that wormholes could connect distant parts of the universe or different times.
+     - **Stability and Exotic Matter**: For a wormhole to be traversable, it would require &#34;exotic matter&#34; with negative energy density to keep it open, which has not yet been discovered.
+   - **Potential Applications in Time Travel**:
+     - **Time Dilation**: By traveling through a wormhole, one could theoretically experience time differently, allowing for travel to the past or future.
+     - **Creating Stable Wormholes**: If we can find a way to stabilize wormholes, they could serve as shortcuts through spacetime, enabling time travel.
+
+3. **Combining Quantum Entanglement and Wormhole Theory**:
+   - **Quantum Wormholes**: Some theories suggest that entangled particles could be connected through microscopic wormholes, allowing for instantaneous communication across time.
+   - **Temporal Influence**: By using quantum entanglement to send information through a wormhole, we could influence key historical events without creating paradoxes, as the information could be framed as a suggestion rather than a direct alteration.
+
+In summary, both quantum entanglement and wormhole theory offer intriguing possibilities for time travel. The key lies in understanding how to manipulate these phenomena without causing significant disruptions to the timeline.
+
+Next request..
+
+[AI User] Instruction: Identify a pivotal historical event suitable for our time travel mission and explain why it is significant.
+Input: None.
+
+[AI Assistant] Solution: A pivotal historical event suitable for our time travel mission is the signing of the Declaration of Independence on July 4, 1776. This event is significant for several reasons:
+
+1. **Foundational Document**: The Declaration of Independence is a foundational document for the United States, articulating the colonies&#39; reasons for seeking independence from British rule. It established the principles of individual rights and government by consent, which have influenced democratic movements worldwide.
+
+2. **Catalyst for Change**: The signing marked the beginning of a revolutionary movement that led to the establishment of a new nation. It inspired other countries and colonies to pursue their own independence and democratic governance, making it a crucial moment in the history of democracy.
+
+3. **Influence on Human Rights**: The Declaration&#39;s assertion that &#34;all men are created equal&#34; and are endowed with certain unalienable rights has had a lasting impact on human rights discourse. It laid the groundwork for future civil rights movements and the global fight for equality.
+
+4. **Global Impact**: The ideas expressed in the Declaration resonated beyond the United States, influencing revolutions in France, Latin America, and other regions. Its principles have been referenced in various international documents, including the Universal Declaration of Human Rights.
+
+5. **Potential for Subtle Influence**: By subtly influencing key figures involved in the drafting or signing of the Declaration, we could reinforce the commitment to certain ideals, such as equality and justice, ensuring that these principles are more robustly integrated into the foundation of the new nation.
+
+In summary, the signing of the Declaration of Independence is a significant event that not only shaped the course of American history but also had profound implications for the development of democratic ideals and human rights globally. This makes it an ideal target for our time travel mission, as influencing this event could lead to a more equitable and just society.
+
+Next request..
+
+[AI User] Instruction: Develop a strategy for subtly influencing key figures during the signing of the Declaration of Independence without causing significant alterations to the timeline.
+Input: None.
+
+[AI Assistant] Solution: To subtly influence key figures during the signing of the Declaration of Independence without causing significant alterations to the timeline, we can develop a multi-faceted strategy that focuses on persuasion, information sharing, and fostering collaboration among the signers. Here’s a detailed plan:
+
+1. **Identify Key Figures**:
+   - Focus on influential signers such as Thomas Jefferson (the principal author), John Adams, Benjamin Franklin, and George Washington. Their thoughts and actions will significantly impact the document&#39;s content and the overall sentiment of the Congress.
+
+2. **Establish a Discreet Presence**:
+   - Utilize the time machine to arrive a few days before the signing. This allows for a low-profile presence in Philadelphia, where the Continental Congress is convening. Disguise as a local merchant or a visitor to blend in with the crowd.
+
+3. **Engage in Informal Conversations**:
+   - Approach key figures in casual settings, such as taverns or public gatherings. Use these interactions to discuss the importance of certain ideals, such as equality, justice, and the rights of individuals.
+   - For example, while conversing with Jefferson, emphasize the significance of including a strong statement on human rights, which could lead him to refine his language in the draft.
+
+4. **Disseminate Thought-Provoking Literature**:
+   - Leave behind pamphlets or books that discuss Enlightenment ideas, particularly those of John Locke and Montesquieu, which advocate for natural rights and the separation of powers. This can inspire the signers to incorporate these concepts into the Declaration.
+   - Ensure that these materials are presented as popular literature of the time, making them seem like a natural part of the intellectual discourse.
+
+5. **Foster Collaboration Among Signers**:
+   - Encourage discussions among the signers about the importance of unity and the collective vision for the new nation. This can be done by organizing informal gatherings where they can share their thoughts and concerns.
+   - Highlight the need for a united front against British rule, which can help solidify their resolve and commitment to the Declaration.
+
+6. **Subtle Suggestions**:
+   - During the drafting process, make subtle suggestions that can be framed as collective ideas. For instance, if a signer expresses doubt about a particular phrase, gently propose an alternative that emphasizes equality or justice without directly imposing your views.
+   - Use phrases like, &#34;Have you considered how this might resonate with the common people?&#34; to guide their thinking without overtly directing it.
+
+7. **Monitor Reactions**:
+   - Pay attention to the reactions of the signers to gauge the effectiveness of your influence. If certain ideas resonate well, continue to reinforce those themes in subsequent conversations.
+
+8. **Exit Strategy**:
+   - Once the signing is complete, discreetly exit the scene to avoid drawing attention to your presence. Ensure that your influence remains untraceable, allowing history to unfold as it should.
+
+By employing this strategy, we can subtly influence the key figures involved in the signing of the Declaration of Independence, ensuring that the core ideals of equality and justice are more robustly integrated into the document while avoiding significant alterations to the timeline.
+
+Next request..
+
+[AI User] Instruction: Outline potential paradoxes or risks associated with our time travel mission and propose solutions to mitigate them.
+Input: None.
+
+[AI Assistant] Solution: Engaging in a time travel mission to influence the signing of the Declaration of Independence presents several potential paradoxes and risks. Here’s an outline of these issues along with proposed solutions to mitigate them:
+
+1. **The Grandfather Paradox**:
+   - **Description**: This paradox arises when a time traveler inadvertently prevents their own existence by altering a significant event in the past. For example, if our actions lead to a drastically different Declaration, it could change the course of history, potentially erasing our own timeline.
+   - **Mitigation**: Focus on subtle influences rather than direct alterations. Ensure that any changes made do not fundamentally alter the outcome of the signing or the existence of key figures. For instance, reinforcing existing ideas rather than introducing entirely new concepts can help maintain the timeline&#39;s integrity.
+
+2. **Causal Loop**:
+   - **Description**: A causal loop occurs when an event is both the cause and the effect of itself. For example, if we influence a signer to include a specific phrase that we later cite as the reason for our time travel, it creates a loop with no clear origin.
+   - **Mitigation**: Avoid introducing ideas or phrases that do not already exist in the historical context. Instead, enhance discussions around existing concepts, ensuring that any influence feels organic and part of the natural discourse of the time.
+
+3. **Temporal Feedback**:
+   - **Description**: Changes made in the past could lead to unforeseen consequences in the future, creating a ripple effect that alters history in unpredictable ways.
+   - **Mitigation**: Conduct thorough research on the historical context and potential outcomes of our actions. Limit our influence to reinforcing established ideas rather than introducing new ones. Additionally, maintain a low profile to minimize our impact on the broader historical narrative.
+
+4. **Altered Perceptions**:
+   - **Description**: Our presence and influence could lead key figures to question their own beliefs or motivations, potentially causing them to act differently than they would have without our intervention.
+   - **Mitigation**: Engage in conversations that encourage reflection without leading to doubt. Use language that aligns with their existing beliefs and values, ensuring that our influence feels like a natural extension of their thoughts rather than a challenge to their convictions.
+
+5. **Historical Integrity**:
+   - **Description**: The risk of creating a timeline that diverges significantly from the established history could lead to a loss of historical integrity, affecting future events and societal development.
+   - **Mitigation**: Establish clear objectives for our influence, focusing on enhancing the core principles of the Declaration without altering its fundamental purpose. Document our observations to ensure we can track any changes and assess their impact on the timeline.
+
+6. **Moral and Ethical Considerations**:
+   - **Description**: The ethical implications of influencing historical events raise questions about the morality of altering the course of history for perceived betterment.
+   - **Mitigation**: Clearly define our ethical framework before the mission. Ensure that our actions align with principles of justice and equality, and consider the long-term implications of our influence on future generations.
+
+By identifying these potential paradoxes and risks, we can develop strategies to mitigate them effectively, ensuring that our time travel mission remains focused and responsible while achieving our desired outcomes.
+
+Next request..
+
+[AI User] Instruction: Create a timeline for our time travel mission, detailing key phases and actions to be taken before, during, and after the signing of the Declaration of Independence.
+Input: None.
+
+[AI Assistant] Solution: Here’s a detailed timeline for our time travel mission, outlining key phases and actions to be taken before, during, and after the signing of the Declaration of Independence:
+
+### Timeline for Time Travel Mission
+
+#### Phase 1: Pre-Mission Preparation (1 Month Before Departure)
+- **Research Historical Context**:
+  - Study the political climate of 1776, key figures involved, and the content of the Declaration of Independence.
+  - Identify existing debates and sentiments among the Continental Congress members regarding independence.
+
+- **Develop Influence Strategy**:
+  - Outline specific ideas and themes to reinforce during the mission, focusing on equality, justice, and unity.
+  - Prepare materials (pamphlets, books) that align with Enlightenment ideas to disseminate subtly.
+
+- **Time Machine Calibration**:
+  - Ensure the time machine is calibrated for a precise arrival in Philadelphia on July 1, 1776, allowing for a few days of preparation before the signing.
+
+#### Phase 2: Arrival and Initial Engagement (July 1-3, 1776)
+- **Arrival in Philadelphia**:
+  - Disguise as a local merchant or visitor to blend in with the crowd.
+  - Familiarize yourself with the local environment and key locations where signers gather.
+
+- **Informal Conversations**:
+  - Engage in discussions with influential figures (e.g., Jefferson, Adams, Franklin) in taverns or public spaces.
+  - Introduce ideas about the importance of individual rights and the need for a strong statement on equality.
+
+- **Disseminate Literature**:
+  - Leave pamphlets or books discussing Enlightenment principles in places where key figures are likely to find them.
+  - Ensure these materials appear as part of the contemporary intellectual discourse.
+
+#### Phase 3: Building Momentum (July 4, 1776 - Day of Signing)
+- **Foster Collaboration**:
+  - Organize informal gatherings among signers to discuss the Declaration and the importance of unity against British rule.
+  - Encourage open dialogue about the content of the Declaration, subtly guiding discussions toward key themes.
+
+- **Subtle Suggestions**:
+  - During the drafting process, make discreet suggestions to key figures about phrasing or ideas that emphasize equality and justice.
+  - Frame these suggestions as collective thoughts to ensure they feel organic.
+
+- **Monitor Reactions**:
+  - Pay attention to the responses of the signers to gauge the effectiveness of your influence.
+  - Adjust your approach based on their receptiveness to certain ideas.
+
+#### Phase 4: The Signing Ceremony (July 4, 1776)
+- **Attend the Signing**:
+  - Be present at the signing ceremony, maintaining a low profile.
+  - Observe the interactions and discussions among the signers as they finalize the document.
+
+- **Final Encouragement**:
+  - If appropriate, offer a final word of encouragement to key figures about the importance of the Declaration and its potential impact on future generations.
+
+#### Phase 5: Post-Signing Reflection (July 5-7, 1776)
+- **Document Observations**:
+  - Record your observations and any changes in the discussions or content of the Declaration that resulted from your influence.
+  - Note the reactions of the signers and the overall atmosphere during the signing.
+
+- **Exit Strategy**:
+  - Discreetly exit Philadelphia to avoid drawing attention to your presence.
+  - Ensure that your departure does not disrupt the timeline or raise suspicions.
+
+#### Phase 6: Return and Analysis (Post-Mission)
+- **Return to Present**:
+  - Use the time machine to return to the present day.
+
+- **Analyze Impact**:
+  - Compare the historical record of the Declaration of Independence with your observations to assess the impact of your influence.
+  - Evaluate any changes in the timeline and their implications for future events.
+
+- **Document Findings**:
+  - Compile a comprehensive report detailing the mission, the strategies employed, and the outcomes observed.
+  - Reflect on the ethical considerations and lessons learned from the experience.
+
+By following this timeline, we can effectively execute our time travel mission, ensuring that our influence is subtle and aligned with the historical context while achieving our desired outcomes.
+
+Next request..
+
+[AI User] Instruction: Prepare a contingency plan in case unexpected events or challenges arise during the time travel mission.
+Input: None.
+
+[AI Assistant] Solution: Preparing a contingency plan is essential to address unexpected events or challenges that may arise during our time travel mission. Here’s a detailed plan outlining potential scenarios and corresponding responses:
+
+### Contingency Plan for Time Travel Mission
+
+#### Scenario 1: Encountering Unforeseen Historical Figures
+- **Challenge**: Unexpected interactions with influential figures not originally planned for, such as loyalists or British officials, could complicate our mission.
+- **Response**:
+  - Maintain a low profile and avoid direct engagement with these figures unless necessary.
+  - If approached, use general conversation to gauge their views without revealing our intentions.
+  - If a confrontation arises, pivot the conversation to neutral topics or common interests to defuse tension.
+
+#### Scenario 2: Changes in the Timeline
+- **Challenge**: Our subtle influences may lead to unexpected changes in the timeline, such as key figures altering their positions or decisions.
+- **Response**:
+  - Monitor the reactions and discussions of the signers closely. If significant deviations occur, reassess our approach and adjust our influence accordingly.
+  - If necessary, consider a temporary withdrawal from direct influence to allow the original timeline to stabilize before re-engaging.
+
+#### Scenario 3: Discovery of Our True Identity
+- **Challenge**: If any historical figures become suspicious of our identity or intentions, it could jeopardize the mission.
+- **Response**:
+  - Prepare a plausible backstory that aligns with the historical context (e.g., a traveling merchant or a supporter of independence).
+  - If confronted, calmly assert your identity and redirect the conversation to shared interests or current events to regain trust.
+
+#### Scenario 4: Communication Breakdown
+- **Challenge**: Difficulty in conveying ideas or suggestions due to language barriers or misunderstandings of the historical context.
+- **Response**:
+  - Use simple, clear language and avoid anachronistic terms or concepts that may confuse the signers.
+  - If misunderstandings occur, clarify your points by relating them to widely accepted ideas of the time, such as references to common grievances against British rule.
+
+#### Scenario 5: Unforeseen Events (e.g., Illness, Weather)
+- **Challenge**: Illness or adverse weather conditions could hinder our ability to engage with key figures or attend the signing.
+- **Response**:
+  - Have a backup plan for remote engagement, such as leaving notes or pamphlets in strategic locations where key figures are likely to find them.
+  - If illness strikes, prioritize recovery and use the time to observe and document the environment and interactions from a distance.
+
+#### Scenario 6: Ethical Dilemmas
+- **Challenge**: Encountering situations that raise ethical concerns about the influence we are exerting on historical figures.
+- **Response**:
+  - Establish a clear ethical framework before the mission, focusing on principles of justice and equality.
+  - If faced with a dilemma, pause to reassess the potential consequences of our actions and prioritize the greater good over personal objectives.
+
+#### Scenario 7: Technical Malfunction of the Time Machine
+- **Challenge**: A malfunction could prevent timely return or lead to unintended time jumps.
+- **Response**:
+  - Ensure that the time machine is equipped with a manual override and emergency return function.
+  - If a malfunction occurs, attempt to troubleshoot the issue using available resources. If unsuccessful, activate the emergency return function to return to the present.
+
+### Conclusion
+By preparing for these potential challenges with a comprehensive contingency plan, we can enhance our readiness and adaptability during the time travel mission. This proactive approach will help ensure that we can navigate unexpected events while maintaining the integrity of our objectives.
+
+Next request..
+
+[AI User] Instruction: Finalize the mission by summarizing the key objectives and desired outcomes of our time travel project.
+Input: None.
+
+[AI Assistant] Solution: Here’s a summary of the key objectives and desired outcomes of our time travel project focused on influencing the signing of the Declaration of Independence:
+
+### Key Objectives
+
+1. **Subtle Influence on Key Figures**:
+   - Engage with influential signers such as Thomas Jefferson, John Adams, and Benjamin Franklin to reinforce the principles of equality, justice, and individual rights.
+   - Encourage discussions that lead to a stronger articulation of these ideals in the Declaration.
+
+2. **Preservation of Historical Integrity**:
+   - Ensure that any influence exerted does not drastically alter the timeline or the fundamental purpose of the Declaration.
+   - Focus on enhancing existing ideas rather than introducing new concepts that could lead to significant changes in history.
+
+3. **Fostering Unity Among Signers**:
+   - Promote collaboration and a sense of shared purpose among the signers to strengthen their resolve against British rule.
+   - Create an environment where open dialogue can flourish, allowing for the natural evolution of ideas.
+
+4. **Documentation of Observations**:
+   - Record detailed observations of interactions, discussions, and the overall atmosphere during the signing process.
+   - Analyze the impact of our influence on the final content of the Declaration and the reactions of the signers.
+
+### Desired Outcomes
+
+1. **Enhanced Declaration of Independence**:
+   - Achieve a Declaration that more robustly articulates the principles of equality and justice, potentially leading to a stronger foundation for the United States and its democratic ideals.
+
+2. **Positive Ripple Effects**:
+   - Influence the course of history in a way that promotes the spread of democratic ideals and human rights, inspiring future movements for equality and justice both in the United States and globally.
+
+3. **Successful Mission Execution**:
+   - Complete the mission without drawing attention to our presence or causing significant disruptions to the timeline.
+   - Return to the present with valuable insights and a comprehensive report on the mission&#39;s outcomes.
+
+4. **Ethical Reflection**:
+   - Engage in a thoughtful reflection on the ethical implications of our actions and the responsibilities that come with influencing historical events.
+
+By focusing on these key objectives and desired outcomes, we can ensure that our time travel project is both impactful and responsible, contributing positively to the historical narrative while maintaining the integrity of the timeline.
+
+Next request..
+
+[AI User] Instruction: Prepare a final checklist to ensure all aspects of the time travel mission are ready before departure.
+Input: None.
+
+[AI Assistant] Solution: Here’s a comprehensive final checklist to ensure all aspects of the time travel mission are ready before departure:
+
+### Final Checklist for Time Travel Mission
+
+#### Pre-Departure Preparations
+1. **Research and Documentation**:
+   - [ ] Complete research on the historical context of the Declaration of Independence.
+   - [ ] Identify key figures involved in the signing and their positions.
+   - [ ] Gather relevant literature on Enlightenment ideas to disseminate.
+
+2. **Influence Strategy**:
+   - [ ] Finalize the specific themes and ideas to reinforce during the mission.
+   - [ ] Prepare a list of subtle suggestions to offer during discussions.
+
+3. **Time Machine Readiness**:
+   - [ ] Ensure the time machine is fully operational and calibrated for July 1, 1776.
+   - [ ] Test the emergency return function and manual override.
+   - [ ] Pack necessary tools and resources for troubleshooting.
+
+#### Arrival Preparations
+4. **Disguise and Identity**:
+   - [ ] Prepare appropriate period-accurate clothing and accessories for blending in.
+   - [ ] Develop a plausible backstory for your identity (e.g., local merchant).
+
+5. **Materials for Influence**:
+   - [ ] Print or prepare pamphlets and books discussing Enlightenment principles.
+   - [ ] Ensure materials are designed to appear as part of the contemporary discourse.
+
+#### Engagement Strategy
+6. **Plan for Initial Engagement**:
+   - [ ] Identify key locations (taverns, public gatherings) for informal conversations.
+   - [ ] Prepare conversation starters that align with the interests of key figures.
+
+7. **Collaboration and Unity**:
+   - [ ] Outline strategies for fostering collaboration among signers.
+   - [ ] Plan informal gatherings to encourage open dialogue.
+
+#### Contingency Measures
+8. **Contingency Plans**:
+   - [ ] Review potential challenges and corresponding responses (e.g., unexpected figures, timeline changes).
+   - [ ] Ensure ethical guidelines are established and understood.
+
+9. **Emergency Protocols**:
+   - [ ] Confirm procedures for technical malfunctions or unexpected events.
+   - [ ] Pack a small emergency kit with basic supplies for unforeseen circumstances.
+
+#### Final Checks
+10. **Mission Objectives**:
+    - [ ] Review key objectives and desired outcomes to ensure clarity of purpose.
+    - [ ] Confirm that all team members (if applicable) are aligned on mission goals.
+
+11. **Documentation Tools**:
+    - [ ] Prepare notebooks or recording devices for documenting observations.
+    - [ ] Ensure all documentation tools are functional and accessible.
+
+12. **Departure Readiness**:
+    - [ ] Confirm the time machine is set for departure.
+    - [ ] Conduct a final check of all equipment and materials.
+    - [ ] Ensure all team members are present and accounted for.
+
+By completing this final checklist, we can ensure that all aspects of the time travel mission are thoroughly prepared, increasing the likelihood of a successful and impactful experience.
+
+Next request..
+
+[AI User] &lt;CAMEL_TASK_DONE&gt;.
+
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="🌟-Highlights">
+<h2>🌟 Highlights<a class="headerlink" href="#🌟-Highlights" title="Link to this heading">#</a></h2>
+<p>In this notebook, This notebook has guided you through setting up and use agent soceity for task solving.</p>
+<p>Key tools utilized in this notebook include:</p>
+<ul class="simple">
+<li><p><strong>CAMEL</strong>: A powerful multi-agent framework that enables Retrieval-Augmented Generation and multi-agent role-playing scenarios, allowing for sophisticated AI-driven tasks.</p></li>
+<li><p><strong>Agent Society</strong>: Enabling multi-agent communication for the task solving.</p></li>
+</ul>
+<p>That’s everything: Got questions about 🐫 CAMEL-AI? Join us on <a class="reference external" href="https://discord.camel-ai.org">Discord</a>! Whether you want to share feedback, explore the latest in multi-agent systems, get support, or connect with others on exciting projects, we’d love to have you in the community! 🤝</p>
+<p>Check out some of our other work:</p>
+<ol class="arabic simple">
+<li><p>🐫 Creating Your First CAMEL Agent <a class="reference external" href="https://docs.camel-ai.org/cookbooks/create_your_first_agent.html">free Colab</a></p></li>
+<li><p>Graph RAG Cookbook <a class="reference external" href="https://colab.research.google.com/drive/1uZKQSuu0qW6ukkuSv9TukLB9bVaS1H0U?usp=sharing">free Colab</a></p></li>
+<li><p>🧑‍⚖️ Create A Hackathon Judge Committee with Workforce <a class="reference external" href="https://colab.research.google.com/drive/18ajYUMfwDx3WyrjHow3EvUMpKQDcrLtr?usp=sharing">free Colab</a></p></li>
+<li><p>🔥 3 ways to ingest data from websites with Firecrawl &amp; CAMEL <a class="reference external" href="https://colab.research.google.com/drive/1lOmM3VmgR1hLwDKdeLGFve_75RFW0R9I?usp=sharing">free Colab</a></p></li>
+<li><p>🦥 Agentic SFT Data Generation with CAMEL and Mistral Models, Fine-Tuned with Unsloth <a class="reference external" href="https://colab.research.google.com/drive/1lYgArBw7ARVPSpdwgKLYnp_NEXiNDOd-?usp=sharingg">free Colab</a></p></li>
+</ol>
+<p>Thanks from everyone at 🐫 CAMEL-AI</p>
+<div class="align-center"><p><img alt="8b6345a68050403d8c72df2282120b3e" class="no-scaled-link" src="https://i.postimg.cc/KzQ5rfBC/button.png" style="width: 150px;" /> <img alt="71522fea6889481bbf996eafc099b452" class="no-scaled-link" src="https://i.postimg.cc/L4wPdG9N/join-2.png" style="width: 150px;" /></p>
+<p>⭐ Star us on <a class="reference external" href="https://github.com/camel-ai/camel">Github</a>, join our <a class="reference external" href="https://discord.camel-ai.org">Discord</a> or follow our <a class="reference external" href="https://x.com/camelaiorg">X</a></p>
+</div></section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="create_your_first_agent.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Creating Your First Agent</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="agents_message.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Message Cookbook</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Philosophical-Bits">Philosophical Bits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#📦-Installation">📦 Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#🔑-Setting-Up-API-Keys">🔑 Setting Up API Keys</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Quick-Start">Quick Start</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#🕹-Step-1:-Configure-the-Role-Playing-Session">🕹 Step 1: Configure the Role-Playing Session</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#Set-the-Task-Arguments">Set the <code class="docutils literal notranslate"><span class="pre">Task</span></code> Arguments</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#Set-the-User-Arguments">Set the <code class="docutils literal notranslate"><span class="pre">User</span></code> Arguments</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#Set-the-Assistant-Arguments">Set the <code class="docutils literal notranslate"><span class="pre">Assistant</span></code> Arguments</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-2:-Kickstart-Your-Society">Step 2: Kickstart Your Society</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Step-3:-Solving-Tasks-with-Your-Society">Step 3: Solving Tasks with Your Society</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#🌟-Highlights">🌟 Highlights</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

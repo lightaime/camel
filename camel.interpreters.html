@@ -1,0 +1,1760 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>camel.interpreters package &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=30d83864"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'camel.interpreters';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="camel.loaders package" href="camel.loaders.html" />
+    <link rel="prev" title="camel.embeddings package" href="camel.embeddings.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="camel.html">camel package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/edit/main/camel.interpreters.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2Fcamel.interpreters.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/camel.interpreters.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>camel.interpreters package</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.interpreters.base">camel.interpreters.base module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.base.BaseInterpreter"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.base.BaseInterpreter.run"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.base.BaseInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.base.BaseInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.interpreters.docker_interpreter">camel.interpreters.docker_interpreter module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.docker_interpreter.DockerInterpreter"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.docker_interpreter.DockerInterpreter.run"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.docker_interpreter.DockerInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.docker_interpreter.DockerInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.interpreters.internal_python_interpreter">camel.interpreters.internal_python_interpreter module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.clear_state"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.clear_state()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.execute"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.execute()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.run"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.interpreters.interpreter_error">camel.interpreters.interpreter_error module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.interpreter_error.InterpreterError"><code class="docutils literal notranslate"><span class="pre">InterpreterError</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.interpreters.ipython_interpreter">camel.interpreters.ipython_interpreter module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.ipython_interpreter.JupyterKernelInterpreter"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.ipython_interpreter.JupyterKernelInterpreter.run"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.ipython_interpreter.JupyterKernelInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.ipython_interpreter.JupyterKernelInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.interpreters.subprocess_interpreter">camel.interpreters.subprocess_interpreter module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter.run"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter.run_file"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.run_file()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.interpreters">Module contents</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.BaseInterpreter"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.BaseInterpreter.run"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.BaseInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.BaseInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.DockerInterpreter"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.DockerInterpreter.run"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.DockerInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.DockerInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.E2BInterpreter"><code class="docutils literal notranslate"><span class="pre">E2BInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.E2BInterpreter.run"><code class="docutils literal notranslate"><span class="pre">E2BInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.E2BInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">E2BInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.E2BInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">E2BInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.InternalPythonInterpreter"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.InternalPythonInterpreter.clear_state"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.clear_state()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.InternalPythonInterpreter.execute"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.execute()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.InternalPythonInterpreter.run"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.InternalPythonInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.InternalPythonInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.InterpreterError"><code class="docutils literal notranslate"><span class="pre">InterpreterError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.JupyterKernelInterpreter"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.JupyterKernelInterpreter.run"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.JupyterKernelInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.JupyterKernelInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.SubprocessInterpreter"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.SubprocessInterpreter.run"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.SubprocessInterpreter.run_file"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.run_file()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.SubprocessInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.SubprocessInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="camel-interpreters-package">
+<h1>camel.interpreters package<a class="headerlink" href="#camel-interpreters-package" title="Link to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-camel.interpreters.base">
+<span id="camel-interpreters-base-module"></span><h2>camel.interpreters.base module<a class="headerlink" href="#module-camel.interpreters.base" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.interpreters.base.BaseInterpreter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.interpreters.base.</span></span><span class="sig-name descname"><span class="pre">BaseInterpreter</span></span><a class="reference internal" href="_modules/camel/interpreters/base.html#BaseInterpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.base.BaseInterpreter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>An abstract base class for code interpreters.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.base.BaseInterpreter.run">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/interpreters/base.html#BaseInterpreter.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.base.BaseInterpreter.run" title="Link to this definition">#</a></dt>
+<dd><p>Executes the given code based on its type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<em>str</em>) – The code to be executed.</p></li>
+<li><p><strong>code_type</strong> (<em>str</em>) – The type of the code, which must be one of the
+types returned by <cite>supported_code_types()</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The result of the code execution. If the execution fails, this</dt><dd><p>should include sufficient information to diagnose and correct
+the issue.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#camel.interpreters.interpreter_error.InterpreterError" title="camel.interpreters.interpreter_error.InterpreterError"><strong>InterpreterError</strong></a> – If the code execution encounters errors that
+    could be resolved by modifying or regenerating the code.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.base.BaseInterpreter.supported_code_types">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">supported_code_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/interpreters/base.html#BaseInterpreter.supported_code_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.base.BaseInterpreter.supported_code_types" title="Link to this definition">#</a></dt>
+<dd><p>Provides supported code types by the interpreter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.base.BaseInterpreter.update_action_space">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_action_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/interpreters/base.html#BaseInterpreter.update_action_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.base.BaseInterpreter.update_action_space" title="Link to this definition">#</a></dt>
+<dd><p>Updates action space for <em>python</em> interpreter</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.interpreters.docker_interpreter">
+<span id="camel-interpreters-docker-interpreter-module"></span><h2>camel.interpreters.docker_interpreter module<a class="headerlink" href="#module-camel.interpreters.docker_interpreter" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.interpreters.docker_interpreter.DockerInterpreter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.interpreters.docker_interpreter.</span></span><span class="sig-name descname"><span class="pre">DockerInterpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">require_confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_stdout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_stderr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/interpreters/docker_interpreter.html#DockerInterpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.docker_interpreter.DockerInterpreter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.interpreters.base.BaseInterpreter" title="camel.interpreters.base.BaseInterpreter"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInterpreter</span></code></a></p>
+<p>A class for executing code files or code strings in a docker container.</p>
+<p>This class handles the execution of code in different scripting languages
+(currently Python and Bash) within a docker container, capturing their
+stdout and stderr streams, and allowing user checking before executing code
+strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>require_confirm</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, prompt user before
+running code strings for security. Defaults to <cite>True</cite>.</p></li>
+<li><p><strong>print_stdout</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, print the standard
+output of the executed code. Defaults to <cite>False</cite>.</p></li>
+<li><p><strong>print_stderr</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, print the standard error
+of the executed code. Defaults to <cite>True</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.docker_interpreter.DockerInterpreter.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/interpreters/docker_interpreter.html#DockerInterpreter.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.docker_interpreter.DockerInterpreter.run" title="Link to this definition">#</a></dt>
+<dd><p>Executes the given code in the conatiner attached to the
+interpreter, and captures the stdout and stderr streams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<em>str</em>) – The code string to execute.</p></li>
+<li><p><strong>code_type</strong> (<em>str</em>) – The type of code to execute (e.g., ‘python’,
+‘bash’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A string containing the captured stdout and stderr of the</dt><dd><p>executed code.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#camel.interpreters.interpreter_error.InterpreterError" title="camel.interpreters.interpreter_error.InterpreterError"><strong>InterpreterError</strong></a> – If the user declines to run the code, or the
+    code type is unsupported, or there is an error in the docker
+    API/container</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.docker_interpreter.DockerInterpreter.supported_code_types">
+<span class="sig-name descname"><span class="pre">supported_code_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/interpreters/docker_interpreter.html#DockerInterpreter.supported_code_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.docker_interpreter.DockerInterpreter.supported_code_types" title="Link to this definition">#</a></dt>
+<dd><p>Provides supported code types by the interpreter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.docker_interpreter.DockerInterpreter.update_action_space">
+<span class="sig-name descname"><span class="pre">update_action_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/interpreters/docker_interpreter.html#DockerInterpreter.update_action_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.docker_interpreter.DockerInterpreter.update_action_space" title="Link to this definition">#</a></dt>
+<dd><p>Updates action space for <em>python</em> interpreter</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.interpreters.internal_python_interpreter">
+<span id="camel-interpreters-internal-python-interpreter-module"></span><h2>camel.interpreters.internal_python_interpreter module<a class="headerlink" href="#module-camel.interpreters.internal_python_interpreter" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.interpreters.internal_python_interpreter.InternalPythonInterpreter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.interpreters.internal_python_interpreter.</span></span><span class="sig-name descname"><span class="pre">InternalPythonInterpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">import_white_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsafe_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/interpreters/internal_python_interpreter.html#InternalPythonInterpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.interpreters.base.BaseInterpreter" title="camel.interpreters.base.BaseInterpreter"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInterpreter</span></code></a></p>
+<p>A customized python interpreter to control the execution of
+LLM-generated codes. The interpreter makes sure the code can only execute
+functions given in action space and import white list. It also supports
+fuzzy variable matching to retrieve uncertain input variable name.</p>
+<p>This class is adapted from the hugging face implementation
+<a class="reference external" href="https://github.com/huggingface/transformers/blob/8f093fb799246f7dd9104ff44728da0c53a9f67a/src/transformers/tools/python_interpreter.py">python_interpreter.py</a>. The original license applies:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Copyright 2023 The HuggingFace Inc. team. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing
+permissions and limitations under the License.
+</pre></div>
+</div>
+<p>We have modified the original code to suit our requirements. We have
+encapsulated the original functions within a class and saved the
+interpreter state after execution. We have added support for “import”
+statements, “for” statements, and several binary and unary operators. We
+have added import white list to keep <cite>import</cite> statement safe. Additionally,
+we have modified the variable matching logic and introduced the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">fuzz_state</span></code> for fuzzy matching.</p>
+<p>Modifications copyright (C) 2023 CAMEL-AI.org</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>action_space</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>optional</em>) – A dictionary that maps action
+names to their corresponding functions or objects. The interpreter
+can only execute functions that are either directly listed in this
+dictionary or are member functions of objects listed in this
+dictionary. The concept of <code class="xref py py-obj docutils literal notranslate"><span class="pre">action_space</span></code> is derived from
+EmbodiedAgent, representing the actions that an agent is capable of
+performing. If <cite>None</cite>, set to empty dict. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>import_white_list</strong> (<em>List</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – A list that stores
+the Python modules or functions that can be imported in the code.
+All submodules and functions of the modules listed in this list are
+importable. Any other import statements will be rejected. The
+module and its submodule or function name are separated by a period
+(<code class="xref py py-obj docutils literal notranslate"></code>). (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>unsafe_mode</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, the interpreter runs the code
+by <cite>eval()</cite> or <cite>exec()</cite> without any security check.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code>)</p></li>
+<li><p><strong>raise_error</strong> (<em>bool</em><em>, </em><em>optional</em>) – Raise error if the interpreter fails.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.clear_state">
+<span class="sig-name descname"><span class="pre">clear_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/interpreters/internal_python_interpreter.html#InternalPythonInterpreter.clear_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.clear_state" title="Link to this definition">#</a></dt>
+<dd><p>Initialize <code class="xref py py-obj docutils literal notranslate"><span class="pre">state</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">fuzz_state</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fuzz_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="_modules/camel/interpreters/internal_python_interpreter.html#InternalPythonInterpreter.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.execute" title="Link to this definition">#</a></dt>
+<dd><p>Execute the input python codes in a security environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<em>str</em>) – Generated python code to be executed.</p></li>
+<li><p><strong>state</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – External variables that
+may be used in the generated code. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>fuzz_state</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – External variables
+that do not have certain variable names. The interpreter will
+use fuzzy matching to access these variables. For example, if
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">fuzz_state</span></code> has a variable <code class="xref py py-obj docutils literal notranslate"><span class="pre">image</span></code>, the generated
+code can use <code class="xref py py-obj docutils literal notranslate"><span class="pre">input_image</span></code> to access it. (default:
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>keep_state</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">state</span></code> and
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">fuzz_state</span></code> will be kept for later execution. Otherwise,
+they will be cleared. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The value of the last statement (excluding “import”) in the</dt><dd><p>code. For this interpreter, the value of an expression is its
+value, the value of an “assign” statement is the assigned
+value, and the value of an “if” and “for” block statement is
+the value of the last statement in the block.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/interpreters/internal_python_interpreter.html#InternalPythonInterpreter.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.run" title="Link to this definition">#</a></dt>
+<dd><p>Executes the given code with specified code type in the
+interpreter.</p>
+<p>This method takes a string of code and its type, checks if the code
+type is supported, and then executes the code. If <cite>unsafe_mode</cite> is
+set to <cite>False</cite>, the code is executed in a controlled environment using
+the <cite>execute</cite> method. If <cite>unsafe_mode</cite> is <cite>True</cite>, the code is executed
+using <cite>eval()</cite> or <cite>exec()</cite> with the action space as the global context.
+An <cite>InterpreterError</cite> is raised if the code type is unsupported or if
+any runtime error occurs during execution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<em>str</em>) – The python code to be executed.</p></li>
+<li><p><strong>code_type</strong> (<em>str</em>) – The type of the code, which should be one of the</p></li>
+<li><p><strong>types</strong> (<em>supported code</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The string representation of the output of the executed code.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#camel.interpreters.interpreter_error.InterpreterError" title="camel.interpreters.interpreter_error.InterpreterError"><strong>InterpreterError</strong></a> – If the <cite>code_type</cite> is not supported or if any
+    runtime error occurs during the execution of the code.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.supported_code_types">
+<span class="sig-name descname"><span class="pre">supported_code_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/interpreters/internal_python_interpreter.html#InternalPythonInterpreter.supported_code_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.supported_code_types" title="Link to this definition">#</a></dt>
+<dd><p>Provides supported code types by the interpreter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.update_action_space">
+<span class="sig-name descname"><span class="pre">update_action_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/interpreters/internal_python_interpreter.html#InternalPythonInterpreter.update_action_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.update_action_space" title="Link to this definition">#</a></dt>
+<dd><p>Updates action space for <em>python</em> interpreter.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.interpreters.interpreter_error">
+<span id="camel-interpreters-interpreter-error-module"></span><h2>camel.interpreters.interpreter_error module<a class="headerlink" href="#module-camel.interpreters.interpreter_error" title="Link to this heading">#</a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="camel.interpreters.interpreter_error.InterpreterError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.interpreters.interpreter_error.</span></span><span class="sig-name descname"><span class="pre">InterpreterError</span></span><a class="reference internal" href="_modules/camel/interpreters/interpreter_error.html#InterpreterError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.interpreter_error.InterpreterError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception raised for errors that can be solved by regenerating code</p>
+</dd></dl>
+
+</section>
+<section id="module-camel.interpreters.ipython_interpreter">
+<span id="camel-interpreters-ipython-interpreter-module"></span><h2>camel.interpreters.ipython_interpreter module<a class="headerlink" href="#module-camel.interpreters.ipython_interpreter" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.interpreters.ipython_interpreter.JupyterKernelInterpreter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.interpreters.ipython_interpreter.</span></span><span class="sig-name descname"><span class="pre">JupyterKernelInterpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">require_confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_stdout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_stderr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/interpreters/ipython_interpreter.html#JupyterKernelInterpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.ipython_interpreter.JupyterKernelInterpreter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.interpreters.base.BaseInterpreter" title="camel.interpreters.base.BaseInterpreter"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInterpreter</span></code></a></p>
+<p>A class for executing code strings in a Jupyter Kernel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>require_confirm</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, prompt user before
+running code strings for security. Defaults to <cite>True</cite>.</p></li>
+<li><p><strong>print_stdout</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, print the standard
+output of the executed code. Defaults to <cite>False</cite>.</p></li>
+<li><p><strong>print_stderr</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, print the standard error
+of the executed code. Defaults to <cite>True</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.ipython_interpreter.JupyterKernelInterpreter.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/interpreters/ipython_interpreter.html#JupyterKernelInterpreter.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.ipython_interpreter.JupyterKernelInterpreter.run" title="Link to this definition">#</a></dt>
+<dd><p>Executes the given code in the Jupyter kernel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<em>str</em>) – The code string to execute.</p></li>
+<li><p><strong>code_type</strong> (<em>str</em>) – The type of code to execute (e.g., ‘python’,
+‘bash’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A string containing the captured result of the</dt><dd><p>executed code.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#camel.interpreters.interpreter_error.InterpreterError" title="camel.interpreters.interpreter_error.InterpreterError"><strong>InterpreterError</strong></a> – If there is an error when doing code execution.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.ipython_interpreter.JupyterKernelInterpreter.supported_code_types">
+<span class="sig-name descname"><span class="pre">supported_code_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/interpreters/ipython_interpreter.html#JupyterKernelInterpreter.supported_code_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.ipython_interpreter.JupyterKernelInterpreter.supported_code_types" title="Link to this definition">#</a></dt>
+<dd><p>Provides supported code types by the interpreter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Supported code types.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.ipython_interpreter.JupyterKernelInterpreter.update_action_space">
+<span class="sig-name descname"><span class="pre">update_action_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/interpreters/ipython_interpreter.html#JupyterKernelInterpreter.update_action_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.ipython_interpreter.JupyterKernelInterpreter.update_action_space" title="Link to this definition">#</a></dt>
+<dd><p>Updates the action space for the interpreter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>action_space</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – A dictionary representing the
+new or updated action space.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – Always raised because <cite>JupyterKernelInterpreter</cite>
+    does not support updating the action space.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.interpreters.subprocess_interpreter">
+<span id="camel-interpreters-subprocess-interpreter-module"></span><h2>camel.interpreters.subprocess_interpreter module<a class="headerlink" href="#module-camel.interpreters.subprocess_interpreter" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.interpreters.subprocess_interpreter.SubprocessInterpreter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.interpreters.subprocess_interpreter.</span></span><span class="sig-name descname"><span class="pre">SubprocessInterpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">require_confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_stdout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_stderr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/interpreters/subprocess_interpreter.html#SubprocessInterpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.interpreters.base.BaseInterpreter" title="camel.interpreters.base.BaseInterpreter"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInterpreter</span></code></a></p>
+<p>SubprocessInterpreter is a class for executing code files or code
+strings in a subprocess.</p>
+<p>This class handles the execution of code in different scripting languages
+(currently Python and Bash) within a subprocess, capturing their
+stdout and stderr streams, and allowing user checking before executing code
+strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>require_confirm</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, prompt user before running
+code strings for security. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>)</p></li>
+<li><p><strong>print_stdout</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, print the standard output of
+the executed code. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code>)</p></li>
+<li><p><strong>print_stderr</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, print the standard error of the
+executed code. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.subprocess_interpreter.SubprocessInterpreter.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/interpreters/subprocess_interpreter.html#SubprocessInterpreter.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter.run" title="Link to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Generates a temporary file with the given code, executes it, and</dt><dd><p>deletes the file afterward.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<em>str</em>) – The code string to execute.</p></li>
+<li><p><strong>code_type</strong> (<em>str</em>) – The type of code to execute (e.g., ‘python’,
+‘bash’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A string containing the captured stdout and stderr of the</dt><dd><p>executed code.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#camel.interpreters.interpreter_error.InterpreterError" title="camel.interpreters.interpreter_error.InterpreterError"><strong>InterpreterError</strong></a> – If the user declines to run the code or if the
+    code type is unsupported.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.subprocess_interpreter.SubprocessInterpreter.run_file">
+<span class="sig-name descname"><span class="pre">run_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/interpreters/subprocess_interpreter.html#SubprocessInterpreter.run_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter.run_file" title="Link to this definition">#</a></dt>
+<dd><p>Executes a code file in a subprocess and captures its output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file</strong> (<em>Path</em>) – The path object of the file to run.</p></li>
+<li><p><strong>code_type</strong> (<em>str</em>) – The type of code to execute (e.g., ‘python’,
+‘bash’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A string containing the captured stdout and stderr of the</dt><dd><p>executed code.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>RuntimeError</strong> – If the provided file path does not point to a file.</p></li>
+<li><p><a class="reference internal" href="#camel.interpreters.interpreter_error.InterpreterError" title="camel.interpreters.interpreter_error.InterpreterError"><strong>InterpreterError</strong></a> – If the code type provided is not supported.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.subprocess_interpreter.SubprocessInterpreter.supported_code_types">
+<span class="sig-name descname"><span class="pre">supported_code_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/interpreters/subprocess_interpreter.html#SubprocessInterpreter.supported_code_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter.supported_code_types" title="Link to this definition">#</a></dt>
+<dd><p>Provides supported code types by the interpreter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.subprocess_interpreter.SubprocessInterpreter.update_action_space">
+<span class="sig-name descname"><span class="pre">update_action_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/interpreters/subprocess_interpreter.html#SubprocessInterpreter.update_action_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter.update_action_space" title="Link to this definition">#</a></dt>
+<dd><p>Updates action space for <em>python</em> interpreter</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.interpreters">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-camel.interpreters" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.interpreters.BaseInterpreter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.interpreters.</span></span><span class="sig-name descname"><span class="pre">BaseInterpreter</span></span><a class="reference internal" href="_modules/camel/interpreters/base.html#BaseInterpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.BaseInterpreter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>An abstract base class for code interpreters.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.BaseInterpreter.run">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/interpreters/base.html#BaseInterpreter.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.BaseInterpreter.run" title="Link to this definition">#</a></dt>
+<dd><p>Executes the given code based on its type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<em>str</em>) – The code to be executed.</p></li>
+<li><p><strong>code_type</strong> (<em>str</em>) – The type of the code, which must be one of the
+types returned by <cite>supported_code_types()</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The result of the code execution. If the execution fails, this</dt><dd><p>should include sufficient information to diagnose and correct
+the issue.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#camel.interpreters.InterpreterError" title="camel.interpreters.InterpreterError"><strong>InterpreterError</strong></a> – If the code execution encounters errors that
+    could be resolved by modifying or regenerating the code.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.BaseInterpreter.supported_code_types">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">supported_code_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/interpreters/base.html#BaseInterpreter.supported_code_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.BaseInterpreter.supported_code_types" title="Link to this definition">#</a></dt>
+<dd><p>Provides supported code types by the interpreter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.BaseInterpreter.update_action_space">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_action_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/interpreters/base.html#BaseInterpreter.update_action_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.BaseInterpreter.update_action_space" title="Link to this definition">#</a></dt>
+<dd><p>Updates action space for <em>python</em> interpreter</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.interpreters.DockerInterpreter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.interpreters.</span></span><span class="sig-name descname"><span class="pre">DockerInterpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">require_confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_stdout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_stderr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/interpreters/docker_interpreter.html#DockerInterpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.DockerInterpreter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.interpreters.base.BaseInterpreter" title="camel.interpreters.base.BaseInterpreter"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInterpreter</span></code></a></p>
+<p>A class for executing code files or code strings in a docker container.</p>
+<p>This class handles the execution of code in different scripting languages
+(currently Python and Bash) within a docker container, capturing their
+stdout and stderr streams, and allowing user checking before executing code
+strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>require_confirm</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, prompt user before
+running code strings for security. Defaults to <cite>True</cite>.</p></li>
+<li><p><strong>print_stdout</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, print the standard
+output of the executed code. Defaults to <cite>False</cite>.</p></li>
+<li><p><strong>print_stderr</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, print the standard error
+of the executed code. Defaults to <cite>True</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.DockerInterpreter.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/interpreters/docker_interpreter.html#DockerInterpreter.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.DockerInterpreter.run" title="Link to this definition">#</a></dt>
+<dd><p>Executes the given code in the conatiner attached to the
+interpreter, and captures the stdout and stderr streams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<em>str</em>) – The code string to execute.</p></li>
+<li><p><strong>code_type</strong> (<em>str</em>) – The type of code to execute (e.g., ‘python’,
+‘bash’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A string containing the captured stdout and stderr of the</dt><dd><p>executed code.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#camel.interpreters.InterpreterError" title="camel.interpreters.InterpreterError"><strong>InterpreterError</strong></a> – If the user declines to run the code, or the
+    code type is unsupported, or there is an error in the docker
+    API/container</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.DockerInterpreter.supported_code_types">
+<span class="sig-name descname"><span class="pre">supported_code_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/interpreters/docker_interpreter.html#DockerInterpreter.supported_code_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.DockerInterpreter.supported_code_types" title="Link to this definition">#</a></dt>
+<dd><p>Provides supported code types by the interpreter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.DockerInterpreter.update_action_space">
+<span class="sig-name descname"><span class="pre">update_action_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/interpreters/docker_interpreter.html#DockerInterpreter.update_action_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.DockerInterpreter.update_action_space" title="Link to this definition">#</a></dt>
+<dd><p>Updates action space for <em>python</em> interpreter</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.interpreters.E2BInterpreter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.interpreters.</span></span><span class="sig-name descname"><span class="pre">E2BInterpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">require_confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/interpreters/e2b_interpreter.html#E2BInterpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.E2BInterpreter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.interpreters.base.BaseInterpreter" title="camel.interpreters.base.BaseInterpreter"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInterpreter</span></code></a></p>
+<p>E2B Code Interpreter implementation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>require_confirm</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, prompt user before running
+code strings for security. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.E2BInterpreter.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/interpreters/e2b_interpreter.html#E2BInterpreter.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.E2BInterpreter.run" title="Link to this definition">#</a></dt>
+<dd><p>Executes the given code in the e2b sandbox.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<em>str</em>) – The code string to execute.</p></li>
+<li><p><strong>code_type</strong> (<em>str</em>) – The type of code to execute (e.g., ‘python’,
+‘bash’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The string representation of the output of the executed code.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#camel.interpreters.InterpreterError" title="camel.interpreters.InterpreterError"><strong>InterpreterError</strong></a> – If the <cite>code_type</cite> is not supported or if any
+    runtime error occurs during the execution of the code.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.E2BInterpreter.supported_code_types">
+<span class="sig-name descname"><span class="pre">supported_code_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/interpreters/e2b_interpreter.html#E2BInterpreter.supported_code_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.E2BInterpreter.supported_code_types" title="Link to this definition">#</a></dt>
+<dd><p>Provides supported code types by the interpreter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.E2BInterpreter.update_action_space">
+<span class="sig-name descname"><span class="pre">update_action_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/interpreters/e2b_interpreter.html#E2BInterpreter.update_action_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.E2BInterpreter.update_action_space" title="Link to this definition">#</a></dt>
+<dd><p>Updates action space for <em>python</em> interpreter</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.interpreters.InternalPythonInterpreter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.interpreters.</span></span><span class="sig-name descname"><span class="pre">InternalPythonInterpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">import_white_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsafe_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/interpreters/internal_python_interpreter.html#InternalPythonInterpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.InternalPythonInterpreter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.interpreters.base.BaseInterpreter" title="camel.interpreters.base.BaseInterpreter"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInterpreter</span></code></a></p>
+<p>A customized python interpreter to control the execution of
+LLM-generated codes. The interpreter makes sure the code can only execute
+functions given in action space and import white list. It also supports
+fuzzy variable matching to retrieve uncertain input variable name.</p>
+<p>This class is adapted from the hugging face implementation
+<a class="reference external" href="https://github.com/huggingface/transformers/blob/8f093fb799246f7dd9104ff44728da0c53a9f67a/src/transformers/tools/python_interpreter.py">python_interpreter.py</a>. The original license applies:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Copyright 2023 The HuggingFace Inc. team. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing
+permissions and limitations under the License.
+</pre></div>
+</div>
+<p>We have modified the original code to suit our requirements. We have
+encapsulated the original functions within a class and saved the
+interpreter state after execution. We have added support for “import”
+statements, “for” statements, and several binary and unary operators. We
+have added import white list to keep <cite>import</cite> statement safe. Additionally,
+we have modified the variable matching logic and introduced the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">fuzz_state</span></code> for fuzzy matching.</p>
+<p>Modifications copyright (C) 2023 CAMEL-AI.org</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>action_space</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>optional</em>) – A dictionary that maps action
+names to their corresponding functions or objects. The interpreter
+can only execute functions that are either directly listed in this
+dictionary or are member functions of objects listed in this
+dictionary. The concept of <code class="xref py py-obj docutils literal notranslate"><span class="pre">action_space</span></code> is derived from
+EmbodiedAgent, representing the actions that an agent is capable of
+performing. If <cite>None</cite>, set to empty dict. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>import_white_list</strong> (<em>List</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – A list that stores
+the Python modules or functions that can be imported in the code.
+All submodules and functions of the modules listed in this list are
+importable. Any other import statements will be rejected. The
+module and its submodule or function name are separated by a period
+(<code class="xref py py-obj docutils literal notranslate"></code>). (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>unsafe_mode</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, the interpreter runs the code
+by <cite>eval()</cite> or <cite>exec()</cite> without any security check.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code>)</p></li>
+<li><p><strong>raise_error</strong> (<em>bool</em><em>, </em><em>optional</em>) – Raise error if the interpreter fails.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.InternalPythonInterpreter.clear_state">
+<span class="sig-name descname"><span class="pre">clear_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/interpreters/internal_python_interpreter.html#InternalPythonInterpreter.clear_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.InternalPythonInterpreter.clear_state" title="Link to this definition">#</a></dt>
+<dd><p>Initialize <code class="xref py py-obj docutils literal notranslate"><span class="pre">state</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">fuzz_state</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.InternalPythonInterpreter.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fuzz_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="_modules/camel/interpreters/internal_python_interpreter.html#InternalPythonInterpreter.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.InternalPythonInterpreter.execute" title="Link to this definition">#</a></dt>
+<dd><p>Execute the input python codes in a security environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<em>str</em>) – Generated python code to be executed.</p></li>
+<li><p><strong>state</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – External variables that
+may be used in the generated code. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>fuzz_state</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – External variables
+that do not have certain variable names. The interpreter will
+use fuzzy matching to access these variables. For example, if
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">fuzz_state</span></code> has a variable <code class="xref py py-obj docutils literal notranslate"><span class="pre">image</span></code>, the generated
+code can use <code class="xref py py-obj docutils literal notranslate"><span class="pre">input_image</span></code> to access it. (default:
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>keep_state</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">state</span></code> and
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">fuzz_state</span></code> will be kept for later execution. Otherwise,
+they will be cleared. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The value of the last statement (excluding “import”) in the</dt><dd><p>code. For this interpreter, the value of an expression is its
+value, the value of an “assign” statement is the assigned
+value, and the value of an “if” and “for” block statement is
+the value of the last statement in the block.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.InternalPythonInterpreter.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/interpreters/internal_python_interpreter.html#InternalPythonInterpreter.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.InternalPythonInterpreter.run" title="Link to this definition">#</a></dt>
+<dd><p>Executes the given code with specified code type in the
+interpreter.</p>
+<p>This method takes a string of code and its type, checks if the code
+type is supported, and then executes the code. If <cite>unsafe_mode</cite> is
+set to <cite>False</cite>, the code is executed in a controlled environment using
+the <cite>execute</cite> method. If <cite>unsafe_mode</cite> is <cite>True</cite>, the code is executed
+using <cite>eval()</cite> or <cite>exec()</cite> with the action space as the global context.
+An <cite>InterpreterError</cite> is raised if the code type is unsupported or if
+any runtime error occurs during execution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<em>str</em>) – The python code to be executed.</p></li>
+<li><p><strong>code_type</strong> (<em>str</em>) – The type of the code, which should be one of the</p></li>
+<li><p><strong>types</strong> (<em>supported code</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The string representation of the output of the executed code.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#camel.interpreters.InterpreterError" title="camel.interpreters.InterpreterError"><strong>InterpreterError</strong></a> – If the <cite>code_type</cite> is not supported or if any
+    runtime error occurs during the execution of the code.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.InternalPythonInterpreter.supported_code_types">
+<span class="sig-name descname"><span class="pre">supported_code_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/interpreters/internal_python_interpreter.html#InternalPythonInterpreter.supported_code_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.InternalPythonInterpreter.supported_code_types" title="Link to this definition">#</a></dt>
+<dd><p>Provides supported code types by the interpreter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.InternalPythonInterpreter.update_action_space">
+<span class="sig-name descname"><span class="pre">update_action_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/interpreters/internal_python_interpreter.html#InternalPythonInterpreter.update_action_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.InternalPythonInterpreter.update_action_space" title="Link to this definition">#</a></dt>
+<dd><p>Updates action space for <em>python</em> interpreter.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="camel.interpreters.InterpreterError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.interpreters.</span></span><span class="sig-name descname"><span class="pre">InterpreterError</span></span><a class="reference internal" href="_modules/camel/interpreters/interpreter_error.html#InterpreterError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.InterpreterError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception raised for errors that can be solved by regenerating code</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.interpreters.JupyterKernelInterpreter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.interpreters.</span></span><span class="sig-name descname"><span class="pre">JupyterKernelInterpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">require_confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_stdout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_stderr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/interpreters/ipython_interpreter.html#JupyterKernelInterpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.JupyterKernelInterpreter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.interpreters.base.BaseInterpreter" title="camel.interpreters.base.BaseInterpreter"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInterpreter</span></code></a></p>
+<p>A class for executing code strings in a Jupyter Kernel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>require_confirm</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, prompt user before
+running code strings for security. Defaults to <cite>True</cite>.</p></li>
+<li><p><strong>print_stdout</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, print the standard
+output of the executed code. Defaults to <cite>False</cite>.</p></li>
+<li><p><strong>print_stderr</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, print the standard error
+of the executed code. Defaults to <cite>True</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.JupyterKernelInterpreter.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/interpreters/ipython_interpreter.html#JupyterKernelInterpreter.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.JupyterKernelInterpreter.run" title="Link to this definition">#</a></dt>
+<dd><p>Executes the given code in the Jupyter kernel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<em>str</em>) – The code string to execute.</p></li>
+<li><p><strong>code_type</strong> (<em>str</em>) – The type of code to execute (e.g., ‘python’,
+‘bash’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A string containing the captured result of the</dt><dd><p>executed code.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#camel.interpreters.InterpreterError" title="camel.interpreters.InterpreterError"><strong>InterpreterError</strong></a> – If there is an error when doing code execution.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.JupyterKernelInterpreter.supported_code_types">
+<span class="sig-name descname"><span class="pre">supported_code_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/interpreters/ipython_interpreter.html#JupyterKernelInterpreter.supported_code_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.JupyterKernelInterpreter.supported_code_types" title="Link to this definition">#</a></dt>
+<dd><p>Provides supported code types by the interpreter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Supported code types.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.JupyterKernelInterpreter.update_action_space">
+<span class="sig-name descname"><span class="pre">update_action_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/interpreters/ipython_interpreter.html#JupyterKernelInterpreter.update_action_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.JupyterKernelInterpreter.update_action_space" title="Link to this definition">#</a></dt>
+<dd><p>Updates the action space for the interpreter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>action_space</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – A dictionary representing the
+new or updated action space.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – Always raised because <cite>JupyterKernelInterpreter</cite>
+    does not support updating the action space.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.interpreters.SubprocessInterpreter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.interpreters.</span></span><span class="sig-name descname"><span class="pre">SubprocessInterpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">require_confirm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_stdout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_stderr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/interpreters/subprocess_interpreter.html#SubprocessInterpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.SubprocessInterpreter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.interpreters.base.BaseInterpreter" title="camel.interpreters.base.BaseInterpreter"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInterpreter</span></code></a></p>
+<p>SubprocessInterpreter is a class for executing code files or code
+strings in a subprocess.</p>
+<p>This class handles the execution of code in different scripting languages
+(currently Python and Bash) within a subprocess, capturing their
+stdout and stderr streams, and allowing user checking before executing code
+strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>require_confirm</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, prompt user before running
+code strings for security. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>)</p></li>
+<li><p><strong>print_stdout</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, print the standard output of
+the executed code. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code>)</p></li>
+<li><p><strong>print_stderr</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, print the standard error of the
+executed code. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.SubprocessInterpreter.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/interpreters/subprocess_interpreter.html#SubprocessInterpreter.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.SubprocessInterpreter.run" title="Link to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Generates a temporary file with the given code, executes it, and</dt><dd><p>deletes the file afterward.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> (<em>str</em>) – The code string to execute.</p></li>
+<li><p><strong>code_type</strong> (<em>str</em>) – The type of code to execute (e.g., ‘python’,
+‘bash’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A string containing the captured stdout and stderr of the</dt><dd><p>executed code.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#camel.interpreters.InterpreterError" title="camel.interpreters.InterpreterError"><strong>InterpreterError</strong></a> – If the user declines to run the code or if the
+    code type is unsupported.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.SubprocessInterpreter.run_file">
+<span class="sig-name descname"><span class="pre">run_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/interpreters/subprocess_interpreter.html#SubprocessInterpreter.run_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.SubprocessInterpreter.run_file" title="Link to this definition">#</a></dt>
+<dd><p>Executes a code file in a subprocess and captures its output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file</strong> (<em>Path</em>) – The path object of the file to run.</p></li>
+<li><p><strong>code_type</strong> (<em>str</em>) – The type of code to execute (e.g., ‘python’,
+‘bash’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A string containing the captured stdout and stderr of the</dt><dd><p>executed code.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>RuntimeError</strong> – If the provided file path does not point to a file.</p></li>
+<li><p><a class="reference internal" href="#camel.interpreters.InterpreterError" title="camel.interpreters.InterpreterError"><strong>InterpreterError</strong></a> – If the code type provided is not supported.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.SubprocessInterpreter.supported_code_types">
+<span class="sig-name descname"><span class="pre">supported_code_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/interpreters/subprocess_interpreter.html#SubprocessInterpreter.supported_code_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.SubprocessInterpreter.supported_code_types" title="Link to this definition">#</a></dt>
+<dd><p>Provides supported code types by the interpreter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.interpreters.SubprocessInterpreter.update_action_space">
+<span class="sig-name descname"><span class="pre">update_action_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/interpreters/subprocess_interpreter.html#SubprocessInterpreter.update_action_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.interpreters.SubprocessInterpreter.update_action_space" title="Link to this definition">#</a></dt>
+<dd><p>Updates action space for <em>python</em> interpreter</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="camel.embeddings.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">camel.embeddings package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="camel.loaders.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">camel.loaders package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.interpreters.base">camel.interpreters.base module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.base.BaseInterpreter"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.base.BaseInterpreter.run"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.base.BaseInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.base.BaseInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.interpreters.docker_interpreter">camel.interpreters.docker_interpreter module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.docker_interpreter.DockerInterpreter"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.docker_interpreter.DockerInterpreter.run"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.docker_interpreter.DockerInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.docker_interpreter.DockerInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.interpreters.internal_python_interpreter">camel.interpreters.internal_python_interpreter module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.clear_state"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.clear_state()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.execute"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.execute()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.run"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.internal_python_interpreter.InternalPythonInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.interpreters.interpreter_error">camel.interpreters.interpreter_error module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.interpreter_error.InterpreterError"><code class="docutils literal notranslate"><span class="pre">InterpreterError</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.interpreters.ipython_interpreter">camel.interpreters.ipython_interpreter module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.ipython_interpreter.JupyterKernelInterpreter"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.ipython_interpreter.JupyterKernelInterpreter.run"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.ipython_interpreter.JupyterKernelInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.ipython_interpreter.JupyterKernelInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.interpreters.subprocess_interpreter">camel.interpreters.subprocess_interpreter module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter.run"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter.run_file"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.run_file()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.subprocess_interpreter.SubprocessInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.interpreters">Module contents</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.BaseInterpreter"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.BaseInterpreter.run"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.BaseInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.BaseInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">BaseInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.DockerInterpreter"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.DockerInterpreter.run"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.DockerInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.DockerInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">DockerInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.E2BInterpreter"><code class="docutils literal notranslate"><span class="pre">E2BInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.E2BInterpreter.run"><code class="docutils literal notranslate"><span class="pre">E2BInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.E2BInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">E2BInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.E2BInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">E2BInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.InternalPythonInterpreter"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.InternalPythonInterpreter.clear_state"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.clear_state()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.InternalPythonInterpreter.execute"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.execute()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.InternalPythonInterpreter.run"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.InternalPythonInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.InternalPythonInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">InternalPythonInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.InterpreterError"><code class="docutils literal notranslate"><span class="pre">InterpreterError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.JupyterKernelInterpreter"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.JupyterKernelInterpreter.run"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.JupyterKernelInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.JupyterKernelInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">JupyterKernelInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.SubprocessInterpreter"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.SubprocessInterpreter.run"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.SubprocessInterpreter.run_file"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.run_file()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.SubprocessInterpreter.supported_code_types"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.supported_code_types()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.interpreters.SubprocessInterpreter.update_action_space"><code class="docutils literal notranslate"><span class="pre">SubprocessInterpreter.update_action_space()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

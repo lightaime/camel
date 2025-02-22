@@ -1,0 +1,964 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Embodied Agents &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=30d83864"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cookbooks/advanced_features/embodied_agents';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Multi-agent Society" href="../multi_agent_society/index.html" />
+    <link rel="prev" title="Critic Agents and Tree Search" href="critic_agents_and_tree_search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../camel.html">camel package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/edit/main/cookbooks/advanced_features/embodied_agents.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2Fcookbooks/advanced_features/embodied_agents.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/cookbooks/advanced_features/embodied_agents.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Embodied Agents</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Philosophical-Bits">Philosophical Bits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Quick-Start">Quick Start</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#🕹-Step-0:-Prepartions">🕹 Step 0: Prepartions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Setting-Up-API-Keys">Setting Up API Keys</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#🕹-Step-1:-Define-the-Role">🕹 Step 1: Define the Role</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#🕹-Step-2:-Initialize-the-Agent-🐫">🕹 Step 2: Initialize the Agent 🐫</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#🕹-Step-3:-Interact-with-the-Agent-with-.step()">🕹 Step 3: Interact with the Agent with <code class="docutils literal notranslate"><span class="pre">.step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <style>
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    display: none;
+}
+</style><section id="Embodied-Agents">
+<h1>Embodied Agents<a class="headerlink" href="#Embodied-Agents" title="Link to this heading">#</a></h1>
+<p>You can also check this cookbook in colab <a class="reference external" href="https://colab.research.google.com/drive/17qCB6ezYfva87dNWlGA3D3zQ20NI-Sfk?usp=sharing">here</a></p>
+<p>⭐ Star us on <a class="reference external" href="https://github.com/camel-ai/camel">Github</a>, join our <a class="reference external" href="https://discord.camel-ai.org">Discord</a> or follow our <a class="reference external" href="https://x.com/camelaiorg">X</a></p>
+<section id="Philosophical-Bits">
+<h2>Philosophical Bits<a class="headerlink" href="#Philosophical-Bits" title="Link to this heading">#</a></h2>
+<p>We believe the essence of intelligence emerges from its dynamic interactions with the external environment, where the use of various tools becomes a pivotal factor in its development and manifestation.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">EmbodiedAgent()</span></code> in CAMEL is an advanced conversational agent that leverages <strong>code interpreters</strong> and <strong>tool agents</strong> (<em>e.g.</em>, <code class="docutils literal notranslate"><span class="pre">HuggingFaceToolAgent()</span></code>) to execute diverse tasks efficiently. This agent represents a blend of advanced programming and AI capabilities, and is able to interact and respond within a dynamic environment.</p>
+</section>
+<section id="Quick-Start">
+<h2>Quick Start<a class="headerlink" href="#Quick-Start" title="Link to this heading">#</a></h2>
+<p>Let’s first play with a <code class="docutils literal notranslate"><span class="pre">ChatAgent</span></code> instance by simply initialize it with a system message and interact with user messages.</p>
+<section id="🕹-Step-0:-Prepartions">
+<h3>🕹 Step 0: Prepartions<a class="headerlink" href="#🕹-Step-0:-Prepartions" title="Link to this heading">#</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="s2">&quot;camel-ai==0.2.16&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmbodiedAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.generators</span><span class="w"> </span><span class="kn">import</span> <span class="n">SystemMessageGenerator</span> <span class="k">as</span> <span class="n">sys_msg_gen</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseMessage</span> <span class="k">as</span> <span class="n">bm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">RoleType</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Setting-Up-API-Keys">
+<h3>Setting Up API Keys<a class="headerlink" href="#Setting-Up-API-Keys" title="Link to this heading">#</a></h3>
+<p>You’ll need to set up your API keys for OpenAI.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">getpass</span><span class="w"> </span><span class="kn">import</span> <span class="n">getpass</span>
+
+<span class="c1"># Prompt for the API key securely</span>
+<span class="n">openai_api_key</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s1">&#39;Enter your API key: &#39;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">openai_api_key</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Enter your API key: ··········
+</pre></div></div>
+</div>
+</section>
+<section id="🕹-Step-1:-Define-the-Role">
+<h3>🕹 Step 1: Define the Role<a class="headerlink" href="#🕹-Step-1:-Define-the-Role" title="Link to this heading">#</a></h3>
+<p>We first need to set up the necessary information.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the role name and the task</span>
+<span class="n">role</span> <span class="o">=</span> <span class="s1">&#39;Programmer&#39;</span>
+<span class="n">task</span> <span class="o">=</span> <span class="s1">&#39;Writing and executing codes.&#39;</span>
+
+<span class="c1"># Create the meta_dict and the role_tuple</span>
+<span class="n">meta_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">role</span><span class="o">=</span><span class="n">role</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">)</span>
+<span class="n">role_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="n">role</span><span class="p">,</span> <span class="n">RoleType</span><span class="o">.</span><span class="n">EMBODIMENT</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">meta_dict</span></code> and <code class="docutils literal notranslate"><span class="pre">role_type</span></code> will be used to generate the system message.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate the system message based on this</span>
+<span class="n">sys_msg</span> <span class="o">=</span> <span class="n">sys_msg_gen</span><span class="p">()</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">meta_dict</span><span class="o">=</span><span class="n">meta_dict</span><span class="p">,</span> <span class="n">role_tuple</span><span class="o">=</span><span class="n">role_tuple</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="🕹-Step-2:-Initialize-the-Agent-🐫">
+<h3>🕹 Step 2: Initialize the Agent 🐫<a class="headerlink" href="#🕹-Step-2:-Initialize-the-Agent-🐫" title="Link to this heading">#</a></h3>
+<p>Based on the system message, we are ready to initialize our embodied agent.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">embodied_agent</span> <span class="o">=</span> <span class="n">EmbodiedAgent</span><span class="p">(</span><span class="n">system_message</span><span class="o">=</span><span class="n">sys_msg</span><span class="p">,</span>
+                               <span class="n">tool_agents</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                               <span class="n">code_interpreter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                               <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Be aware that the default argument values for <code class="docutils literal notranslate"><span class="pre">tool_agents</span></code> and <code class="docutils literal notranslate"><span class="pre">code_interpreter</span></code> are <code class="docutils literal notranslate"><span class="pre">None</span></code>, and the underlying code interpreter is using the <code class="docutils literal notranslate"><span class="pre">SubProcessInterpreter()</span></code>, which handles the execution of code in Python and Bash within a subprocess.</p>
+</section>
+<section id="🕹-Step-3:-Interact-with-the-Agent-with-.step()">
+<h3>🕹 Step 3: Interact with the Agent with <code class="docutils literal notranslate"><span class="pre">.step()</span></code><a class="headerlink" href="#🕹-Step-3:-Interact-with-the-Agent-with-.step()" title="Link to this heading">#</a></h3>
+<p>Use the base message wrapper to generate the user message.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">usr_msg</span> <span class="o">=</span> <span class="n">bm</span><span class="o">.</span><span class="n">make_user_message</span><span class="p">(</span>
+    <span class="n">role_name</span><span class="o">=</span><span class="s1">&#39;user&#39;</span><span class="p">,</span>
+    <span class="n">content</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;1. write a bash script to install numpy. &#39;</span>
+             <span class="s1">&#39;2. then write a python script to compute &#39;</span>
+             <span class="s1">&#39;the dot product of [8, 9] and [5, 4], &#39;</span>
+             <span class="s1">&#39;and print the result. &#39;</span>
+             <span class="s1">&#39;3. then write a script to search for &#39;</span>
+             <span class="s1">&#39;the weather at london with wttr.in/london.&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<p>And feed that into your agents:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">embodied_agent</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">usr_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-magenta-fg">&gt; Explanation:
+To accomplish the tasks you&#39;ve outlined, I will perform the following actions:
+
+1. **Write a Bash script** to install NumPy using `pip`. This will ensure that the necessary library is available for the Python script that follows.
+2. **Write a Python script** to compute the dot product of the two lists `[8, 9]` and `[5, 4]`. The dot product is calculated as the sum of the products of the corresponding entries of the two sequences.
+3. **Write a script** to fetch the weather information for London using the `wttr.in` service. This will provide a simple way to get weather data from the command line.
+
+### Step 1: Bash Script to Install NumPy
+
+I&#39;ll create a Bash script named `install_numpy.sh` that will check if `pip` is installed and then use it to install NumPy.
+
+### Step 2: Python Script for Dot Product Calculation
+
+I&#39;ll create a Python script named `dot_product.py` that will compute the dot product of the two lists and print the result.
+
+### Step 3: Script to Fetch Weather Information
+
+I&#39;ll create a Bash script named `get_weather.sh` that will use `curl` to fetch the weather information for London from `wttr.in`.
+
+Now, let&#39;s implement these actions in code.
+
+</span><span class="ansi-magenta-fg">&gt; Code:
+# Step 1: Bash script to install NumPy
+echo &#39;#!/bin/bash&#39; &gt; install_numpy.sh
+echo &#39;if command -v pip &amp;&gt; /dev/null; then&#39; &gt;&gt; install_numpy.sh
+echo &#39;    echo &#34;Installing NumPy...&#34;&#39; &gt;&gt; install_numpy.sh
+echo &#39;    pip install numpy&#39; &gt;&gt; install_numpy.sh
+echo &#39;else&#39; &gt;&gt; install_numpy.sh
+echo &#39;    echo &#34;pip is not installed. Please install pip first.&#34;&#39; &gt;&gt; install_numpy.sh
+echo &#39;fi&#39; &gt;&gt; install_numpy.sh
+chmod +x install_numpy.sh
+
+# Step 2: Python script for dot product calculation
+echo &#39;import numpy as np&#39; &gt; dot_product.py
+echo &#39;a = np.array([8, 9])&#39; &gt;&gt; dot_product.py
+echo &#39;b = np.array([5, 4])&#39; &gt;&gt; dot_product.py
+echo &#39;dot_product = np.dot(a, b)&#39; &gt;&gt; dot_product.py
+echo &#39;print(&#34;Dot product:&#34;, dot_product)&#39; &gt;&gt; dot_product.py
+
+# Step 3: Bash script to fetch weather information
+echo &#39;#!/bin/bash&#39; &gt; get_weather.sh
+echo &#39;curl wttr.in/london&#39; &gt;&gt; get_weather.sh
+chmod +x get_weather.sh
+
+</span><span class="ansi-magenta-fg">&gt; Explanation:
+### Explanation of the Code
+
+1. **install_numpy.sh**: This script checks if `pip` is installed and installs NumPy if it is. It provides feedback if `pip` is not found.
+2. **dot_product.py**: This Python script uses NumPy to calculate the dot product of two arrays and prints the result.
+3. **get_weather.sh**: This script uses `curl` to fetch and display the weather information for London from `wttr.in`.
+
+### Next Steps
+
+I will execute these scripts in the appropriate order to ensure that NumPy is installed before running the Python script. After that, I will fetch the weather information for London.
+
+Let&#39;s execute the installation script first.
+
+</span><span class="ansi-magenta-fg">&gt; Code:
+./install_numpy.sh
+
+</span><span class="ansi-magenta-fg">&gt; Explanation:
+After confirming that NumPy is installed, I will run the Python script:
+
+</span><span class="ansi-magenta-fg">&gt; Code:
+python3 dot_product.py
+
+</span><span class="ansi-magenta-fg">&gt; Explanation:
+Finally, I will run the weather script:
+
+</span><span class="ansi-magenta-fg">&gt; Code:
+./get_weather.sh
+
+</span><span class="ansi-magenta-fg">&gt; Explanation:
+Now, I will perform these actions.
+
+The following bash code will run on your computer:
+</span><span class="ansi-cyan-fg"># Step 1: Bash script to install NumPy
+echo &#39;#!/bin/bash&#39; &gt; install_numpy.sh
+echo &#39;if command -v pip &amp;&gt; /dev/null; then&#39; &gt;&gt; install_numpy.sh
+echo &#39;    echo &#34;Installing NumPy...&#34;&#39; &gt;&gt; install_numpy.sh
+echo &#39;    pip install numpy&#39; &gt;&gt; install_numpy.sh
+echo &#39;else&#39; &gt;&gt; install_numpy.sh
+echo &#39;    echo &#34;pip is not installed. Please install pip first.&#34;&#39; &gt;&gt; install_numpy.sh
+echo &#39;fi&#39; &gt;&gt; install_numpy.sh
+chmod +x install_numpy.sh
+
+# Step 2: Python script for dot product calculation
+echo &#39;import numpy as np&#39; &gt; dot_product.py
+echo &#39;a = np.array([8, 9])&#39; &gt;&gt; dot_product.py
+echo &#39;b = np.array([5, 4])&#39; &gt;&gt; dot_product.py
+echo &#39;dot_product = np.dot(a, b)&#39; &gt;&gt; dot_product.py
+echo &#39;print(&#34;Dot product:&#34;, dot_product)&#39; &gt;&gt; dot_product.py
+
+# Step 3: Bash script to fetch weather information
+echo &#39;#!/bin/bash&#39; &gt; get_weather.sh
+echo &#39;curl wttr.in/london&#39; &gt;&gt; get_weather.sh
+chmod +x get_weather.sh</span>
+Running code? [Y/n]:y
+The following bash code will run on your computer:
+<span class="ansi-cyan-fg">./install_numpy.sh</span>
+Running code? [Y/n]:y
+The following bash code will run on your computer:
+<span class="ansi-cyan-fg">python3 dot_product.py</span>
+Running code? [Y/n]:y
+The following bash code will run on your computer:
+<span class="ansi-cyan-fg">./get_weather.sh</span>
+Running code? [Y/n]:y
+======stderr======
+<span class="ansi-red-fg">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100  8906  100  8906    0     0   9068      0 --:--:-- --:--:-- --:--:--  9069
+100  8906  100  8906    0     0   9068      0 --:--:-- --:--:-- --:--:--  9069
+</span>
+==================
+</pre></div></div>
+</div>
+<p>Under the hood, the agent will perform multiple actions within its action space in the OS to fulfill the user request. It will compose code to implement the action – no worries, it will ask for your permission before execution.</p>
+<p>Ideally you should get the output similar to this, if you allow the agent to perform actions:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1. write a bash script to install numpy. 2. then write a python script to compute the dot product of [8, 9] and [5, 4], and print the result. 3. then write a script to search for the weather at london with wttr.in/london.
+&gt; Embodied Actions:
+
+&gt; Executed Results:
+Executing code block 0: {
+Installing NumPy...
+Requirement already satisfied: numpy in /usr/local/lib/python3.10/dist-packages (1.26.4)
+}
+Executing code block 1: {
+The dot product of [8, 9] and [5, 4] is: 76
+}
+Executing code block 2: {
+Fetching weather information for London...
+Weather report: London
+
+  <span style="color: rgb(188,188,188)">     .-.     </span> Light rain shower
+  <span style="color: rgb(188,188,188)">    (   ).   </span> <span style="color: rgb(135,255,0)">15</span> °C
+  <span style="color: rgb(188,188,188)">   (___(__)  </span> <span class="ansi-bold">↗</span> <span style="color: rgb(215,255,0)">12</span> km/h
+  <span style="color: rgb(135,175,255)">    ‘ ‘ ‘ ‘  </span> 3 km
+  <span style="color: rgb(135,175,255)">   ‘ ‘ ‘ ‘   </span> 3.4 mm
+                                                       ┌─────────────┐
+┌──────────────────────────────┬───────────────────────┤  Thu 26 Sep ├───────────────────────┬──────────────────────────────┐
+│            Morning           │             Noon      └──────┬──────┘     Evening           │             Night            │
+├──────────────────────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────┤
+│ <span style="color: rgb(255,255,0)"> _`/&#34;&#34;</span><span style="color: rgb(188,188,188)">.-.    </span> Patchy light d…│ <span style="color: rgb(255,255,0)"> _`/&#34;&#34;</span><span style="color: rgb(188,188,188)">.-.    </span> Patchy light d…│ <span style="color: rgb(255,255,0)"> _`/&#34;&#34;</span><span style="color: rgb(188,188,188)">.-.    </span> Light rain sho…│ <span style="color: rgb(255,255,0)"> _`/&#34;&#34;</span><span style="color: rgb(188,188,188)">.-.    </span> Patchy rain ne…│
+│ <span style="color: rgb(255,255,0)">  ,\_</span><span style="color: rgb(188,188,188)">(   ).  </span> <span style="color: rgb(175,255,0)">16</span> °C          │ <span style="color: rgb(255,255,0)">  ,\_</span><span style="color: rgb(188,188,188)">(   ).  </span> <span style="color: rgb(175,255,0)">17</span> °C          │ <span style="color: rgb(255,255,0)">  ,\_</span><span style="color: rgb(188,188,188)">(   ).  </span> <span style="color: rgb(135,255,0)">+14</span>(<span style="color: rgb(95,255,0)">12</span>) °C     │ <span style="color: rgb(255,255,0)">  ,\_</span><span style="color: rgb(188,188,188)">(   ).  </span> <span style="color: rgb(95,255,0)">+12</span>(<span style="color: rgb(95,255,0)">10</span>) °C     │
+│ <span style="color: rgb(255,255,0)">   /</span><span style="color: rgb(188,188,188)">(___(__) </span> <span class="ansi-bold">↗</span> <span style="color: rgb(255,215,0)">19</span>-<span style="color: rgb(255,135,0)">24</span> km/h   │ <span style="color: rgb(255,255,0)">   /</span><span style="color: rgb(188,188,188)">(___(__) </span> <span class="ansi-bold">↗</span> <span style="color: rgb(255,175,0)">20</span>-<span style="color: rgb(255,175,0)">23</span> km/h   │ <span style="color: rgb(255,255,0)">   /</span><span style="color: rgb(188,188,188)">(___(__) </span> <span class="ansi-bold">↗</span> <span style="color: rgb(255,175,0)">23</span>-<span style="color: rgb(255,0,0)">35</span> km/h   │ <span style="color: rgb(255,255,0)">   /</span><span style="color: rgb(188,188,188)">(___(__) </span> <span class="ansi-bold">↗</span> <span style="color: rgb(255,175,0)">20</span>-<span style="color: rgb(255,95,0)">29</span> km/h   │
+│ <span style="color: rgb(135,175,255)">     ‘ ‘ ‘ ‘ </span> 5 km           │ <span style="color: rgb(135,175,255)">     ‘ ‘ ‘ ‘ </span> 5 km           │ <span style="color: rgb(135,175,255)">     ‘ ‘ ‘ ‘ </span> 10 km          │ <span style="color: rgb(135,175,255)">     ‘ ‘ ‘ ‘ </span> 10 km          │
+│ <span style="color: rgb(135,175,255)">    ‘ ‘ ‘ ‘  </span> 0.5 mm | 100%  │ <span style="color: rgb(135,175,255)">    ‘ ‘ ‘ ‘  </span> 0.2 mm | 100%  │ <span style="color: rgb(135,175,255)">    ‘ ‘ ‘ ‘  </span> 0.6 mm | 100%  │ <span style="color: rgb(135,175,255)">    ‘ ‘ ‘ ‘  </span> 0.0 mm | 65%   │
+└──────────────────────────────┴──────────────────────────────┴──────────────────────────────┴──────────────────────────────┘
+                                                       ┌─────────────┐
+┌──────────────────────────────┬───────────────────────┤  Fri 27 Sep ├───────────────────────┬──────────────────────────────┐
+│            Morning           │             Noon      └──────┬──────┘     Evening           │             Night            │
+├──────────────────────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────┤
+│ <span style="color: rgb(188,188,188)">     .-.     </span> Light rain     │ <span style="color: rgb(255,255,0)"> _`/&#34;&#34;</span><span style="color: rgb(188,188,188)">.-.    </span> Patchy rain ne…│ <span style="color: rgb(255,255,0)">    \   /    </span> Sunny          │ <span style="color: rgb(255,255,0)">    \   /    </span> Clear          │
+│ <span style="color: rgb(188,188,188)">    (   ).   </span> <span style="color: rgb(0,255,0)">+9</span>(<span style="color: rgb(0,255,95)">7</span>) °C       │ <span style="color: rgb(255,255,0)">  ,\_</span><span style="color: rgb(188,188,188)">(   ).  </span> <span style="color: rgb(95,255,0)">+11</span>(<span style="color: rgb(0,255,0)">9</span>) °C      │ <span style="color: rgb(255,255,0)">     .-.     </span> <span style="color: rgb(95,255,0)">+11</span>(<span style="color: rgb(0,255,0)">8</span>) °C      │ <span style="color: rgb(255,255,0)">     .-.     </span> <span style="color: rgb(0,255,0)">+9</span>(<span style="color: rgb(0,255,0)">8</span>) °C       │
+│ <span style="color: rgb(188,188,188)">   (___(__)  </span> <span class="ansi-bold">↘</span> <span style="color: rgb(255,215,0)">18</span>-<span style="color: rgb(255,135,0)">26</span> km/h   │ <span style="color: rgb(255,255,0)">   /</span><span style="color: rgb(188,188,188)">(___(__) </span> <span class="ansi-bold">↘</span> <span style="color: rgb(255,175,0)">23</span>-<span style="color: rgb(255,95,0)">31</span> km/h   │ <span style="color: rgb(255,255,0)">  ― (   ) ―  </span> <span class="ansi-bold">↘</span> <span style="color: rgb(255,215,0)">16</span>-<span style="color: rgb(255,135,0)">24</span> km/h   │ <span style="color: rgb(255,255,0)">  ― (   ) ―  </span> <span class="ansi-bold">↘</span> <span style="color: rgb(215,255,0)">10</span>-<span style="color: rgb(255,215,0)">16</span> km/h   │
+│ <span style="color: rgb(135,175,255)">    ‘ ‘ ‘ ‘  </span> 9 km           │ <span style="color: rgb(135,175,255)">     ‘ ‘ ‘ ‘ </span> 10 km          │ <span style="color: rgb(255,255,0)">     `-’     </span> 10 km          │ <span style="color: rgb(255,255,0)">     `-’     </span> 10 km          │
+│ <span style="color: rgb(135,175,255)">   ‘ ‘ ‘ ‘   </span> 0.8 mm | 100%  │ <span style="color: rgb(135,175,255)">    ‘ ‘ ‘ ‘  </span> 0.1 mm | 100%  │ <span style="color: rgb(255,255,0)">    /   \    </span> 0.0 mm | 0%    │ <span style="color: rgb(255,255,0)">    /   \    </span> 0.0 mm | 0%    │
+└──────────────────────────────┴──────────────────────────────┴──────────────────────────────┴──────────────────────────────┘
+                                                       ┌─────────────┐
+┌──────────────────────────────┬───────────────────────┤  Sat 28 Sep ├───────────────────────┬──────────────────────────────┐
+│            Morning           │             Noon      └──────┬──────┘     Evening           │             Night            │
+├──────────────────────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────┤
+│ <span style="color: rgb(255,255,0)">    \   /    </span> Sunny          │ <span style="color: rgb(255,255,0)"> _`/&#34;&#34;</span><span style="color: rgb(188,188,188)">.-.    </span> Patchy rain ne…│               Cloudy         │ <span style="color: rgb(255,255,0)">   \  /</span>       Partly Cloudy  │
+│ <span style="color: rgb(255,255,0)">     .-.     </span> <span style="color: rgb(95,255,0)">+11</span>(<span style="color: rgb(0,255,0)">9</span>) °C      │ <span style="color: rgb(255,255,0)">  ,\_</span><span style="color: rgb(188,188,188)">(   ).  </span> <span style="color: rgb(135,255,0)">+14</span>(<span style="color: rgb(135,255,0)">13</span>) °C     │ <span style="color: rgb(188,188,188)">     .--.    </span> <span style="color: rgb(135,255,0)">13</span> °C          │ <span style="color: rgb(255,255,0)"> _ /&#34;&#34;</span><span style="color: rgb(188,188,188)">.-.    </span> <span style="color: rgb(95,255,0)">12</span> °C          │
+│ <span style="color: rgb(255,255,0)">  ― (   ) ―  </span> <span class="ansi-bold">→</span> <span style="color: rgb(215,255,0)">11</span>-<span style="color: rgb(255,255,0)">14</span> km/h   │ <span style="color: rgb(255,255,0)">   /</span><span style="color: rgb(188,188,188)">(___(__) </span> <span class="ansi-bold">→</span> <span style="color: rgb(215,255,0)">12</span>-<span style="color: rgb(255,255,0)">14</span> km/h   │ <span style="color: rgb(188,188,188)">  .-(    ).  </span> <span class="ansi-bold">→</span> <span style="color: rgb(135,255,0)">6</span>-<span style="color: rgb(215,255,0)">10</span> km/h    │ <span style="color: rgb(255,255,0)">   \_</span><span style="color: rgb(188,188,188)">(   ).  </span> <span class="ansi-bold">↗</span> <span style="color: rgb(135,255,0)">5</span>-<span style="color: rgb(175,255,0)">8</span> km/h     │
+│ <span style="color: rgb(255,255,0)">     `-’     </span> 10 km          │ <span style="color: rgb(135,175,255)">     ‘ ‘ ‘ ‘ </span> 10 km          │ <span style="color: rgb(188,188,188)"> (___.__)__) </span> 10 km          │ <span style="color: rgb(255,255,0)">   /</span><span style="color: rgb(188,188,188)">(___(__) </span> 10 km          │
+│ <span style="color: rgb(255,255,0)">    /   \    </span> 0.0 mm | 0%    │ <span style="color: rgb(135,175,255)">    ‘ ‘ ‘ ‘  </span> 0.1 mm | 100%  │               0.0 mm | 0%    │               0.0 mm | 0%    │
+└──────────────────────────────┴──────────────────────────────┴──────────────────────────────┴──────────────────────────────┘
+Location: London, Greater London, England, UK [51.5073219,-0.1276474]
+
+Follow <span class="ansi-black-fg ansi-cyan-bg">@igor_chubin</span> for wttr.in updates
+(stderr:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0
+100  8977  100  8977    0     0   3495      0  0:00:02  0:00:02 --:--:--  3495
+)}
+Executing code block 3: {
+}
+
+</pre></div></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="critic_agents_and_tree_search.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Critic Agents and Tree Search</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../multi_agent_society/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Multi-agent Society</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Philosophical-Bits">Philosophical Bits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Quick-Start">Quick Start</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#🕹-Step-0:-Prepartions">🕹 Step 0: Prepartions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Setting-Up-API-Keys">Setting Up API Keys</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#🕹-Step-1:-Define-the-Role">🕹 Step 1: Define the Role</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#🕹-Step-2:-Initialize-the-Agent-🐫">🕹 Step 2: Initialize the Agent 🐫</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#🕹-Step-3:-Interact-with-the-Agent-with-.step()">🕹 Step 3: Interact with the Agent with <code class="docutils literal notranslate"><span class="pre">.step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

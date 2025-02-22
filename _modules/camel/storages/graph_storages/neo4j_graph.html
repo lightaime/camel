@@ -1,0 +1,1241 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>camel.storages.graph_storages.neo4j_graph &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/documentation_options.js?v=30d83864"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/camel/storages/graph_storages/neo4j_graph';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cookbooks/basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cookbooks/advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cookbooks/multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cookbooks/data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cookbooks/applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cookbooks/data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../cookbooks/data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../camel.html">camel package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2F_modules/camel/storages/graph_storages/neo4j_graph.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for camel.storages.graph_storages.neo4j_graph</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="c1"># ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hashlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">md5</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.storages.graph_storages</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseGraphStorage</span><span class="p">,</span> <span class="n">GraphElement</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">dependencies_required</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">BASE_ENTITY_LABEL</span> <span class="o">=</span> <span class="s2">&quot;__Entity__&quot;</span>
+<span class="n">EXCLUDED_LABELS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Excluded_Label_A&quot;</span><span class="p">,</span> <span class="s2">&quot;Excluded_Label_B&quot;</span><span class="p">]</span>
+<span class="n">EXCLUDED_RELS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Excluded_Rel_A&quot;</span><span class="p">]</span>
+
+<span class="n">NODE_PROPERTY_QUERY</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">CALL apoc.meta.data()</span>
+<span class="s2">YIELD label, other, elementType, type, property</span>
+<span class="s2">WHERE NOT type = &quot;RELATIONSHIP&quot; AND elementType = &quot;node&quot;</span>
+<span class="s2">AND NOT label IN $EXCLUDED_LABELS</span>
+<span class="s2">WITH label AS nodeLabels, collect({property:property, type:type}) AS properties</span>
+<span class="s2">RETURN {labels: nodeLabels, properties: properties} AS output</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">REL_PROPERTY_QUERY</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">CALL apoc.meta.data()</span>
+<span class="s2">YIELD label, other, elementType, type, property</span>
+<span class="s2">WHERE NOT type = &quot;RELATIONSHIP&quot; AND elementType = &quot;relationship&quot;</span>
+<span class="s2">AND NOT label IN $EXCLUDED_LABELS</span>
+<span class="s2">WITH label AS nodeLabels, collect({property:property, type:type}) AS properties</span>
+<span class="s2">RETURN {type: nodeLabels, properties: properties} AS output</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">REL_QUERY</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">CALL apoc.meta.data()</span>
+<span class="s2">YIELD label, other, elementType, type, property</span>
+<span class="s2">WHERE type = &quot;RELATIONSHIP&quot; AND elementType = &quot;node&quot;</span>
+<span class="s2">UNWIND other AS other_node</span>
+<span class="s2">WITH * WHERE NOT label IN $EXCLUDED_LABELS</span>
+<span class="s2">    AND NOT other_node IN $EXCLUDED_LABELS</span>
+<span class="s2">RETURN {start: label, type: property, end: toString(other_node)} AS output</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">INCLUDE_DOCS_QUERY</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;MERGE (d:Element {id:$element[&#39;element_id&#39;]}) &quot;</span>
+    <span class="s2">&quot;SET d.text = $element[&#39;text&#39;] &quot;</span>
+    <span class="s2">&quot;SET d += $element[&#39;metadata&#39;] &quot;</span>
+    <span class="s2">&quot;WITH d &quot;</span>
+<span class="p">)</span>
+
+<span class="n">LIST_LIMIT</span> <span class="o">=</span> <span class="mi">128</span>
+
+
+<div class="viewcode-block" id="Neo4jGraph">
+<a class="viewcode-back" href="../../../../camel.storages.graph_storages.html#camel.storages.Neo4jGraph">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Neo4jGraph</span><span class="p">(</span><span class="n">BaseGraphStorage</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Provides a connection to a Neo4j database for various graph operations.</span>
+
+<span class="sd">    The detailed information about Neo4j is available at:</span>
+<span class="sd">    `Neo4j https://neo4j.com/docs/getting-started`</span>
+
+<span class="sd">    This module refered to the work of Langchian and Llamaindex.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        url (str): The URL of the Neo4j database server.</span>
+<span class="sd">        username (str): The username for database authentication.</span>
+<span class="sd">        password (str): The password for database authentication.</span>
+<span class="sd">        database (str): The name of the database to connect to. Defaults to</span>
+<span class="sd">            `neo4j`.</span>
+<span class="sd">        timeout (Optional[float]): The timeout for transactions in seconds.</span>
+<span class="sd">            Useful for terminating long-running queries. Defaults to `None`.</span>
+<span class="sd">        truncate (bool): A flag to indicate whether to remove lists with more</span>
+<span class="sd">            than `LIST_LIMIT` elements from results. Defaults to `False`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@dependencies_required</span><span class="p">(</span><span class="s1">&#39;neo4j&#39;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">database</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;neo4j&quot;</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">truncate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Create a new Neo4j graph instance.&quot;&quot;&quot;</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">neo4j</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;NEO4J_URI&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">url</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;NEO4J_USERNAME&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">username</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;NEO4J_PASSWORD&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">password</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">neo4j</span><span class="o">.</span><span class="n">GraphDatabase</span><span class="o">.</span><span class="n">driver</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">database</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">truncate</span> <span class="o">=</span> <span class="n">truncate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">structured_schema</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Verify connection</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">verify_connectivity</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">neo4j</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ServiceUnavailable</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Could not connect to Neo4j database. &quot;</span>
+                <span class="s2">&quot;Please ensure that the url is correct&quot;</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="n">neo4j</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">AuthError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Could not connect to Neo4j database. &quot;</span>
+                <span class="s2">&quot;Please ensure that the username and password are correct&quot;</span>
+            <span class="p">)</span>
+        <span class="c1"># Set schema</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">refresh_schema</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">neo4j</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ClientError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Could not use APOC procedures. &quot;</span>
+                <span class="s2">&quot;Please ensure the APOC plugin is installed in Neo4j and that &quot;</span>
+                <span class="s2">&quot;&#39;apoc.meta.data()&#39; is allowed in Neo4j configuration &quot;</span>
+            <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Get the underlying graph storage client.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_schema</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">refresh</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Retrieve the schema of the Neo4jGraph store.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            refresh (bool): A flag indicating whether to forcibly refresh the</span>
+<span class="sd">                schema from the Neo4jGraph store regardless of whether it is</span>
+<span class="sd">                already cached. Defaults to `False`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The schema of the Neo4jGraph store.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">refresh</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh_schema</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;get_schema() schema:</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_structured_schema</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the structured schema of the graph</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict[str, Any]: The structured schema of the graph.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">structured_schema</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_value_truncate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Truncates the input raw value by removing entries that is</span>
+<span class="sd">        dictionary or list with values resembling embeddings and containing</span>
+<span class="sd">        more than `LIST_LIMIT` elements. This method aims to reduce unnecessary</span>
+<span class="sd">        computational cost and noise in scenarios where such detailed data</span>
+<span class="sd">        structures are not needed. If the input value is not dictionary or</span>
+<span class="sd">        list then give the raw value back.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            raw_value (Any): The raw value to be truncated.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Any: The truncated value, with embedding-like</span>
+<span class="sd">                dictionaries and oversized lists handled.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">new_dict</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">raw_value</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                    <span class="n">truncated_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value_truncate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                    <span class="c1"># Check if the truncated value is not None</span>
+                    <span class="k">if</span> <span class="n">truncated_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">new_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">truncated_value</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">LIST_LIMIT</span><span class="p">:</span>
+                        <span class="n">truncated_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value_truncate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        <span class="c1"># Check if the truncated value is not None</span>
+                        <span class="k">if</span> <span class="n">truncated_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="n">new_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">truncated_value</span>
+                    <span class="c1"># Do not include the key if the list is oversized</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">new_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="k">return</span> <span class="n">new_dict</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw_value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">LIST_LIMIT</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_value_truncate</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">raw_value</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value_truncate</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">raw_value</span>
+
+<div class="viewcode-block" id="Neo4jGraph.query">
+<a class="viewcode-back" href="../../../../camel.storages.graph_storages.html#camel.storages.Neo4jGraph.query">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">query</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Executes a Neo4j Cypher declarative query in a database.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str): The Cypher query to be executed.</span>
+<span class="sd">            params (Optional[Dict[str, Any]]): A dictionary of parameters to</span>
+<span class="sd">                be used in the query. Defaults to `None`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[Dict[str, Any]]: A list of dictionaries, each</span>
+<span class="sd">                dictionary represents a row of results from the Cypher query.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If the executed Cypher query syntax is invalid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">neo4j</span><span class="w"> </span><span class="kn">import</span> <span class="n">Query</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">neo4j.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">CypherSyntaxError</span>
+
+        <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">session</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+                    <span class="n">Query</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">),</span> <span class="n">params</span>
+                <span class="p">)</span>
+                <span class="n">json_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">truncate</span><span class="p">:</span>
+                    <span class="n">json_data</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_value_truncate</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">json_data</span><span class="p">]</span>
+                <span class="k">return</span> <span class="n">json_data</span>
+            <span class="k">except</span> <span class="n">CypherSyntaxError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Generated Cypher Statement is not valid</span><span class="se">\n</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Neo4jGraph.refresh_schema">
+<a class="viewcode-back" href="../../../../camel.storages.graph_storages.html#camel.storages.Neo4jGraph.refresh_schema">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">refresh_schema</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Refreshes the Neo4j graph schema information by querying the</span>
+<span class="sd">        database for node properties, relationship properties, and</span>
+<span class="sd">        relationships.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">neo4j.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClientError</span>
+
+        <span class="c1"># Extract schema elements from the database</span>
+        <span class="n">node_properties</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">el</span><span class="p">[</span><span class="s2">&quot;output&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+                <span class="n">NODE_PROPERTY_QUERY</span><span class="p">,</span>
+                <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">&quot;EXCLUDED_LABELS&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">*</span><span class="n">EXCLUDED_LABELS</span><span class="p">,</span> <span class="n">BASE_ENTITY_LABEL</span><span class="p">]</span>
+                <span class="p">},</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">rel_properties</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">el</span><span class="p">[</span><span class="s2">&quot;output&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+                <span class="n">REL_PROPERTY_QUERY</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;EXCLUDED_LABELS&quot;</span><span class="p">:</span> <span class="n">EXCLUDED_RELS</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">relationships</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">el</span><span class="p">[</span><span class="s2">&quot;output&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+                <span class="n">REL_QUERY</span><span class="p">,</span>
+                <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">&quot;EXCLUDED_LABELS&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">*</span><span class="n">EXCLUDED_LABELS</span><span class="p">,</span> <span class="n">BASE_ENTITY_LABEL</span><span class="p">]</span>
+                <span class="p">},</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="c1"># Get constraints &amp; indexes</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">constraint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;SHOW CONSTRAINTS&quot;</span><span class="p">)</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;SHOW INDEXES YIELD *&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span>
+            <span class="n">ClientError</span>
+        <span class="p">):</span>  <span class="c1"># Read-only user might not have access to schema information</span>
+            <span class="n">constraint</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">structured_schema</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;node_props&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="n">el</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">]:</span> <span class="n">el</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">node_properties</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;rel_props&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="n">el</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]:</span> <span class="n">el</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">rel_properties</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;relationships&quot;</span><span class="p">:</span> <span class="n">relationships</span><span class="p">,</span>
+            <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;constraint&quot;</span><span class="p">:</span> <span class="n">constraint</span><span class="p">,</span> <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="n">index</span><span class="p">},</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Format node properties</span>
+        <span class="n">formatted_node_props</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">node_properties</span><span class="p">:</span>
+            <span class="n">props_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prop</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">prop</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">el</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">formatted_node_props</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">el</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">{{</span><span class="si">{</span><span class="n">props_str</span><span class="si">}</span><span class="se">}}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Format relationship properties</span>
+        <span class="n">formatted_rel_props</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">rel_properties</span><span class="p">:</span>
+            <span class="n">props_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prop</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">prop</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">el</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">formatted_rel_props</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">el</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">{{</span><span class="si">{</span><span class="n">props_str</span><span class="si">}</span><span class="se">}}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Format relationships</span>
+        <span class="n">formatted_rels</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;(:</span><span class="si">{</span><span class="n">el</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)-[:</span><span class="si">{</span><span class="n">el</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">]-&gt;(:</span><span class="si">{</span><span class="n">el</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">relationships</span>
+        <span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">schema</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="s2">&quot;Node properties are the following:&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formatted_node_props</span><span class="p">),</span>
+                <span class="s2">&quot;Relationship properties are the following:&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formatted_rel_props</span><span class="p">),</span>
+                <span class="s2">&quot;The relationships are the following:&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formatted_rels</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Neo4jGraph.add_triplet">
+<a class="viewcode-back" href="../../../../camel.storages.graph_storages.html#camel.storages.Neo4jGraph.add_triplet">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_triplet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subj</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">rel</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Adds a relationship (triplet) between two entities in the database.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            subj (str): The identifier for the subject entity.</span>
+<span class="sd">            obj (str): The identifier for the object entity.</span>
+<span class="sd">            rel (str): The relationship between the subject and object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            MERGE (n1:`</span><span class="si">%s</span><span class="s2">` {id:$subj})</span>
+<span class="s2">            MERGE (n2:`</span><span class="si">%s</span><span class="s2">` {id:$obj})</span>
+<span class="s2">            MERGE (n1)-[:`</span><span class="si">%s</span><span class="s2">`]-&gt;(n2)</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+        <span class="n">prepared_statement</span> <span class="o">=</span> <span class="n">query</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">BASE_ENTITY_LABEL</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+            <span class="n">BASE_ENTITY_LABEL</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+            <span class="n">rel</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Execute the query within a database session</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">session</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">prepared_statement</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;subj&quot;</span><span class="p">:</span> <span class="n">subj</span><span class="p">,</span> <span class="s2">&quot;obj&quot;</span><span class="p">:</span> <span class="n">obj</span><span class="p">})</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_delete_rel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subj</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">rel</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Deletes a specific relationship between two nodes in the Neo4j</span>
+<span class="sd">        database.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            subj (str): The identifier for the subject entity.</span>
+<span class="sd">            obj (str): The identifier for the object entity.</span>
+<span class="sd">            rel (str): The relationship between the subject and object to</span>
+<span class="sd">                delete.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">session</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+                <span class="p">(</span>
+                    <span class="s2">&quot;MATCH (n1:</span><span class="si">{}</span><span class="s2">)-[r:</span><span class="si">{}</span><span class="s2">]-&gt;(n2:</span><span class="si">{}</span><span class="s2">) WHERE n1.id = $subj AND&quot;</span>
+                    <span class="s2">&quot; n2.id = $obj DELETE r&quot;</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">BASE_ENTITY_LABEL</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+                    <span class="n">rel</span><span class="p">,</span>
+                    <span class="n">BASE_ENTITY_LABEL</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+                <span class="p">),</span>
+                <span class="p">{</span><span class="s2">&quot;subj&quot;</span><span class="p">:</span> <span class="n">subj</span><span class="p">,</span> <span class="s2">&quot;obj&quot;</span><span class="p">:</span> <span class="n">obj</span><span class="p">},</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_delete_entity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Deletes an entity from the Neo4j database based on its unique</span>
+<span class="sd">        identifier.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            entity (str): The unique identifier of the entity to be deleted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">session</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+                <span class="s2">&quot;MATCH (n:</span><span class="si">%s</span><span class="s2">) WHERE n.id = $entity DELETE n&quot;</span>
+                <span class="o">%</span> <span class="n">BASE_ENTITY_LABEL</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+                <span class="p">{</span><span class="s2">&quot;entity&quot;</span><span class="p">:</span> <span class="n">entity</span><span class="p">},</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Checks if the given entity has any relationships in the graph</span>
+<span class="sd">        database.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            entity (str): The unique identifier of the entity to check.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the entity has at least one edge (relationship),</span>
+<span class="sd">                False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">session</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+            <span class="n">is_exists_result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+                <span class="s2">&quot;MATCH (n1:</span><span class="si">%s</span><span class="s2">)--() WHERE n1.id = $entity RETURN count(*)&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="n">BASE_ENTITY_LABEL</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)),</span>
+                <span class="p">{</span><span class="s2">&quot;entity&quot;</span><span class="p">:</span> <span class="n">entity</span><span class="p">},</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">is_exists_result</span><span class="p">))</span>
+
+<div class="viewcode-block" id="Neo4jGraph.delete_triplet">
+<a class="viewcode-back" href="../../../../camel.storages.graph_storages.html#camel.storages.Neo4jGraph.delete_triplet">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete_triplet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subj</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">rel</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Deletes a specific triplet from the graph, comprising a subject,</span>
+<span class="sd">        object and relationship.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            subj (str): The identifier for the subject entity.</span>
+<span class="sd">            obj (str): The identifier for the object entity.</span>
+<span class="sd">            rel (str): The relationship between the subject and object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_delete_rel</span><span class="p">(</span><span class="n">subj</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">rel</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_edges</span><span class="p">(</span><span class="n">subj</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_delete_entity</span><span class="p">(</span><span class="n">subj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_edges</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_delete_entity</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_node_import_query</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">base_entity_label</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">include_source</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Constructs a Cypher query string for importing nodes into a Neo4j</span>
+<span class="sd">        database.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            base_entity_label (bool): Flag indicating whether to use a base</span>
+<span class="sd">                entity label in the MERGE operation.</span>
+<span class="sd">            include_source (bool): Flag indicating whether to include source</span>
+<span class="sd">                element information in the query.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: A Cypher query string tailored based on the provided flags.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">REL</span> <span class="o">=</span> <span class="s1">&#39;MERGE (d)-[:MENTIONS]-&gt;(source) &#39;</span> <span class="k">if</span> <span class="n">include_source</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">base_entity_label</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">INCLUDE_DOCS_QUERY</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">include_source</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;UNWIND $data AS row &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;MERGE (source:`</span><span class="si">{</span><span class="n">BASE_ENTITY_LABEL</span><span class="si">}</span><span class="s2">` </span><span class="se">{{</span><span class="s2">id: row.id</span><span class="se">}}</span><span class="s2">) &quot;</span>
+                <span class="s2">&quot;SET source += row.properties &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">REL</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;WITH source, row &quot;</span>
+                <span class="s2">&quot;CALL apoc.create.addLabels( source, [row.type] ) YIELD node &quot;</span>
+                <span class="s2">&quot;RETURN distinct &#39;done&#39; AS result&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">INCLUDE_DOCS_QUERY</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">include_source</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;UNWIND $data AS row &quot;</span>
+                <span class="s2">&quot;CALL apoc.merge.node([row.type], {id: row.id}, &quot;</span>
+                <span class="s2">&quot;row.properties, </span><span class="si">{}</span><span class="s2">) YIELD node &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;MERGE (d)-[:MENTIONS]-&gt;(node) &#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">include_source</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;RETURN distinct &#39;done&#39; AS result&quot;</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_rel_import_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_entity_label</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Constructs a Cypher query string for importing relationship into a</span>
+<span class="sd">        Neo4j database.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            base_entity_label (bool): Flag indicating whether to use a base</span>
+<span class="sd">                entity label in the MERGE operation.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: A Cypher query string tailored based on the provided flags.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">base_entity_label</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="s2">&quot;UNWIND $data AS row &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;MERGE (subj:`</span><span class="si">{</span><span class="n">BASE_ENTITY_LABEL</span><span class="si">}</span><span class="s2">` </span><span class="se">{{</span><span class="s2">id: row.subj</span><span class="se">}}</span><span class="s2">) &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;MERGE (obj:`</span><span class="si">{</span><span class="n">BASE_ENTITY_LABEL</span><span class="si">}</span><span class="s2">` </span><span class="se">{{</span><span class="s2">id: row.obj</span><span class="se">}}</span><span class="s2">) &quot;</span>
+                <span class="s2">&quot;WITH subj, obj, row &quot;</span>
+                <span class="s2">&quot;CALL apoc.merge.relationship(subj, row.type, &quot;</span>
+                <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">, row.properties, obj) YIELD rel &quot;</span>
+                <span class="s2">&quot;RETURN distinct &#39;done&#39;&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="s2">&quot;UNWIND $data AS row &quot;</span>
+                <span class="s2">&quot;CALL apoc.merge.node([row.subj_label], {id: row.subj},&quot;</span>
+                <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">) YIELD node as subj &quot;</span>
+                <span class="s2">&quot;CALL apoc.merge.node([row.obj_label], {id: row.obj},&quot;</span>
+                <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">) YIELD node as obj &quot;</span>
+                <span class="s2">&quot;CALL apoc.merge.relationship(subj, row.type, &quot;</span>
+                <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">, row.properties, obj) YIELD rel &quot;</span>
+                <span class="s2">&quot;RETURN distinct &#39;done&#39;&quot;</span>
+            <span class="p">)</span>
+
+<div class="viewcode-block" id="Neo4jGraph.add_graph_elements">
+<a class="viewcode-back" href="../../../../camel.storages.graph_storages.html#camel.storages.Neo4jGraph.add_graph_elements">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_graph_elements</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">graph_elements</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GraphElement</span><span class="p">],</span>
+        <span class="n">include_source</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">base_entity_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Adds nodes and relationships from a list of GraphElement objects</span>
+<span class="sd">        to the graph storage.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph_elements (List[GraphElement]): A list of GraphElement</span>
+<span class="sd">                objects that contain the nodes and relationships to be added</span>
+<span class="sd">                to the graph. Each GraphElement should encapsulate the</span>
+<span class="sd">                structure of part of the graph, including nodes,</span>
+<span class="sd">                relationships, and the source element information.</span>
+<span class="sd">            include_source (bool, optional): If True, stores the source</span>
+<span class="sd">                element and links it to nodes in the graph using the MENTIONS</span>
+<span class="sd">                relationship. This is useful for tracing back the origin of</span>
+<span class="sd">                data. Merges source elements based on the `id` property from</span>
+<span class="sd">                the source element metadata if available; otherwise it</span>
+<span class="sd">                calculates the MD5 hash of `page_content` for merging process.</span>
+<span class="sd">                Defaults to `False`.</span>
+<span class="sd">            base_entity_label (bool, optional): If True, each newly created</span>
+<span class="sd">                node gets a secondary `BASE_ENTITY_LABEL` label, which is</span>
+<span class="sd">                indexed and improves import speed and performance. Defaults to</span>
+<span class="sd">                `False`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">base_entity_label</span><span class="p">:</span>  <span class="c1"># check if constraint already exists</span>
+            <span class="n">constraint_exists</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span>
+                <span class="n">el</span><span class="p">[</span><span class="s2">&quot;labelsOrTypes&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="n">BASE_ENTITY_LABEL</span><span class="p">]</span>
+                <span class="ow">and</span> <span class="n">el</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">structured_schema</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                    <span class="s2">&quot;constraint&quot;</span><span class="p">,</span> <span class="p">[]</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">constraint_exists</span><span class="p">:</span>
+                <span class="c1"># Create constraint</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+                    <span class="s2">&quot;CREATE CONSTRAINT IF NOT EXISTS FOR&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;(b:</span><span class="si">{</span><span class="n">BASE_ENTITY_LABEL</span><span class="si">}</span><span class="s2">) &quot;</span>
+                    <span class="s2">&quot;REQUIRE b.id IS UNIQUE;&quot;</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">refresh_schema</span><span class="p">()</span>  <span class="c1"># refresh constraint information</span>
+
+        <span class="n">node_import_query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_node_import_query</span><span class="p">(</span>
+            <span class="n">base_entity_label</span><span class="p">,</span> <span class="n">include_source</span>
+        <span class="p">)</span>
+        <span class="n">rel_import_query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_rel_import_query</span><span class="p">(</span><span class="n">base_entity_label</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">graph_elements</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">element</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()[</span><span class="s1">&#39;element_id&#39;</span><span class="p">]:</span>
+                <span class="n">element</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()[</span><span class="s1">&#39;element_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">md5</span><span class="p">(</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+            <span class="c1"># Import nodes</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+                <span class="n">node_import_query</span><span class="p">,</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">el</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">nodes</span><span class="p">],</span>
+                    <span class="s2">&quot;element&quot;</span><span class="p">:</span> <span class="n">element</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span>
+                <span class="p">},</span>
+            <span class="p">)</span>
+            <span class="c1"># Import relationships</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+                <span class="n">rel_import_query</span><span class="p">,</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;subj&quot;</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">subj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                            <span class="s2">&quot;subj_label&quot;</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">subj</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+                            <span class="s2">&quot;obj&quot;</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                            <span class="s2">&quot;obj_label&quot;</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+                            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
+                            <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="n">el</span><span class="o">.</span><span class="n">properties</span><span class="p">,</span>
+                        <span class="p">}</span>
+                        <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">relationships</span>
+                    <span class="p">]</span>
+                <span class="p">},</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Neo4jGraph.random_walk_with_restarts">
+<a class="viewcode-back" href="../../../../camel.storages.graph_storages.html#camel.storages.Neo4jGraph.random_walk_with_restarts">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">random_walk_with_restarts</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">graph_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">sampling_ratio</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">start_node_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+        <span class="n">restart_probability</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">node_label_stratification</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">relationship_weight_property</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Runs the Random Walk with Restarts (RWR) sampling algorithm.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph_name (str): The name of the original graph in the graph</span>
+<span class="sd">                catalog.</span>
+<span class="sd">            sampling_ratio (float): The fraction of nodes in the original</span>
+<span class="sd">                graph to be sampled.</span>
+<span class="sd">            start_node_ids (List[int]): IDs of the initial set of nodes of the</span>
+<span class="sd">                original graph from which the sampling random walks will start.</span>
+<span class="sd">            restart_probability (float, optional): The probability that a</span>
+<span class="sd">                sampling random walk restarts from one of the start nodes.</span>
+<span class="sd">                Defaults to `0.1`.</span>
+<span class="sd">            node_label_stratification (bool, optional): If true, preserves the</span>
+<span class="sd">                node label distribution of the original graph. Defaults to</span>
+<span class="sd">                `False`.</span>
+<span class="sd">            relationship_weight_property (Optional[str], optional): Name of</span>
+<span class="sd">                the relationship property to use as weights. If unspecified,</span>
+<span class="sd">                the algorithm runs unweighted. Defaults to `None`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict[str, Any]: A dictionary with the results of the RWR sampling.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">neo4j.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClientError</span><span class="p">,</span> <span class="n">CypherSyntaxError</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="s2">&quot;CALL gds.version() YIELD version RETURN version&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ClientError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Graph Data Science (GDS) library is not installed or not&quot;</span>
+                <span class="s2">&quot; available. Reference: https://neo4j.com/docs/graph-data-science/current/installation/&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        CALL gds.graph.sample.rwr($graphName, $fromGraphName, {</span>
+<span class="s2">            samplingRatio: $samplingRatio,</span>
+<span class="s2">            startNodes: $startNodes,</span>
+<span class="s2">            restartProbability: $restartProbability,</span>
+<span class="s2">            nodeLabelStratification: $nodeLabelStratification,</span>
+<span class="s2">            relationshipWeightProperty: $relationshipWeightProperty</span>
+<span class="s2">        })</span>
+<span class="s2">        YIELD graphName, fromGraphName, nodeCount, </span>
+<span class="s2">        relationshipCount, startNodeCount, projectMillis</span>
+<span class="s2">        RETURN graphName, fromGraphName, nodeCount, </span>
+<span class="s2">        relationshipCount, startNodeCount, projectMillis</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;graphName&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">graph_name</span><span class="si">}</span><span class="s2">_sampled&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fromGraphName&quot;</span><span class="p">:</span> <span class="n">graph_name</span><span class="p">,</span>
+            <span class="s2">&quot;samplingRatio&quot;</span><span class="p">:</span> <span class="n">sampling_ratio</span><span class="p">,</span>
+            <span class="s2">&quot;startNodes&quot;</span><span class="p">:</span> <span class="n">start_node_ids</span><span class="p">,</span>
+            <span class="s2">&quot;restartProbability&quot;</span><span class="p">:</span> <span class="n">restart_probability</span><span class="p">,</span>
+            <span class="s2">&quot;nodeLabelStratification&quot;</span><span class="p">:</span> <span class="n">node_label_stratification</span><span class="p">,</span>
+            <span class="s2">&quot;relationshipWeightProperty&quot;</span><span class="p">:</span> <span class="n">relationship_weight_property</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">result</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="k">except</span> <span class="n">CypherSyntaxError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generated Cypher Statement is not valid</span><span class="se">\n</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Neo4jGraph.common_neighbour_aware_random_walk">
+<a class="viewcode-back" href="../../../../camel.storages.graph_storages.html#camel.storages.Neo4jGraph.common_neighbour_aware_random_walk">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">common_neighbour_aware_random_walk</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">graph_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">sampling_ratio</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">start_node_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+        <span class="n">node_label_stratification</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">relationship_weight_property</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Runs the Common Neighbour Aware Random Walk (CNARW) sampling</span>
+<span class="sd">        algorithm.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph_name (str): The name of the original graph in the graph</span>
+<span class="sd">                catalog.</span>
+<span class="sd">            sampling_ratio (float): The fraction of nodes in the original</span>
+<span class="sd">                graph to be sampled.</span>
+<span class="sd">            start_node_ids (List[int]): IDs of the initial set of nodes of the</span>
+<span class="sd">                original graph from which the sampling random walks will start.</span>
+<span class="sd">            node_label_stratification (bool, optional): If true, preserves the</span>
+<span class="sd">                node label distribution of the original graph. Defaults to</span>
+<span class="sd">                `False`.</span>
+<span class="sd">            relationship_weight_property (Optional[str], optional): Name of</span>
+<span class="sd">                the relationship property to use as weights. If unspecified,</span>
+<span class="sd">                the algorithm runs unweighted. Defaults to `None`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict[str, Any]: A dictionary with the results of the CNARW</span>
+<span class="sd">                sampling.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">neo4j.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClientError</span><span class="p">,</span> <span class="n">CypherSyntaxError</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="s2">&quot;CALL gds.version() YIELD version RETURN version&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ClientError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Graph Data Science (GDS) library is not installed or not&quot;</span>
+                <span class="s2">&quot; available. Reference: https://neo4j.com/docs/graph-data-science/current/installation/&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        CALL gds.graph.sample.cnarw($graphName, $fromGraphName, {</span>
+<span class="s2">            samplingRatio: $samplingRatio,</span>
+<span class="s2">            startNodes: $startNodes,</span>
+<span class="s2">            nodeLabelStratification: $nodeLabelStratification,</span>
+<span class="s2">            relationshipWeightProperty: $relationshipWeightProperty</span>
+<span class="s2">        })</span>
+<span class="s2">        YIELD graphName, fromGraphName, nodeCount, </span>
+<span class="s2">        relationshipCount, startNodeCount, projectMillis</span>
+<span class="s2">        RETURN graphName, fromGraphName, nodeCount, </span>
+<span class="s2">        relationshipCount, startNodeCount, projectMillis</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;graphName&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">graph_name</span><span class="si">}</span><span class="s2">_sampled_cnarw&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fromGraphName&quot;</span><span class="p">:</span> <span class="n">graph_name</span><span class="p">,</span>
+            <span class="s2">&quot;samplingRatio&quot;</span><span class="p">:</span> <span class="n">sampling_ratio</span><span class="p">,</span>
+            <span class="s2">&quot;startNodes&quot;</span><span class="p">:</span> <span class="n">start_node_ids</span><span class="p">,</span>
+            <span class="s2">&quot;nodeLabelStratification&quot;</span><span class="p">:</span> <span class="n">node_label_stratification</span><span class="p">,</span>
+            <span class="s2">&quot;relationshipWeightProperty&quot;</span><span class="p">:</span> <span class="n">relationship_weight_property</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">result</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="k">except</span> <span class="n">CypherSyntaxError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generated Cypher Statement is not valid</span><span class="se">\n</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

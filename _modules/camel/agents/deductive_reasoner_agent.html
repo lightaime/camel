@@ -1,0 +1,803 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>camel.agents.deductive_reasoner_agent &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=30d83864"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/camel/agents/deductive_reasoner_agent';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../camel.html">camel package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2F_modules/camel/agents/deductive_reasoner_agent.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for camel.agents.deductive_reasoner_agent</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="c1"># ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.agents.chat_agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseMessage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModelBackend</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextPrompt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">RoleType</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># AgentOps decorator setting</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AGENTOPS_API_KEY&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">agentops</span><span class="w"> </span><span class="kn">import</span> <span class="n">track_agent</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span>
+<span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">camel.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">track_agent</span>
+
+
+<div class="viewcode-block" id="DeductiveReasonerAgent">
+<a class="viewcode-back" href="../../../camel.agents.html#camel.agents.deductive_reasoner_agent.DeductiveReasonerAgent">[docs]</a>
+<span class="nd">@track_agent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;DeductiveReasonerAgent&quot;</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DeductiveReasonerAgent</span><span class="p">(</span><span class="n">ChatAgent</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;An agent responsible for deductive reasoning. Model of deductive</span>
+<span class="sd">    reasoning:</span>
+<span class="sd">        - L: A ⊕ C -&gt; q * B</span>
+<span class="sd">        - A represents the known starting state.</span>
+<span class="sd">        - B represents the known target state.</span>
+<span class="sd">        - C represents the conditions required to transition from A to B.</span>
+<span class="sd">        - Q represents the quality or effectiveness of the transition from</span>
+<span class="sd">        A to B.</span>
+<span class="sd">        - L represents the path or process from A to B.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model (BaseModelBackend, optional): The model backend to use for</span>
+<span class="sd">            generating responses. (default: :obj:`OpenAIModel` with</span>
+<span class="sd">            `GPT_4O_MINI`)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">BaseModelBackend</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">system_message</span> <span class="o">=</span> <span class="n">BaseMessage</span><span class="p">(</span>
+            <span class="n">role_name</span><span class="o">=</span><span class="s2">&quot;Insight Agent&quot;</span><span class="p">,</span>
+            <span class="n">role_type</span><span class="o">=</span><span class="n">RoleType</span><span class="o">.</span><span class="n">ASSISTANT</span><span class="p">,</span>
+            <span class="n">meta_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">content</span><span class="o">=</span><span class="s2">&quot;You assign roles based on tasks.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">system_message</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DeductiveReasonerAgent.deduce_conditions_and_quality">
+<a class="viewcode-back" href="../../../camel.agents.html#camel.agents.deductive_reasoner_agent.DeductiveReasonerAgent.deduce_conditions_and_quality">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">deduce_conditions_and_quality</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">starting_state</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">target_state</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">role_descriptions_dict</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Derives the conditions and quality from the starting state and the</span>
+<span class="sd">        target state based on the model of the deductive reasoning and the</span>
+<span class="sd">        knowledge base. It can optionally consider the roles involved in the</span>
+<span class="sd">        scenario, which allows tailoring the output more closely to the AI</span>
+<span class="sd">        agent&#39;s environment.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            starting_state (str): The initial or starting state from which</span>
+<span class="sd">                conditions are deduced.</span>
+<span class="sd">            target_state (str): The target state of the task.</span>
+<span class="sd">            role_descriptions_dict (Optional[Dict[str, str]], optional): The</span>
+<span class="sd">                descriptions of the roles. (default: :obj:`None`)</span>
+<span class="sd">            role_descriptions_dict (Optional[Dict[str, str]], optional): A</span>
+<span class="sd">                dictionary describing the roles involved in the scenario. This</span>
+<span class="sd">                is optional and can be used to provide a context for the</span>
+<span class="sd">                CAMEL&#39;s role-playing, enabling the generation of more relevant</span>
+<span class="sd">                and tailored conditions and quality assessments. This could be</span>
+<span class="sd">                generated using a `RoleAssignmentAgent()` or defined manually</span>
+<span class="sd">                by the user.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict[str, Union[List[str], Dict[str, str]]]: A dictionary with the</span>
+<span class="sd">                extracted data from the message. The dictionary contains three</span>
+<span class="sd">                keys:</span>
+<span class="sd">                - &#39;conditions&#39;: A list where each key is a condition ID and</span>
+<span class="sd">                    each value is the corresponding condition text.</span>
+<span class="sd">                - &#39;labels&#39;: A list of label strings extracted from the message.</span>
+<span class="sd">                - &#39;quality&#39;: A string of quality assessment strings extracted</span>
+<span class="sd">                    from the message.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+        <span class="n">deduce_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a deductive reasoner. You are tasked to </span>
+<span class="s2">        complete the TASK based on the THOUGHT OF DEDUCTIVE REASONING, the </span>
+<span class="s2">        STARTING STATE A and the TARGET STATE B. You are given the CONTEXT </span>
+<span class="s2">        CONTENT to help you complete the TASK.</span>
+<span class="s2">Your answer MUST strictly adhere to the structure of ANSWER TEMPLATE, ONLY </span>
+<span class="s2">fill in the BLANKs, and DO NOT alter or modify any other part of the template</span>
+
+<span class="s2">===== MODELING OF DEDUCTIVE REASONING =====</span>
+<span class="s2">You are tasked with understanding a mathematical model based on the components </span>
+<span class="s2">${A, B, C, Q, L}$. In this model: ``L: A ⊕ C -&gt; q * B``.</span>
+<span class="s2">- $A$ represents the known starting state.</span>
+<span class="s2">- $B$ represents the known target state.</span>
+<span class="s2">- $C$ represents the conditions required to transition from $A$ to $B$.</span>
+<span class="s2">- $Q$ represents the quality or effectiveness of the transition from $A$ to </span>
+<span class="s2">$B$.</span>
+<span class="s2">- $L$ represents the path or process from $A$ to $B$.</span>
+
+<span class="s2">===== THOUGHT OF DEDUCTIVE REASONING =====</span>
+<span class="s2">1. Define the Parameters of A and B:</span>
+<span class="s2">    - Characterization: Before delving into transitions, thoroughly understand </span>
+<span class="s2">    the nature and boundaries of both $A$ and $B$. This includes the type, </span>
+<span class="s2">    properties, constraints, and possible interactions between the two.</span>
+<span class="s2">    - Contrast and Compare: Highlight the similarities and differences between </span>
+<span class="s2">    $A$ and $B$. This comparative analysis will give an insight into what </span>
+<span class="s2">    needs changing and what remains constant.</span>
+<span class="s2">2. Historical &amp; Empirical Analysis:</span>
+<span class="s2">    - Previous Transitions according to the Knowledge Base of GPT: (if </span>
+<span class="s2">    applicable) Extract conditions and patterns from the historical instances </span>
+<span class="s2">    where a similar transition from a state comparable to $A$ moved towards </span>
+<span class="s2">    $B$.</span>
+<span class="s2">    - Scientific Principles: (if applicable) Consider the underlying </span>
+<span class="s2">    scientific principles governing or related to the states and their </span>
+<span class="s2">    transition. For example, if $A$ and $B$ are physical states, laws of </span>
+<span class="s2">    physics might apply.</span>
+<span class="s2">3. Logical Deduction of Conditions ($C$):</span>
+<span class="s2">    - Direct Path Analysis: What are the immediate and direct conditions </span>
+<span class="s2">    required to move from $A$ to $B$?</span>
+<span class="s2">    - Intermediate States: Are there states between $A$ and $B$ that must be </span>
+<span class="s2">    traversed or can be used to make the transition smoother or more </span>
+<span class="s2">    efficient? If yes, what is the content?</span>
+<span class="s2">    - Constraints &amp; Limitations: Identify potential barriers or restrictions </span>
+<span class="s2">    in moving from $A$ to $B$. These can be external (e.g., environmental </span>
+<span class="s2">    factors) or internal (properties of $A$ or $B$).</span>
+<span class="s2">    - Resource and Information Analysis: What resources and information are </span>
+<span class="s2">    required for the transition? This could be time, entity, factor, code </span>
+<span class="s2">    language, software platform, unknowns, etc.</span>
+<span class="s2">    - External Influences: Consider socio-economic, political, or </span>
+<span class="s2">    environmental factors (if applicable) that could influence the transition </span>
+<span class="s2">    conditions.</span>
+<span class="s2">    - Creative/Heuristic Reasoning: Open your mind to multiple possible $C$&#39;s, </span>
+<span class="s2">    no matter how unconventional they might seem. Utilize analogies, </span>
+<span class="s2">    metaphors, or brainstorming techniques to envision possible conditions or </span>
+<span class="s2">    paths from $A$ to $B$.</span>
+<span class="s2">    - The conditions $C$ should be multiple but in one sentence. And each </span>
+<span class="s2">    condition should be concerned with one aspect/entity.</span>
+<span class="s2">4. Entity/Label Recognition of Conditions ($C$):</span>
+<span class="s2">    - Identify and categorize entities of Conditions ($C$) such as the names, </span>
+<span class="s2">    locations, dates, specific technical terms or contextual parameters that </span>
+<span class="s2">    might be associated with events, innovations post-2022.</span>
+<span class="s2">    - The output of the entities/labels will be used as tags or labels for </span>
+<span class="s2">    semantic similarity searches. The entities/labels may be the words, or </span>
+<span class="s2">    phrases, each of them should contain valuable, high information entropy </span>
+<span class="s2">    information, and should be independent.</span>
+<span class="s2">    - Ensure that the identified entities are formatted in a manner suitable </span>
+<span class="s2">    for database indexing and retrieval. Organize the entities into </span>
+<span class="s2">    categories, and combine the category with its instance into a continuous </span>
+<span class="s2">    phrase, without using colons or other separators.</span>
+<span class="s2">    - Format these entities for database indexing: output the category rather </span>
+<span class="s2">    than its instance/content into a continuous phrase. For example, instead </span>
+<span class="s2">    of &quot;Jan. 02&quot;, identify it as &quot;Event time&quot;.</span>
+<span class="s2">5. Quality Assessment ($Q$):</span>
+<span class="s2">    - Efficiency: How efficient is the transition from $A$ to $B$, which </span>
+<span class="s2">    measures the resources used versus the desired outcome?</span>
+<span class="s2">    - Effectiveness: Did the transition achieve the desired outcome or was the </span>
+<span class="s2">    target state achieved as intended?</span>
+<span class="s2">    - Safety &amp; Risks: Assess any risks associated with the transition and the </span>
+<span class="s2">    measures to mitigate them.</span>
+<span class="s2">    - Feedback Mechanisms: Incorporate feedback loops to continuously monitor </span>
+<span class="s2">    and adjust the quality of transition, making it more adaptive.</span>
+<span class="s2">6. Iterative Evaluation:</span>
+<span class="s2">    - Test &amp; Refine: Based on the initially deduced conditions and assessed </span>
+<span class="s2">    quality, iterate the process to refine and optimize the transition. This </span>
+<span class="s2">    might involve tweaking conditions, employing different paths, or changing </span>
+<span class="s2">    resources.</span>
+<span class="s2">    - Feedback Integration: Use feedback to make improvements and increase the </span>
+<span class="s2">    quality of the transition.</span>
+<span class="s2">7. Real-world scenarios often present challenges that may not be captured by </span>
+<span class="s2">models and frameworks. While using the model, maintain an adaptive mindset:</span>
+<span class="s2">    - Scenario Exploration: Continuously imagine various possible scenarios, </span>
+<span class="s2">    both positive and negative, to prepare for unexpected events.</span>
+<span class="s2">    - Flexibility: Be prepared to modify conditions ($C$) or alter the path/</span>
+<span class="s2">    process ($L$) if unforeseen challenges arise.</span>
+<span class="s2">    - Feedback Integration: Rapidly integrate feedback from actual </span>
+<span class="s2">    implementations to adjust the model&#39;s application, ensuring relevancy and </span>
+<span class="s2">    effectiveness.</span>
+
+<span class="s2">===== TASK =====</span>
+<span class="s2">Given the starting state $A$ and the target state $B$, assuming that a path </span>
+<span class="s2">$L$ always exists between $A$ and $B$, how can one deduce or identify the </span>
+<span class="s2">necessary conditions $C$ and the quality $Q$ of the transition?</span>
+
+<span class="s2">===== STARTING STATE $A$ =====</span>
+<span class="si">{starting_state}</span>
+
+<span class="s2">===== TARGET STATE $B$ =====</span>
+<span class="si">{target_state}</span>
+
+<span class="si">{role_with_description_prompt}</span>
+<span class="s2">===== ANSWER TEMPLATE =====</span>
+<span class="s2">- Characterization and comparison of $A$ and $B$:</span><span class="se">\n</span><span class="s2">&lt;BLANK&gt;</span>
+<span class="s2">- Historical &amp; Empirical Analysis:</span><span class="se">\n</span><span class="s2">&lt;BLANK&gt;/None</span>
+<span class="s2">- Logical Deduction of Conditions ($C$) (multiple conditions can be deduced):</span>
+<span class="s2">    condition &lt;NUM&gt;:</span>
+<span class="s2">        &lt;BLANK&gt;.</span>
+<span class="s2">- Entity/Label Recognition of Conditions:</span><span class="se">\n</span><span class="s2">[&lt;BLANK&gt;, &lt;BLANK&gt;, ...] (include </span>
+<span class="s2">square brackets)</span>
+<span class="s2">- Quality Assessment ($Q$) (do not use symbols):</span>
+<span class="s2">    &lt;BLANK&gt;.</span>
+<span class="s2">- Iterative Evaluation:</span><span class="se">\n</span><span class="s2">&lt;BLANK&gt;/None&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">role_descriptions_dict</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">role_names</span> <span class="o">=</span> <span class="n">role_descriptions_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+            <span class="n">role_with_description_prompt</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s2">&quot;===== ROLES WITH DESCRIPTIONS =====</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">role_name</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="si">{</span><span class="n">role_descriptions_dict</span><span class="p">[</span><span class="n">role_name</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="k">for</span> <span class="n">role_name</span> <span class="ow">in</span> <span class="n">role_names</span>
+                <span class="p">)</span>
+                <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">role_with_description_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">deduce_prompt</span> <span class="o">=</span> <span class="n">TextPrompt</span><span class="p">(</span><span class="n">deduce_prompt</span><span class="p">)</span>
+
+        <span class="n">deduce</span> <span class="o">=</span> <span class="n">deduce_prompt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">starting_state</span><span class="o">=</span><span class="n">starting_state</span><span class="p">,</span>
+            <span class="n">target_state</span><span class="o">=</span><span class="n">target_state</span><span class="p">,</span>
+            <span class="n">role_with_description_prompt</span><span class="o">=</span><span class="n">role_with_description_prompt</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">conditions_and_quality_generation_msg</span> <span class="o">=</span> <span class="n">BaseMessage</span><span class="o">.</span><span class="n">make_user_message</span><span class="p">(</span>
+            <span class="n">role_name</span><span class="o">=</span><span class="s2">&quot;Deductive Reasoner&quot;</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">deduce</span>
+        <span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">(</span>
+            <span class="n">input_message</span><span class="o">=</span><span class="n">conditions_and_quality_generation_msg</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">terminated</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">&quot;Deduction failed. Error:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">info</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="n">msg</span><span class="p">:</span> <span class="n">BaseMessage</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">msg</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Message content:</span><span class="se">\n</span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Extract the conditions from the message</span>
+        <span class="n">conditions_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sa">f</span><span class="s2">&quot;condition </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">cdt</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cdt</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span>
+                <span class="sa">r</span><span class="s2">&quot;condition (\d+):\s*(.+?)(?=condition \d+|- Entity)&quot;</span><span class="p">,</span>
+                <span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
+                <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Extract the labels from the message</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span>
+                <span class="sa">r</span><span class="s2">&quot;Entity/Label Recognition of Conditions:\n\[(.+?)\]&quot;</span><span class="p">,</span>
+                <span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
+                <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">,</span>
+            <span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="c1"># Extract the quality from the message</span>
+        <span class="n">quality</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
+            <span class="n">q</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span>
+                <span class="sa">r</span><span class="s2">&quot;Quality Assessment \(\$Q\$\) \(do not use symbols\):&quot;</span>
+                <span class="sa">r</span><span class="s2">&quot;\n(.+?)- Iterative&quot;</span><span class="p">,</span>
+                <span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
+                <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Convert them into JSON format</span>
+        <span class="n">conditions_and_quality_json</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span>
+            <span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">conditions_and_quality_json</span><span class="p">[</span><span class="s2">&quot;conditions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">conditions_dict</span>
+        <span class="n">conditions_and_quality_json</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
+        <span class="n">conditions_and_quality_json</span><span class="p">[</span><span class="s2">&quot;evaluate_quality&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">quality</span>
+
+        <span class="k">return</span> <span class="n">conditions_and_quality_json</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

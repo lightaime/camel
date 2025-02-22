@@ -1,0 +1,922 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>camel.utils.token_counting &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=30d83864"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/camel/utils/token_counting';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../camel.html">camel package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2F_modules/camel/utils/token_counting.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for camel.utils.token_counting</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="c1"># ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">ceil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ModelType</span><span class="p">,</span>
+    <span class="n">OpenAIImageType</span><span class="p">,</span>
+    <span class="n">OpenAIVisionDetailType</span><span class="p">,</span>
+    <span class="n">UnifiedModelType</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">dependencies_required</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">mistral_common.protocol.instruct.request</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>  <span class="c1"># type:ignore[import-not-found]</span>
+        <span class="n">ChatCompletionRequest</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">camel.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIMessage</span>
+
+<span class="n">LOW_DETAIL_TOKENS</span> <span class="o">=</span> <span class="mi">85</span>
+<span class="n">FIT_SQUARE_PIXELS</span> <span class="o">=</span> <span class="mi">2048</span>
+<span class="n">SHORTEST_SIDE_PIXELS</span> <span class="o">=</span> <span class="mi">768</span>
+<span class="n">SQUARE_PIXELS</span> <span class="o">=</span> <span class="mi">512</span>
+<span class="n">SQUARE_TOKENS</span> <span class="o">=</span> <span class="mi">170</span>
+<span class="n">EXTRA_TOKENS</span> <span class="o">=</span> <span class="mi">85</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="get_model_encoding">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.token_counting.get_model_encoding">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_model_encoding</span><span class="p">(</span><span class="n">value_for_tiktoken</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Get model encoding from tiktoken.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        value_for_tiktoken: Model value for tiktoken.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tiktoken.Encoding: Model encoding.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">tiktoken</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">encoding</span> <span class="o">=</span> <span class="n">tiktoken</span><span class="o">.</span><span class="n">encoding_for_model</span><span class="p">(</span><span class="n">value_for_tiktoken</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">value_for_tiktoken</span> <span class="ow">in</span> <span class="p">[</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">O1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">O1_MINI</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">O1_PREVIEW</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+        <span class="p">]:</span>
+            <span class="n">encoding</span> <span class="o">=</span> <span class="n">tiktoken</span><span class="o">.</span><span class="n">get_encoding</span><span class="p">(</span><span class="s2">&quot;o200k_base&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Model not found. Using cl100k_base encoding.&quot;</span><span class="p">)</span>
+            <span class="n">encoding</span> <span class="o">=</span> <span class="n">tiktoken</span><span class="o">.</span><span class="n">get_encoding</span><span class="p">(</span><span class="s2">&quot;cl100k_base&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">encoding</span></div>
+
+
+
+<div class="viewcode-block" id="BaseTokenCounter">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.token_counting.BaseTokenCounter">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BaseTokenCounter</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Base class for token counters of different kinds of models.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BaseTokenCounter.count_tokens_from_messages">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.token_counting.BaseTokenCounter.count_tokens_from_messages">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">count_tokens_from_messages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">OpenAIMessage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Count number of tokens in the provided message list.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            messages (List[OpenAIMessage]): Message list with the chat history</span>
+<span class="sd">                in OpenAI API format.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: Number of tokens in the messages.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="OpenAITokenCounter">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.token_counting.OpenAITokenCounter">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">OpenAITokenCounter</span><span class="p">(</span><span class="n">BaseTokenCounter</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">UnifiedModelType</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Constructor for the token counter for OpenAI models.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            model (UnifiedModelType): Model type for which tokens will be</span>
+<span class="sd">                counted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">value_for_tiktoken</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokens_per_message</span><span class="p">:</span> <span class="nb">int</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokens_per_name</span><span class="p">:</span> <span class="nb">int</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s2">&quot;gpt-3.5-turbo-0301&quot;</span><span class="p">:</span>
+            <span class="c1"># Every message follows &lt;|start|&gt;{role/name}\n{content}&lt;|end|&gt;\n</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tokens_per_message</span> <span class="o">=</span> <span class="mi">4</span>
+            <span class="c1"># If there&#39;s a name, the role is omitted</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tokens_per_name</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="s2">&quot;gpt-4&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tokens_per_message</span> <span class="o">=</span> <span class="mi">3</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tokens_per_name</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="s2">&quot;o1&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="s2">&quot;o3&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tokens_per_message</span> <span class="o">=</span> <span class="mi">2</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tokens_per_name</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># flake8: noqa :E501</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="s2">&quot;Token counting for OpenAI Models is not presently &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;implemented for model </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">. &quot;</span>
+                <span class="s2">&quot;See https://github.com/openai/openai-python/blob/main/chatml.md &quot;</span>
+                <span class="s2">&quot;for information on how messages are converted to tokens. &quot;</span>
+                <span class="s2">&quot;See https://platform.openai.com/docs/models/gpt-4&quot;</span>
+                <span class="s2">&quot;or https://platform.openai.com/docs/models/gpt-3-5&quot;</span>
+                <span class="s2">&quot;for information about openai chat models.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="n">get_model_encoding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+
+<div class="viewcode-block" id="OpenAITokenCounter.count_tokens_from_messages">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.token_counting.OpenAITokenCounter.count_tokens_from_messages">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">count_tokens_from_messages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">OpenAIMessage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Count number of tokens in the provided message list with the</span>
+<span class="sd">        help of package tiktoken.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            messages (List[OpenAIMessage]): Message list with the chat history</span>
+<span class="sd">                in OpenAI API format.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: Number of tokens in the messages.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">num_tokens</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
+            <span class="n">num_tokens</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokens_per_message</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">message</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="n">num_tokens</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">disallowed_special</span><span class="o">=</span><span class="p">())</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span>
+                            <span class="n">num_tokens</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+                                    <span class="nb">str</span><span class="p">(</span>
+                                        <span class="n">item</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span>
+                                    <span class="p">),</span>
+                                    <span class="n">disallowed_special</span><span class="o">=</span><span class="p">(),</span>
+                                <span class="p">)</span>
+                            <span class="p">)</span>
+                        <span class="k">elif</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;image_url&quot;</span><span class="p">:</span>
+                            <span class="n">image_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;image_url&quot;</span><span class="p">][</span><span class="s2">&quot;url&quot;</span><span class="p">]</span>
+                            <span class="n">detail</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;image_url&quot;</span><span class="p">][</span><span class="s2">&quot;detail&quot;</span><span class="p">]</span>
+
+                            <span class="n">image_prefix_format</span> <span class="o">=</span> <span class="s2">&quot;data:image/</span><span class="si">{}</span><span class="s2">;base64,&quot;</span>
+                            <span class="n">image_prefix</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                            <span class="k">for</span> <span class="n">image_type</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">OpenAIImageType</span><span class="p">):</span>
+                                <span class="c1"># Find the correct image format</span>
+                                <span class="n">image_prefix</span> <span class="o">=</span> <span class="n">image_prefix_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                    <span class="n">image_type</span><span class="o">.</span><span class="n">value</span>
+                                <span class="p">)</span>
+                                <span class="k">if</span> <span class="n">image_prefix</span> <span class="ow">in</span> <span class="n">image_str</span><span class="p">:</span>
+                                    <span class="k">break</span>
+                            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">image_prefix</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+                            <span class="n">encoded_image</span> <span class="o">=</span> <span class="n">image_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">image_prefix</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+                            <span class="n">image_bytes</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span>
+                                <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">encoded_image</span><span class="p">)</span>
+                            <span class="p">)</span>
+                            <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_bytes</span><span class="p">)</span>
+                            <span class="n">num_tokens</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_count_tokens_from_image</span><span class="p">(</span>
+                                <span class="n">image</span><span class="p">,</span> <span class="n">OpenAIVisionDetailType</span><span class="p">(</span><span class="n">detail</span><span class="p">)</span>
+                            <span class="p">)</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span>
+                    <span class="n">num_tokens</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokens_per_name</span>
+
+        <span class="c1"># every reply is primed with &lt;|start|&gt;assistant&lt;|message|&gt;</span>
+        <span class="n">num_tokens</span> <span class="o">+=</span> <span class="mi">3</span>
+        <span class="k">return</span> <span class="n">num_tokens</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_count_tokens_from_image</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">detail</span><span class="p">:</span> <span class="n">OpenAIVisionDetailType</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Count image tokens for OpenAI vision model. An :obj:`&quot;auto&quot;`</span>
+<span class="sd">        resolution model will be treated as :obj:`&quot;high&quot;`. All images with</span>
+<span class="sd">        :obj:`&quot;low&quot;` detail cost 85 tokens each. Images with :obj:`&quot;high&quot;` detail</span>
+<span class="sd">        are first scaled to fit within a 2048 x 2048 square, maintaining their</span>
+<span class="sd">        aspect ratio. Then, they are scaled such that the shortest side of the</span>
+<span class="sd">        image is 768px long. Finally, we count how many 512px squares the image</span>
+<span class="sd">        consists of. Each of those squares costs 170 tokens. Another 85 tokens are</span>
+<span class="sd">        always added to the final total. For more details please refer to `OpenAI</span>
+<span class="sd">        vision docs &lt;https://platform.openai.com/docs/guides/vision&gt;`_</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            image (PIL.Image.Image): Image to count number of tokens.</span>
+<span class="sd">            detail (OpenAIVisionDetailType): Image detail type to count</span>
+<span class="sd">                number of tokens.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: Number of tokens for the image given a detail type.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">detail</span> <span class="o">==</span> <span class="n">OpenAIVisionDetailType</span><span class="o">.</span><span class="n">LOW</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">LOW_DETAIL_TOKENS</span>
+
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">size</span>
+        <span class="k">if</span> <span class="n">width</span> <span class="o">&gt;</span> <span class="n">FIT_SQUARE_PIXELS</span> <span class="ow">or</span> <span class="n">height</span> <span class="o">&gt;</span> <span class="n">FIT_SQUARE_PIXELS</span><span class="p">:</span>
+            <span class="n">scaling_factor</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span> <span class="o">/</span> <span class="n">FIT_SQUARE_PIXELS</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="n">scaling_factor</span><span class="p">)</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span> <span class="o">/</span> <span class="n">scaling_factor</span><span class="p">)</span>
+
+        <span class="n">scaling_factor</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span> <span class="o">/</span> <span class="n">SHORTEST_SIDE_PIXELS</span>
+        <span class="n">scaled_width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="n">scaling_factor</span><span class="p">)</span>
+        <span class="n">scaled_height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span> <span class="o">/</span> <span class="n">scaling_factor</span><span class="p">)</span>
+
+        <span class="n">h</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">scaled_height</span> <span class="o">/</span> <span class="n">SQUARE_PIXELS</span><span class="p">)</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">scaled_width</span> <span class="o">/</span> <span class="n">SQUARE_PIXELS</span><span class="p">)</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">EXTRA_TOKENS</span> <span class="o">+</span> <span class="n">SQUARE_TOKENS</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">w</span>
+        <span class="k">return</span> <span class="n">total</span></div>
+
+
+
+<div class="viewcode-block" id="AnthropicTokenCounter">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.token_counting.AnthropicTokenCounter">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">AnthropicTokenCounter</span><span class="p">(</span><span class="n">BaseTokenCounter</span><span class="p">):</span>
+    <span class="nd">@dependencies_required</span><span class="p">(</span><span class="s1">&#39;anthropic&#39;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Constructor for the token counter for Anthropic models.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            model (str): The name of the Anthropic model being used.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">anthropic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Anthropic</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">Anthropic</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+
+<div class="viewcode-block" id="AnthropicTokenCounter.count_tokens_from_messages">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.token_counting.AnthropicTokenCounter.count_tokens_from_messages">[docs]</a>
+    <span class="nd">@dependencies_required</span><span class="p">(</span><span class="s1">&#39;anthropic&#39;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">count_tokens_from_messages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">OpenAIMessage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Count number of tokens in the provided message list using</span>
+<span class="sd">        loaded tokenizer specific for this type of model.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            messages (List[OpenAIMessage]): Message list with the chat history</span>
+<span class="sd">                in OpenAI API format.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: Number of tokens in the messages.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">anthropic.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">MessageParam</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">count_tokens</span><span class="p">(</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">MessageParam</span><span class="p">(</span>
+                    <span class="n">content</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]),</span>
+                    <span class="n">role</span><span class="o">=</span><span class="s2">&quot;user&quot;</span> <span class="k">if</span> <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;role&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;user&quot;</span> <span class="k">else</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">messages</span>
+            <span class="p">],</span>
+            <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">input_tokens</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="LiteLLMTokenCounter">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.token_counting.LiteLLMTokenCounter">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">LiteLLMTokenCounter</span><span class="p">(</span><span class="n">BaseTokenCounter</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">UnifiedModelType</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Constructor for the token counter for LiteLLM models.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            model_type (UnifiedModelType): Model type for which tokens will be</span>
+<span class="sd">                counted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_type</span> <span class="o">=</span> <span class="n">model_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_token_counter</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_completion_cost</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">token_counter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_token_counter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">litellm</span><span class="w"> </span><span class="kn">import</span> <span class="n">token_counter</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_token_counter</span> <span class="o">=</span> <span class="n">token_counter</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_token_counter</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">completion_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_completion_cost</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">litellm</span><span class="w"> </span><span class="kn">import</span> <span class="n">completion_cost</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_completion_cost</span> <span class="o">=</span> <span class="n">completion_cost</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_completion_cost</span>
+
+<div class="viewcode-block" id="LiteLLMTokenCounter.count_tokens_from_messages">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.token_counting.LiteLLMTokenCounter.count_tokens_from_messages">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">count_tokens_from_messages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">OpenAIMessage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Count number of tokens in the provided message list using</span>
+<span class="sd">        the tokenizer specific to this type of model.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            messages (List[OpenAIMessage]): Message list with the chat history</span>
+<span class="sd">                in LiteLLM API format.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: Number of tokens in the messages.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_counter</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LiteLLMTokenCounter.calculate_cost_from_response">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.token_counting.LiteLLMTokenCounter.calculate_cost_from_response">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_cost_from_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate the cost of the given completion response.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            response (dict): The completion response from LiteLLM.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The cost of the completion call in USD.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">completion_cost</span><span class="p">(</span><span class="n">completion_response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="MistralTokenCounter">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.token_counting.MistralTokenCounter">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MistralTokenCounter</span><span class="p">(</span><span class="n">BaseTokenCounter</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">ModelType</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Constructor for the token counter for Mistral models.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            model_type (ModelType): Model type for which tokens will be</span>
+<span class="sd">                counted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">mistral_common.tokens.tokenizers.mistral</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>  <span class="c1"># type:ignore[import-not-found]</span>
+            <span class="n">MistralTokenizer</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_type</span> <span class="o">=</span> <span class="n">model_type</span>
+
+        <span class="c1"># Determine the model type and set the tokenizer accordingly</span>
+        <span class="n">model_name</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;codestral-22b&quot;</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_type</span>
+            <span class="ow">in</span> <span class="p">{</span>
+                <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_CODESTRAL</span><span class="p">,</span>
+                <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_CODESTRAL_MAMBA</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_type</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">MistralTokenizer</span><span class="o">.</span><span class="n">from_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="MistralTokenCounter.count_tokens_from_messages">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.token_counting.MistralTokenCounter.count_tokens_from_messages">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">count_tokens_from_messages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">OpenAIMessage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Count number of tokens in the provided message list using</span>
+<span class="sd">        loaded tokenizer specific for this type of model.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            messages (List[OpenAIMessage]): Message list with the chat history</span>
+<span class="sd">                in OpenAI API format.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: Total number of tokens in the messages.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">total_tokens</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
+            <span class="n">tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode_chat_completion</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_convert_response_from_openai_to_mistral</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">tokens</span>
+            <span class="n">total_tokens</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">total_tokens</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_convert_response_from_openai_to_mistral</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">openai_msg</span><span class="p">:</span> <span class="n">OpenAIMessage</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChatCompletionRequest</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert an OpenAI message to a Mistral ChatCompletionRequest.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            openai_msg (OpenAIMessage): An individual message with OpenAI</span>
+<span class="sd">                format.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ChatCompletionRequest: The converted message in Mistral&#39;s request</span>
+<span class="sd">                format.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="kn">from</span><span class="w"> </span><span class="nn">mistral_common.protocol.instruct.request</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+            <span class="n">ChatCompletionRequest</span><span class="p">,</span>  <span class="c1"># type:ignore[import-not-found]</span>
+        <span class="p">)</span>
+
+        <span class="n">mistral_request</span> <span class="o">=</span> <span class="n">ChatCompletionRequest</span><span class="p">(</span>  <span class="c1"># type: ignore[type-var]</span>
+            <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[</span><span class="n">openai_msg</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">mistral_request</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+.prev-next-nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 1em 0;
+    padding: 1em 0;
+    border-bottom: 1px solid #eee;
+}
+
+.prev-next-nav a {
+    text-decoration: none;
+    color: #0366d6;
+    padding: 0.5em 1em;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+}
+
+.prev-next-nav a:hover {
+    background-color: #f6f8fa;
+    text-decoration: none;
+}
+
+.left-nav::before {
+    content: "←";
+    margin-right: 0.5em;
+}
+
+.right-nav::after {
+    content: "→";
+    margin-left: 0.5em;
+}

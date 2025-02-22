@@ -1,0 +1,1609 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>camel.societies.workforce package &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=30d83864"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'camel.societies.workforce';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="camel.storages package" href="camel.storages.html" />
+    <link rel="prev" title="camel.societies package" href="camel.societies.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cookbooks/data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cookbooks/data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="camel.html">camel package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 current active has-children"><a class="reference internal" href="camel.societies.html">camel.societies package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l4 current active"><a class="current reference internal" href="#">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/edit/main/camel.societies.workforce.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2Fcamel.societies.workforce.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/camel.societies.workforce.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>camel.societies.workforce package</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-base-module">camel.societies.workforce.base module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.base.BaseNode"><code class="docutils literal notranslate"><span class="pre">BaseNode</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.base.BaseNode.reset"><code class="docutils literal notranslate"><span class="pre">BaseNode.reset()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.base.BaseNode.set_channel"><code class="docutils literal notranslate"><span class="pre">BaseNode.set_channel()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.base.BaseNode.start"><code class="docutils literal notranslate"><span class="pre">BaseNode.start()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.base.BaseNode.stop"><code class="docutils literal notranslate"><span class="pre">BaseNode.stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-prompts-module">camel.societies.workforce.prompts module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-role-playing-worker-module">camel.societies.workforce.role_playing_worker module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.role_playing_worker.RolePlayingWorker"><code class="docutils literal notranslate"><span class="pre">RolePlayingWorker</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-single-agent-worker-module">camel.societies.workforce.single_agent_worker module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.single_agent_worker.SingleAgentWorker"><code class="docutils literal notranslate"><span class="pre">SingleAgentWorker</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.single_agent_worker.SingleAgentWorker.reset"><code class="docutils literal notranslate"><span class="pre">SingleAgentWorker.reset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-task-channel-module">camel.societies.workforce.task_channel module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.Packet"><code class="docutils literal notranslate"><span class="pre">Packet</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.Packet.task"><code class="docutils literal notranslate"><span class="pre">Packet.task</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.Packet.publisher_id"><code class="docutils literal notranslate"><span class="pre">Packet.publisher_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.Packet.assignee_id"><code class="docutils literal notranslate"><span class="pre">Packet.assignee_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.Packet.status"><code class="docutils literal notranslate"><span class="pre">Packet.status</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.PacketStatus"><code class="docutils literal notranslate"><span class="pre">PacketStatus</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.PacketStatus.ARCHIVED"><code class="docutils literal notranslate"><span class="pre">PacketStatus.ARCHIVED</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.PacketStatus.RETURNED"><code class="docutils literal notranslate"><span class="pre">PacketStatus.RETURNED</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.PacketStatus.SENT"><code class="docutils literal notranslate"><span class="pre">PacketStatus.SENT</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel"><code class="docutils literal notranslate"><span class="pre">TaskChannel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.archive_task"><code class="docutils literal notranslate"><span class="pre">TaskChannel.archive_task()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.get_assigned_task_by_assignee"><code class="docutils literal notranslate"><span class="pre">TaskChannel.get_assigned_task_by_assignee()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.get_channel_debug_info"><code class="docutils literal notranslate"><span class="pre">TaskChannel.get_channel_debug_info()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.get_dependency_ids"><code class="docutils literal notranslate"><span class="pre">TaskChannel.get_dependency_ids()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.get_returned_task_by_publisher"><code class="docutils literal notranslate"><span class="pre">TaskChannel.get_returned_task_by_publisher()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.get_task_by_id"><code class="docutils literal notranslate"><span class="pre">TaskChannel.get_task_by_id()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.post_dependency"><code class="docutils literal notranslate"><span class="pre">TaskChannel.post_dependency()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.post_task"><code class="docutils literal notranslate"><span class="pre">TaskChannel.post_task()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.remove_task"><code class="docutils literal notranslate"><span class="pre">TaskChannel.remove_task()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.return_task"><code class="docutils literal notranslate"><span class="pre">TaskChannel.return_task()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-utils-module">camel.societies.workforce.utils module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskAssignResult"><code class="docutils literal notranslate"><span class="pre">TaskAssignResult</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskAssignResult.assignee_id"><code class="docutils literal notranslate"><span class="pre">TaskAssignResult.assignee_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskAssignResult.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">TaskAssignResult.model_computed_fields</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskAssignResult.model_config"><code class="docutils literal notranslate"><span class="pre">TaskAssignResult.model_config</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskAssignResult.model_fields"><code class="docutils literal notranslate"><span class="pre">TaskAssignResult.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskResult"><code class="docutils literal notranslate"><span class="pre">TaskResult</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskResult.content"><code class="docutils literal notranslate"><span class="pre">TaskResult.content</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskResult.failed"><code class="docutils literal notranslate"><span class="pre">TaskResult.failed</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskResult.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">TaskResult.model_computed_fields</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskResult.model_config"><code class="docutils literal notranslate"><span class="pre">TaskResult.model_config</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskResult.model_fields"><code class="docutils literal notranslate"><span class="pre">TaskResult.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.WorkerConf"><code class="docutils literal notranslate"><span class="pre">WorkerConf</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.WorkerConf.description"><code class="docutils literal notranslate"><span class="pre">WorkerConf.description</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.WorkerConf.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">WorkerConf.model_computed_fields</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.WorkerConf.model_config"><code class="docutils literal notranslate"><span class="pre">WorkerConf.model_config</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.WorkerConf.model_fields"><code class="docutils literal notranslate"><span class="pre">WorkerConf.model_fields</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.WorkerConf.role"><code class="docutils literal notranslate"><span class="pre">WorkerConf.role</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.WorkerConf.sys_msg"><code class="docutils literal notranslate"><span class="pre">WorkerConf.sys_msg</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.check_if_running"><code class="docutils literal notranslate"><span class="pre">check_if_running()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-worker-module">camel.societies.workforce.worker module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.worker.Worker"><code class="docutils literal notranslate"><span class="pre">Worker</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.worker.Worker.set_channel"><code class="docutils literal notranslate"><span class="pre">Worker.set_channel()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.worker.Worker.start"><code class="docutils literal notranslate"><span class="pre">Worker.start()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.worker.Worker.stop"><code class="docutils literal notranslate"><span class="pre">Worker.stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-workforce-module">camel.societies.workforce.workforce module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce"><code class="docutils literal notranslate"><span class="pre">Workforce</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.add_role_playing_worker"><code class="docutils literal notranslate"><span class="pre">Workforce.add_role_playing_worker()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.add_single_agent_worker"><code class="docutils literal notranslate"><span class="pre">Workforce.add_single_agent_worker()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.add_workforce"><code class="docutils literal notranslate"><span class="pre">Workforce.add_workforce()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.process_task"><code class="docutils literal notranslate"><span class="pre">Workforce.process_task()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.reset"><code class="docutils literal notranslate"><span class="pre">Workforce.reset()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.set_channel"><code class="docutils literal notranslate"><span class="pre">Workforce.set_channel()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.start"><code class="docutils literal notranslate"><span class="pre">Workforce.start()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.stop"><code class="docutils literal notranslate"><span class="pre">Workforce.stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.societies.workforce">Module contents</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.RolePlayingWorker"><code class="docutils literal notranslate"><span class="pre">RolePlayingWorker</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.SingleAgentWorker"><code class="docutils literal notranslate"><span class="pre">SingleAgentWorker</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.SingleAgentWorker.reset"><code class="docutils literal notranslate"><span class="pre">SingleAgentWorker.reset()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce"><code class="docutils literal notranslate"><span class="pre">Workforce</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.add_role_playing_worker"><code class="docutils literal notranslate"><span class="pre">Workforce.add_role_playing_worker()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.add_single_agent_worker"><code class="docutils literal notranslate"><span class="pre">Workforce.add_single_agent_worker()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.add_workforce"><code class="docutils literal notranslate"><span class="pre">Workforce.add_workforce()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.process_task"><code class="docutils literal notranslate"><span class="pre">Workforce.process_task()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.reset"><code class="docutils literal notranslate"><span class="pre">Workforce.reset()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.set_channel"><code class="docutils literal notranslate"><span class="pre">Workforce.set_channel()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.start"><code class="docutils literal notranslate"><span class="pre">Workforce.start()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.stop"><code class="docutils literal notranslate"><span class="pre">Workforce.stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="camel-societies-workforce-package">
+<h1>camel.societies.workforce package<a class="headerlink" href="#camel-societies-workforce-package" title="Link to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="camel-societies-workforce-base-module">
+<h2>camel.societies.workforce.base module<a class="headerlink" href="#camel-societies-workforce-base-module" title="Link to this heading">#</a></h2>
+<dl class="py class" id="module-camel.societies.workforce.base">
+<dt class="sig sig-object py" id="camel.societies.workforce.base.BaseNode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.base.</span></span><span class="sig-name descname"><span class="pre">BaseNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/base.html#BaseNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.base.BaseNode" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Base class for all nodes in the workforce.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>description</strong> (<em>str</em>) – Description of the node.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.base.BaseNode.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/base.html#BaseNode.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.base.BaseNode.reset" title="Link to this definition">#</a></dt>
+<dd><p>Resets the node to its initial state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.base.BaseNode.set_channel">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.societies.workforce.task_channel.TaskChannel" title="camel.societies.workforce.task_channel.TaskChannel"><span class="pre">TaskChannel</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/base.html#BaseNode.set_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.base.BaseNode.set_channel" title="Link to this definition">#</a></dt>
+<dd><p>Sets the channel for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.base.BaseNode.start">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/base.html#BaseNode.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.base.BaseNode.start" title="Link to this definition">#</a></dt>
+<dd><p>Start the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.base.BaseNode.stop">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/base.html#BaseNode.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.base.BaseNode.stop" title="Link to this definition">#</a></dt>
+<dd><p>Stop the node.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="camel-societies-workforce-prompts-module">
+<h2>camel.societies.workforce.prompts module<a class="headerlink" href="#camel-societies-workforce-prompts-module" title="Link to this heading">#</a></h2>
+</section>
+<section id="camel-societies-workforce-role-playing-worker-module">
+<span id="module-camel.societies.workforce.prompts"></span><h2>camel.societies.workforce.role_playing_worker module<a class="headerlink" href="#camel-societies-workforce-role-playing-worker-module" title="Link to this heading">#</a></h2>
+<dl class="py class" id="module-camel.societies.workforce.role_playing_worker">
+<dt class="sig sig-object py" id="camel.societies.workforce.role_playing_worker.RolePlayingWorker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.role_playing_worker.</span></span><span class="sig-name descname"><span class="pre">RolePlayingWorker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assistant_role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assistant_agent_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chat_turn_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/role_playing_worker.html#RolePlayingWorker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.role_playing_worker.RolePlayingWorker" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.societies.workforce.worker.Worker" title="camel.societies.workforce.worker.Worker"><code class="xref py py-class docutils literal notranslate"><span class="pre">Worker</span></code></a></p>
+<p>A worker node that contains a role playing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>description</strong> (<em>str</em>) – Description of the node.</p></li>
+<li><p><strong>assistant_role_name</strong> (<em>str</em>) – The role name of the assistant agent.</p></li>
+<li><p><strong>user_role_name</strong> (<em>str</em>) – The role name of the user agent.</p></li>
+<li><p><strong>assistant_agent_kwargs</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>]</em><em>, </em><em>optional</em>) – The keyword
+arguments to initialize the assistant agent in the role playing,
+like the model name, etc. Defaults to None.</p></li>
+<li><p><strong>user_agent_kwargs</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>]</em><em>, </em><em>optional</em>) – The keyword arguments to
+initialize the user agent in the role playing, like the model name,
+etc. Defaults to None.</p></li>
+<li><p><strong>chat_turn_limit</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximum number of chat turns in
+the role playing. Defaults to 3.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="camel-societies-workforce-single-agent-worker-module">
+<h2>camel.societies.workforce.single_agent_worker module<a class="headerlink" href="#camel-societies-workforce-single-agent-worker-module" title="Link to this heading">#</a></h2>
+<dl class="py class" id="module-camel.societies.workforce.single_agent_worker">
+<dt class="sig sig-object py" id="camel.societies.workforce.single_agent_worker.SingleAgentWorker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.single_agent_worker.</span></span><span class="sig-name descname"><span class="pre">SingleAgentWorker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">worker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.agents.html#camel.agents.chat_agent.ChatAgent" title="camel.agents.chat_agent.ChatAgent"><span class="pre">ChatAgent</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/single_agent_worker.html#SingleAgentWorker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.single_agent_worker.SingleAgentWorker" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.societies.workforce.worker.Worker" title="camel.societies.workforce.worker.Worker"><code class="xref py py-class docutils literal notranslate"><span class="pre">Worker</span></code></a></p>
+<p>A worker node that consists of a single agent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>description</strong> (<em>str</em>) – Description of the node.</p></li>
+<li><p><strong>worker</strong> (<a class="reference internal" href="camel.agents.html#camel.agents.chat_agent.ChatAgent" title="camel.agents.chat_agent.ChatAgent"><em>ChatAgent</em></a>) – Worker of the node. A single agent.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.single_agent_worker.SingleAgentWorker.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/single_agent_worker.html#SingleAgentWorker.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.single_agent_worker.SingleAgentWorker.reset" title="Link to this definition">#</a></dt>
+<dd><p>Resets the worker to its initial state.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="camel-societies-workforce-task-channel-module">
+<h2>camel.societies.workforce.task_channel module<a class="headerlink" href="#camel-societies-workforce-task-channel-module" title="Link to this heading">#</a></h2>
+<dl class="py class" id="module-camel.societies.workforce.task_channel">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.Packet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.task_channel.</span></span><span class="sig-name descname"><span class="pre">Packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task"><span class="pre">Task</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">publisher_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignee_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.societies.workforce.task_channel.PacketStatus" title="camel.societies.workforce.task_channel.PacketStatus"><span class="pre">PacketStatus</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PacketStatus.SENT</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/task_channel.html#Packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.task_channel.Packet" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The basic element inside the channel. A task is wrapped inside a
+packet. The packet will contain the task, along with the task’s assignee,
+and the task’s status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>task</strong> (<a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task"><em>Task</em></a>) – The task that is wrapped inside the packet.</p></li>
+<li><p><strong>publisher_id</strong> (<em>str</em>) – The ID of the workforce that published the task.</p></li>
+<li><p><strong>assignee_id</strong> (<em>str</em>) – The ID of the workforce that is assigned
+to the task. Defaults to None, meaning that the task is posted as
+a dependency in the channel.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.Packet.task">
+<span class="sig-name descname"><span class="pre">task</span></span><a class="headerlink" href="#camel.societies.workforce.task_channel.Packet.task" title="Link to this definition">#</a></dt>
+<dd><p>The task that is wrapped inside the packet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task">Task</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.Packet.publisher_id">
+<span class="sig-name descname"><span class="pre">publisher_id</span></span><a class="headerlink" href="#camel.societies.workforce.task_channel.Packet.publisher_id" title="Link to this definition">#</a></dt>
+<dd><p>The ID of the workforce that published the task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.Packet.assignee_id">
+<span class="sig-name descname"><span class="pre">assignee_id</span></span><a class="headerlink" href="#camel.societies.workforce.task_channel.Packet.assignee_id" title="Link to this definition">#</a></dt>
+<dd><p>The ID of the workforce that is
+assigned to the task. Would be None if the task is a dependency.
+Defaults to None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str], optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.Packet.status">
+<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#camel.societies.workforce.task_channel.Packet.status" title="Link to this definition">#</a></dt>
+<dd><p>The status of the task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#camel.societies.workforce.task_channel.PacketStatus" title="camel.societies.workforce.task_channel.PacketStatus">PacketStatus</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.PacketStatus">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.task_channel.</span></span><span class="sig-name descname"><span class="pre">PacketStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/task_channel.html#PacketStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.task_channel.PacketStatus" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>The status of a packet. The packet can be in one of the following
+states:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SENT</span></code>: The packet has been sent to a worker.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RETURNED</span></code>: The packet has been returned by the worker, meaning that
+the status of the task inside has been updated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ARCHIVED</span></code>: The packet has been archived, meaning that the content of
+the task inside will not be changed. The task is considered
+as a dependency.</p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.PacketStatus.ARCHIVED">
+<span class="sig-name descname"><span class="pre">ARCHIVED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ARCHIVED'</span></em><a class="headerlink" href="#camel.societies.workforce.task_channel.PacketStatus.ARCHIVED" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.PacketStatus.RETURNED">
+<span class="sig-name descname"><span class="pre">RETURNED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RETURNED'</span></em><a class="headerlink" href="#camel.societies.workforce.task_channel.PacketStatus.RETURNED" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.PacketStatus.SENT">
+<span class="sig-name descname"><span class="pre">SENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SENT'</span></em><a class="headerlink" href="#camel.societies.workforce.task_channel.PacketStatus.SENT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.TaskChannel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.task_channel.</span></span><span class="sig-name descname"><span class="pre">TaskChannel</span></span><a class="reference internal" href="_modules/camel/societies/workforce/task_channel.html#TaskChannel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.task_channel.TaskChannel" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An internal class used by Workforce to manage tasks.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.TaskChannel.archive_task">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">archive_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/task_channel.html#TaskChannel.archive_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.task_channel.TaskChannel.archive_task" title="Link to this definition">#</a></dt>
+<dd><p>Archive a task in channel, making it to become a dependency.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.TaskChannel.get_assigned_task_by_assignee">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_assigned_task_by_assignee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assignee_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task"><span class="pre">Task</span></a></span></span><a class="reference internal" href="_modules/camel/societies/workforce/task_channel.html#TaskChannel.get_assigned_task_by_assignee"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.task_channel.TaskChannel.get_assigned_task_by_assignee" title="Link to this definition">#</a></dt>
+<dd><p>Get a task from the channel that has been assigned to the
+assignee.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.TaskChannel.get_channel_debug_info">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_channel_debug_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/task_channel.html#TaskChannel.get_channel_debug_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.task_channel.TaskChannel.get_channel_debug_info" title="Link to this definition">#</a></dt>
+<dd><p>Get the debug information of the channel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.TaskChannel.get_dependency_ids">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_dependency_ids</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/task_channel.html#TaskChannel.get_dependency_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.task_channel.TaskChannel.get_dependency_ids" title="Link to this definition">#</a></dt>
+<dd><p>Get the IDs of all dependencies in the channel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.TaskChannel.get_returned_task_by_publisher">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_returned_task_by_publisher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">publisher_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task"><span class="pre">Task</span></a></span></span><a class="reference internal" href="_modules/camel/societies/workforce/task_channel.html#TaskChannel.get_returned_task_by_publisher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.task_channel.TaskChannel.get_returned_task_by_publisher" title="Link to this definition">#</a></dt>
+<dd><p>Get a task from the channel that has been returned by the
+publisher.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.TaskChannel.get_task_by_id">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_task_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task"><span class="pre">Task</span></a></span></span><a class="reference internal" href="_modules/camel/societies/workforce/task_channel.html#TaskChannel.get_task_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.task_channel.TaskChannel.get_task_by_id" title="Link to this definition">#</a></dt>
+<dd><p>Get a task from the channel by its ID.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.TaskChannel.post_dependency">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">post_dependency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dependency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task"><span class="pre">Task</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">publisher_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/task_channel.html#TaskChannel.post_dependency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.task_channel.TaskChannel.post_dependency" title="Link to this definition">#</a></dt>
+<dd><p>Post a dependency to the channel. A dependency is a task that is
+archived, and will be referenced by other tasks.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.TaskChannel.post_task">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">post_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task"><span class="pre">Task</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">publisher_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignee_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/task_channel.html#TaskChannel.post_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.task_channel.TaskChannel.post_task" title="Link to this definition">#</a></dt>
+<dd><p>Send a task to the channel with specified publisher and assignee,
+along with the dependency of the task.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.TaskChannel.remove_task">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/task_channel.html#TaskChannel.remove_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.task_channel.TaskChannel.remove_task" title="Link to this definition">#</a></dt>
+<dd><p>Remove a task from the channel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.task_channel.TaskChannel.return_task">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">return_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/task_channel.html#TaskChannel.return_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.task_channel.TaskChannel.return_task" title="Link to this definition">#</a></dt>
+<dd><p>Return a task to the sender, indicating that the task has been
+processed by the worker.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="camel-societies-workforce-utils-module">
+<h2>camel.societies.workforce.utils module<a class="headerlink" href="#camel-societies-workforce-utils-module" title="Link to this heading">#</a></h2>
+<dl class="py class" id="module-camel.societies.workforce.utils">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.TaskAssignResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.utils.</span></span><span class="sig-name descname"><span class="pre">TaskAssignResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignee_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/utils.html#TaskAssignResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.utils.TaskAssignResult" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>The result of task assignment.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.TaskAssignResult.assignee_id">
+<span class="sig-name descname"><span class="pre">assignee_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.societies.workforce.utils.TaskAssignResult.assignee_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.TaskAssignResult.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#camel.societies.workforce.utils.TaskAssignResult.model_computed_fields" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.TaskAssignResult.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#camel.societies.workforce.utils.TaskAssignResult.model_config" title="Link to this definition">#</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.TaskAssignResult.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'assignee_id':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True,</span> <span class="pre">description='The</span> <span class="pre">ID</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">workforce</span> <span class="pre">that</span> <span class="pre">is</span> <span class="pre">assigned</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">task.')}</span></em><a class="headerlink" href="#camel.societies.workforce.utils.TaskAssignResult.model_fields" title="Link to this definition">#</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.TaskResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.utils.</span></span><span class="sig-name descname"><span class="pre">TaskResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">failed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/utils.html#TaskResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.utils.TaskResult" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>The result of a task.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.TaskResult.content">
+<span class="sig-name descname"><span class="pre">content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.societies.workforce.utils.TaskResult.content" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.TaskResult.failed">
+<span class="sig-name descname"><span class="pre">failed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#camel.societies.workforce.utils.TaskResult.failed" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.TaskResult.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#camel.societies.workforce.utils.TaskResult.model_computed_fields" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.TaskResult.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#camel.societies.workforce.utils.TaskResult.model_config" title="Link to this definition">#</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.TaskResult.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'content':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True,</span> <span class="pre">description='The</span> <span class="pre">result</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">task.'),</span> <span class="pre">'failed':</span> <span class="pre">FieldInfo(annotation=bool,</span> <span class="pre">required=True,</span> <span class="pre">description='Flag</span> <span class="pre">indicating</span> <span class="pre">whether</span> <span class="pre">the</span> <span class="pre">task</span> <span class="pre">processing</span> <span class="pre">failed.')}</span></em><a class="headerlink" href="#camel.societies.workforce.utils.TaskResult.model_fields" title="Link to this definition">#</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.WorkerConf">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.utils.</span></span><span class="sig-name descname"><span class="pre">WorkerConf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sys_msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/utils.html#WorkerConf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.utils.WorkerConf" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>The configuration of a worker.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.WorkerConf.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.societies.workforce.utils.WorkerConf.description" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.WorkerConf.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#camel.societies.workforce.utils.WorkerConf.model_computed_fields" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.WorkerConf.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#camel.societies.workforce.utils.WorkerConf.model_config" title="Link to this definition">#</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.WorkerConf.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'description':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True,</span> <span class="pre">description='The</span> <span class="pre">description</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">new</span> <span class="pre">work</span> <span class="pre">node</span> <span class="pre">itself.'),</span> <span class="pre">'role':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True,</span> <span class="pre">description='The</span> <span class="pre">role</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">agent</span> <span class="pre">working</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">work</span> <span class="pre">node.'),</span> <span class="pre">'sys_msg':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True,</span> <span class="pre">description='The</span> <span class="pre">system</span> <span class="pre">message</span> <span class="pre">that</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">sent</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">agent</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">node.')}</span></em><a class="headerlink" href="#camel.societies.workforce.utils.WorkerConf.model_fields" title="Link to this definition">#</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.WorkerConf.role">
+<span class="sig-name descname"><span class="pre">role</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.societies.workforce.utils.WorkerConf.role" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.WorkerConf.sys_msg">
+<span class="sig-name descname"><span class="pre">sys_msg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.societies.workforce.utils.WorkerConf.sys_msg" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="camel.societies.workforce.utils.check_if_running">
+<span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.utils.</span></span><span class="sig-name descname"><span class="pre">check_if_running</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">running</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/utils.html#check_if_running"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.utils.check_if_running" title="Link to this definition">#</a></dt>
+<dd><p>Check if the workforce is (not) running, specified the boolean value.
+If the workforce is not in the expected status, raise an exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>RuntimeError</strong> – If the workforce is not in the expected status.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="camel-societies-workforce-worker-module">
+<h2>camel.societies.workforce.worker module<a class="headerlink" href="#camel-societies-workforce-worker-module" title="Link to this heading">#</a></h2>
+<dl class="py class" id="module-camel.societies.workforce.worker">
+<dt class="sig sig-object py" id="camel.societies.workforce.worker.Worker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.worker.</span></span><span class="sig-name descname"><span class="pre">Worker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/worker.html#Worker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.worker.Worker" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.societies.workforce.base.BaseNode" title="camel.societies.workforce.base.BaseNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseNode</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>A worker node that works on tasks. It is the basic unit of task
+processing in the workforce system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>description</strong> (<em>str</em>) – Description of the node.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.worker.Worker.set_channel">
+<span class="sig-name descname"><span class="pre">set_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.societies.workforce.task_channel.TaskChannel" title="camel.societies.workforce.task_channel.TaskChannel"><span class="pre">TaskChannel</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/worker.html#Worker.set_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.worker.Worker.set_channel" title="Link to this definition">#</a></dt>
+<dd><p>Sets the channel for the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.worker.Worker.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/worker.html#Worker.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.worker.Worker.start" title="Link to this definition">#</a></dt>
+<dd><p>Start the worker.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.worker.Worker.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/worker.html#Worker.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.worker.Worker.stop" title="Link to this definition">#</a></dt>
+<dd><p>Stop the worker.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="camel-societies-workforce-workforce-module">
+<h2>camel.societies.workforce.workforce module<a class="headerlink" href="#camel-societies-workforce-workforce-module" title="Link to this heading">#</a></h2>
+<dl class="py class" id="module-camel.societies.workforce.workforce">
+<dt class="sig sig-object py" id="camel.societies.workforce.workforce.Workforce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.workforce.</span></span><span class="sig-name descname"><span class="pre">Workforce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">children</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#camel.societies.workforce.base.BaseNode" title="camel.societies.workforce.base.BaseNode"><span class="pre">BaseNode</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinator_agent_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_agent_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_worker_agent_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.workforce.Workforce" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.societies.workforce.base.BaseNode" title="camel.societies.workforce.base.BaseNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseNode</span></code></a></p>
+<p>A system where multiple workder nodes (agents) cooperate together
+to solve tasks. It can assign tasks to workder nodes and also take
+strategies such as create new worker, decompose tasks, etc. to handle
+situations when the task fails.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>description</strong> (<em>str</em>) – Description of the node.</p></li>
+<li><p><strong>children</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="#camel.societies.workforce.base.BaseNode" title="camel.societies.workforce.base.BaseNode"><em>BaseNode</em></a><em>]</em><em>]</em><em>, </em><em>optional</em>) – List of child nodes
+under this node. Each child node can be a worker node or
+another workforce node. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>coordinator_agent_kwargs</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>]</em><em>, </em><em>optional</em>) – Keyword
+arguments for the coordinator agent, e.g. <cite>model</cite>, <cite>api_key</cite>,
+<cite>tools</cite>, etc. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>task_agent_kwargs</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>]</em><em>, </em><em>optional</em>) – Keyword arguments for
+the task agent, e.g. <cite>model</cite>, <cite>api_key</cite>, <cite>tools</cite>, etc.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>new_worker_agent_kwargs</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>]</em>) – Default keyword arguments
+for the worker agent that will be created during runtime to
+handle failed tasks, e.g. <cite>model</cite>, <cite>api_key</cite>, <cite>tools</cite>, etc.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.workforce.Workforce.add_role_playing_worker">
+<span class="sig-name descname"><span class="pre">add_role_playing_worker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assistant_role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assistant_agent_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chat_turn_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#camel.societies.workforce.workforce.Workforce" title="camel.societies.workforce.workforce.Workforce"><span class="pre">Workforce</span></a></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.add_role_playing_worker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.workforce.Workforce.add_role_playing_worker" title="Link to this definition">#</a></dt>
+<dd><p>Add a worker node to the workforce that uses <cite>RolePlaying</cite> system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>description</strong> (<em>str</em>) – Description of the node.</p></li>
+<li><p><strong>assistant_role_name</strong> (<em>str</em>) – The role name of the assistant agent.</p></li>
+<li><p><strong>user_role_name</strong> (<em>str</em>) – The role name of the user agent.</p></li>
+<li><p><strong>assistant_agent_kwargs</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>]</em><em>, </em><em>optional</em>) – The keyword
+arguments to initialize the assistant agent in the role
+playing, like the model name, etc. Defaults to <cite>None</cite>.</p></li>
+<li><p><strong>user_agent_kwargs</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>]</em><em>, </em><em>optional</em>) – The keyword arguments
+to initialize the user agent in the role playing, like the
+model name, etc. Defaults to <cite>None</cite>.</p></li>
+<li><p><strong>chat_turn_limit</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximum number of chat turns
+in the role playing. Defaults to 3.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The workforce node itself.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#camel.societies.workforce.workforce.Workforce" title="camel.societies.workforce.workforce.Workforce">Workforce</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.workforce.Workforce.add_single_agent_worker">
+<span class="sig-name descname"><span class="pre">add_single_agent_worker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">worker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.agents.html#camel.agents.chat_agent.ChatAgent" title="camel.agents.chat_agent.ChatAgent"><span class="pre">ChatAgent</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#camel.societies.workforce.workforce.Workforce" title="camel.societies.workforce.workforce.Workforce"><span class="pre">Workforce</span></a></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.add_single_agent_worker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.workforce.Workforce.add_single_agent_worker" title="Link to this definition">#</a></dt>
+<dd><p>Add a worker node to the workforce that uses a single agent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>description</strong> (<em>str</em>) – Description of the worker node.</p></li>
+<li><p><strong>worker</strong> (<a class="reference internal" href="camel.agents.html#camel.agents.chat_agent.ChatAgent" title="camel.agents.chat_agent.ChatAgent"><em>ChatAgent</em></a>) – The agent to be added.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The workforce node itself.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#camel.societies.workforce.workforce.Workforce" title="camel.societies.workforce.workforce.Workforce">Workforce</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.workforce.Workforce.add_workforce">
+<span class="sig-name descname"><span class="pre">add_workforce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workforce</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.societies.workforce.workforce.Workforce" title="camel.societies.workforce.workforce.Workforce"><span class="pre">Workforce</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#camel.societies.workforce.workforce.Workforce" title="camel.societies.workforce.workforce.Workforce"><span class="pre">Workforce</span></a></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.add_workforce"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.workforce.Workforce.add_workforce" title="Link to this definition">#</a></dt>
+<dd><p>Add a workforce node to the workforce.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>workforce</strong> (<a class="reference internal" href="#camel.societies.workforce.workforce.Workforce" title="camel.societies.workforce.workforce.Workforce"><em>Workforce</em></a>) – The workforce node to be added.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The workforce node itself.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#camel.societies.workforce.workforce.Workforce" title="camel.societies.workforce.workforce.Workforce">Workforce</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.workforce.Workforce.process_task">
+<span class="sig-name descname"><span class="pre">process_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task"><span class="pre">Task</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task"><span class="pre">Task</span></a></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.process_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.workforce.Workforce.process_task" title="Link to this definition">#</a></dt>
+<dd><p>The main entry point for the workforce to process a task. It will
+start the workforce and all the child nodes under it, process the
+task provided and return the updated task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>task</strong> (<a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task"><em>Task</em></a>) – The task to be processed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated task.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task">Task</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.workforce.Workforce.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.workforce.Workforce.reset" title="Link to this definition">#</a></dt>
+<dd><p>Reset the workforce and all the child nodes under it. Can only
+be called when the workforce is not running.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.workforce.Workforce.set_channel">
+<span class="sig-name descname"><span class="pre">set_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.societies.workforce.task_channel.TaskChannel" title="camel.societies.workforce.task_channel.TaskChannel"><span class="pre">TaskChannel</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.set_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.workforce.Workforce.set_channel" title="Link to this definition">#</a></dt>
+<dd><p>Set the channel for the node and all the child nodes under it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.workforce.Workforce.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.workforce.Workforce.start" title="Link to this definition">#</a></dt>
+<dd><p>Start itself and all the child nodes under it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.workforce.Workforce.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.workforce.Workforce.stop" title="Link to this definition">#</a></dt>
+<dd><p>Stop all the child nodes under it. The node itself will be stopped
+by its parent node.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.societies.workforce">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-camel.societies.workforce" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.societies.workforce.RolePlayingWorker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.</span></span><span class="sig-name descname"><span class="pre">RolePlayingWorker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assistant_role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assistant_agent_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chat_turn_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/role_playing_worker.html#RolePlayingWorker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.RolePlayingWorker" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.societies.workforce.worker.Worker" title="camel.societies.workforce.worker.Worker"><code class="xref py py-class docutils literal notranslate"><span class="pre">Worker</span></code></a></p>
+<p>A worker node that contains a role playing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>description</strong> (<em>str</em>) – Description of the node.</p></li>
+<li><p><strong>assistant_role_name</strong> (<em>str</em>) – The role name of the assistant agent.</p></li>
+<li><p><strong>user_role_name</strong> (<em>str</em>) – The role name of the user agent.</p></li>
+<li><p><strong>assistant_agent_kwargs</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>]</em><em>, </em><em>optional</em>) – The keyword
+arguments to initialize the assistant agent in the role playing,
+like the model name, etc. Defaults to None.</p></li>
+<li><p><strong>user_agent_kwargs</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>]</em><em>, </em><em>optional</em>) – The keyword arguments to
+initialize the user agent in the role playing, like the model name,
+etc. Defaults to None.</p></li>
+<li><p><strong>chat_turn_limit</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximum number of chat turns in
+the role playing. Defaults to 3.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.societies.workforce.SingleAgentWorker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.</span></span><span class="sig-name descname"><span class="pre">SingleAgentWorker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">worker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.agents.html#camel.agents.chat_agent.ChatAgent" title="camel.agents.chat_agent.ChatAgent"><span class="pre">ChatAgent</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/single_agent_worker.html#SingleAgentWorker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.SingleAgentWorker" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.societies.workforce.worker.Worker" title="camel.societies.workforce.worker.Worker"><code class="xref py py-class docutils literal notranslate"><span class="pre">Worker</span></code></a></p>
+<p>A worker node that consists of a single agent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>description</strong> (<em>str</em>) – Description of the node.</p></li>
+<li><p><strong>worker</strong> (<a class="reference internal" href="camel.agents.html#camel.agents.chat_agent.ChatAgent" title="camel.agents.chat_agent.ChatAgent"><em>ChatAgent</em></a>) – Worker of the node. A single agent.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.SingleAgentWorker.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/single_agent_worker.html#SingleAgentWorker.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.SingleAgentWorker.reset" title="Link to this definition">#</a></dt>
+<dd><p>Resets the worker to its initial state.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.societies.workforce.Workforce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.societies.workforce.</span></span><span class="sig-name descname"><span class="pre">Workforce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">children</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#camel.societies.workforce.base.BaseNode" title="camel.societies.workforce.base.BaseNode"><span class="pre">BaseNode</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinator_agent_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_agent_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_worker_agent_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.Workforce" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.societies.workforce.base.BaseNode" title="camel.societies.workforce.base.BaseNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseNode</span></code></a></p>
+<p>A system where multiple workder nodes (agents) cooperate together
+to solve tasks. It can assign tasks to workder nodes and also take
+strategies such as create new worker, decompose tasks, etc. to handle
+situations when the task fails.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>description</strong> (<em>str</em>) – Description of the node.</p></li>
+<li><p><strong>children</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="#camel.societies.workforce.base.BaseNode" title="camel.societies.workforce.base.BaseNode"><em>BaseNode</em></a><em>]</em><em>]</em><em>, </em><em>optional</em>) – List of child nodes
+under this node. Each child node can be a worker node or
+another workforce node. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>coordinator_agent_kwargs</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>]</em><em>, </em><em>optional</em>) – Keyword
+arguments for the coordinator agent, e.g. <cite>model</cite>, <cite>api_key</cite>,
+<cite>tools</cite>, etc. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>task_agent_kwargs</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>]</em><em>, </em><em>optional</em>) – Keyword arguments for
+the task agent, e.g. <cite>model</cite>, <cite>api_key</cite>, <cite>tools</cite>, etc.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>new_worker_agent_kwargs</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>]</em>) – Default keyword arguments
+for the worker agent that will be created during runtime to
+handle failed tasks, e.g. <cite>model</cite>, <cite>api_key</cite>, <cite>tools</cite>, etc.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.Workforce.add_role_playing_worker">
+<span class="sig-name descname"><span class="pre">add_role_playing_worker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assistant_role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assistant_agent_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chat_turn_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#camel.societies.workforce.workforce.Workforce" title="camel.societies.workforce.workforce.Workforce"><span class="pre">Workforce</span></a></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.add_role_playing_worker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.Workforce.add_role_playing_worker" title="Link to this definition">#</a></dt>
+<dd><p>Add a worker node to the workforce that uses <cite>RolePlaying</cite> system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>description</strong> (<em>str</em>) – Description of the node.</p></li>
+<li><p><strong>assistant_role_name</strong> (<em>str</em>) – The role name of the assistant agent.</p></li>
+<li><p><strong>user_role_name</strong> (<em>str</em>) – The role name of the user agent.</p></li>
+<li><p><strong>assistant_agent_kwargs</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>]</em><em>, </em><em>optional</em>) – The keyword
+arguments to initialize the assistant agent in the role
+playing, like the model name, etc. Defaults to <cite>None</cite>.</p></li>
+<li><p><strong>user_agent_kwargs</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>]</em><em>, </em><em>optional</em>) – The keyword arguments
+to initialize the user agent in the role playing, like the
+model name, etc. Defaults to <cite>None</cite>.</p></li>
+<li><p><strong>chat_turn_limit</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximum number of chat turns
+in the role playing. Defaults to 3.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The workforce node itself.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#camel.societies.workforce.Workforce" title="camel.societies.workforce.Workforce">Workforce</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.Workforce.add_single_agent_worker">
+<span class="sig-name descname"><span class="pre">add_single_agent_worker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">worker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.agents.html#camel.agents.chat_agent.ChatAgent" title="camel.agents.chat_agent.ChatAgent"><span class="pre">ChatAgent</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#camel.societies.workforce.workforce.Workforce" title="camel.societies.workforce.workforce.Workforce"><span class="pre">Workforce</span></a></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.add_single_agent_worker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.Workforce.add_single_agent_worker" title="Link to this definition">#</a></dt>
+<dd><p>Add a worker node to the workforce that uses a single agent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>description</strong> (<em>str</em>) – Description of the worker node.</p></li>
+<li><p><strong>worker</strong> (<a class="reference internal" href="camel.agents.html#camel.agents.chat_agent.ChatAgent" title="camel.agents.chat_agent.ChatAgent"><em>ChatAgent</em></a>) – The agent to be added.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The workforce node itself.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#camel.societies.workforce.Workforce" title="camel.societies.workforce.Workforce">Workforce</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.Workforce.add_workforce">
+<span class="sig-name descname"><span class="pre">add_workforce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workforce</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.societies.workforce.workforce.Workforce" title="camel.societies.workforce.workforce.Workforce"><span class="pre">Workforce</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#camel.societies.workforce.workforce.Workforce" title="camel.societies.workforce.workforce.Workforce"><span class="pre">Workforce</span></a></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.add_workforce"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.Workforce.add_workforce" title="Link to this definition">#</a></dt>
+<dd><p>Add a workforce node to the workforce.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>workforce</strong> (<a class="reference internal" href="#camel.societies.workforce.Workforce" title="camel.societies.workforce.Workforce"><em>Workforce</em></a>) – The workforce node to be added.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The workforce node itself.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#camel.societies.workforce.Workforce" title="camel.societies.workforce.Workforce">Workforce</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.Workforce.process_task">
+<span class="sig-name descname"><span class="pre">process_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task"><span class="pre">Task</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task"><span class="pre">Task</span></a></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.process_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.Workforce.process_task" title="Link to this definition">#</a></dt>
+<dd><p>The main entry point for the workforce to process a task. It will
+start the workforce and all the child nodes under it, process the
+task provided and return the updated task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>task</strong> (<a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task"><em>Task</em></a>) – The task to be processed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated task.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="camel.tasks.html#camel.tasks.task.Task" title="camel.tasks.task.Task">Task</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.Workforce.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.Workforce.reset" title="Link to this definition">#</a></dt>
+<dd><p>Reset the workforce and all the child nodes under it. Can only
+be called when the workforce is not running.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.Workforce.set_channel">
+<span class="sig-name descname"><span class="pre">set_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.societies.workforce.task_channel.TaskChannel" title="camel.societies.workforce.task_channel.TaskChannel"><span class="pre">TaskChannel</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.set_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.Workforce.set_channel" title="Link to this definition">#</a></dt>
+<dd><p>Set the channel for the node and all the child nodes under it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.Workforce.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.Workforce.start" title="Link to this definition">#</a></dt>
+<dd><p>Start itself and all the child nodes under it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.societies.workforce.Workforce.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/societies/workforce/workforce.html#Workforce.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.societies.workforce.Workforce.stop" title="Link to this definition">#</a></dt>
+<dd><p>Stop all the child nodes under it. The node itself will be stopped
+by its parent node.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="camel.societies.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">camel.societies package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="camel.storages.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">camel.storages package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-base-module">camel.societies.workforce.base module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.base.BaseNode"><code class="docutils literal notranslate"><span class="pre">BaseNode</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.base.BaseNode.reset"><code class="docutils literal notranslate"><span class="pre">BaseNode.reset()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.base.BaseNode.set_channel"><code class="docutils literal notranslate"><span class="pre">BaseNode.set_channel()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.base.BaseNode.start"><code class="docutils literal notranslate"><span class="pre">BaseNode.start()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.base.BaseNode.stop"><code class="docutils literal notranslate"><span class="pre">BaseNode.stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-prompts-module">camel.societies.workforce.prompts module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-role-playing-worker-module">camel.societies.workforce.role_playing_worker module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.role_playing_worker.RolePlayingWorker"><code class="docutils literal notranslate"><span class="pre">RolePlayingWorker</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-single-agent-worker-module">camel.societies.workforce.single_agent_worker module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.single_agent_worker.SingleAgentWorker"><code class="docutils literal notranslate"><span class="pre">SingleAgentWorker</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.single_agent_worker.SingleAgentWorker.reset"><code class="docutils literal notranslate"><span class="pre">SingleAgentWorker.reset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-task-channel-module">camel.societies.workforce.task_channel module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.Packet"><code class="docutils literal notranslate"><span class="pre">Packet</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.Packet.task"><code class="docutils literal notranslate"><span class="pre">Packet.task</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.Packet.publisher_id"><code class="docutils literal notranslate"><span class="pre">Packet.publisher_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.Packet.assignee_id"><code class="docutils literal notranslate"><span class="pre">Packet.assignee_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.Packet.status"><code class="docutils literal notranslate"><span class="pre">Packet.status</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.PacketStatus"><code class="docutils literal notranslate"><span class="pre">PacketStatus</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.PacketStatus.ARCHIVED"><code class="docutils literal notranslate"><span class="pre">PacketStatus.ARCHIVED</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.PacketStatus.RETURNED"><code class="docutils literal notranslate"><span class="pre">PacketStatus.RETURNED</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.PacketStatus.SENT"><code class="docutils literal notranslate"><span class="pre">PacketStatus.SENT</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel"><code class="docutils literal notranslate"><span class="pre">TaskChannel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.archive_task"><code class="docutils literal notranslate"><span class="pre">TaskChannel.archive_task()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.get_assigned_task_by_assignee"><code class="docutils literal notranslate"><span class="pre">TaskChannel.get_assigned_task_by_assignee()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.get_channel_debug_info"><code class="docutils literal notranslate"><span class="pre">TaskChannel.get_channel_debug_info()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.get_dependency_ids"><code class="docutils literal notranslate"><span class="pre">TaskChannel.get_dependency_ids()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.get_returned_task_by_publisher"><code class="docutils literal notranslate"><span class="pre">TaskChannel.get_returned_task_by_publisher()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.get_task_by_id"><code class="docutils literal notranslate"><span class="pre">TaskChannel.get_task_by_id()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.post_dependency"><code class="docutils literal notranslate"><span class="pre">TaskChannel.post_dependency()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.post_task"><code class="docutils literal notranslate"><span class="pre">TaskChannel.post_task()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.remove_task"><code class="docutils literal notranslate"><span class="pre">TaskChannel.remove_task()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.task_channel.TaskChannel.return_task"><code class="docutils literal notranslate"><span class="pre">TaskChannel.return_task()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-utils-module">camel.societies.workforce.utils module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskAssignResult"><code class="docutils literal notranslate"><span class="pre">TaskAssignResult</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskAssignResult.assignee_id"><code class="docutils literal notranslate"><span class="pre">TaskAssignResult.assignee_id</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskAssignResult.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">TaskAssignResult.model_computed_fields</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskAssignResult.model_config"><code class="docutils literal notranslate"><span class="pre">TaskAssignResult.model_config</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskAssignResult.model_fields"><code class="docutils literal notranslate"><span class="pre">TaskAssignResult.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskResult"><code class="docutils literal notranslate"><span class="pre">TaskResult</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskResult.content"><code class="docutils literal notranslate"><span class="pre">TaskResult.content</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskResult.failed"><code class="docutils literal notranslate"><span class="pre">TaskResult.failed</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskResult.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">TaskResult.model_computed_fields</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskResult.model_config"><code class="docutils literal notranslate"><span class="pre">TaskResult.model_config</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.TaskResult.model_fields"><code class="docutils literal notranslate"><span class="pre">TaskResult.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.WorkerConf"><code class="docutils literal notranslate"><span class="pre">WorkerConf</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.WorkerConf.description"><code class="docutils literal notranslate"><span class="pre">WorkerConf.description</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.WorkerConf.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">WorkerConf.model_computed_fields</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.WorkerConf.model_config"><code class="docutils literal notranslate"><span class="pre">WorkerConf.model_config</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.WorkerConf.model_fields"><code class="docutils literal notranslate"><span class="pre">WorkerConf.model_fields</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.WorkerConf.role"><code class="docutils literal notranslate"><span class="pre">WorkerConf.role</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.WorkerConf.sys_msg"><code class="docutils literal notranslate"><span class="pre">WorkerConf.sys_msg</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.utils.check_if_running"><code class="docutils literal notranslate"><span class="pre">check_if_running()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-worker-module">camel.societies.workforce.worker module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.worker.Worker"><code class="docutils literal notranslate"><span class="pre">Worker</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.worker.Worker.set_channel"><code class="docutils literal notranslate"><span class="pre">Worker.set_channel()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.worker.Worker.start"><code class="docutils literal notranslate"><span class="pre">Worker.start()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.worker.Worker.stop"><code class="docutils literal notranslate"><span class="pre">Worker.stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#camel-societies-workforce-workforce-module">camel.societies.workforce.workforce module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce"><code class="docutils literal notranslate"><span class="pre">Workforce</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.add_role_playing_worker"><code class="docutils literal notranslate"><span class="pre">Workforce.add_role_playing_worker()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.add_single_agent_worker"><code class="docutils literal notranslate"><span class="pre">Workforce.add_single_agent_worker()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.add_workforce"><code class="docutils literal notranslate"><span class="pre">Workforce.add_workforce()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.process_task"><code class="docutils literal notranslate"><span class="pre">Workforce.process_task()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.reset"><code class="docutils literal notranslate"><span class="pre">Workforce.reset()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.set_channel"><code class="docutils literal notranslate"><span class="pre">Workforce.set_channel()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.start"><code class="docutils literal notranslate"><span class="pre">Workforce.start()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.workforce.Workforce.stop"><code class="docutils literal notranslate"><span class="pre">Workforce.stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-camel.societies.workforce">Module contents</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.RolePlayingWorker"><code class="docutils literal notranslate"><span class="pre">RolePlayingWorker</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.SingleAgentWorker"><code class="docutils literal notranslate"><span class="pre">SingleAgentWorker</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.SingleAgentWorker.reset"><code class="docutils literal notranslate"><span class="pre">SingleAgentWorker.reset()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce"><code class="docutils literal notranslate"><span class="pre">Workforce</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.add_role_playing_worker"><code class="docutils literal notranslate"><span class="pre">Workforce.add_role_playing_worker()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.add_single_agent_worker"><code class="docutils literal notranslate"><span class="pre">Workforce.add_single_agent_worker()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.add_workforce"><code class="docutils literal notranslate"><span class="pre">Workforce.add_workforce()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.process_task"><code class="docutils literal notranslate"><span class="pre">Workforce.process_task()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.reset"><code class="docutils literal notranslate"><span class="pre">Workforce.reset()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.set_channel"><code class="docutils literal notranslate"><span class="pre">Workforce.set_channel()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.start"><code class="docutils literal notranslate"><span class="pre">Workforce.start()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#camel.societies.workforce.Workforce.stop"><code class="docutils literal notranslate"><span class="pre">Workforce.stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

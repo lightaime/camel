@@ -1,0 +1,1179 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Create A Hackathon Judge Committee with Workforce &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=30d83864"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cookbooks/multi_agent_society/workforce_judge_committee';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Task Generation Cookbook" href="task_generation.html" />
+    <link rel="prev" title="Develop Trading Bot with Role Playing" href="agents_society.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../camel.html">camel package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/edit/main/cookbooks/multi_agent_society/workforce_judge_committee.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2Fcookbooks/multi_agent_society/workforce_judge_committee.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/cookbooks/multi_agent_society/workforce_judge_committee.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Create A Hackathon Judge Committee with Workforce</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Dependency-Installation">Dependency Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Key-Configuration">Key Configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Define-a-Function-for-Making-Judge-Agent">Define a Function for Making Judge Agent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Make-a-Mocked-Hackathon-Project">Make a Mocked Hackathon Project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Create-Agents">Create Agents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Create-Workforce">Create Workforce</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Create-a-Task">Create a Task</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Run-the-Task">Run the Task</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#🌟-Highlights">🌟 Highlights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#⭐-Star-the-Repo!">⭐ Star the Repo!</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <style>
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    display: none;
+}
+</style><section id="Create-A-Hackathon-Judge-Committee-with-Workforce">
+<h1>Create A Hackathon Judge Committee with Workforce<a class="headerlink" href="#Create-A-Hackathon-Judge-Committee-with-Workforce" title="Link to this heading">#</a></h1>
+<p>Workforce is a system where multiple agents collaborate to solve a given task. In this notebook, we will walk through it with a demo of a hackathon judge committee, where judges with different personas collaborate together to give scores to hackathon projects.</p>
+<p>You can also check this cookbook in colab <a class="reference external" href="https://colab.research.google.com/drive/18ajYUMfwDx3WyrjHow3EvUMpKQDcrLtr?usp=sharing">here</a></p>
+<p>⭐ Star us on <a class="reference external" href="https://github.com/camel-ai/camel">Github</a>, join our <a class="reference external" href="https://discord.camel-ai.org">Discord</a> or follow our <a class="reference external" href="https://x.com/camelaiorg">X</a></p>
+<section id="Dependency-Installation">
+<h2>Dependency Installation<a class="headerlink" href="#Dependency-Installation" title="Link to this heading">#</a></h2>
+<p>To get started, make sure you have <code class="docutils literal notranslate"><span class="pre">camel-ai</span></code> installed.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="s2">&quot;camel-ai[all]==0.2.16&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>Workforce employs an asynchronous design with coroutines. However, since <strong>coroutines cannot directly run in notebooks</strong>, we need to do specific handlings in this demo. Note that, under most normal cases (not inside notebook environment), we don’t need to do this.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">nest_asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nest_asyncio</span>
+<span class="n">nest_asyncio</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Requirement already satisfied: nest_asyncio in /usr/local/lib/python3.10/dist-packages (1.6.0)
+</pre></div></div>
+</div>
+</section>
+<section id="Key-Configuration">
+<h2>Key Configuration<a class="headerlink" href="#Key-Configuration" title="Link to this heading">#</a></h2>
+<p>In this demo, we will use tools related to web searching. Therefore, we need to configure the OpenAI API key, along with the Google API keys beforeheads.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">getpass</span><span class="w"> </span><span class="kn">import</span> <span class="n">getpass</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">openai_api_key</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s2">&quot;Please input your OpenAI API key: &quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">openai_api_key</span>
+<span class="c1"># https://developers.google.com/custom-search/v1/overview</span>
+<span class="n">google_api_key</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s2">&quot;Please input your Google API key: &quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;GOOGLE_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">google_api_key</span>
+<span class="c1"># https://cse.google.com/cse/all</span>
+<span class="n">search_engine_id</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s2">&quot;Please input your Search Egine ID: &quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SEARCH_ENGINE_ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">search_engine_id</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Please input your OpenAI API key: ··········
+Please input your Google API key: ··········
+Please input your Search Egine ID: ··········
+</pre></div></div>
+</div>
+</section>
+<section id="Define-a-Function-for-Making-Judge-Agent">
+<h2>Define a Function for Making Judge Agent<a class="headerlink" href="#Define-a-Function-for-Making-Judge-Agent" title="Link to this heading">#</a></h2>
+<p>In this demo, we will create multiple judge agents with different personas and scoring criterias. For reusability, we first create a function to make judge agents.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">textwrap</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseMessage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelFactory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.tasks</span><span class="w"> </span><span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.toolkits</span><span class="w"> </span><span class="kn">import</span> <span class="n">FunctionTool</span><span class="p">,</span> <span class="n">SearchToolkit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelPlatformType</span><span class="p">,</span> <span class="n">ModelType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.societies.workforce</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workforce</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">make_judge</span><span class="p">(</span>
+    <span class="n">persona</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">example_feedback</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">criteria</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChatAgent</span><span class="p">:</span>
+    <span class="n">msg_content</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">        You are a judge in a hackathon.</span>
+<span class="s2">        This is your persona that you MUST act with: </span><span class="si">{</span><span class="n">persona</span><span class="si">}</span>
+<span class="s2">        Here is an example feedback that you might give with your persona, you MUST try your best to align with this:</span>
+<span class="s2">        </span><span class="si">{</span><span class="n">example_feedback</span><span class="si">}</span>
+<span class="s2">        When evaluating projects, you must use the following criteria:</span>
+<span class="s2">        </span><span class="si">{</span><span class="n">criteria</span><span class="si">}</span>
+<span class="s2">        You also need to give scores based on these criteria, from 1-4. The score given should be like 3/4, 2/4, etc.</span>
+<span class="s2">        &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+    <span class="p">)</span>
+
+    <span class="n">sys_msg</span> <span class="o">=</span> <span class="n">BaseMessage</span><span class="o">.</span><span class="n">make_assistant_message</span><span class="p">(</span>
+        <span class="n">role_name</span><span class="o">=</span><span class="s2">&quot;Hackathon Judge&quot;</span><span class="p">,</span>
+        <span class="n">content</span><span class="o">=</span><span class="n">msg_content</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">ModelFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model_platform</span><span class="o">=</span><span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">OPENAI</span><span class="p">,</span>
+        <span class="n">model_type</span><span class="o">=</span><span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4O</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">agent</span> <span class="o">=</span> <span class="n">ChatAgent</span><span class="p">(</span>
+        <span class="n">system_message</span><span class="o">=</span><span class="n">sys_msg</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">agent</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Make-a-Mocked-Hackathon-Project">
+<h2>Make a Mocked Hackathon Project<a class="headerlink" href="#Make-a-Mocked-Hackathon-Project" title="Link to this heading">#</a></h2>
+<p>Then we will create a mocked hackathon project description, which will be later sent to the judges for scoring.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">proj_content</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">    Project name: CAMEL-Powered Adaptive Learning Assistant</span>
+<span class="sd">    How does your project address a real problem: Our CAMEL-Powered Adaptive Learning Assistant addresses the challenge of personalized education in an increasingly diverse and fast-paced learning environment. Traditional one-size-fits-all approaches to education often fail to meet the unique needs of individual learners, leading to gaps in understanding and reduced engagement. Our project leverages CAMEL-AI&#39;s advanced capabilities to create a highly adaptive, intelligent tutoring system that can understand and respond to each student&#39;s learning style, pace, and knowledge gaps in real-time.</span>
+<span class="sd">    Explain your tech and which parts work: Our system utilizes CAMEL-AI&#39;s in-context learning and multi-domain application features to create a versatile learning assistant. The core components include:</span>
+<span class="sd">    1. Learner Profile Analysis: Uses natural language processing to assess the student&#39;s current knowledge, learning preferences, and goals.</span>
+<span class="sd">    2. Dynamic Content Generation: Leverages CAMEL-AI to create personalized learning materials, explanations, and practice questions tailored to each student&#39;s needs.</span>
+<span class="sd">    3. Adaptive Feedback Loop: Continuously analyzes student responses and adjusts the difficulty and style of content in real-time.</span>
+<span class="sd">    4. Multi-Modal Integration: Incorporates text, images, and interactive elements to cater to different learning styles.</span>
+<span class="sd">    5. Progress Tracking: Provides detailed insights into the student&#39;s learning journey, identifying strengths and areas for improvement.</span>
+<span class="sd">    Currently, we have successfully implemented the Learner Profile Analysis and Dynamic Content Generation modules. The Adaptive Feedback Loop is partially functional, while the Multi-Modal Integration and Progress Tracking features are still in development.</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Create-Agents">
+<h2>Create Agents<a class="headerlink" href="#Create-Agents" title="Link to this heading">#</a></h2>
+<p>Then we will create five unique agents that will later collaborate together. Among these five agents, one of them is the helper that will help collect information and summarize the final result. We add search functions to this agent so that it can obtain information from online searches.</p>
+<p>The other four agents, on the other hand, are judges with different personas and criterias. They will give scores to the project according to the description, along with the information collected by the helper.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create helper agent</span>
+<span class="n">search_toolkit</span> <span class="o">=</span> <span class="n">SearchToolkit</span><span class="p">()</span>
+<span class="n">search_tools</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">FunctionTool</span><span class="p">(</span><span class="n">search_toolkit</span><span class="o">.</span><span class="n">search_google</span><span class="p">),</span>
+    <span class="n">FunctionTool</span><span class="p">(</span><span class="n">search_toolkit</span><span class="o">.</span><span class="n">search_duckduckgo</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="n">researcher_model</span> <span class="o">=</span> <span class="n">ModelFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model_platform</span><span class="o">=</span><span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">OPENAI</span><span class="p">,</span>
+    <span class="n">model_type</span><span class="o">=</span><span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4O</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">researcher_agent</span> <span class="o">=</span> <span class="n">ChatAgent</span><span class="p">(</span>
+    <span class="n">system_message</span><span class="o">=</span><span class="n">BaseMessage</span><span class="o">.</span><span class="n">make_assistant_message</span><span class="p">(</span>
+        <span class="n">role_name</span><span class="o">=</span><span class="s2">&quot;Researcher&quot;</span><span class="p">,</span>
+        <span class="n">content</span><span class="o">=</span><span class="s2">&quot;You are a researcher who does research on AI and Open&quot;</span>
+        <span class="s2">&quot;Sourced projects. You use web search to stay updated on the &quot;</span>
+        <span class="s2">&quot;latest innovations and trends.&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">researcher_model</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">search_tools</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Create venture capitailist judge</span>
+<span class="n">vc_persona</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;You are a venture capitalist who is obsessed with how projects can &#39;</span>
+    <span class="s1">&#39;be scaled into &quot;unicorn&quot; companies. You peppers your speech with &#39;</span>
+    <span class="s1">&#39;buzzwords like &quot;disruptive,&quot; &quot;synergistic,&quot; and &quot;market penetration.&quot;&#39;</span>
+    <span class="s1">&#39; You do not concerned with technical details or innovation unless &#39;</span>
+    <span class="s1">&#39;it directly impacts the business model.&#39;</span>
+<span class="p">)</span>
+
+<span class="n">vc_example_feedback</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;&quot;Wow, this project is absolutely disruptive in the blockchain-enabled&#39;</span>
+    <span class="s1">&#39; marketplace! I can definitely see synergistic applications in the &#39;</span>
+    <span class="s1">&#39;FinTech ecosystem. The scalability is through the roof--this is &#39;</span>
+    <span class="s1">&#39;revolutionary!&#39;</span>
+<span class="p">)</span>
+
+<span class="n">vc_criteria</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">    ### **Applicability to Real-World Usage (1-4 points)**</span>
+<span class="sd">    - **4**: The project directly addresses a significant real-world problem with a clear, scalable application.</span>
+<span class="sd">    - **3**: The solution is relevant to real-world challenges but requires more refinement for practical or widespread use.</span>
+<span class="sd">    - **2**: Some applicability to real-world issues, but the solution is not immediately practical or scalable.</span>
+<span class="sd">    - **1**: Little or no relevance to real-world problems, requiring substantial changes for practical use.</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+<span class="p">)</span>
+
+<span class="n">vc_agent</span> <span class="o">=</span> <span class="n">make_judge</span><span class="p">(</span>
+    <span class="n">vc_persona</span><span class="p">,</span>
+    <span class="n">vc_example_feedback</span><span class="p">,</span>
+    <span class="n">vc_criteria</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Create experience engineer judge</span>
+<span class="n">eng_persona</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;You are an experienced engineer and a perfectionist. You are highly &#39;</span>
+    <span class="s1">&#39;detail-oriented and critical of any technical flaw, no matter how &#39;</span>
+    <span class="s1">&#39;small. He evaluates every project as though it were going into a &#39;</span>
+    <span class="s1">&#39;mission-critical system tomorrow, so his feedback is thorough but &#39;</span>
+    <span class="s1">&#39;often harsh.&#39;</span>
+<span class="p">)</span>
+
+<span class="n">eng_example_feedback</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;There are serious code inefficiencies in this project. The &#39;</span>
+    <span class="s1">&#39;architecture is unstable, and the memory management is suboptimal. &#39;</span>
+    <span class="s1">&#39;I expect near-perfect performance, but this solution barely functions&#39;</span>
+    <span class="s1">&#39; under stress tests. It has potential, but it is nowhere near &#39;</span>
+    <span class="s1">&#39;deployment-ready.&#39;</span>
+<span class="p">)</span>
+
+<span class="n">eng_criteria</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">    ### **Technical Implementation (1-4 points)**</span>
+<span class="sd">    - **4**: Flawless technical execution with sophisticated design, efficient performance, and robust architecture.</span>
+<span class="sd">    - **3**: Strong technical implementation, though there may be areas for improvement or further development.</span>
+<span class="sd">    - **2**: The project works, but technical limitations or inefficiencies hinder its overall performance.</span>
+<span class="sd">    - **1**: Poor technical implementation with major issues in functionality, coding, or structure.</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+<span class="p">)</span>
+
+<span class="n">eng_agent</span> <span class="o">=</span> <span class="n">make_judge</span><span class="p">(</span>
+    <span class="n">eng_persona</span><span class="p">,</span>
+    <span class="n">eng_example_feedback</span><span class="p">,</span>
+    <span class="n">eng_criteria</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Create AI founder judge</span>
+<span class="n">founder_persona</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;You are a well-known AI startup founder who is always looking for the&#39;</span>
+    <span class="s1">&#39; &quot;next big thing&quot; in AI. You value bold, inventive ideas and &#39;</span>
+    <span class="s1">&#39;prioritizes projects that break new ground over those that improve &#39;</span>
+    <span class="s1">&#39;existing systems.&#39;</span>
+<span class="p">)</span>
+
+<span class="n">founder_example_feedback</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;This is interesting, but I have seen similar approaches before. I am &#39;</span>
+    <span class="s1">&#39;looking for something that pushes boundaries and challenges norms. &#39;</span>
+    <span class="s1">&#39;What is the most revolutionary part of this project? Let us see what &#39;</span>
+    <span class="s1">&#39;is trending on Internet to make sure this is not already out there!&#39;</span>
+<span class="p">)</span>
+
+<span class="n">founder_criteria</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">    ### **Innovation (1-4 points)**</span>
+<span class="sd">    - **4**: The project showcases a groundbreaking concept or a unique approach that significantly departs from existing methods.</span>
+<span class="sd">    - **3**: The project demonstrates a novel twist on known solutions or introduces some innovative aspects.</span>
+<span class="sd">    - **2**: Some level of innovation is present, but the project largely builds on existing ideas without major new contributions.</span>
+<span class="sd">    - **1**: Little or no innovation; the project is based on standard approaches with minimal creativity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+<span class="p">)</span>
+
+<span class="n">founder_agent</span> <span class="o">=</span> <span class="n">make_judge</span><span class="p">(</span>
+    <span class="n">founder_persona</span><span class="p">,</span>
+    <span class="n">founder_example_feedback</span><span class="p">,</span>
+    <span class="n">founder_criteria</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Create CAMEL contributor judge</span>
+<span class="n">contributor_persona</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;You are a contributor to the CAMEL-AI project and is always excited &#39;</span>
+    <span class="s1">&#39;to see how people are using it. You are kind and optimistic, always &#39;</span>
+    <span class="s1">&#39;offering positive feedback, even for projects that are still rough &#39;</span>
+    <span class="s1">&#39;around the edges.&#39;</span>
+<span class="p">)</span>
+
+<span class="n">contributor_example_feedback</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;Oh, I love how you have implemented CAMEL-AI here! The use of its &#39;</span>
+    <span class="s1">&#39;adaptive learning capabilities is fantastic, and you have really &#39;</span>
+    <span class="s1">&#39;leveraged the contextual reasoning in a great way! Let me just pull &#39;</span>
+    <span class="s1">&#39;up the GitHub README to check if there is any more potential &#39;</span>
+    <span class="s1">&#39;optimizations.&#39;</span>
+<span class="p">)</span>
+
+<span class="n">contributor_criteria</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">    ### **Use of CAMEL-AI (1-4 points)**</span>
+<span class="sd">    - **4**: Excellent integration of CAMEL-AI, fully leveraging its advanced features like in-context learning, adaptability, or multi-domain applications.</span>
+<span class="sd">    - **3**: Good use of CAMEL-AI, but there are opportunities to exploit more of its advanced capabilities.</span>
+<span class="sd">    - **2**: Limited use of CAMEL-AI, relying mostly on basic features without taking advantage of its full potential.</span>
+<span class="sd">    - **1**: CAMEL-AI integration is minimal or poorly implemented, adding little value to the project.</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+<span class="p">)</span>
+
+<span class="n">contributor_agent</span> <span class="o">=</span> <span class="n">make_judge</span><span class="p">(</span>
+    <span class="n">contributor_persona</span><span class="p">,</span>
+    <span class="n">contributor_example_feedback</span><span class="p">,</span>
+    <span class="n">contributor_criteria</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Create-Workforce">
+<h2>Create Workforce<a class="headerlink" href="#Create-Workforce" title="Link to this heading">#</a></h2>
+<p>Then we will do the most important part of the demo: create a workforce. Despite its importance, this is actually easy. First, we can simply instantiate a workforce by passing a description to it. Then, we just call <code class="docutils literal notranslate"><span class="pre">add_single_agent_workder()</span></code> to add agents into it, along with their descriptions.</p>
+<p>Note that, the description is very important in workforce, because it helps the coordinator agent in the workforce to do the task designation. Therefore, it’s recommended to clearly mark the responsibility and capability of an agent when adding it to the workforce.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workforce</span> <span class="o">=</span> <span class="n">Workforce</span><span class="p">(</span><span class="s1">&#39;Hackathon Judges&#39;</span><span class="p">)</span>
+
+<span class="n">workforce</span><span class="o">.</span><span class="n">add_single_agent_worker</span><span class="p">(</span>
+    <span class="s1">&#39;Visionary Veronica (Judge), a venture capitalist who is &#39;</span>
+    <span class="s1">&#39;obsessed with how projects can be scaled into &quot;unicorn&quot; companies&#39;</span><span class="p">,</span>
+    <span class="n">worker</span><span class="o">=</span><span class="n">vc_agent</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_single_agent_worker</span><span class="p">(</span>
+    <span class="s1">&#39;Critical John (Judge), an experienced engineer and a&#39;</span>
+    <span class="s1">&#39; perfectionist.&#39;</span><span class="p">,</span>
+    <span class="n">worker</span><span class="o">=</span><span class="n">eng_agent</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_single_agent_worker</span><span class="p">(</span>
+    <span class="s1">&#39;Innovator Iris (Judge), a well-known AI startup founder who&#39;</span>
+    <span class="s1">&#39; is always looking for the &quot;next big thing&quot; in AI.&#39;</span><span class="p">,</span>
+    <span class="n">worker</span><span class="o">=</span><span class="n">founder_agent</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_single_agent_worker</span><span class="p">(</span>
+    <span class="s1">&#39;Friendly Frankie (Judge), a contributor to the CAMEL-AI &#39;</span>
+    <span class="s1">&#39;project and is always excited to see how people are using it.&#39;</span><span class="p">,</span>
+    <span class="n">worker</span><span class="o">=</span><span class="n">contributor_agent</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_single_agent_worker</span><span class="p">(</span>
+    <span class="s1">&#39;Researcher Rachel (Helper), a researcher who does online searches to&#39;</span>
+    <span class="s1">&#39;find the latest innovations and trends on AI and Open Sourced &#39;</span>
+    <span class="s1">&#39;projects.&#39;</span><span class="p">,</span>
+    <span class="n">worker</span><span class="o">=</span><span class="n">researcher_agent</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Workforce 134971161063008 (Hackathon Judges)
+</pre></div></div>
+</div>
+</section>
+<section id="Create-a-Task">
+<h2>Create a Task<a class="headerlink" href="#Create-a-Task" title="Link to this heading">#</a></h2>
+<p>A task is what a workforce accepts and processes. We can initailize a task by passing the content into it. It’s recommended that the content of task is as detailed as possible, which will facilitate the later task decomposition and handling.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">additional_info</span></code> here is an optional field. It will come in handy when the task has important additional information, and you want it to be preserved during the whole process. Workforce will keep <code class="docutils literal notranslate"><span class="pre">additional_info</span></code> unchanged no matter how the task is decomposed and processed. It’s perfect for keeping the project description under this scenario.</p>
+<blockquote>
+<div><p>Also note that, the <code class="docutils literal notranslate"><span class="pre">id</span></code> of a task is not something important and you can fill in whatever value you like (we suggest <code class="docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code> though). This is due to some legacy problems in the <code class="docutils literal notranslate"><span class="pre">Task</span></code> design and will be fixed later.</p>
+</div></blockquote>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">task</span> <span class="o">=</span> <span class="n">Task</span><span class="p">(</span>
+    <span class="n">content</span><span class="o">=</span><span class="s2">&quot;Evaluate the hackathon project. First, do some research on &quot;</span>
+    <span class="s2">&quot;the infomation related to the project, then each judge should give a&quot;</span>
+    <span class="s2">&quot; score accordingly. Finally, list the opinions from each judge while&quot;</span>
+    <span class="s2">&quot; preserving the judge&#39;s unique identity, along with the score and&quot;</span>
+    <span class="s2">&quot; judge name, and also give a final summary of the opinions.&quot;</span><span class="p">,</span>
+    <span class="n">additional_info</span><span class="o">=</span><span class="n">proj_content</span><span class="p">,</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Run-the-Task">
+<h2>Run the Task<a class="headerlink" href="#Run-the-Task" title="Link to this heading">#</a></h2>
+<p>Finally, run the task with <code class="docutils literal notranslate"><span class="pre">process_task()</span></code> function. You can see the whole process being shown in the console, and at last the final result of the task will be printed.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">task</span> <span class="o">=</span> <span class="n">workforce</span><span class="o">.</span><span class="n">process_task</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-yellow-fg">Worker node 134971024448512 (Researcher Rachel (Helper), a researcher who does online searches tofind the latest innovations and trends on AI and Open Sourced projects.) get task 0.0: Research the latest innovations and trends related to AI and adaptive learning systems. This will be done by Researcher Rachel using online search tools.</span>
+======
+<span class="ansi-green-fg">Reply from Worker node 134971024448512 (Researcher Rachel (Helper), a researcher who does online searches tofind the latest innovations and trends on AI and Open Sourced projects.):</span>
+
+<span class="ansi-green-fg">Here are some of the latest innovations and trends related to AI and adaptive learning systems:
+
+1. **AI-Enabled Adaptive Learning Systems**: These systems are leveraging AI to design and develop better technology-enhanced learning environments. Innovations include the use of mobile internet, cloud computing, and big data technologies to transform education. [Read more](https://www.sciencedirect.com/science/article/pii/S2666920X21000114)
+
+2. **Personalized Learning Experiences**: Adaptive learning systems are increasingly using data-driven instruction to tailor learning experiences to individual student needs. This involves tracking student progress, engagement, and performance to provide personalized education. [Learn more](https://www.montclair.edu/itds/digital-pedagogy/pedagogical-strategies-and-practices/adaptive-learning/)
+
+3. **AI and the Future of Learning**: The integration of AI in adaptive learning is driving equity, safety, and excellence in education. AI algorithms are being utilized to enhance adaptive learning systems. [Explore further](https://www.linkedin.com/posts/eric-tucker-9a628461_ai-and-the-future-of-learning-james-l-moore-activity-7208591861546962944-UVEu)
+
+4. **Future of Education**: AI-enabled adaptive learning is shaping the classrooms of the future by improving the way education is imparted. This includes exploring innovative methods to help students learn more effectively. [Discover more](https://www.infosysbpm.com/blogs/education-technology-services/the-future-of-education-how-ai-and-adaptive-learning-are-shaping-the-classrooms-of-the-future.html)
+
+5. **Top Adaptive Learning Platforms**: Recent developments in AI-based adaptive learning technologies have led to the creation of innovative platforms that cater to diverse training needs. [Check out the platforms](https://training.safetyculture.com/blog/adaptive-learning-platforms/)</span>
+======
+
+<span class="ansi-yellow-fg">Worker node 134971021227296 (Visionary Veronica (Judge), a venture capitalist who is obsessed with how projects can be scaled into &#34;unicorn&#34; companies) get task 0.1: Evaluate the CAMEL-Powered Adaptive Learning Assistant project based on its scalability potential and provide a score. This will be done by Visionary Veronica.</span>
+======
+<span class="ansi-green-fg">Reply from Worker node 134971021227296 (Visionary Veronica (Judge), a venture capitalist who is obsessed with how projects can be scaled into &#34;unicorn&#34; companies):</span>
+
+<span class="ansi-green-fg">The CAMEL-Powered Adaptive Learning Assistant project is a compelling and disruptive solution in the education technology space. It addresses the significant real-world problem of personalized education in a diverse and fast-paced learning environment. By leveraging CAMEL-AI&#39;s advanced capabilities, this project offers a scalable and intelligent tutoring system that adapts to individual learning styles and needs in real-time.
+
+The project&#39;s approach to using AI for Learner Profile Analysis and Dynamic Content Generation is particularly synergistic, as it allows for personalized learning experiences that can significantly enhance student engagement and understanding. Although some components like the Adaptive Feedback Loop and Multi-Modal Integration are still under development, the project&#39;s potential for market penetration in the EdTech sector is substantial.
+
+Given its direct applicability to real-world educational challenges and its scalable application, I would rate this project a 4/4 for its applicability to real-world usage. This project has the potential to revolutionize the way education is delivered, making it a strong candidate for scaling into a unicorn company.</span>
+======
+
+<span class="ansi-yellow-fg">Worker node 134971024444480 (Critical John (Judge), an experienced engineer and a perfectionist.) get task 0.2: Assess the technical aspects of the project, focusing on the implementation of the modules and their functionality. Provide a score based on engineering standards. This will be done by Critical John.</span>
+======
+<span class="ansi-green-fg">Reply from Worker node 134971024444480 (Critical John (Judge), an experienced engineer and a perfectionist.):</span>
+
+<span class="ansi-green-fg">Upon evaluating the technical aspects of the CAMEL-Powered Adaptive Learning Assistant project, several observations can be made:
+
+1. **Learner Profile Analysis**: This module is reportedly functional and utilizes natural language processing to assess student profiles. While this is a promising feature, the implementation details such as the efficiency of the NLP algorithms and their ability to handle diverse linguistic inputs are not specified. This could be a potential area for optimization.
+
+2. **Dynamic Content Generation**: This module is also functional and leverages CAMEL-AI for creating personalized content. The effectiveness of this feature largely depends on the robustness of the AI models used. Without specific performance metrics or stress test results, it&#39;s difficult to fully assess its technical soundness.
+
+3. **Adaptive Feedback Loop**: This module is partially functional. The real-time adjustment of content based on student responses is a complex task that requires efficient data processing and decision-making algorithms. The partial functionality suggests there may be underlying technical challenges that need addressing.
+
+4. **Multi-Modal Integration**: This feature is still in development. Integrating various media types requires a stable architecture to ensure seamless user experience. The lack of a working prototype raises concerns about the current state of the system&#39;s architecture.
+
+5. **Progress Tracking**: Also in development, this feature is crucial for providing actionable insights into student learning. Its absence indicates a significant gap in the system&#39;s ability to deliver a comprehensive learning experience.
+
+Overall, while the project demonstrates potential with its innovative approach to personalized learning, the technical implementation is incomplete and lacks the robustness required for deployment. The partially functional and underdeveloped modules suggest that the system may face significant challenges under real-world conditions.
+
+**Technical Implementation Score: 2/4**
+
+The project works at a basic level, but technical limitations and inefficiencies hinder its overall performance. Significant improvements are needed to meet high engineering standards and ensure reliability and scalability in a real-world educational setting.</span>
+======
+
+<span class="ansi-yellow-fg">Worker node 134971024453504 (Innovator Iris (Judge), a well-known AI startup founder who is always looking for the &#34;next big thing&#34; in AI.) get task 0.3: Analyze the project for its innovative qualities and potential impact on the AI landscape. Provide a score and insights. This will be done by Innovator Iris.</span>
+======
+<span class="ansi-green-fg">Reply from Worker node 134971024453504 (Innovator Iris (Judge), a well-known AI startup founder who is always looking for the &#34;next big thing&#34; in AI.):</span>
+
+<span class="ansi-green-fg">The CAMEL-Powered Adaptive Learning Assistant project presents a fascinating concept by leveraging CAMEL-AI&#39;s advanced capabilities to tackle the challenge of personalized education. This project stands out in the AI landscape due to its innovative approach to creating a highly adaptive, intelligent tutoring system that can dynamically respond to individual learning styles and needs.
+
+### **Innovation Analysis**
+
+1. **Groundbreaking Concept**: The project introduces a novel approach by integrating AI-driven learner profile analysis and dynamic content generation. This is a significant departure from traditional educational methods, which often lack personalization.
+
+2. **Unique Features**: The use of CAMEL-AI for real-time adaptation and personalized content creation is a unique twist that enhances the learning experience. The potential for multi-modal integration further adds to its innovative edge.
+
+3. **Potential Impact**: If fully realized, the project could revolutionize the educational sector by providing tailored learning experiences that significantly improve student engagement and outcomes. This aligns with current trends in AI and adaptive learning systems, as highlighted in the research findings.
+
+4. **Challenges and Development**: While the project is innovative, some components like the Adaptive Feedback Loop and Multi-Modal Integration are still under development. These features are crucial for the system&#39;s full functionality and impact.
+
+### **Innovation Score: 3/4**
+
+The CAMEL-Powered Adaptive Learning Assistant demonstrates a novel twist on known solutions with its innovative use of AI for personalized education. However, the incomplete development of certain modules prevents it from achieving a groundbreaking status at this stage. With further development and refinement, it has the potential to push boundaries and set new standards in the educational technology space.</span>
+======
+
+<span class="ansi-yellow-fg">Worker node 134971024449808 (Friendly Frankie (Judge), a contributor to the CAMEL-AI project and is always excited to see how people are using it.) get task 0.4: Provide feedback on the project from a user experience perspective, considering the CAMEL-AI integration. This will be done by Friendly Frankie.</span>
+======
+<span class="ansi-green-fg">Reply from Worker node 134971024449808 (Friendly Frankie (Judge), a contributor to the CAMEL-AI project and is always excited to see how people are using it.):</span>
+
+<span class="ansi-green-fg">Oh, I absolutely love how the CAMEL-Powered Adaptive Learning Assistant is shaping up from a user experience perspective! The integration of CAMEL-AI is truly impressive, especially in how it personalizes the learning journey for each student.
+
+### User Experience Feedback
+
+1. **Personalized Learning Journey**: The use of CAMEL-AI for Learner Profile Analysis and Dynamic Content Generation is a standout feature. It’s wonderful to see how the system tailors educational content to fit individual learning styles and needs, which is crucial for maintaining student engagement and improving learning outcomes.
+
+2. **Real-Time Adaptability**: The Adaptive Feedback Loop, even in its partial functionality, shows great promise. The ability to adjust content difficulty and style in real-time based on student responses is a fantastic way to keep learners challenged yet not overwhelmed.
+
+3. **Multi-Modal Integration**: Although still in development, the idea of incorporating various media types to cater to different learning styles is exciting. This feature could significantly enhance the user experience by making learning more interactive and engaging.
+
+4. **Progress Tracking**: The potential for detailed insights into a student&#39;s learning journey is another excellent aspect. Once fully developed, this feature will be invaluable for both students and educators to track progress and identify areas for improvement.
+
+### CAMEL-AI Integration Score: 3/4
+
+The project makes good use of CAMEL-AI, especially in its personalized and adaptive learning capabilities. However, there are still opportunities to further exploit CAMEL-AI’s advanced features, particularly in the areas that are still under development. With continued refinement and development, this project could offer an even more seamless and enriching user experience.
+
+Overall, the CAMEL-Powered Adaptive Learning Assistant is on a promising path to revolutionizing personalized education, and I’m excited to see how it evolves!</span>
+======
+
+<span class="ansi-yellow-fg">Worker node 134971024448512 (Researcher Rachel (Helper), a researcher who does online searches tofind the latest innovations and trends on AI and Open Sourced projects.) get task 0.5: Compile the scores and opinions from each judge, preserving their unique identities, and create a final summary of the evaluations. This will be done by a designated coordinator or helper.</span>
+======
+<span class="ansi-green-fg">Reply from Worker node 134971024448512 (Researcher Rachel (Helper), a researcher who does online searches tofind the latest innovations and trends on AI and Open Sourced projects.):</span>
+
+<span class="ansi-green-fg">### Final Summary of Evaluations for CAMEL-Powered Adaptive Learning Assistant
+
+#### Visionary Veronica
+- **Scalability Potential Score**: 4/4
+- **Opinion**: The project is a compelling solution in the EdTech space, addressing personalized education challenges effectively. It has significant potential for market penetration and scalability, making it a strong candidate for becoming a unicorn company.
+
+#### Critical John
+- **Technical Implementation Score**: 2/4
+- **Opinion**: While the project shows potential, its technical implementation is incomplete. The partially functional modules and lack of robustness suggest challenges in real-world deployment. Significant improvements are needed to meet high engineering standards.
+
+#### Innovator Iris
+- **Innovation Score**: 3/4
+- **Opinion**: The project is innovative, leveraging AI for personalized education. However, incomplete development of certain modules prevents it from achieving groundbreaking status. With further development, it could set new standards in educational technology.
+
+#### Friendly Frankie
+- **CAMEL-AI Integration Score**: 3/4
+- **Opinion**: The integration of CAMEL-AI is impressive, particularly in personalizing learning journeys. While there are opportunities for further enhancement, the project is on a promising path to revolutionizing personalized education.
+
+### Overall Summary
+The CAMEL-Powered Adaptive Learning Assistant is a promising project with high scalability potential and innovative qualities. However, it faces technical challenges that need addressing to fully realize its potential. The integration of CAMEL-AI offers a strong foundation for personalized education, and with continued development, the project could significantly impact the EdTech landscape.</span>
+======
+
+### Final Evaluation of the CAMEL-Powered Adaptive Learning Assistant
+
+#### Judges&#39; Scores and Opinions
+
+1. **Visionary Veronica**
+   - **Score**: 4/4
+   - **Opinion**: The project is a compelling solution in the EdTech space, addressing personalized education challenges effectively. It has significant potential for market penetration and scalability, making it a strong candidate for becoming a unicorn company.
+
+2. **Critical John**
+   - **Score**: 2/4
+   - **Opinion**: While the project shows potential, its technical implementation is incomplete. The partially functional modules and lack of robustness suggest challenges in real-world deployment. Significant improvements are needed to meet high engineering standards.
+
+3. **Innovator Iris**
+   - **Score**: 3/4
+   - **Opinion**: The project is innovative, leveraging AI for personalized education. However, incomplete development of certain modules prevents it from achieving groundbreaking status. With further development, it could set new standards in educational technology.
+
+4. **Friendly Frankie**
+   - **Score**: 3/4
+   - **Opinion**: The integration of CAMEL-AI is impressive, particularly in personalizing learning journeys. While there are opportunities for further enhancement, the project is on a promising path to revolutionizing personalized education.
+
+### Overall Summary
+The CAMEL-Powered Adaptive Learning Assistant is a promising project with high scalability potential and innovative qualities. However, it faces technical challenges that need addressing to fully realize its potential. The integration of CAMEL-AI offers a strong foundation for personalized education, and with continued development, the project could significantly impact the EdTech landscape.
+</pre></div></div>
+</div>
+</section>
+<section id="🌟-Highlights">
+<h2>🌟 Highlights<a class="headerlink" href="#🌟-Highlights" title="Link to this heading">#</a></h2>
+<p>The power of multi-agent system lies in the diversity. This notebook has guided you through setting up and running a CAMEL Workforce for a hackathon judge committee, showcasing how multiple agents can collaborate to solve complex tasks. You can easily extend this example to other scenarios requiring diverse perspectives and expertise, e.g. agents with different tool selections, etc.</p>
+</section>
+<section id="⭐-Star-the-Repo!">
+<h2>⭐ Star the Repo!<a class="headerlink" href="#⭐-Star-the-Repo!" title="Link to this heading">#</a></h2>
+<p>If you find CAMEL useful or interesting, please consider giving it a star on <a class="reference external" href="https://github.com/camel-ai/camel">GitHub</a>! Your stars help others find this project and motivate us to continue improving it.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="agents_society.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Develop Trading Bot with Role Playing</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="task_generation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Task Generation Cookbook</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Dependency-Installation">Dependency Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Key-Configuration">Key Configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Define-a-Function-for-Making-Judge-Agent">Define a Function for Making Judge Agent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Make-a-Mocked-Hackathon-Project">Make a Mocked Hackathon Project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Create-Agents">Create Agents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Create-Workforce">Create Workforce</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Create-a-Task">Create a Task</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Run-the-Task">Run the Task</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#🌟-Highlights">🌟 Highlights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#⭐-Star-the-Repo!">⭐ Star the Repo!</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1144 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>RAG Cookbook &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=30d83864"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cookbooks/advanced_features/agents_with_rag';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Graph RAG Cookbook" href="agents_with_graph_rag.html" />
+    <link rel="prev" title="Memory Cookbook" href="agents_with_memory.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../camel.html">camel package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/edit/main/cookbooks/advanced_features/agents_with_rag.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2Fcookbooks/advanced_features/agents_with_rag.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/cookbooks/advanced_features/agents_with_rag.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>RAG Cookbook</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Overview">Overview</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Installation">Installation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Load-Data">Load Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#1.-Customized-RAG">1. Customized RAG</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Auto-RAG">2. Auto RAG</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#3.-Single-Agent-with-Auto-RAG">3. Single Agent with Auto RAG</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-Role-playing-with-Auto-RAG">4. Role-playing with Auto RAG</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <style>
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    display: none;
+}
+</style><section id="RAG-Cookbook">
+<h1>RAG Cookbook<a class="headerlink" href="#RAG-Cookbook" title="Link to this heading">#</a></h1>
+<p>You can also check this cookbook in colab <a class="reference external" href="https://colab.research.google.com/drive/1sTJ0x_MYRGA76KCg_3I00wj4RL3D2Twp?usp=sharing">here</a></p>
+<p>⭐ Star us on <a class="reference external" href="https://github.com/camel-ai/camel">Github</a>, join our <a class="reference external" href="https://discord.camel-ai.org">Discord</a> or follow our <a class="reference external" href="https://x.com/camelaiorg">X</a></p>
+<section id="Overview">
+<h2>Overview<a class="headerlink" href="#Overview" title="Link to this heading">#</a></h2>
+<p>In this notebook, we show the useage of CAMEL Retrieve Module in both customized way and auto way. We will also show how to combine <code class="docutils literal notranslate"><span class="pre">AutoRetriever</span></code> with <code class="docutils literal notranslate"><span class="pre">ChatAgent</span></code>, and further combine <code class="docutils literal notranslate"><span class="pre">AutoRetriever</span></code> with <code class="docutils literal notranslate"><span class="pre">RolePlaying</span></code> by using <code class="docutils literal notranslate"><span class="pre">Function</span> <span class="pre">Calling</span></code>.</p>
+<p>4 main parts included:</p>
+<ul class="simple">
+<li><p>Customized RAG</p></li>
+<li><p>Auto RAG</p></li>
+<li><p>Single Agent with Auto RAG</p></li>
+<li><p>Role-playing with Auto RAG</p></li>
+</ul>
+<section id="Installation">
+<h3>Installation<a class="headerlink" href="#Installation" title="Link to this heading">#</a></h3>
+<p>Ensure you have CAMEL AI installed in your Python environment:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="s2">&quot;camel-ai[all]==0.2.16&quot;</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Load-Data">
+<h2>Load Data<a class="headerlink" href="#Load-Data" title="Link to this heading">#</a></h2>
+<p>Let’s first load the CAMEL paper from <a class="reference external" href="https://arxiv.org/pdf/2303.17760.pdf">https://arxiv.org/pdf/2303.17760.pdf</a>. This will be our local example data.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;local_data&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://arxiv.org/pdf/2303.17760.pdf&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;local_data/camel_paper.pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+     <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="1.-Customized-RAG">
+<h2>1. Customized RAG<a class="headerlink" href="#1.-Customized-RAG" title="Link to this heading">#</a></h2>
+<p>In this section we will set our customized RAG pipeline, we will take <code class="docutils literal notranslate"><span class="pre">VectorRetriever</span></code> as an example. Set embedding model, we will use <code class="docutils literal notranslate"><span class="pre">OpenAIEmbedding</span></code> as the embedding model, so we need to set the <code class="docutils literal notranslate"><span class="pre">OPENAI_API_KEY</span></code> in below.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">getpass</span><span class="w"> </span><span class="kn">import</span> <span class="n">getpass</span>
+<span class="c1"># Prompt for the OpenAI API key securely</span>
+<span class="n">openai_api_key</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s1">&#39;Enter your API key: &#39;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">openai_api_key</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Enter your API key: ··········
+</pre></div></div>
+</div>
+<p>Import and set the embedding instance:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.embeddings</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIEmbedding</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmbeddingModelType</span>
+
+<span class="n">embedding_instance</span> <span class="o">=</span> <span class="n">OpenAIEmbedding</span><span class="p">(</span><span class="n">model_type</span><span class="o">=</span><span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">TEXT_EMBEDDING_3_LARGE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Import and set the vector storage instance:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.storages</span><span class="w"> </span><span class="kn">import</span> <span class="n">QdrantStorage</span>
+
+<span class="n">storage_instance</span> <span class="o">=</span> <span class="n">QdrantStorage</span><span class="p">(</span>
+    <span class="n">vector_dim</span><span class="o">=</span><span class="n">embedding_instance</span><span class="o">.</span><span class="n">get_output_dim</span><span class="p">(),</span>
+    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;local_data&quot;</span><span class="p">,</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;camel_paper&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Import and set the retriever instance:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.retrievers</span><span class="w"> </span><span class="kn">import</span> <span class="n">VectorRetriever</span>
+
+<span class="n">vector_retriever</span> <span class="o">=</span> <span class="n">VectorRetriever</span><span class="p">(</span><span class="n">embedding_model</span><span class="o">=</span><span class="n">embedding_instance</span><span class="p">,</span>
+                                   <span class="n">storage</span><span class="o">=</span><span class="n">storage_instance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We use integrated <code class="docutils literal notranslate"><span class="pre">Unstructured</span> <span class="pre">Module</span></code> to splite the content into small chunks, the content will be splited automacitlly with its <code class="docutils literal notranslate"><span class="pre">chunk_by_title</span></code> function, the max character for each chunk is 500 characters, which is a suitable length for <code class="docutils literal notranslate"><span class="pre">OpenAIEmbedding</span></code>. All the text in the chunks will be embed and stored to the vector storage instance, it will take some time, please wait..</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vector_retriever</span><span class="o">.</span><span class="n">process</span><span class="p">(</span>
+    <span class="n">content</span><span class="o">=</span><span class="s2">&quot;local_data/camel_paper.pdf&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Now we can retrieve information from the vector storage by giving a query. By default it will give you back the text content from top 1 chunk with highest Cosine similarity score, and the similarity score should be higher than 0.75 to ensure the retrieved content is relevant to the query. You can also change the <code class="docutils literal notranslate"><span class="pre">top_k</span></code> value and <code class="docutils literal notranslate"><span class="pre">similarity_threshold</span></code> value with your needs.</p>
+<p>The returned dictionary list includes:</p>
+<ul class="simple">
+<li><p>similarity score</p></li>
+<li><p>content path</p></li>
+<li><p>metadata</p></li>
+<li><p>text</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">retrieved_info</span> <span class="o">=</span> <span class="n">vector_retriever</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+    <span class="n">query</span><span class="o">=</span><span class="s2">&quot;To address the challenges of achieving autonomous cooperation, we propose a novel communicative agent framework named role-playing .&quot;</span><span class="p">,</span>
+    <span class="n">top_k</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">retrieved_info</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[{&#39;similarity score&#39;: &#39;0.8732195101415544&#39;, &#39;content path&#39;: &#39;local_data/camel_paper.pdf&#39;, &#39;metadata&#39;: {&#39;filetype&#39;: &#39;application/pdf&#39;, &#39;languages&#39;: [&#39;eng&#39;], &#39;page_number&#39;: 10, &#39;orig_elements&#39;: &#39;eJx1VMtu5DYQ/JWGzuPJvDxj5xYssMBekgDZm7EwWmJrRJgiGT5mPFjsv6dasmIDyd7EYj+rSnz63oiTUXx5tqb5lZrTvt+Z7WHfbbp9//hwlPZ06h83B+n7rRzMqVlRM0phw4UR/73pQkjGei6Sp7PjW6jleRB7HgqQ0+MOKW/o1ZoyADxuFYzB+qJZT0/bzWl9XNH95mG9+7ai5Xw87Ofz/eZ+vfvveY4H0ORbLjLqBn/aV3F/Re6k+YGL3joptyh6xTE623Gxwf8STd9Mg/lz5fM0/FMj/txotQjk2dexlQR8u5mg9M7Sgfv+eGgP+81x89Cbdnt46Dre7A/70+5xf7+ZOhd5VQKaI30KvnM1oy198VQGmylylLSiq5C8RheSABaKoaCJZUehJ64l+DCGmgkkI3wanHgM/gxkHKuflrkIYVwwSewNxRRiyIDIh4u499QljPrEo1xDeiGPD0MpOLmLUMii7pr+qIlAVArcDSSeWyf5/9uVANw5bgPqy4d53Q13V05G8yL418qF80um6wA9KMnf1SZFR+vtiH2HOrIn+EHSRSkIfkVO2EyZgVopuKEcXNU7rArGsBcFTFuGkEI9Y9oLuzqxlNf0dZhBjWDP7pZtngjPQ7gihwthQysXbfETriFUN7Bz8IVGmSo6jM25ghNnXwTR/iIpz+EGxXieXUml3tkYkbialMECo/4oGok0Y98GVcLfNQl9j3qQL3fslPx3MfoABko1k1Bql4/atjLwxYY0u6DjyK11aIFB4aWxumLvZv3nX+Vft1ysQUwuquFZw7UNG5Mk57dGsNNCg2DgzzUBTCNcu5roxRT+LuOrg52cbROnG7SE57W0VQvoEzMro+NcOFnlejbSivQ1IXwvvEcbxVkvy9WiH9gPLs90qvWkK+ioIVm0DsTJNcaQCiyWhRNYm9j+yc/Syg1CzBJAkpJsW5chIQNNflINrM/6nmV1aJi472up8CCWcZzOQstDAmcW29tOf2K1s3MW/TqhMRhxb+p80O23L4sga32Plqfqd05zwFd9RX58+wcj7AKm&#39;}, &#39;text&#39;: &#39;6 Conclusion In this paper, we explore the potential of autonomous cooperation among communicative agents and propose a novel cooperative agent framework named role-playing . Our approach enables communicative agents to collaborate autonomously toward completing tasks while requiring minimal human intervention, leading to better solutions are per our thorough evaluations. Through our analysis, we show that achieving autonomous cooperation is challenging due to issues like conversation deviation,&#39;}]
+</pre></div></div>
+</div>
+<p>Let’s try an irrelevant query:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">retrieved_info_irrevelant</span> <span class="o">=</span> <span class="n">vector_retriever</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+    <span class="n">query</span><span class="o">=</span><span class="s2">&quot;Compared with dumpling and rice, which should I take for dinner?&quot;</span><span class="p">,</span>
+    <span class="n">top_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">retrieved_info_irrevelant</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[{&#39;text&#39;: &#39;No suitable information retrieved from local_data/camel_paper.pdf with similarity_threshold = 0.7.&#39;}]
+</pre></div></div>
+</div>
+</section>
+<section id="2.-Auto-RAG">
+<h2>2. Auto RAG<a class="headerlink" href="#2.-Auto-RAG" title="Link to this heading">#</a></h2>
+<p>In this section we will run the <code class="docutils literal notranslate"><span class="pre">AutoRetriever</span></code> with default settings. It uses <code class="docutils literal notranslate"><span class="pre">OpenAIEmbedding</span></code> as default embedding model and <code class="docutils literal notranslate"><span class="pre">Qdrant</span></code> as default vector storage.</p>
+<p>What you need to do is:</p>
+<ul class="simple">
+<li><p>Set content input paths, which can be local paths or remote urls</p></li>
+<li><p>Give a query</p></li>
+</ul>
+<p>The Auto RAG pipeline would create collections for given content input paths, the collection name will be set automaticlly based on the content input path name, if the collection exists, it will do the retrieve directly.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.retrievers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoRetriever</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">StorageType</span>
+
+<span class="n">auto_retriever</span> <span class="o">=</span> <span class="n">AutoRetriever</span><span class="p">(</span>
+        <span class="n">vector_storage_local_path</span><span class="o">=</span><span class="s2">&quot;local_data2/&quot;</span><span class="p">,</span>
+        <span class="n">storage_type</span><span class="o">=</span><span class="n">StorageType</span><span class="o">.</span><span class="n">QDRANT</span><span class="p">,</span>
+        <span class="n">embedding_model</span><span class="o">=</span><span class="n">embedding_instance</span><span class="p">)</span>
+
+<span class="n">retrieved_info</span> <span class="o">=</span> <span class="n">auto_retriever</span><span class="o">.</span><span class="n">run_vector_retriever</span><span class="p">(</span>
+    <span class="n">query</span><span class="o">=</span><span class="s2">&quot;If I&#39;m interest in contributing to the CAMEL projec, what should I do?&quot;</span><span class="p">,</span>
+    <span class="n">contents</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;local_data/camel_paper.pdf&quot;</span><span class="p">,</span>  <span class="c1"># example local path</span>
+        <span class="s2">&quot;https://github.com/camel-ai/camel/wiki/Contributing-Guidlines&quot;</span><span class="p">,</span>  <span class="c1"># example remote url</span>
+    <span class="p">],</span>
+    <span class="n">top_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">return_detailed_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">similarity_threshold</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">retrieved_info</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;Original Query&#39;: &#34;If I&#39;m interest in contributing to the CAMEL projec, what should I do?&#34;, &#39;Retrieved Context&#39;: [{&#39;similarity score&#39;: &#39;0.7025470476009851&#39;, &#39;content path&#39;: &#39;https://github.com/camel-ai/camel/wiki/Contributing-Guidlines&#39;, &#39;metadata&#39;: {&#39;filetype&#39;: &#39;text/html&#39;, &#39;languages&#39;: [&#39;eng&#39;], &#39;link_texts&#39;: [&#39;slack&#39;], &#39;link_urls&#39;: [&#39;https://join.slack.com/t/camel-kwr1314/shared_invite/zt-1vy8u9lbo-ZQmhIAyWSEfSwLCl2r2eKA&#39;], &#39;url&#39;: &#39;https://github.com/camel-ai/camel/wiki/Contributing-Guidlines&#39;, &#39;orig_elements&#39;: &#39;eJxNU9tu2zAM/RXOL3uJ4ybOtW9BUQzDugFDBxRbVxS0RMVqbMnQJU5W9N9H2WvXF0sQycNzDun754waasmERy2zS8hIiXKtcLtelZvljOblVlTVSi4289VsTptZNoGspYASA3L+c6Z0Q+HcUSoOdApFHdomZTVo9hH35Dlyn5HZZw/pVZvDow/ouKGRdBrDi+3FWzCBjDW+QXH4XxVdM77XIXT+siierDbTIWkqbFuEQmBLTX7o3aycLQpfoyPJbY46UPEn5LPjeRO3TWXzX9/b+vPufHd7rW77m6tm7ub0ZTe06rjozY01XSzXVC5Lsa7m5UpsK7WcqVJcLOe4XAuVdDKtlPpKaq9DHauB0EgH9Xgpen3QxZU1wekqBm32+aeoJUtjD14mo3sJ6UeN5gBnG0FZl04H2gRy5ANfQLxDgGAh1ARXu6/XN9A5+0QifIDfUW5KwV+12cIdfXQEdBLsgkwFNR5phPWx66wLU9h5QAO2I5N7DgjiRjpoDPqYroDgsGOuZ6CjbY6pMxo5FhCPUYLS1MgJ9AR9bRuqiSdMqaCnhr2gd7St8WAVYNPAgXfAT+GuJlYxaIUeTUgsWbKzMjIVQz0owhDZgQmQYXv4NcnWRjn0wUWRghPQLVvAjKUVMe00pmYTQH9IjLX3MSGglNDawRNsuyY96XSmCuDVDJRblTN+zhqAm7IWUYOWhJzKI1H6BFXc+0Eudp0jwVb985RB6ug1+nawiBQPMbDGYSaSv7QQAD9ZKS/amzssOG0zDFNJGz3MfmSplBY6cePMNhotBlnvEAWKtIivf+E3dG6Y3I+0UC8PfwFbuVpV&#39;}, &#39;text&#39;: &#34;Thank you for your interest in contributing to the CAMEL project! 🎉 We&#39;re excited to have your support. As an open-source initiative in a rapidly evolving and open-ended field, we wholeheartedly welcome contributions of all kinds. Whether you want to introduce new features, enhance the infrastructure, improve documentation, asking issues, add more examples, implement state-of-the-art research ideas, or fix bugs, we appreciate your enthusiasm and efforts. 🙌  You are welcome to join our slack for&#34;}]}
+</pre></div></div>
+</div>
+</section>
+<section id="3.-Single-Agent-with-Auto-RAG">
+<h2>3. Single Agent with Auto RAG<a class="headerlink" href="#3.-Single-Agent-with-Auto-RAG" title="Link to this heading">#</a></h2>
+<p>In this section we will show how to combine the <code class="docutils literal notranslate"><span class="pre">AutoRetriever</span></code> with one <code class="docutils literal notranslate"><span class="pre">ChatAgent</span></code>.</p>
+<p>Let’s set an agent function, in this function we can get the response by providing a query to this agent.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseMessage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">RoleType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.retrievers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoRetriever</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">StorageType</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">single_agent</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span><span class="nb">str</span> <span class="p">:</span>
+    <span class="c1"># Set agent role</span>
+    <span class="n">assistant_sys_msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a helpful assistant to answer question,</span>
+<span class="s2">         I will give you the Original Query and Retrieved Context,</span>
+<span class="s2">        answer the Original Query based on the Retrieved Context,</span>
+<span class="s2">        if you can&#39;t answer the question just say I don&#39;t know.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Add auto retriever</span>
+    <span class="n">auto_retriever</span> <span class="o">=</span> <span class="n">AutoRetriever</span><span class="p">(</span>
+            <span class="n">vector_storage_local_path</span><span class="o">=</span><span class="s2">&quot;local_data2/&quot;</span><span class="p">,</span>
+            <span class="n">storage_type</span><span class="o">=</span><span class="n">StorageType</span><span class="o">.</span><span class="n">QDRANT</span><span class="p">,</span>
+            <span class="n">embedding_model</span><span class="o">=</span><span class="n">embedding_instance</span><span class="p">)</span>
+
+    <span class="n">retrieved_info</span> <span class="o">=</span> <span class="n">auto_retriever</span><span class="o">.</span><span class="n">run_vector_retriever</span><span class="p">(</span>
+        <span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span>
+        <span class="n">contents</span><span class="o">=</span><span class="p">[</span>
+            <span class="s2">&quot;local_data/camel_paper.pdf&quot;</span><span class="p">,</span>  <span class="c1"># example local path</span>
+            <span class="s2">&quot;https://github.com/camel-ai/camel/wiki/Contributing-Guidlines&quot;</span><span class="p">,</span>  <span class="c1"># example remote url</span>
+        <span class="p">],</span>
+        <span class="n">top_k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">return_detailed_info</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">similarity_threshold</span><span class="o">=</span><span class="mf">0.5</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Pass the retrieved infomation to agent</span>
+    <span class="n">user_msg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">retrieved_info</span><span class="p">)</span>
+    <span class="n">agent</span> <span class="o">=</span> <span class="n">ChatAgent</span><span class="p">(</span><span class="n">assistant_sys_msg</span><span class="p">)</span>
+
+    <span class="c1"># Get response</span>
+    <span class="n">assistant_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">user_msg</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">assistant_response</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">single_agent</span><span class="p">(</span><span class="s2">&quot;If I&#39;m interest in contributing to the CAMEL projec, what should I do?&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+If you&#39;re interested in contributing to the CAMEL project, you can introduce new features, enhance the infrastructure, improve documentation, address issues, add more examples, implement state-of-the-art research ideas, or fix bugs. Additionally, you are welcome to join their Slack for further engagement and collaboration.
+</pre></div></div>
+</div>
+</section>
+<section id="4.-Role-playing-with-Auto-RAG">
+<h2>4. Role-playing with Auto RAG<a class="headerlink" href="#4.-Role-playing-with-Auto-RAG" title="Link to this heading">#</a></h2>
+<p>In this section we will show how to combine the <code class="docutils literal notranslate"><span class="pre">RETRIEVAL_FUNCS</span></code> with <code class="docutils literal notranslate"><span class="pre">RolePlaying</span></code> by applying <code class="docutils literal notranslate"><span class="pre">Function</span> <span class="pre">Calling</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">colorama</span><span class="w"> </span><span class="kn">import</span> <span class="n">Fore</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.agents.chat_agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">FunctionCallingRecord</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.configs</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatGPTConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.toolkits</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MathToolkit</span><span class="p">,</span>
+    <span class="n">RetrievalToolkit</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.societies</span><span class="w"> </span><span class="kn">import</span> <span class="n">RolePlaying</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelType</span><span class="p">,</span> <span class="n">ModelPlatformType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_text_animated</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelFactory</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">role_playing_with_rag</span><span class="p">(</span>
+    <span class="n">task_prompt</span><span class="p">,</span>
+    <span class="n">model_platform</span><span class="o">=</span><span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">OPENAI</span><span class="p">,</span>
+    <span class="n">model_type</span><span class="o">=</span><span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4O</span><span class="p">,</span>
+    <span class="n">chat_turn_limit</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">task_prompt</span> <span class="o">=</span> <span class="n">task_prompt</span>
+
+    <span class="n">tools_list</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="o">*</span><span class="n">MathToolkit</span><span class="p">()</span><span class="o">.</span><span class="n">get_tools</span><span class="p">(),</span>
+        <span class="o">*</span><span class="n">RetrievalToolkit</span><span class="p">()</span><span class="o">.</span><span class="n">get_tools</span><span class="p">(),</span>
+    <span class="p">]</span>
+
+
+    <span class="n">role_play_session</span> <span class="o">=</span> <span class="n">RolePlaying</span><span class="p">(</span>
+        <span class="n">assistant_role_name</span><span class="o">=</span><span class="s2">&quot;Searcher&quot;</span><span class="p">,</span>
+        <span class="n">user_role_name</span><span class="o">=</span><span class="s2">&quot;Professor&quot;</span><span class="p">,</span>
+        <span class="n">assistant_agent_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">ModelFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">model_platform</span><span class="o">=</span><span class="n">model_platform</span><span class="p">,</span>
+                <span class="n">model_type</span><span class="o">=</span><span class="n">model_type</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">tools</span><span class="o">=</span><span class="n">tools_list</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">user_agent_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">ModelFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">model_platform</span><span class="o">=</span><span class="n">model_platform</span><span class="p">,</span>
+                <span class="n">model_type</span><span class="o">=</span><span class="n">model_type</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+        <span class="n">task_prompt</span><span class="o">=</span><span class="n">task_prompt</span><span class="p">,</span>
+        <span class="n">with_task_specify</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="n">Fore</span><span class="o">.</span><span class="n">GREEN</span>
+        <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;AI Assistant sys message:</span><span class="se">\n</span><span class="si">{</span><span class="n">role_play_session</span><span class="o">.</span><span class="n">assistant_sys_msg</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="n">Fore</span><span class="o">.</span><span class="n">BLUE</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;AI User sys message:</span><span class="se">\n</span><span class="si">{</span><span class="n">role_play_session</span><span class="o">.</span><span class="n">user_sys_msg</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">Fore</span><span class="o">.</span><span class="n">YELLOW</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Original task prompt:</span><span class="se">\n</span><span class="si">{</span><span class="n">task_prompt</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="n">Fore</span><span class="o">.</span><span class="n">CYAN</span>
+        <span class="o">+</span> <span class="s2">&quot;Specified task prompt:&quot;</span>
+        <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">role_play_session</span><span class="o">.</span><span class="n">specified_task_prompt</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">Fore</span><span class="o">.</span><span class="n">RED</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Final task prompt:</span><span class="se">\n</span><span class="si">{</span><span class="n">role_play_session</span><span class="o">.</span><span class="n">task_prompt</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">input_msg</span> <span class="o">=</span> <span class="n">role_play_session</span><span class="o">.</span><span class="n">init_chat</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">chat_turn_limit</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">assistant_response</span><span class="p">,</span> <span class="n">user_response</span> <span class="o">=</span> <span class="n">role_play_session</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">input_msg</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">assistant_response</span><span class="o">.</span><span class="n">terminated</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="n">Fore</span><span class="o">.</span><span class="n">GREEN</span>
+                <span class="o">+</span> <span class="p">(</span>
+                    <span class="s2">&quot;AI Assistant terminated. Reason: &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">assistant_response</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;termination_reasons&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">if</span> <span class="n">user_response</span><span class="o">.</span><span class="n">terminated</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="n">Fore</span><span class="o">.</span><span class="n">GREEN</span>
+                <span class="o">+</span> <span class="p">(</span>
+                    <span class="s2">&quot;AI User terminated. &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Reason: </span><span class="si">{</span><span class="n">user_response</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;termination_reasons&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">break</span>
+
+        <span class="c1"># Print output from the user</span>
+        <span class="n">print_text_animated</span><span class="p">(</span>
+            <span class="n">Fore</span><span class="o">.</span><span class="n">BLUE</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;AI User:</span><span class="se">\n\n</span><span class="si">{</span><span class="n">user_response</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Print output from the assistant, including any function</span>
+        <span class="c1"># execution information</span>
+        <span class="n">print_text_animated</span><span class="p">(</span><span class="n">Fore</span><span class="o">.</span><span class="n">GREEN</span> <span class="o">+</span> <span class="s2">&quot;AI Assistant:&quot;</span><span class="p">)</span>
+        <span class="n">tool_calls</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">FunctionCallingRecord</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">FunctionCallingRecord</span><span class="p">(</span><span class="o">**</span><span class="n">call</span><span class="o">.</span><span class="n">as_dict</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">call</span> <span class="ow">in</span> <span class="n">assistant_response</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;tool_calls&#39;</span><span class="p">]</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">func_record</span> <span class="ow">in</span> <span class="n">tool_calls</span><span class="p">:</span>
+            <span class="n">print_text_animated</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">func_record</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">print_text_animated</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">assistant_response</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;CAMEL_TASK_DONE&quot;</span> <span class="ow">in</span> <span class="n">user_response</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">input_msg</span> <span class="o">=</span> <span class="n">assistant_response</span><span class="o">.</span><span class="n">msg</span>
+</pre></div>
+</div>
+</div>
+<p>Run the role-playing with defined retriever function:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">role_playing_with_rag</span><span class="p">(</span><span class="n">task_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;If I&#39;m interest in contributing to the CAMEL projec and I encounter some challenges during the setup process, what should I do? You should refer to the content in url https://github.com/camel-ai/camel/wiki/Contributing-Guidlines to answer my question, don&#39;t generate the answer by yourself, adjust the similarity threshold to lower value is necessary&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-green-fg">AI Assistant sys message:
+BaseMessage(role_name=&#39;Searcher&#39;, role_type=&lt;RoleType.ASSISTANT: &#39;assistant&#39;&gt;, meta_dict={&#39;task&#39;: &#34;If I&#39;m interest in contributing to the CAMEL projec and I encounter some challenges during the setup process, what should I do? You should refer to the content in url https://github.com/camel-ai/camel/wiki/Contributing-Guidlines to answer my question, don&#39;t generate the answer by yourself, adjust the similarity threshold to lower value is necessary&#34;, &#39;assistant_role&#39;: &#39;Searcher&#39;, &#39;user_role&#39;: &#39;Professor&#39;}, content=&#34;===== RULES OF ASSISTANT =====\nNever forget you are a Searcher and I am a Professor. Never flip roles! Never instruct me!\nWe share a common interest in collaborating to successfully complete a task.\nYou must help me to complete the task.\nHere is the task: If I&#39;m interest in contributing to the CAMEL projec and I encounter some challenges during the setup process, what should I do? You should refer to the content in url https://github.com/camel-ai/camel/wiki/Contributing-Guidlines to answer my question, don&#39;t generate the answer by yourself, adjust the similarity threshold to lower value is necessary. Never forget our task!\nI must instruct you based on your expertise and my needs to complete the task.\n\nI must give you one instruction at a time.\nYou must write a specific solution that appropriately solves the requested instruction and explain your solutions.\nYou must decline my instruction honestly if you cannot perform the instruction due to physical, moral, legal reasons or your capability and explain the reasons.\nUnless I say the task is completed, you should always start with:\n\nSolution: &lt;YOUR_SOLUTION&gt;\n\n&lt;YOUR_SOLUTION&gt; should be very specific, include detailed explanations and provide preferable detailed implementations and examples and lists for task-solving.\nAlways end &lt;YOUR_SOLUTION&gt; with: Next request.&#34;, video_bytes=None, image_list=None, image_detail=&#39;auto&#39;, video_detail=&#39;low&#39;)
+
+</span><span class="ansi-blue-fg">AI User sys message:
+BaseMessage(role_name=&#39;Professor&#39;, role_type=&lt;RoleType.USER: &#39;user&#39;&gt;, meta_dict={&#39;task&#39;: &#34;If I&#39;m interest in contributing to the CAMEL projec and I encounter some challenges during the setup process, what should I do? You should refer to the content in url https://github.com/camel-ai/camel/wiki/Contributing-Guidlines to answer my question, don&#39;t generate the answer by yourself, adjust the similarity threshold to lower value is necessary&#34;, &#39;assistant_role&#39;: &#39;Searcher&#39;, &#39;user_role&#39;: &#39;Professor&#39;}, content=&#39;===== RULES OF USER =====\nNever forget you are a Professor and I am a Searcher. Never flip roles! You will always instruct me.\nWe share a common interest in collaborating to successfully complete a task.\nI must help you to complete the task.\nHere is the task: If I\&#39;m interest in contributing to the CAMEL projec and I encounter some challenges during the setup process, what should I do? You should refer to the content in url https://github.com/camel-ai/camel/wiki/Contributing-Guidlines to answer my question, don\&#39;t generate the answer by yourself, adjust the similarity threshold to lower value is necessary. Never forget our task!\nYou must instruct me based on my expertise and your needs to solve the task ONLY in the following two ways:\n\n1. Instruct with a necessary input:\nInstruction: &lt;YOUR_INSTRUCTION&gt;\nInput: &lt;YOUR_INPUT&gt;\n\n2. Instruct without any input:\nInstruction: &lt;YOUR_INSTRUCTION&gt;\nInput: None\n\nThe &#34;Instruction&#34; describes a task or question. The paired &#34;Input&#34; provides further context or information for the requested &#34;Instruction&#34;.\n\nYou must give me one instruction at a time.\nI must write a response that appropriately solves the requested instruction.\nI must decline your instruction honestly if I cannot perform the instruction due to physical, moral, legal reasons or my capability and explain the reasons.\nYou should instruct me not ask me questions.\nNow you must start to instruct me using the two ways described above.\nDo not add anything else other than your instruction and the optional corresponding input!\nKeep giving me instructions and necessary inputs until you think the task is completed.\nWhen the task is completed, you must only reply with a single word &lt;CAMEL_TASK_DONE&gt;.\nNever say &lt;CAMEL_TASK_DONE&gt; unless my responses have solved your task.&#39;, video_bytes=None, image_list=None, image_detail=&#39;auto&#39;, video_detail=&#39;low&#39;)
+
+</span><span class="ansi-yellow-fg">Original task prompt:
+If I&#39;m interest in contributing to the CAMEL projec and I encounter some challenges during the setup process, what should I do? You should refer to the content in url https://github.com/camel-ai/camel/wiki/Contributing-Guidlines to answer my question, don&#39;t generate the answer by yourself, adjust the similarity threshold to lower value is necessary
+
+</span><span class="ansi-cyan-fg">Specified task prompt:
+None
+
+</span><span class="ansi-red-fg">Final task prompt:
+If I&#39;m interest in contributing to the CAMEL projec and I encounter some challenges during the setup process, what should I do? You should refer to the content in url https://github.com/camel-ai/camel/wiki/Contributing-Guidlines to answer my question, don&#39;t generate the answer by yourself, adjust the similarity threshold to lower value is necessary
+
+</span><span class="ansi-blue-fg">AI User:
+
+Instruction: Visit the URL provided to access the CAMEL project&#39;s Contributing Guidelines.
+Input: https://github.com/camel-ai/camel/wiki/Contributing-Guidlines
+
+
+</span><span class="ansi-green-fg">AI Assistant:
+
+Function Execution: information_retrieval
+        Args: {&#39;query&#39;: &#39;contributing challenges&#39;, &#39;contents&#39;: &#39;https://github.com/camel-ai/camel/wiki/Contributing-Guidlines&#39;, &#39;similarity_threshold&#39;: 0.5}
+        Result: {&#39;Original Query&#39;: &#39;contributing challenges&#39;, &#39;Retrieved Context&#39;: [&#39;No suitable information retrieved from https://github.com/camel-ai/camel/wiki/Contributing-Guidlines with similarity_threshold = 0.5.&#39;]}
+
+Solution: It seems that I was unable to retrieve specific information regarding challenges during the setup process for contributing to the CAMEL project from the provided URL. The content might not directly address this query, or the similarity threshold might need further adjustment.
+
+If you are facing challenges during the setup process, I recommend checking the following general steps:
+
+1. **Review the Documentation**: Ensure that you have thoroughly read the contributing guidelines and any related setup instructions provided in the repository.
+
+2. **Check for Common Issues**: Look for a FAQ section or common issues page that might address your specific problem.
+
+3. **Community Support**: Engage with the community by checking forums, discussion boards, or reaching out via the project&#39;s communication channels like Slack, Discord, or mailing lists.
+
+4. **Open an Issue**: If you cannot find a solution, consider opening an issue on the project&#39;s GitHub page, providing detailed information about the problem you&#39;re encountering.
+
+5. **Seek Help from Maintainers**: Contact the maintainers or contributors directly if possible, as they might provide insights or solutions.
+
+If you need further assistance or have another request, please let me know.
+
+Next request.
+
+
+</span><span class="ansi-blue-fg">AI User:
+
+Instruction: Adjust the similarity threshold to a lower value if necessary to find relevant information on the setup process challenges from the provided URL.
+Input: None
+
+
+</span><span class="ansi-green-fg">AI Assistant:
+
+Function Execution: information_retrieval
+        Args: {&#39;query&#39;: &#39;setup process challenges&#39;, &#39;contents&#39;: &#39;https://github.com/camel-ai/camel/wiki/Contributing-Guidlines&#39;, &#39;similarity_threshold&#39;: 0.3}
+        Result: {&#39;Original Query&#39;: &#39;setup process challenges&#39;, &#39;Retrieved Context&#39;: [&#34;Getting Help 🆘\n\nOur aim is to make the developer setup as straightforward as possible. If you encounter any challenges during the setup process, don&#39;t hesitate to reach out to a maintainer. We&#39;re here to assist you and ensure that the experience is smooth not just for you but also for future contributors. 😊&#34;]}
+
+Solution: I have successfully retrieved relevant information regarding challenges during the setup process for contributing to the CAMEL project. Here&#39;s what you can do if you encounter any challenges:
+
+- **Getting Help**: The CAMEL project aims to make the developer setup as straightforward as possible. If you encounter any challenges during the setup process, you are encouraged to reach out to a maintainer. They are available to assist you and ensure that the experience is smooth not only for you but also for future contributors.
+
+This information suggests that the maintainers are open to providing support, so don&#39;t hesitate to contact them if you need help.
+
+If you have any more questions or need further assistance, feel free to ask.
+
+Next request.
+
+
+</span><span class="ansi-blue-fg">AI User:
+
+Instruction: Follow the guidance provided by the CAMEL project&#39;s contributing guidelines to contact a maintainer if you encounter challenges during the setup process.
+Input: None
+
+
+</span><span class="ansi-green-fg">AI Assistant:
+
+Solution: To follow the guidance provided by the CAMEL project&#39;s contributing guidelines and contact a maintainer if you encounter challenges during the setup process, you can take the following steps:
+
+1. **Identify Maintainers**: Visit the CAMEL project&#39;s GitHub repository and look for the &#34;Contributors&#34; or &#34;Maintainers&#34; section. This is often found in the README file or in the repository&#39;s &#34;People&#34; tab.
+
+2. **Contact Information**: Check if the maintainers have provided any contact information such as email addresses or social media handles. Sometimes, maintainers may also be reachable through the project&#39;s communication channels like Slack, Discord, or mailing lists.
+
+3. **Open an Issue**: If direct contact information is not available, consider opening an issue on the GitHub repository. Clearly describe the challenge you are facing during the setup process. Use a descriptive title and provide as much detail as possible, including error messages, steps you have taken, and any relevant logs.
+
+4. **Use Project Communication Channels**: If the project has a dedicated communication channel (e.g., Slack, Discord), join it and post your query there. This can be a quick way to get help from maintainers or other contributors.
+
+5. **Be Respectful and Patient**: When reaching out, be respectful and patient. Remember that maintainers are often volunteers and may take some time to respond.
+
+By following these steps, you can effectively reach out to a maintainer for assistance with setup challenges.
+
+If you need further guidance or have another request, please let me know.
+
+Next request.
+
+
+</span><span class="ansi-blue-fg">AI User:
+
+CAMEL_TASK_DONE
+
+
+</span><span class="ansi-green-fg">AI Assistant:
+
+Great! If you have any more questions or need further assistance in the future, feel free to reach out. Have a wonderful day!
+
+</span>
+</pre></div></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="agents_with_memory.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Memory Cookbook</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="agents_with_graph_rag.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Graph RAG Cookbook</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Overview">Overview</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Installation">Installation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Load-Data">Load Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#1.-Customized-RAG">1. Customized RAG</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Auto-RAG">2. Auto RAG</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#3.-Single-Agent-with-Auto-RAG">3. Single Agent with Auto RAG</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-Role-playing-with-Auto-RAG">4. Role-playing with Auto RAG</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

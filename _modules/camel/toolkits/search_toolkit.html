@@ -1,0 +1,1244 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>camel.toolkits.search_toolkit &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=30d83864"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/camel/toolkits/search_toolkit';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../camel.html">camel package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2F_modules/camel/toolkits/search_toolkit.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for camel.toolkits.search_toolkit</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="c1"># ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xml.etree.ElementTree</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ET</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">TypeAlias</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.toolkits.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseToolkit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.toolkits.function_tool</span><span class="w"> </span><span class="kn">import</span> <span class="n">FunctionTool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">api_keys_required</span><span class="p">,</span> <span class="n">dependencies_required</span>
+
+
+<div class="viewcode-block" id="SearchToolkit">
+<a class="viewcode-back" href="../../../camel.toolkits.html#camel.toolkits.search_toolkit.SearchToolkit">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SearchToolkit</span><span class="p">(</span><span class="n">BaseToolkit</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;A class representing a toolkit for web search.</span>
+
+<span class="sd">    This class provides methods for searching information on the web using</span>
+<span class="sd">    search engines like Google, DuckDuckGo, Wikipedia and Wolfram Alpha, Brave.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SearchToolkit.search_wiki">
+<a class="viewcode-back" href="../../../camel.toolkits.html#camel.toolkits.search_toolkit.SearchToolkit.search_wiki">[docs]</a>
+    <span class="nd">@dependencies_required</span><span class="p">(</span><span class="s2">&quot;wikipedia&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search_wiki</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Search the entity in WikiPedia and return the summary of the</span>
+<span class="sd">            required page, containing factual information about</span>
+<span class="sd">            the given entity.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            entity (str): The entity to be searched.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The search result. If the page corresponding to the entity</span>
+<span class="sd">                exists, return the summary of this entity in a string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">wikipedia</span>
+
+        <span class="n">result</span><span class="p">:</span> <span class="nb">str</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">sentences</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">auto_suggest</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">DisambiguationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span>
+                <span class="n">e</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sentences</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">auto_suggest</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">PageError</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s2">&quot;There is no page in Wikipedia corresponding to entity &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">entity</span><span class="si">}</span><span class="s2">, please specify another word to describe the&quot;</span>
+                <span class="s2">&quot; entity to be searched.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">WikipediaException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;An exception occurred during the search: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="SearchToolkit.search_linkup">
+<a class="viewcode-back" href="../../../camel.toolkits.html#camel.toolkits.search_toolkit.SearchToolkit.search_linkup">[docs]</a>
+    <span class="nd">@dependencies_required</span><span class="p">(</span><span class="s2">&quot;linkup&quot;</span><span class="p">)</span>
+    <span class="nd">@api_keys_required</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;LINKUP_API_KEY&quot;</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search_linkup</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">depth</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;standard&quot;</span><span class="p">,</span> <span class="s2">&quot;deep&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;standard&quot;</span><span class="p">,</span>
+        <span class="n">output_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span>
+            <span class="s2">&quot;searchResults&quot;</span><span class="p">,</span> <span class="s2">&quot;sourcedAnswer&quot;</span><span class="p">,</span> <span class="s2">&quot;structured&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;searchResults&quot;</span><span class="p">,</span>
+        <span class="n">structured_output_schema</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Search for a query in the Linkup API and return results in various</span>
+<span class="sd">        formats.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str): The search query.</span>
+<span class="sd">            depth (Literal[&quot;standard&quot;, &quot;deep&quot;]): The depth of the search.</span>
+<span class="sd">                &quot;standard&quot; for a straightforward search, &quot;deep&quot; for a more</span>
+<span class="sd">                comprehensive search.</span>
+<span class="sd">            output_type (Literal[&quot;searchResults&quot;, &quot;sourcedAnswer&quot;,</span>
+<span class="sd">                &quot;structured&quot;]): The type of output:</span>
+<span class="sd">                - &quot;searchResults&quot; for raw search results,</span>
+<span class="sd">                - &quot;sourcedAnswer&quot; for an answer with supporting sources,</span>
+<span class="sd">                - &quot;structured&quot; for output based on a provided schema.</span>
+<span class="sd">            structured_output_schema (Optional[str]): If `output_type` is</span>
+<span class="sd">                &quot;structured&quot;, specify the schema of the output. Must be a</span>
+<span class="sd">                string representing a valid object JSON schema.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict[str, Any]: A dictionary representing the search result. The</span>
+<span class="sd">                structure depends on the `output_type`. If an error occurs,</span>
+<span class="sd">                returns an error message.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">linkup</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinkupClient</span>
+
+            <span class="c1"># Initialize the Linkup client with the API key</span>
+            <span class="n">LINKUP_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LINKUP_API_KEY&quot;</span><span class="p">)</span>
+            <span class="n">client</span> <span class="o">=</span> <span class="n">LinkupClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">LINKUP_API_KEY</span><span class="p">)</span>
+
+            <span class="c1"># Perform the search using the specified output_type</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+                <span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span>
+                <span class="n">depth</span><span class="o">=</span><span class="n">depth</span><span class="p">,</span>
+                <span class="n">output_type</span><span class="o">=</span><span class="n">output_type</span><span class="p">,</span>
+                <span class="n">structured_output_schema</span><span class="o">=</span><span class="n">structured_output_schema</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">output_type</span> <span class="o">==</span> <span class="s2">&quot;searchResults&quot;</span><span class="p">:</span>
+                <span class="n">results</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">item</span><span class="o">.</span><span class="vm">__dict__</span>
+                    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">,</span> <span class="p">[])</span>
+                <span class="p">]</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="n">results</span><span class="p">}</span>
+
+            <span class="k">elif</span> <span class="n">output_type</span> <span class="o">==</span> <span class="s2">&quot;sourcedAnswer&quot;</span><span class="p">:</span>
+                <span class="n">answer</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;answer&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+                <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">item</span><span class="o">.</span><span class="vm">__dict__</span>
+                    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;sources&#39;</span><span class="p">,</span> <span class="p">[])</span>
+                <span class="p">]</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="n">answer</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="n">sources</span><span class="p">}</span>
+
+            <span class="k">elif</span> <span class="n">output_type</span> <span class="o">==</span> <span class="s2">&quot;structured&quot;</span> <span class="ow">and</span> <span class="n">structured_output_schema</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="vm">__dict__</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Invalid output_type: </span><span class="si">{</span><span class="n">output_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">!s}</span><span class="s2">&quot;</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="SearchToolkit.search_duckduckgo">
+<a class="viewcode-back" href="../../../camel.toolkits.html#camel.toolkits.search_toolkit.SearchToolkit.search_duckduckgo">[docs]</a>
+    <span class="nd">@dependencies_required</span><span class="p">(</span><span class="s2">&quot;duckduckgo_search&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search_duckduckgo</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="n">max_results</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Use DuckDuckGo search engine to search information for</span>
+<span class="sd">        the given query.</span>
+
+<span class="sd">        This function queries the DuckDuckGo API for related topics to</span>
+<span class="sd">        the given search term. The results are formatted into a list of</span>
+<span class="sd">        dictionaries, each representing a search result.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str): The query to be searched.</span>
+<span class="sd">            source (str): The type of information to query (e.g., &quot;text&quot;,</span>
+<span class="sd">                &quot;images&quot;, &quot;videos&quot;). Defaults to &quot;text&quot;.</span>
+<span class="sd">            max_results (int): Max number of results, defaults to `5`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[Dict[str, Any]]: A list of dictionaries where each dictionary</span>
+<span class="sd">                represents a search result.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">duckduckgo_search</span><span class="w"> </span><span class="kn">import</span> <span class="n">DDGS</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">requests.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">RequestException</span>
+
+        <span class="n">ddgs</span> <span class="o">=</span> <span class="n">DDGS</span><span class="p">()</span>
+        <span class="n">responses</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">source</span> <span class="o">==</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">results</span> <span class="o">=</span> <span class="n">ddgs</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">keywords</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="n">max_results</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># Handle specific exceptions or general request exceptions</span>
+                <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;duckduckgo search failed.</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">})</span>
+
+            <span class="c1"># Iterate over results found</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                <span class="c1"># Creating a response object with a similar structure</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;result_id&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
+                    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;body&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;href&quot;</span><span class="p">],</span>
+                <span class="p">}</span>
+                <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">source</span> <span class="o">==</span> <span class="s2">&quot;images&quot;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">results</span> <span class="o">=</span> <span class="n">ddgs</span><span class="o">.</span><span class="n">images</span><span class="p">(</span><span class="n">keywords</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="n">max_results</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># Handle specific exceptions or general request exceptions</span>
+                <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;duckduckgo search failed.</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">})</span>
+
+            <span class="c1"># Iterate over results found</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                <span class="c1"># Creating a response object with a similar structure</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;result_id&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
+                    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">],</span>
+                <span class="p">}</span>
+                <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">source</span> <span class="o">==</span> <span class="s2">&quot;videos&quot;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">results</span> <span class="o">=</span> <span class="n">ddgs</span><span class="o">.</span><span class="n">videos</span><span class="p">(</span><span class="n">keywords</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="n">max_results</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># Handle specific exceptions or general request exceptions</span>
+                <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;duckduckgo search failed.</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">})</span>
+
+            <span class="c1"># Iterate over results found</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                <span class="c1"># Creating a response object with a similar structure</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;result_id&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
+                    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;embed_url&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;embed_url&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;publisher&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;publisher&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;duration&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;published&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;published&quot;</span><span class="p">],</span>
+                <span class="p">}</span>
+                <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+        <span class="c1"># If no answer found, return an empty list</span>
+        <span class="k">return</span> <span class="n">responses</span></div>
+
+
+<div class="viewcode-block" id="SearchToolkit.search_brave">
+<a class="viewcode-back" href="../../../camel.toolkits.html#camel.toolkits.search_toolkit.SearchToolkit.search_brave">[docs]</a>
+    <span class="nd">@api_keys_required</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;BRAVE_API_KEY&#39;</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search_brave</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">q</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">country</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;US&quot;</span><span class="p">,</span>
+        <span class="n">search_lang</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;en&quot;</span><span class="p">,</span>
+        <span class="n">ui_lang</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;en-US&quot;</span><span class="p">,</span>
+        <span class="n">count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">safesearch</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;moderate&quot;</span><span class="p">,</span>
+        <span class="n">freshness</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">text_decorations</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">spellcheck</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">result_filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">goggles_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">units</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">extra_snippets</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">summary</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;This function queries the Brave search engine API and returns a</span>
+<span class="sd">        dictionary, representing a search result.</span>
+<span class="sd">        See https://api.search.brave.com/app/documentation/web-search/query</span>
+<span class="sd">        for more details.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            q (str): The user&#39;s search query term. Query cannot be empty.</span>
+<span class="sd">                Maximum of 400 characters and 50 words in the query.</span>
+<span class="sd">            country (str): The search query country where results come from.</span>
+<span class="sd">                The country string is limited to 2 character country codes of</span>
+<span class="sd">                supported countries. For a list of supported values, see</span>
+<span class="sd">                Country Codes. (default: :obj:`US `)</span>
+<span class="sd">            search_lang (str): The search language preference. The 2 or more</span>
+<span class="sd">                character language code for which search results are provided.</span>
+<span class="sd">                For a list of possible values, see Language Codes.</span>
+<span class="sd">            ui_lang (str): User interface language preferred in response.</span>
+<span class="sd">                Usually of the format &#39;&lt;language_code&gt;-&lt;country_code&gt;&#39;. For</span>
+<span class="sd">                more, see RFC 9110. For a list of supported values, see UI</span>
+<span class="sd">                Language Codes.</span>
+<span class="sd">            count (int): The number of search results returned in response.</span>
+<span class="sd">                The maximum is 20. The actual number delivered may be less than</span>
+<span class="sd">                requested. Combine this parameter with offset to paginate</span>
+<span class="sd">                search results.</span>
+<span class="sd">            offset (int): The zero based offset that indicates number of search</span>
+<span class="sd">                results per page (count) to skip before returning the result.</span>
+<span class="sd">                The maximum is 9. The actual number delivered may be less than</span>
+<span class="sd">                requested based on the query. In order to paginate results use</span>
+<span class="sd">                this parameter together with count. For example, if your user</span>
+<span class="sd">                interface displays 20 search results per page, set count to 20</span>
+<span class="sd">                and offset to 0 to show the first page of results. To get</span>
+<span class="sd">                subsequent pages, increment offset by 1 (e.g. 0, 1, 2). The</span>
+<span class="sd">                results may overlap across multiple pages.</span>
+<span class="sd">            safesearch (str): Filters search results for adult content.</span>
+<span class="sd">                The following values are supported:</span>
+<span class="sd">                - &#39;off&#39;: No filtering is done.</span>
+<span class="sd">                - &#39;moderate&#39;: Filters explicit content, like images and videos,</span>
+<span class="sd">                    but allows adult domains in the search results.</span>
+<span class="sd">                - &#39;strict&#39;: Drops all adult content from search results.</span>
+<span class="sd">            freshness (Optional[str]): Filters search results by when they were</span>
+<span class="sd">                discovered:</span>
+<span class="sd">                - &#39;pd&#39;: Discovered within the last 24 hours.</span>
+<span class="sd">                - &#39;pw&#39;: Discovered within the last 7 Days.</span>
+<span class="sd">                - &#39;pm&#39;: Discovered within the last 31 Days.</span>
+<span class="sd">                - &#39;py&#39;: Discovered within the last 365 Days.</span>
+<span class="sd">                - &#39;YYYY-MM-DDtoYYYY-MM-DD&#39;: Timeframe is also supported by</span>
+<span class="sd">                    specifying the date range e.g. &#39;2022-04-01to2022-07-30&#39;.</span>
+<span class="sd">            text_decorations (bool): Whether display strings (e.g. result</span>
+<span class="sd">                snippets) should include decoration markers (e.g. highlighting</span>
+<span class="sd">                characters).</span>
+<span class="sd">            spellcheck (bool): Whether to spellcheck provided query. If the</span>
+<span class="sd">                spellchecker is enabled, the modified query is always used for</span>
+<span class="sd">                search. The modified query can be found in altered key from the</span>
+<span class="sd">                query response model.</span>
+<span class="sd">            result_filter (Optional[str]): A comma delimited string of result</span>
+<span class="sd">                types to include in the search response. Not specifying this</span>
+<span class="sd">                parameter will return back all result types in search response</span>
+<span class="sd">                where data is available and a plan with the corresponding</span>
+<span class="sd">                option is subscribed. The response always includes query and</span>
+<span class="sd">                type to identify any query modifications and response type</span>
+<span class="sd">                respectively. Available result filter values are:</span>
+<span class="sd">                - &#39;discussions&#39;</span>
+<span class="sd">                - &#39;faq&#39;</span>
+<span class="sd">                - &#39;infobox&#39;</span>
+<span class="sd">                - &#39;news&#39;</span>
+<span class="sd">                - &#39;query&#39;</span>
+<span class="sd">                - &#39;summarizer&#39;</span>
+<span class="sd">                - &#39;videos&#39;</span>
+<span class="sd">                - &#39;web&#39;</span>
+<span class="sd">                - &#39;locations&#39;</span>
+<span class="sd">            goggles_id (Optional[str]): Goggles act as a custom re-ranking on</span>
+<span class="sd">                top of Brave&#39;s search index. For more details, refer to the</span>
+<span class="sd">                Goggles repository.</span>
+<span class="sd">            units (Optional[str]): The measurement units. If not provided,</span>
+<span class="sd">                units are derived from search country. Possible values are:</span>
+<span class="sd">                - &#39;metric&#39;: The standardized measurement system</span>
+<span class="sd">                - &#39;imperial&#39;: The British Imperial system of units.</span>
+<span class="sd">            extra_snippets (Optional[bool]): A snippet is an excerpt from a</span>
+<span class="sd">                page you get as a result of the query, and extra_snippets</span>
+<span class="sd">                allow you to get up to 5 additional, alternative excerpts. Only</span>
+<span class="sd">                available under Free AI, Base AI, Pro AI, Base Data, Pro Data</span>
+<span class="sd">                and Custom plans.</span>
+<span class="sd">            summary (Optional[bool]): This parameter enables summary key</span>
+<span class="sd">                generation in web search results. This is required for</span>
+<span class="sd">                summarizer to be enabled.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict[str, Any]: A dictionary representing a search result.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+        <span class="n">BRAVE_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;BRAVE_API_KEY&quot;</span><span class="p">)</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://api.search.brave.com/res/v1/web/search&quot;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;X-BCP-APIV&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;X-Subscription-Token&quot;</span><span class="p">:</span> <span class="n">BRAVE_API_KEY</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">ParamsType</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">[</span>
+            <span class="nb">str</span><span class="p">,</span>
+            <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span> <span class="kc">None</span><span class="p">],</span>
+        <span class="p">]</span>
+
+        <span class="n">params</span><span class="p">:</span> <span class="n">ParamsType</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="n">q</span><span class="p">,</span>
+            <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="n">country</span><span class="p">,</span>
+            <span class="s2">&quot;search_lang&quot;</span><span class="p">:</span> <span class="n">search_lang</span><span class="p">,</span>
+            <span class="s2">&quot;ui_lang&quot;</span><span class="p">:</span> <span class="n">ui_lang</span><span class="p">,</span>
+            <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="n">count</span><span class="p">,</span>
+            <span class="s2">&quot;offset&quot;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span>
+            <span class="s2">&quot;safesearch&quot;</span><span class="p">:</span> <span class="n">safesearch</span><span class="p">,</span>
+            <span class="s2">&quot;freshness&quot;</span><span class="p">:</span> <span class="n">freshness</span><span class="p">,</span>
+            <span class="s2">&quot;text_decorations&quot;</span><span class="p">:</span> <span class="n">text_decorations</span><span class="p">,</span>
+            <span class="s2">&quot;spellcheck&quot;</span><span class="p">:</span> <span class="n">spellcheck</span><span class="p">,</span>
+            <span class="s2">&quot;result_filter&quot;</span><span class="p">:</span> <span class="n">result_filter</span><span class="p">,</span>
+            <span class="s2">&quot;goggles_id&quot;</span><span class="p">:</span> <span class="n">goggles_id</span><span class="p">,</span>
+            <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">units</span><span class="p">,</span>
+            <span class="s2">&quot;extra_snippets&quot;</span><span class="p">:</span> <span class="n">extra_snippets</span><span class="p">,</span>
+            <span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="n">summary</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;web&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="SearchToolkit.search_google">
+<a class="viewcode-back" href="../../../camel.toolkits.html#camel.toolkits.search_toolkit.SearchToolkit.search_google">[docs]</a>
+    <span class="nd">@api_keys_required</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;GOOGLE_API_KEY&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;SEARCH_ENGINE_ID&#39;</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search_google</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">num_result_pages</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Use Google search engine to search information for the given query.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str): The query to be searched.</span>
+<span class="sd">            num_result_pages (int): The number of result pages to retrieve.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[Dict[str, Any]]: A list of dictionaries where each dictionary</span>
+<span class="sd">            represents a website.</span>
+<span class="sd">                Each dictionary contains the following keys:</span>
+<span class="sd">                - &#39;result_id&#39;: A number in order.</span>
+<span class="sd">                - &#39;title&#39;: The title of the website.</span>
+<span class="sd">                - &#39;description&#39;: A brief description of the website.</span>
+<span class="sd">                - &#39;long_description&#39;: More detail of the website.</span>
+<span class="sd">                - &#39;url&#39;: The URL of the website.</span>
+
+<span class="sd">                Example:</span>
+<span class="sd">                {</span>
+<span class="sd">                    &#39;result_id&#39;: 1,</span>
+<span class="sd">                    &#39;title&#39;: &#39;OpenAI&#39;,</span>
+<span class="sd">                    &#39;description&#39;: &#39;An organization focused on ensuring that</span>
+<span class="sd">                    artificial general intelligence benefits all of humanity.&#39;,</span>
+<span class="sd">                    &#39;long_description&#39;: &#39;OpenAI is a non-profit artificial</span>
+<span class="sd">                    intelligence research company. Our goal is to advance</span>
+<span class="sd">                    digital intelligence in the way that is most likely to</span>
+<span class="sd">                    benefit humanity as a whole&#39;,</span>
+<span class="sd">                    &#39;url&#39;: &#39;https://www.openai.com&#39;</span>
+<span class="sd">                }</span>
+<span class="sd">            title, description, url of a website.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+        <span class="c1"># https://developers.google.com/custom-search/v1/overview</span>
+        <span class="n">GOOGLE_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;GOOGLE_API_KEY&quot;</span><span class="p">)</span>
+        <span class="c1"># https://cse.google.com/cse/all</span>
+        <span class="n">SEARCH_ENGINE_ID</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;SEARCH_ENGINE_ID&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Using the first page</span>
+        <span class="n">start_page_idx</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c1"># Different language may get different result</span>
+        <span class="n">search_language</span> <span class="o">=</span> <span class="s2">&quot;en&quot;</span>
+        <span class="c1"># How many pages to return</span>
+        <span class="n">num_result_pages</span> <span class="o">=</span> <span class="n">num_result_pages</span>
+        <span class="c1"># Constructing the URL</span>
+        <span class="c1"># Doc: https://developers.google.com/custom-search/v1/using_rest</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;https://www.googleapis.com/customsearch/v1?&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;key=</span><span class="si">{</span><span class="n">GOOGLE_API_KEY</span><span class="si">}</span><span class="s2">&amp;cx=</span><span class="si">{</span><span class="n">SEARCH_ENGINE_ID</span><span class="si">}</span><span class="s2">&amp;q=</span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&amp;start=&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start_page_idx</span><span class="si">}</span><span class="s2">&amp;lr=</span><span class="si">{</span><span class="n">search_language</span><span class="si">}</span><span class="s2">&amp;num=</span><span class="si">{</span><span class="n">num_result_pages</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+        <span class="n">responses</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Fetch the results given the URL</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Make the get</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+            <span class="c1"># Get the result items</span>
+            <span class="k">if</span> <span class="s2">&quot;items&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">search_items</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;items&quot;</span><span class="p">)</span>
+
+                <span class="c1"># Iterate over 10 results found</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">search_item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">search_items</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                    <span class="c1"># Check metatags are present</span>
+                    <span class="k">if</span> <span class="s2">&quot;pagemap&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">search_item</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="k">if</span> <span class="s2">&quot;metatags&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">search_item</span><span class="p">[</span><span class="s2">&quot;pagemap&quot;</span><span class="p">]:</span>
+                        <span class="k">continue</span>
+                    <span class="k">if</span> <span class="p">(</span>
+                        <span class="s2">&quot;og:description&quot;</span>
+                        <span class="ow">in</span> <span class="n">search_item</span><span class="p">[</span><span class="s2">&quot;pagemap&quot;</span><span class="p">][</span><span class="s2">&quot;metatags&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="p">):</span>
+                        <span class="n">long_description</span> <span class="o">=</span> <span class="n">search_item</span><span class="p">[</span><span class="s2">&quot;pagemap&quot;</span><span class="p">][</span><span class="s2">&quot;metatags&quot;</span><span class="p">][</span>
+                            <span class="mi">0</span>
+                        <span class="p">][</span><span class="s2">&quot;og:description&quot;</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">long_description</span> <span class="o">=</span> <span class="s2">&quot;N/A&quot;</span>
+                    <span class="c1"># Get the page title</span>
+                    <span class="n">title</span> <span class="o">=</span> <span class="n">search_item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+                    <span class="c1"># Page snippet</span>
+                    <span class="n">snippet</span> <span class="o">=</span> <span class="n">search_item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;snippet&quot;</span><span class="p">)</span>
+
+                    <span class="c1"># Extract the page url</span>
+                    <span class="n">link</span> <span class="o">=</span> <span class="n">search_item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">)</span>
+                    <span class="n">response</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="s2">&quot;result_id&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
+                        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">snippet</span><span class="p">,</span>
+                        <span class="s2">&quot;long_description&quot;</span><span class="p">:</span> <span class="n">long_description</span><span class="p">,</span>
+                        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">link</span><span class="p">,</span>
+                    <span class="p">}</span>
+                    <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;google search failed.&quot;</span><span class="p">})</span>
+
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">RequestException</span><span class="p">:</span>
+            <span class="c1"># Handle specific exceptions or general request exceptions</span>
+            <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;google search failed.&quot;</span><span class="p">})</span>
+        <span class="c1"># If no answer found, return an empty list</span>
+        <span class="k">return</span> <span class="n">responses</span></div>
+
+
+<div class="viewcode-block" id="SearchToolkit.query_wolfram_alpha">
+<a class="viewcode-back" href="../../../camel.toolkits.html#camel.toolkits.search_toolkit.SearchToolkit.query_wolfram_alpha">[docs]</a>
+    <span class="nd">@dependencies_required</span><span class="p">(</span><span class="s2">&quot;wolframalpha&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">query_wolfram_alpha</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_detailed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Queries Wolfram|Alpha and returns the result. Wolfram|Alpha is an</span>
+<span class="sd">        answer engine developed by Wolfram Research. It is offered as an online</span>
+<span class="sd">        service that answers factual queries by computing answers from</span>
+<span class="sd">        externally sourced data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str): The query to send to Wolfram Alpha.</span>
+<span class="sd">            is_detailed (bool): Whether to include additional details</span>
+<span class="sd">                including step by step information in the result.</span>
+<span class="sd">                (default: :obj:`False`)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Union[str, Dict[str, Any]]: The result from Wolfram Alpha.</span>
+<span class="sd">                Returns a string if `is_detailed` is False, otherwise returns</span>
+<span class="sd">                a dictionary with detailed information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">wolframalpha</span>
+
+        <span class="n">WOLFRAMALPHA_APP_ID</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;WOLFRAMALPHA_APP_ID&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">WOLFRAMALPHA_APP_ID</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;`WOLFRAMALPHA_APP_ID` not found in environment &quot;</span>
+                <span class="s2">&quot;variables. Get `WOLFRAMALPHA_APP_ID` here: `https://products.wolframalpha.com/api/`.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">client</span> <span class="o">=</span> <span class="n">wolframalpha</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">WOLFRAMALPHA_APP_ID</span><span class="p">)</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Wolfram Alpha wasn&#39;t able to answer it. Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="n">pased_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_wolfram_result</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">is_detailed</span><span class="p">:</span>
+            <span class="n">step_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_wolframalpha_step_by_step_solution</span><span class="p">(</span>
+                <span class="n">WOLFRAMALPHA_APP_ID</span><span class="p">,</span> <span class="n">query</span>
+            <span class="p">)</span>
+            <span class="n">pased_result</span><span class="p">[</span><span class="s2">&quot;steps&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">step_info</span>
+            <span class="k">return</span> <span class="n">pased_result</span>
+
+        <span class="k">return</span> <span class="n">pased_result</span><span class="p">[</span><span class="s2">&quot;final_answer&quot;</span><span class="p">]</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_wolfram_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Parses a Wolfram Alpha API result into a structured dictionary</span>
+<span class="sd">        format.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            result: The API result returned from a Wolfram Alpha</span>
+<span class="sd">                query, structured with multiple pods, each containing specific</span>
+<span class="sd">                information related to the query.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: A structured dictionary with the original query and the</span>
+<span class="sd">                final answer.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Extract the original query</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;@inputstring&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Initialize a dictionary to hold structured output</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span> <span class="s2">&quot;pod_info&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;final_answer&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+
+        <span class="c1"># Loop through each pod to extract the details</span>
+        <span class="k">for</span> <span class="n">pod</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pod&quot;</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="c1"># Handle the case where subpod might be a list</span>
+            <span class="n">subpod_data</span> <span class="o">=</span> <span class="n">pod</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;subpod&quot;</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">subpod_data</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="c1"># If it&#39;s a list, get the first item for &#39;plaintext&#39; and &#39;img&#39;</span>
+                <span class="n">description</span><span class="p">,</span> <span class="n">image_url</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
+                    <span class="p">(</span>
+                        <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;plaintext&quot;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;img&quot;</span><span class="p">])</span>
+                        <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">subpod_data</span>
+                        <span class="k">if</span> <span class="s2">&quot;plaintext&quot;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> <span class="s2">&quot;img&quot;</span> <span class="ow">in</span> <span class="n">data</span>
+                    <span class="p">),</span>
+                    <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Otherwise, handle it as a dictionary</span>
+                <span class="n">description</span> <span class="o">=</span> <span class="n">subpod_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;plaintext&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">image_url</span> <span class="o">=</span> <span class="n">subpod_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;img&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;@src&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+            <span class="n">pod_info</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">pod</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;@title&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span>
+                <span class="s2">&quot;image_url&quot;</span><span class="p">:</span> <span class="n">image_url</span><span class="p">,</span>
+            <span class="p">}</span>
+
+            <span class="c1"># For Results pod, collect all plaintext values from subpods</span>
+            <span class="k">if</span> <span class="n">pod</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;@title&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Results&quot;</span><span class="p">:</span>
+                <span class="n">results_text</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">subpod_data</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">subpod</span> <span class="ow">in</span> <span class="n">subpod_data</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">subpod</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;plaintext&quot;</span><span class="p">):</span>
+                            <span class="n">results_text</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subpod</span><span class="p">[</span><span class="s2">&quot;plaintext&quot;</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">description</span><span class="p">:</span>
+                        <span class="n">results_text</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+                <span class="n">pod_info</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">results_text</span><span class="p">)</span>
+
+            <span class="c1"># Add to steps list</span>
+            <span class="n">output</span><span class="p">[</span><span class="s2">&quot;pod_info&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pod_info</span><span class="p">)</span>
+
+            <span class="c1"># Get final answer</span>
+            <span class="k">if</span> <span class="n">pod</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;@primary&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+                <span class="n">output</span><span class="p">[</span><span class="s2">&quot;final_answer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">description</span>
+
+        <span class="k">return</span> <span class="n">output</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_wolframalpha_step_by_step_solution</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Retrieve a step-by-step solution from the Wolfram Alpha API for a</span>
+<span class="sd">        given query.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            app_id (str): Your Wolfram Alpha API application ID.</span>
+<span class="sd">            query (str): The mathematical or computational query to solve.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: The step-by-step solution response text from the Wolfram</span>
+<span class="sd">                Alpha API.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Define the base URL</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://api.wolframalpha.com/v2/query&quot;</span>
+
+        <span class="c1"># Set up the query parameters</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;appid&quot;</span><span class="p">:</span> <span class="n">app_id</span><span class="p">,</span>
+            <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
+            <span class="s2">&quot;podstate&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Result__Step-by-step solution&quot;</span><span class="p">,</span> <span class="s2">&quot;Show all steps&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;plaintext&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Send the request</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+        <span class="c1"># Extracting step-by-step steps, including &#39;SBSStep&#39; and &#39;SBSHintStep&#39;</span>
+        <span class="n">steps</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Find all subpods within the &#39;Results&#39; pod</span>
+        <span class="k">for</span> <span class="n">subpod</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//pod[@title=&#39;Results&#39;]//subpod&quot;</span><span class="p">):</span>
+            <span class="c1"># Check if the subpod has the desired stepbystepcontenttype</span>
+            <span class="n">content_type</span> <span class="o">=</span> <span class="n">subpod</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;stepbystepcontenttype&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">content_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">content_type</span><span class="o">.</span><span class="n">text</span> <span class="ow">in</span> <span class="p">[</span>
+                <span class="s2">&quot;SBSStep&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;SBSHintStep&quot;</span><span class="p">,</span>
+            <span class="p">]:</span>
+                <span class="n">plaintext</span> <span class="o">=</span> <span class="n">subpod</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;plaintext&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">plaintext</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">plaintext</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+                    <span class="n">step_text</span> <span class="o">=</span> <span class="n">plaintext</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="n">cleaned_step</span> <span class="o">=</span> <span class="n">step_text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+                        <span class="s2">&quot;Hint: |&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
+                    <span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>  <span class="c1"># Remove &#39;Hint: |&#39; if present</span>
+                    <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cleaned_step</span><span class="p">)</span>
+
+        <span class="c1"># Structuring the steps into a dictionary</span>
+        <span class="n">structured_steps</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">structured_steps</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;step</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">step</span>
+
+        <span class="k">return</span> <span class="n">structured_steps</span>
+
+<div class="viewcode-block" id="SearchToolkit.tavily_search">
+<a class="viewcode-back" href="../../../camel.toolkits.html#camel.toolkits.search_toolkit.SearchToolkit.tavily_search">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tavily_search</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">num_results</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Use Tavily Search API to search information for the given query.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (str): The query to be searched.</span>
+<span class="sd">            num_results (int): The number of search results to retrieve</span>
+<span class="sd">                (default is `5`).</span>
+<span class="sd">            **kwargs: Additional optional parameters supported by Tavily&#39;s API:</span>
+<span class="sd">                - search_depth (str): &quot;basic&quot; or &quot;advanced&quot; search depth.</span>
+<span class="sd">                - topic (str): The search category, e.g., &quot;general&quot; or &quot;news.&quot;</span>
+<span class="sd">                - days (int): Time frame in days for news-related searches.</span>
+<span class="sd">                - max_results (int): Max number of results to return</span>
+<span class="sd">                  (overrides `num_results`).</span>
+<span class="sd">                See https://docs.tavily.com/docs/python-sdk/tavily-search/</span>
+<span class="sd">                api-reference for details.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[Dict[str, Any]]: A list of dictionaries representing search</span>
+<span class="sd">                results. Each dictionary contains:</span>
+<span class="sd">                - &#39;result_id&#39; (int): The result&#39;s index.</span>
+<span class="sd">                - &#39;title&#39; (str): The title of the result.</span>
+<span class="sd">                - &#39;description&#39; (str): A brief description of the result.</span>
+<span class="sd">                - &#39;long_description&#39; (str): Detailed information, if available.</span>
+<span class="sd">                - &#39;url&#39; (str): The URL of the result.</span>
+<span class="sd">                - &#39;content&#39; (str): Relevant content from the search result.</span>
+<span class="sd">                - &#39;images&#39; (list): A list of related images (if</span>
+<span class="sd">                  `include_images` is True).</span>
+<span class="sd">                - &#39;published_date&#39; (str): Publication date for news topics</span>
+<span class="sd">                  (if available).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">tavily</span><span class="w"> </span><span class="kn">import</span> <span class="n">TavilyClient</span>  <span class="c1"># type: ignore[import-untyped]</span>
+
+        <span class="n">Tavily_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;TAVILY_API_KEY&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">Tavily_API_KEY</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;`TAVILY_API_KEY` not found in environment variables. &quot;</span>
+                <span class="s2">&quot;Get `TAVILY_API_KEY` here: `https://www.tavily.com/api/`.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">client</span> <span class="o">=</span> <span class="n">TavilyClient</span><span class="p">(</span><span class="n">Tavily_API_KEY</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="n">num_results</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">results</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">!s}</span><span class="s2">&quot;</span><span class="p">}]</span></div>
+
+
+<div class="viewcode-block" id="SearchToolkit.get_tools">
+<a class="viewcode-back" href="../../../camel.toolkits.html#camel.toolkits.search_toolkit.SearchToolkit.get_tools">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_tools</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">FunctionTool</span><span class="p">]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns a list of FunctionTool objects representing the</span>
+<span class="sd">        functions in the toolkit.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[FunctionTool]: A list of FunctionTool objects</span>
+<span class="sd">                representing the functions in the toolkit.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">FunctionTool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">search_wiki</span><span class="p">),</span>
+            <span class="n">FunctionTool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">search_linkup</span><span class="p">),</span>
+            <span class="n">FunctionTool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">search_google</span><span class="p">),</span>
+            <span class="n">FunctionTool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">search_duckduckgo</span><span class="p">),</span>
+            <span class="n">FunctionTool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query_wolfram_alpha</span><span class="p">),</span>
+            <span class="n">FunctionTool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tavily_search</span><span class="p">),</span>
+            <span class="n">FunctionTool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">search_brave</span><span class="p">),</span>
+        <span class="p">]</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

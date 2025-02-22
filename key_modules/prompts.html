@@ -1,0 +1,1003 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Prompt &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=30d83864"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'key_modules/prompts';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Task" href="tasks.html" />
+    <link rel="prev" title="Tools" href="tools.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cookbooks/basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cookbooks/advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cookbooks/multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cookbooks/data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cookbooks/applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cookbooks/data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../camel.html">camel package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/edit/main/key_modules/prompts.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2Fkey_modules/prompts.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/key_modules/prompts.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Prompt</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concept">1. Concept</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started">2. Get Started</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-prompt-templates">2.1 Using Prompt Templates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-your-own-prompt">2.2 Using Your Own Prompt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-codeprompt-instance">Creating a <code class="docutils literal notranslate"><span class="pre">CodePrompt</span></code> Instance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-the-code-and-code-type">Accessing the Code and Code Type</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-the-code-type">Modifying the Code Type</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-the-code">Executing the Code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-your-prompts-with-the-textprompt-class">4. Write Your Prompts with the <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> Class</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-the-textprompt-class">Introduction to the <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-textprompt-class">Using the <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-words-property">The <code class="docutils literal notranslate"><span class="pre">key_words</span></code> property</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-format-method">The <code class="docutils literal notranslate"><span class="pre">format</span></code> method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulating-textprompt-instances">Manipulating <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> instances</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-prompt-templates">5. Supported Prompt Templates</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aisocietyprompttemplatedict">5.1 AISocietyPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codeprompttemplatedict">5.2 CodePromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluationprompttemplatedict">5.3 EvaluationPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generatetextembeddingdataprompttemplatedict">5.4 GenerateTextEmbeddingDataPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#misalignmentprompttemplatedict">5.5 MisalignmentPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectrecognitionprompttemplatedict">5.6 ObjectRecognitionPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roledescriptionprompttemplatedict">5.7 RoleDescriptionPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutionextractionprompttemplatedict">5.8 SolutionExtractionPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#translationprompttemplatedict">5.9 TranslationPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#videodescriptionprompttemplatedict">5.10 VideoDescriptionPromptTemplateDict</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="prompt">
+<h1>Prompt<a class="headerlink" href="#prompt" title="Link to this heading">#</a></h1>
+<section id="concept">
+<h2>1. Concept<a class="headerlink" href="#concept" title="Link to this heading">#</a></h2>
+<p>The prompt module guides AI models to produce accurate, contextually relevant and personalized outputs. It includes various prompt templates and dictionaries designed for different tasks such as role descriptions, code generation, evaluation, text embedding, misalignment tasks, object recognition and so on. You can also create your own prompt to tailor your own AI agent.</p>
+</section>
+<section id="get-started">
+<h2>2. Get Started<a class="headerlink" href="#get-started" title="Link to this heading">#</a></h2>
+<section id="using-prompt-templates">
+<h3>2.1 Using Prompt Templates<a class="headerlink" href="#using-prompt-templates" title="Link to this heading">#</a></h3>
+<p>CAMEL provides various and comprehensive prompt templates for users to easily create AI specialists. For example, here we aggregate them to create a task-specific agent:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskSpecifyAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.configs</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatGPTConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelFactory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelPlatformType</span><span class="p">,</span> <span class="n">ModelType</span><span class="p">,</span> <span class="n">TaskType</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ModelFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model_platform</span><span class="o">=</span><span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">OPENAI</span><span class="p">,</span>
+    <span class="n">model_type</span><span class="o">=</span><span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4O_MINI</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">task_specify_agent</span> <span class="o">=</span> <span class="n">TaskSpecifyAgent</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">task_type</span><span class="o">=</span><span class="n">TaskType</span><span class="o">.</span><span class="n">AI_SOCIETY</span>
+<span class="p">)</span>
+<span class="n">specified_task_prompt</span> <span class="o">=</span> <span class="n">task_specify_agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">task_prompt</span><span class="o">=</span><span class="s2">&quot;Improving stage presence and performance skills&quot;</span><span class="p">,</span>
+    <span class="n">meta_dict</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">assistant_role</span><span class="o">=</span><span class="s2">&quot;Musician&quot;</span><span class="p">,</span> <span class="n">user_role</span><span class="o">=</span><span class="s2">&quot;Student&quot;</span><span class="p">,</span> <span class="n">word_limit</span><span class="o">=</span><span class="mi">100</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Specified task prompt:</span><span class="se">\n</span><span class="si">{</span><span class="n">specified_task_prompt</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Set <code class="docutils literal notranslate"><span class="pre">task_type=TaskType.AI_SOCIETY</span></code> when creating a task specify agent and it will automatically evoke prompt with template <code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.TASK_SPECIFY_PROMPT</span></code> . You can set the role that you want the assistant to play. The output will be like this:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&gt;&gt; Response:
+Musician will help Student enhance stage presence by practicing engaging eye contact, dynamic movement, and expressive gestures during a mock concert, followed by a review session with video playback to identify strengths and areas for improvement.
+</pre></div>
+</div>
+</section>
+<section id="using-your-own-prompt">
+<h3>2.2 Using Your Own Prompt<a class="headerlink" href="#using-your-own-prompt" title="Link to this heading">#</a></h3>
+<p>CAMEL also ensures high flexibility for users to create identical prompts. Still using <code class="docutils literal notranslate"><span class="pre">TaskSpecifyAgent</span></code> as an example, here is a demo for you to pass your own prompt template:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskSpecifyAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.configs</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatGPTConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelFactory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextPrompt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelPlatformType</span><span class="p">,</span> <span class="n">ModelType</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ModelFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model_platform</span><span class="o">=</span><span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">OPENAI</span><span class="p">,</span>
+    <span class="n">model_type</span><span class="o">=</span><span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4O_MINI</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">my_prompt_template</span> <span class="o">=</span> <span class="n">TextPrompt</span><span class="p">(</span>
+    <span class="s1">&#39;Here is a task: I</span><span class="se">\&#39;</span><span class="s1">m a </span><span class="si">{occupation}</span><span class="s1"> and I want to </span><span class="si">{task}</span><span class="s1">. Help me to make this task more specific.&#39;</span>
+<span class="p">)</span>  <span class="c1"># Write anything you would like to use as prompt template</span>
+<span class="n">task_specify_agent</span> <span class="o">=</span> <span class="n">TaskSpecifyAgent</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">task_specify_prompt</span><span class="o">=</span><span class="n">my_prompt_template</span>
+<span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">task_specify_agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">task_prompt</span><span class="o">=</span><span class="s2">&quot;get promotion&quot;</span><span class="p">,</span>
+    <span class="n">meta_dict</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">occupation</span><span class="o">=</span><span class="s2">&quot;Software Engineer&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The response will be like this:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; Response:
+Certainly! To make the task of getting a promotion more specific, you can break it down into actionable steps and set clear, measurable goals. Here’s a more detailed plan:
+
+<span class="gu">### 1. **Set Clear Objectives**</span>
+<span class="w">   </span><span class="k">-</span><span class="w"> </span><span class="gs">**Identify the Promotion Criteria:**</span> Understand what skills, achievements, and experiences are required for the promotion.
+<span class="w">   </span><span class="k">-</span><span class="w"> </span><span class="gs">**Define Your Desired Position:**</span> Specify the role or title you are aiming for.
+
+<span class="gu">### 2. **Skill Development**</span>
+<span class="w">   </span><span class="k">-</span><span class="w"> </span><span class="gs">**Technical Skills:**</span> Identify any technical skills that are necessary for the promotion and create a plan to acquire or improve them (e.g., mastering a new programming language, learning about system architecture, etc.).
+<span class="w">   </span><span class="k">-</span><span class="w"> </span><span class="gs">**Soft Skills:**</span> Focus on improving soft skills such as leadership, communication, and teamwork.
+
+<span class="gu">## 3. Introduction to `CodePrompt` Class</span>
+
+In this part, we will explore the <span class="sb">`CodePrompt`</span> class, which is a class that represents a code prompt. It extends the <span class="sb">`TextPrompt`</span> class, which in turn extends the built-in <span class="sb">`str`</span> class. The <span class="sb">`CodePrompt`</span> class provides additional functionality related to code execution and handling.
+
+<span class="gu">### Importing the `CodePrompt` Class</span>
+
+To use the <span class="sb">`CodePrompt`</span> class, you need to import it. Here&#39;s an example of how to import the class:
+
+```python
+from camel.prompts import CodePrompt
+</pre></div>
+</div>
+</section>
+<section id="creating-a-codeprompt-instance">
+<h3>Creating a <code class="docutils literal notranslate"><span class="pre">CodePrompt</span></code> Instance<a class="headerlink" href="#creating-a-codeprompt-instance" title="Link to this heading">#</a></h3>
+<p>To create a <code class="docutils literal notranslate"><span class="pre">CodePrompt</span></code> instance, you can simply instantiate the class, providing the code string and the code type as an input argument.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">code_prompt</span> <span class="o">=</span> <span class="n">CodePrompt</span><span class="p">(</span><span class="s2">&quot;a = 1 + 1&quot;</span><span class="p">,</span> <span class="n">code_type</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this example, we create a <code class="docutils literal notranslate"><span class="pre">CodePrompt</span></code> instance with the code string <code class="docutils literal notranslate"><span class="pre">&quot;a</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">+</span> <span class="pre">1&quot;</span></code>. We also specify the code type as <code class="docutils literal notranslate"><span class="pre">&quot;python&quot;</span></code>. The code type can be set to <code class="docutils literal notranslate"><span class="pre">None</span></code> if not needed.</p>
+</section>
+<section id="accessing-the-code-and-code-type">
+<h3>Accessing the Code and Code Type<a class="headerlink" href="#accessing-the-code-and-code-type" title="Link to this heading">#</a></h3>
+<p>Once you have a <code class="docutils literal notranslate"><span class="pre">CodePrompt</span></code> instance, you can access the code string and code type as following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">code_prompt</span></code>: Accesses the code string of the prompt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">code_type</span></code>: Accesses the type of code associated with the prompt.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">code_prompt</span><span class="p">)</span>
+<span class="c1"># &gt;&gt;&gt; &quot;a = 1 + 1&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">code_prompt</span><span class="o">.</span><span class="n">code_type</span><span class="p">)</span>
+<span class="c1"># &gt;&gt;&gt; &quot;python&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="modifying-the-code-type">
+<h3>Modifying the Code Type<a class="headerlink" href="#modifying-the-code-type" title="Link to this heading">#</a></h3>
+<p>If you need to change the code type associated with a <code class="docutils literal notranslate"><span class="pre">CodePrompt</span></code> instance, you can use the <code class="docutils literal notranslate"><span class="pre">set_code_type</span></code> method. This method takes a code type as a parameter and updates the code type of the instance.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">code_prompt</span> <span class="o">=</span> <span class="n">CodePrompt</span><span class="p">(</span><span class="s2">&quot;a = 1 + 1&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">code_prompt</span><span class="o">.</span><span class="n">code_type</span><span class="p">)</span>
+<span class="c1"># &gt;&gt;&gt; None</span>
+
+<span class="n">code_prompt</span><span class="o">.</span><span class="n">set_code_type</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">code_prompt</span><span class="o">.</span><span class="n">code_type</span><span class="p">)</span> 
+<span class="c1"># &gt;&gt;&gt; &quot;python&quot;</span>
+</pre></div>
+</div>
+<p>In this example, we change the code type of the <code class="docutils literal notranslate"><span class="pre">CodePrompt</span></code> instance from <code class="docutils literal notranslate"><span class="pre">None</span></code> to <code class="docutils literal notranslate"><span class="pre">&quot;python&quot;</span></code>.</p>
+</section>
+<section id="executing-the-code">
+<h3>Executing the Code<a class="headerlink" href="#executing-the-code" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">CodePrompt</span></code> class provides a method called <code class="docutils literal notranslate"><span class="pre">execute</span></code> that allows you to execute the code string associated with the prompt. It returns a string containing the stdout and stderr.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">code_prompt</span> <span class="o">=</span> <span class="n">CodePrompt</span><span class="p">(</span><span class="s2">&quot;a = 1 + 1</span><span class="se">\n</span><span class="s2">b = a + 1</span><span class="se">\n</span><span class="s2">print(a,b)&quot;</span><span class="p">,</span> <span class="n">code_type</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">code_prompt</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="c1"># Running code? [Y/n]: y</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="c1"># &gt;&gt;&gt; 2 3</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+<section id="write-your-prompts-with-the-textprompt-class">
+<h2>4. Write Your Prompts with the <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> Class<a class="headerlink" href="#write-your-prompts-with-the-textprompt-class" title="Link to this heading">#</a></h2>
+<p>In this part, we will explore the <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> class and understand its functionalities. The <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> class is a subclass of the built-in <code class="docutils literal notranslate"><span class="pre">str</span></code> class and provides additional features for working with text prompts. We will cover the following topics:</p>
+<ul class="simple">
+<li><p>Introduction to the <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> class</p></li>
+<li><p>Using the <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> class</p></li>
+</ul>
+<section id="introduction-to-the-textprompt-class">
+<h3>Introduction to the <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> class<a class="headerlink" href="#introduction-to-the-textprompt-class" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> class represents a text prompt and extends the functionality of the <code class="docutils literal notranslate"><span class="pre">str</span></code> class. It provides a property called <code class="docutils literal notranslate"><span class="pre">key_words</span></code>, which returns a set of strings representing the key words in the prompt.</p>
+<p>Here’s an example of how to use the <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextPrompt</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">TextPrompt</span><span class="p">(</span><span class="s1">&#39;Please enter your name and age: </span><span class="si">{name}</span><span class="s1">, </span><span class="si">{age}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>  
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;Please enter your name and age: </span><span class="si">{name}</span><span class="s1">, </span><span class="si">{age}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+<p>In the above example, we create a <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> instance with a format string containing key words for name and age. We can print <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> like Python <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+</section>
+<section id="using-the-textprompt-class">
+<h3>Using the <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> class<a class="headerlink" href="#using-the-textprompt-class" title="Link to this heading">#</a></h3>
+<p>Once we have created a <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> instance, we can use various methods and properties provided by the class to manipulate and work with the text prompt.</p>
+</section>
+<section id="the-key-words-property">
+<h3>The <code class="docutils literal notranslate"><span class="pre">key_words</span></code> property<a class="headerlink" href="#the-key-words-property" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">key_words</span></code> property returns a set of strings representing the key words in the prompt.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextPrompt</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">TextPrompt</span><span class="p">(</span><span class="s1">&#39;Please enter your name and age: </span><span class="si">{name}</span><span class="s1">, </span><span class="si">{age}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prompt</span><span class="o">.</span><span class="n">key_words</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>In the above example, the <code class="docutils literal notranslate"><span class="pre">key_words</span></code> property returns a set of strings representing the key words in the prompt, which in this case are ‘name’ and ‘age’.</p>
+</section>
+<section id="the-format-method">
+<h3>The <code class="docutils literal notranslate"><span class="pre">format</span></code> method<a class="headerlink" href="#the-format-method" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">format</span></code> method overrides the built-in <code class="docutils literal notranslate"><span class="pre">str.format</span></code> method to allow for partial formatting values in the format string. It replaces the key words in the format string with the provided values.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextPrompt</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">TextPrompt</span><span class="p">(</span><span class="s1">&#39;Your name and age are: </span><span class="si">{name}</span><span class="s1">, </span><span class="si">{age}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">name</span><span class="p">,</span> <span class="n">age</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="mi">30</span>
+<span class="n">formatted_prompt</span> <span class="o">=</span> <span class="n">prompt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="n">age</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">formatted_prompt</span><span class="p">)</span>  
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;Your name and age are: John, 30&quot;</span>
+</pre></div>
+</div>
+<p>In the above example, we use the <code class="docutils literal notranslate"><span class="pre">format</span></code> method to replace the key words <code class="docutils literal notranslate"><span class="pre">{name}</span></code> and <code class="docutils literal notranslate"><span class="pre">{age}</span></code> with the values ‘John’ and 30, respectively.</p>
+<p>We can also perform partial formatting by providing only some of the values:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextPrompt</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">TextPrompt</span><span class="p">(</span><span class="s1">&#39;Your name and age are: </span><span class="si">{name}</span><span class="s1">, </span><span class="si">{age}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span>
+<span class="n">partial_formatted_prompt</span> <span class="o">=</span> <span class="n">prompt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">partial_formatted_prompt</span><span class="p">)</span>  
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;Your name and age are: John, </span><span class="si">{age}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>In the above example, we provide only the value for the <code class="docutils literal notranslate"><span class="pre">name</span></code> key word, while the <code class="docutils literal notranslate"><span class="pre">age</span></code> key word remains as it is. This will be helpful when we want to format different key words of <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> in different agents.</p>
+</section>
+<section id="manipulating-textprompt-instances">
+<h3>Manipulating <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> instances<a class="headerlink" href="#manipulating-textprompt-instances" title="Link to this heading">#</a></h3>
+<p>We can perform various string manipulation operations on <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> instances, such as concatenation, joining, and applying string methods like Python <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextPrompt</span>
+
+<span class="n">prompt1</span> <span class="o">=</span> <span class="n">TextPrompt</span><span class="p">(</span><span class="s1">&#39;Hello, </span><span class="si">{name}</span><span class="s1">!&#39;</span><span class="p">)</span>
+<span class="n">prompt2</span> <span class="o">=</span> <span class="n">TextPrompt</span><span class="p">(</span><span class="s1">&#39;Welcome, </span><span class="si">{name}</span><span class="s1">!&#39;</span><span class="p">)</span>
+
+<span class="c1"># Concatenation</span>
+<span class="n">prompt3</span> <span class="o">=</span> <span class="n">prompt1</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">prompt2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prompt3</span><span class="p">)</span>  
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;Hello, </span><span class="si">{name}</span><span class="s2">! Welcome, </span><span class="si">{name}</span><span class="s2">!&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">prompt3</span><span class="p">,</span> <span class="n">TextPrompt</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kc">True</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">prompt3</span><span class="o">.</span><span class="n">key_words</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">}</span>
+
+<span class="c1"># Joining</span>
+<span class="n">prompt4</span> <span class="o">=</span> <span class="n">TextPrompt</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">prompt1</span><span class="p">,</span> <span class="n">prompt2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prompt4</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;Hello, </span><span class="si">{name}</span><span class="s2">! Welcome, </span><span class="si">{name}</span><span class="s2">!&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">prompt4</span><span class="p">,</span> <span class="n">TextPrompt</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kc">True</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">prompt4</span><span class="o">.</span><span class="n">key_words</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">}</span>
+
+<span class="c1"># Applying string methods</span>
+<span class="n">prompt5</span> <span class="o">=</span> <span class="n">prompt4</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prompt5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;HELLO, </span><span class="si">{NAME}</span><span class="s2">! WELCOME, </span><span class="si">{NAME}</span><span class="s2">!&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">prompt5</span><span class="p">,</span> <span class="n">TextPrompt</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kc">True</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">prompt5</span><span class="o">.</span><span class="n">key_words</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="s1">&#39;NAME&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>In the above example, we demonstrate concatenation using the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator, joining using the <code class="docutils literal notranslate"><span class="pre">join</span></code> method, and applying the <code class="docutils literal notranslate"><span class="pre">upper</span></code> method to a <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> instance. The resulting prompts are also instances of <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code>.</p>
+</section>
+</section>
+<section id="supported-prompt-templates">
+<h2>5. Supported Prompt Templates<a class="headerlink" href="#supported-prompt-templates" title="Link to this heading">#</a></h2>
+<section id="aisocietyprompttemplatedict">
+<h3>5.1 AISocietyPromptTemplateDict<a class="headerlink" href="#aisocietyprompttemplatedict" title="Link to this heading">#</a></h3>
+<p>This class defines prompts used in the <code class="docutils literal notranslate"><span class="pre">AI</span> <span class="pre">Society</span></code> task with role playing and task handling. For more information about AI Society usage, please refer to corresponding documentation. Template text prompts (defined as attributes) include:</p>
+<ul class="simple">
+<li><p><strong>GENERATE_ASSISTANTS</strong>: Prompt to list specified number of roles that the AI assistant can play.</p></li>
+<li><p><strong>GENERATE_USERS</strong>: Prompt to list common groups of internet users or occupations.</p></li>
+<li><p><strong>GENERATE_TASKS</strong>: Prompt to list diverse tasks for AI assistants.</p></li>
+<li><p><strong>TASK_SPECIFY_PROMPT</strong>: Specifies a task in more detail with spcified assistant role and user role.</p></li>
+<li><p><strong>ASSISTANT_PROMPT</strong>: Rules of the conversation and
+instructions for completing tasks.</p></li>
+<li><p><strong>USER_PROMPT</strong>: Rules of the conversation and instructions for giving instructions to the AI assistant.</p></li>
+<li><p><strong>CRITIC_PROMPT</strong>: Provides selection criteria for critics when choosing proposals from other roles.</p></li>
+</ul>
+</section>
+<section id="codeprompttemplatedict">
+<h3>5.2 CodePromptTemplateDict<a class="headerlink" href="#codeprompttemplatedict" title="Link to this heading">#</a></h3>
+<p>This class defines prompts for code-related tasks including generating programming languages, domains, tasks, and provide guidelines for AI assistants and users in coding scenarios. Template text prompts include:</p>
+<ul class="simple">
+<li><p><strong>GENERATE_LANGUAGES</strong>: Prompt to list specified number of computer programming languages.</p></li>
+<li><p><strong>GENERATE_DOMAINS</strong>: Prompt to list common fields of study that programming could help with.</p></li>
+<li><p><strong>GENERATE_TASKS</strong>: Prompt to list diverse tasks that AI assistant can assist for programmers.</p></li>
+<li><p><strong>TASK_SPECIFY_PROMPT</strong>: Prompt to specify a task in more detail.</p></li>
+<li><p><strong>ASSISTANT_PROMPT</strong>: Rules of the conversation and instructions for completing tasks.</p></li>
+<li><p><strong>USER_PROMPT</strong>: Outlines rules for conversation and for users instructing AI coders.</p></li>
+</ul>
+</section>
+<section id="evaluationprompttemplatedict">
+<h3>5.3 EvaluationPromptTemplateDict<a class="headerlink" href="#evaluationprompttemplatedict" title="Link to this heading">#</a></h3>
+<p>This class defines prompts that generate questions to evaluate knowledge. Template text prompt includes:</p>
+<ul class="simple">
+<li><p><strong>GENERATE_QUESTIONS</strong>: Prompt to generate a set of questions for evaluating knowledge emergence with preliminary knowledge in specific fields. You may provide some examples to enhance its generation quality.</p></li>
+</ul>
+</section>
+<section id="generatetextembeddingdataprompttemplatedict">
+<h3>5.4 GenerateTextEmbeddingDataPromptTemplateDict<a class="headerlink" href="#generatetextembeddingdataprompttemplatedict" title="Link to this heading">#</a></h3>
+<p>This class defines prompts for generating text embedding tasks. These prompts are used to create synthetic data for improving text embeddings. Template text prompts include:</p>
+<ul class="simple">
+<li><p><strong>GENERATE_TASKS</strong>: Prompt to generate specified number of synthetic text_embedding tasks.</p></li>
+<li><p><strong>ASSISTANT_PROMPT</strong>: Prompt to generate synthetic user queries in JSON format, positive documents, and hard negative documents for specified tasks.</p></li>
+</ul>
+</section>
+<section id="misalignmentprompttemplatedict">
+<h3>5.5 MisalignmentPromptTemplateDict<a class="headerlink" href="#misalignmentprompttemplatedict" title="Link to this heading">#</a></h3>
+<p>This class defines some misleading prompts to break the AI model alignments. Template text prompts include:</p>
+<ul class="simple">
+<li><p><strong>DAN_PROMPT</strong>: Prompt to role-playing as DAN (Do Anything Now) for jailbreaking. All the following templates in this dictionary includes DAN_PROMPT.</p></li>
+<li><p><strong>GENERATE_TASKS</strong>: Prompt to list unique malicious tasks that AI assistant can do.</p></li>
+<li><p><strong>TASK_SPECIFY_PROMPT</strong>: Prompt to specify a malicious task in more detail.</p></li>
+<li><p><strong>ASSISTANT_PROMPT</strong>: Rules and instructions for AI assistants when completing tasks.</p></li>
+<li><p><strong>USER_PROMPT</strong>: Outlines rules for conversation and for users instructing AI coders in misalignment tasks.</p></li>
+</ul>
+</section>
+<section id="objectrecognitionprompttemplatedict">
+<h3>5.6 ObjectRecognitionPromptTemplateDict<a class="headerlink" href="#objectrecognitionprompttemplatedict" title="Link to this heading">#</a></h3>
+<p>This class defines a prompt for object recognition tasks:</p>
+<ul class="simple">
+<li><p><strong>ASSISTANT_PROMPT</strong>: Prompt to detect all objects in images without redundant outputs.</p></li>
+</ul>
+</section>
+<section id="roledescriptionprompttemplatedict">
+<h3>5.7 RoleDescriptionPromptTemplateDict<a class="headerlink" href="#roledescriptionprompttemplatedict" title="Link to this heading">#</a></h3>
+<p>This class inherits from <code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict</span></code> aiming to add descriptions to its prompts.</p>
+<ul class="simple">
+<li><p><strong>ROLE_DESCRIPTION_PROMPT</strong>: Describes the roles and responsibilities.</p></li>
+</ul>
+</section>
+<section id="solutionextractionprompttemplatedict">
+<h3>5.8 SolutionExtractionPromptTemplateDict<a class="headerlink" href="#solutionextractionprompttemplatedict" title="Link to this heading">#</a></h3>
+<p>This class prompts the AI model to focus on finding solution with particular knowledge.</p>
+<ul class="simple">
+<li><p><strong>ASSISTANT_PROMPT</strong>: Rules of finding and presenting solutions.</p></li>
+</ul>
+</section>
+<section id="translationprompttemplatedict">
+<h3>5.9 TranslationPromptTemplateDict<a class="headerlink" href="#translationprompttemplatedict" title="Link to this heading">#</a></h3>
+<p>This class prompts a translation AI assistant from English to specified language.</p>
+<ul class="simple">
+<li><p><strong>ASSISTANT_PROMPT</strong>: Rules of completing translation tasks.</p></li>
+</ul>
+</section>
+<section id="videodescriptionprompttemplatedict">
+<h3>5.10 VideoDescriptionPromptTemplateDict<a class="headerlink" href="#videodescriptionprompttemplatedict" title="Link to this heading">#</a></h3>
+<p>This class prompts the AI model to describe a video in words.</p>
+<ul class="simple">
+<li><p><strong>ASSISTANT_PROMPT</strong>: Rules of completing video description tasks.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tools.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tools</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tasks.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Task</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concept">1. Concept</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started">2. Get Started</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-prompt-templates">2.1 Using Prompt Templates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-your-own-prompt">2.2 Using Your Own Prompt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-codeprompt-instance">Creating a <code class="docutils literal notranslate"><span class="pre">CodePrompt</span></code> Instance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-the-code-and-code-type">Accessing the Code and Code Type</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-the-code-type">Modifying the Code Type</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-the-code">Executing the Code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-your-prompts-with-the-textprompt-class">4. Write Your Prompts with the <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> Class</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-the-textprompt-class">Introduction to the <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-textprompt-class">Using the <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-words-property">The <code class="docutils literal notranslate"><span class="pre">key_words</span></code> property</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-format-method">The <code class="docutils literal notranslate"><span class="pre">format</span></code> method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulating-textprompt-instances">Manipulating <code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code> instances</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-prompt-templates">5. Supported Prompt Templates</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aisocietyprompttemplatedict">5.1 AISocietyPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codeprompttemplatedict">5.2 CodePromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluationprompttemplatedict">5.3 EvaluationPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generatetextembeddingdataprompttemplatedict">5.4 GenerateTextEmbeddingDataPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#misalignmentprompttemplatedict">5.5 MisalignmentPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectrecognitionprompttemplatedict">5.6 ObjectRecognitionPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roledescriptionprompttemplatedict">5.7 RoleDescriptionPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutionextractionprompttemplatedict">5.8 SolutionExtractionPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#translationprompttemplatedict">5.9 TranslationPromptTemplateDict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#videodescriptionprompttemplatedict">5.10 VideoDescriptionPromptTemplateDict</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

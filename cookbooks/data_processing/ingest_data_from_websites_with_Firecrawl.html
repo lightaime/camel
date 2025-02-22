@@ -1,0 +1,1173 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>3 ways to ingest data from websites with Firecrawl &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=30d83864"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cookbooks/data_processing/ingest_data_from_websites_with_Firecrawl';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="camel" href="../../modules.html" />
+    <link rel="prev" title="Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI" href="agent_with_chunkr_for_pdf_parsing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../camel.html">camel package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/edit/main/cookbooks/data_processing/ingest_data_from_websites_with_Firecrawl.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2Fcookbooks/data_processing/ingest_data_from_websites_with_Firecrawl.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/cookbooks/data_processing/ingest_data_from_websites_with_Firecrawl.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3 ways to ingest data from websites with Firecrawl</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Table-of-Content:">Table of Content:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Introduction"><strong>Introduction</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Features-of-Firecrawl:"><strong>Features of Firecrawl</strong>:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#🔥-Firecrawl:-To-crawl">🔥 <strong>Firecrawl: To crawl</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#🔥-Firecrawl:-To-Scrape">🔥 Firecrawl: To Scrape</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#🔥-Firecrawl:-To-Map">🔥 Firecrawl: To Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <style>
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    display: none;
+}
+</style><section id="3-ways-to-ingest-data-from-websites-with-Firecrawl">
+<h1>3 ways to ingest data from websites with Firecrawl<a class="headerlink" href="#3-ways-to-ingest-data-from-websites-with-Firecrawl" title="Link to this heading">#</a></h1>
+<p>You can also check this cookbook in colab <a class="reference external" href="https://colab.research.google.com/drive/1lOmM3VmgR1hLwDKdeLGFve_75RFW0R9I?usp=sharing">here</a></p>
+<p>In this blog, we’ll introduce Firecrawl, a versatile web scraping and crawling tool designed to extract data efficiently from websites, which has been integrated with CAMEL. Today we’ll walk through three key features—Scrape, Crawl, and Map—each tailored with a CAMEL agent use case.</p>
+<section id="Table-of-Content:">
+<h2>Table of Content:<a class="headerlink" href="#Table-of-Content:" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Introduction</p></li>
+<li><p>🔥 Firecrawl: To crawl</p></li>
+<li><p>🔥 Firecrawl: To Scrape</p></li>
+<li><p>🔥 Firecrawl: To Map</p></li>
+<li><p>Conclusion</p></li>
+</ol>
+<p>⭐ Star us on <a class="reference external" href="https://github.com/camel-ai/camel">Github</a>, join our <a class="reference external" href="https://discord.camel-ai.org">Discord</a> or follow our <a class="reference external" href="https://x.com/camelaiorg">X</a></p>
+</section>
+<section id="Introduction">
+<h2><strong>Introduction</strong><a class="headerlink" href="#Introduction" title="Link to this heading">#</a></h2>
+<p><strong>Firecrawl</strong> developed by the Mendable.ai team, is a data ingestion tool that streamlines web data extraction using web scraping, API access, and automated browser interactions. It’s ideal for collecting structured and unstructured data from websites for analytics.</p>
+<p>It effectively manages complex tasks such as handling reverse proxies, implementing caching strategies, adhering to rate limits, and accessing content blocked by JavaScript.</p>
+<section id="Features-of-Firecrawl:">
+<h3><strong>Features of Firecrawl</strong>:<a class="headerlink" href="#Features-of-Firecrawl:" title="Link to this heading">#</a></h3>
+<p><strong>Crawl</strong>: Collects content from all URLs within a web page, converting it into an LLM-ready format for seamless analysis.</p>
+<p><strong>Scrape</strong>: Extracts content from a single URL, delivering it in formats ready for LLMs, including markdown, structured data (via LLM Extract), screenshots, and HTML.</p>
+<p><strong>Map</strong>: Inputs a website and retrieves all URLs associated with it at high speed, enabling a comprehensive and efficient site overview.</p>
+<p>All the above features make it ideal for collecting structured and unstructured data from websites for agentic workflows. <strong>CAMEL-AI has integrated Firecrawl to enhance its web data extraction capabilities</strong>.</p>
+<p>First, install the CAMEL package with all its dependencies and input the OPENAI API Key.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="s2">&quot;camel-ai[all]==0.2.16&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">getpass</span><span class="w"> </span><span class="kn">import</span> <span class="n">getpass</span>
+
+<span class="c1"># Prompt for the API key securely</span>
+<span class="n">openai_api_key</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s1">&#39;Enter your API key: &#39;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">openai_api_key</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Enter your API key: ··········
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="🔥-Firecrawl:-To-crawl">
+<h2>🔥 <strong>Firecrawl: To crawl</strong><a class="headerlink" href="#🔥-Firecrawl:-To-crawl" title="Link to this heading">#</a></h2>
+<p>Let’s get started with the exploration of the first feature of Firecrawl - Crawl: Extracts content from all subpages in an LLM-ready format (markdown, structured data, screenshot, HTML, links, metadata) for easy analysis.</p>
+<p>Step 1: Set up your firecrawl API key</p>
+<p>You just need to go to this link and sign in to get your API Key: <a class="reference external" href="https://www.firecrawl.dev/app/api-keys">https://www.firecrawl.dev/app/api-keys</a></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">getpass</span><span class="w"> </span><span class="kn">import</span> <span class="n">getpass</span>
+
+<span class="c1"># Prompt for the Firecrawl API key securely</span>
+<span class="n">firecrawl_api_key</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s1">&#39;Enter your API key: &#39;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;FIRECRAWL_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">firecrawl_api_key</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Enter your API key: ··········
+</pre></div></div>
+</div>
+<p>Step 2: Import necessary modules</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">Firecrawl</span>
+</pre></div>
+</div>
+</div>
+<p>Step 3: Crawl the website</p>
+<p>It will crawl the CAMEL-AI website and generate the LLM-friendly output as shown in markdown below.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the Firecrawl instance</span>
+<span class="n">firecrawl</span> <span class="o">=</span> <span class="n">Firecrawl</span><span class="p">()</span>
+
+<span class="c1"># Use the `crawl` method to retrieve content from the specified URL</span>
+<span class="n">firecrawl_response</span> <span class="o">=</span> <span class="n">firecrawl</span><span class="o">.</span><span class="n">crawl</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://www.camel-ai.org/about&quot;</span>  <span class="c1"># Target URL to crawl for content</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">firecrawl_response</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">])</span>
+
+<span class="c1"># Print the markdown content from the first page in the crawled data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">firecrawl_response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;markdown&quot;</span><span class="p">])</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+completed
+Camel-AI Team
+
+# We are finding the scaling law of agent
+
+🐫 CAMEL is an open-source library designed for the study of autonomous and communicative agents. We believe that studying these agents on a large scale offers valuable insights into their behaviors, capabilities, and potential risks. To facilitate research in this field, we implement and support various types of agents, tasks, prompts, models, and simulated environments.
+
+**We are** always looking for more **contributors** and **collaborators**. Contact us to join forces。
+
+[Slack](https://join.slack.com/t/camel-kwr1314/shared_invite/zt-1vy8u9lbo-ZQmhIAyWSEfSwLCl2r2eKA) [Discord](https://discord.gg/CNcNpquyDc)
+
+#### All contributors
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830ee9ab51435525e8c57a_1.jpeg)[lightaime](https://github.com/lightaime)
+
+Commits:
+
+116
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830ef16f49819f7dfa140e_3.png)[Wendong-Fan](https://github.com/Wendong-Fan)
+
+Commits:
+
+75
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830ef7600c40531b5c74e2_4.png)[Obs01ete](https://github.com/Obs01ete)
+
+Commits:
+
+38
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f2b0d41ffb78faa6c58_6.png)[dandansamax](https://github.com/dandansamax)
+
+Commits:
+
+35
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/6683d081f7586e59387edbb6_5.jpeg)[zechengz](https://github.com/zechengz)
+
+Commits:
+
+26
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f30d401b408fa35facf_7.png)[hammoudhasan](https://github.com/hammoudhasan)
+
+Commits:
+
+18
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f36c12354b7846c3a51_8.jpeg)[yiyiyi0817](https://github.com/yiyiyi0817)
+
+Commits:
+
+9
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f3a7bce11b6dbe3e222_9.jpeg)[HalberdOfPineapple](https://github.com/HalberdOfPineapple)
+
+Commits:
+
+9
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f3fb0c6b06595b037e4_10.jpeg)[ocss884](https://github.com/ocss884)
+
+Commits:
+
+9
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f43f41f537d536c5f5f_11.png)[Benjamin-eecs](https://github.com/Benjamin-eecs)
+
+Commits:
+
+8
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f479dfcbf180e4fd018_12.jpeg)[Appointat](https://github.com/Appointat)
+
+Commits:
+
+7
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f4e9f8f288796edd2b2_13.png)[zhiyu-01](https://github.com/zhiyu-01)
+
+Commits:
+
+5
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f58a5e4a625d5793931_14.jpeg)[rsrbk](https://github.com/rsrbk)
+
+Commits:
+
+4
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f5d7bce11b6dbe3f728_15.png)[HaniItani](https://github.com/HaniItani)
+
+Commits:
+
+3
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f63bf86deec6b7f1a09_16.png)[jjyaoao](https://github.com/jjyaoao)
+
+Commits:
+
+3
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f69b1a115cbcfe49dc5_17.jpeg)[willshang76](https://github.com/willshang76)
+
+Commits:
+
+3
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f6f1ee3fc17a837f847_18.jpeg)[hychen-naza](https://github.com/hychen-naza)
+
+Commits:
+
+2
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f760db8fb00b4739fd2_19.png)[FUYICC](https://github.com/FUYICC)
+
+Commits:
+
+2
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f7b524b86a3ebe633c1_20.jpeg)[koch3092](https://github.com/koch3092)
+
+Commits:
+
+2
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f81853d6f6c8f09fe8d_21.png)[cat-searcher-bot](https://github.com/cat-searcher-bot)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f86ef774fafa799e956_22.jpeg)[Undertone0809](https://github.com/Undertone0809)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f8abe25cfeebf796c94_23.jpeg)[ArnoldIOI](https://github.com/ArnoldIOI)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830f9c699384adbc10e9f8_24.jpeg)[ZIYU-DEEP](https://github.com/ZIYU-DEEP)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830fa9ce07b2ac7dffeaef_25.jpeg)[duducheng](https://github.com/duducheng)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830fb440bef9732785a628_26.png)[forever-ly](https://github.com/forever-ly)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830ff2f41f537d536d020e_27.jpeg)[EddieFahrenheit](https://github.com/EddieFahrenheit)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830ff823bea7f626c0e3a7_28.png)[riverfor](https://github.com/riverfor)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66830ffd23bea7f626c0e7fe_29.jpeg)[raywhoelse](https://github.com/raywhoelse)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/6683100268f1349b3eb6c055_30.jpeg)[ZackYule](https://github.com/ZackYule)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/668310074683c2253ba26897_31.jpeg)[fengju0213](https://github.com/fengju0213)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/6683100b6b83da024d9eceff_32.jpeg)[Skevinci](https://github.com/Skevinci)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/6683100ea0d0bbb5aa97c1f1_33.jpeg)[eltociear](https://github.com/eltociear)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/66831013feedb63ddc545bf3_34.jpeg)[tczhangzhi](https://github.com/tczhangzhi)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/668310184a5c41506fd7f350_35.jpeg)[fbaldassarri](https://github.com/fbaldassarri)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/6683101c2dcf19fe9a1f95da_36.png)[zeromquan](https://github.com/zeromquan)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/6683101f524b86a3ebe6b127_37.png)[onemquan](https://github.com/onemquan)
+
+Commits:
+
+1
+
+![](https://cdn.prod.website-files.com/6659a155491a54a40551bd7f/668310236c11244074a2aae8_38.jpeg)[zestor](https://github.com/zestor)
+
+Commits:
+
+1
+
+## Our Advisors
+
+[![](https://cdn.prod.website-files.com/6659a154491a54a40551bc78/66c6091430068e70376b2434_KAUST-CEMSE-EE-VCC-IVUL-Bernard-Ghanem-2045-edited-4k.jpg)\\
+Bernard Ghanem\\
+\\
+King Abdullah University of Science and Technology\\
+\\
+- Rising star professor in the Middle East region \\
+- He was Awarded the Shoman Arab Researcher Award for the topic of Machine Learning and Big Data\\
+- Deputy Director of AI Initiative at Kaust and now leading a bigger initiative at Kaust on GenAI](https://cemse.kaust.edu.sa/people/person/bernard-ghanem) [![](https://cdn.prod.website-files.com/6659a154491a54a40551bc78/66c609ea3025b97ff20628a6_Philip_torr.jpg)\\
+Philip Torr\\
+\\
+University of Oxford\\
+\\
+- 2019: Fellow of the Royal Academy of Engineering (FREng) in 2019\\
+- 2021: Fellow of the Royal Society (FRS) for contributions to computer vision\\
+- 2021: Turing AI world leading researcher fellow](https://eng.ox.ac.uk/people/philip-torr/)
+
+Get started
+
+## Build your multi-agent system today
+
+Get started by joining our community
+
+[Join Discord](http://discord.camel-ai.org/)
+
+![](https://cdn.prod.website-files.com/6659a154491a54a40551bc78/6686afd48a4c823499baa2e7_Camel%20Logo%20Long.png)
+
+Finding the scaling law of agents
+
+![](https://cdn.prod.website-files.com/6659a154491a54a40551bc78/6659a155491a54a40551bd92_mail.svg)
+
+RESEARCH
+
+[CAMEL](https://github.com/camel-ai/camel) [Agent Trust](https://agent-trust.camel-ai.org/) [CRAB](https://github.com/camel-ai/crab?tab=readme-ov-file)
+
+RESOURCES
+
+[News](/news) [Blog](/blog) [Docs](https://docs.camel-ai.org/) [Integrations](/integration) [Team](/team)
+
+Get UPdates
+
+Thank you! Your submission has been received!
+
+Oops! Something went wrong while submitting the form.
+
+[![](https://cdn.prod.website-files.com/6659a154491a54a40551bc78/6675648577704e5e10bcdc87_Discord.svg)](http://discord.camel-ai.org/)[![](https://cdn.prod.website-files.com/6659a154491a54a40551bc78/66756482a95ea32bb2904c70_Github.svg)](https://github.com/camel-ai/camel)[![](https://cdn.prod.website-files.com/6659a154491a54a40551bc78/6736730d49b99ccd0c366086_Linkedin.svg)](https://www.linkedin.com/company/camel-ai-org/)[![](https://cdn.prod.website-files.com/6659a154491a54a40551bc78/673673125c8feebf7af520bd_X.svg)](https://x.com/CamelAIOrg)[![](https://cdn.prod.website-files.com/6659a154491a54a40551bc78/673672ff21614854f86a459c_youtube-color_svgrepo.com.svg)](https://www.youtube.com/@CamelAI)
+
+Copyright © 2024 Eigent AI - All Rights Reserved.
+</pre></div></div>
+</div>
+<p>Step 4: Interact with CAMEL agent</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span>
+
+<span class="c1"># Initialize a ChatAgent</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">ChatAgent</span><span class="p">(</span>
+    <span class="n">system_message</span><span class="o">=</span><span class="s2">&quot;You&#39;re a helpful assistant&quot;</span><span class="p">,</span>  <span class="c1"># Define the agent&#39;s role or purpose</span>
+<span class="p">)</span>
+
+<span class="c1"># Use the ChatAgent to generate a response based on the Firecrawl crawl data</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Based on </span><span class="si">{</span><span class="n">firecrawl_response</span><span class="si">}</span><span class="s2">, explain what CAMEL is.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Print the content of the first message in the response, which contains the assistant&#39;s answer</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+CAMEL is an open-source library designed for the study of autonomous and communicative agents. The primary goal of CAMEL is to explore the scaling laws of these agents, which involves understanding their behaviors, capabilities, and potential risks when studied on a large scale. The library facilitates research by providing various types of agents, tasks, prompts, models, and simulated environments.
+
+CAMEL encourages collaboration and contributions from the community, inviting researchers and developers to join their efforts. They have established communication channels through platforms like Slack and Discord for interested contributors to connect and collaborate.
+
+The project is supported by a team of contributors and advisors, including notable figures in the field of artificial intelligence and machine learning. CAMEL aims to advance the understanding of multi-agent systems and their applications in various domains.
+</pre></div></div>
+</div>
+</section>
+<section id="🔥-Firecrawl:-To-Scrape">
+<h2>🔥 Firecrawl: To Scrape<a class="headerlink" href="#🔥-Firecrawl:-To-Scrape" title="Link to this heading">#</a></h2>
+<p>Scrape: This feature allows you to extract content from a single URL and convert it into various formats optimized for LLMs. The data is delivered in markdown, structured data (via LLM Extract), screenshots, or raw HTML, making it versatile for analysis and integration with other AI applications.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the schema</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ExtractSchema</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">company_mission</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">is_open_source</span><span class="p">:</span> <span class="nb">bool</span>
+
+<span class="c1"># Perform the structured scrape</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">firecrawl</span><span class="o">.</span><span class="n">structured_scrape</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://www.camel-ai.org/about&#39;</span><span class="p">,</span> <span class="c1"># URL to scrape data from</span>
+    <span class="n">response_format</span><span class="o">=</span><span class="n">ExtractSchema</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;company_mission&#39;: &#39;We are finding the scaling law of agent&#39;, &#39;is_open_source&#39;: True}
+</pre></div></div>
+</div>
+<p>Let’s have a look how the assistant CAMEL agent can answer our questions with the response from Firecrawl.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the ChatAgent to generate a response based on the Firecrawl crawl data</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Based on </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">, explain what the company mission of CAMEL is.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Print the content of the first message in the response, which contains the assistant&#39;s answer</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The company mission of CAMEL is to find the scaling law of agents. This involves researching and understanding how the performance and behavior of autonomous and communicative agents change as they are scaled up in size, complexity, or number. The scaling law refers to the relationship between the size of the agents (or the systems they operate within) and their capabilities, efficiency, or effectiveness.
+
+By focusing on this mission, CAMEL aims to uncover valuable insights into how agents function in various environments and tasks, which can lead to improvements in the design and implementation of artificial intelligence systems. This research is crucial for developing more advanced and capable AI agents that can operate effectively in real-world applications.
+
+Additionally, CAMEL&#39;s commitment to being open-source indicates that they prioritize collaboration and transparency, allowing researchers and developers to contribute to and benefit from their findings in the field of artificial intelligence.
+</pre></div></div>
+</div>
+</section>
+<section id="🔥-Firecrawl:-To-Map">
+<h2>🔥 Firecrawl: To Map<a class="headerlink" href="#🔥-Firecrawl:-To-Map" title="Link to this heading">#</a></h2>
+<p>Map: This feature takes a website as input and rapidly retrieves all associated URLs, providing a quick and comprehensive overview of the site’s structure. This high-speed mapping is ideal for efficient content discovery and organization.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Call the `map_site` function from Firecrawl to retrieve all URLs from the specified website</span>
+<span class="n">map_result</span> <span class="o">=</span> <span class="n">firecrawl</span><span class="o">.</span><span class="n">map_site</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://www.camel-ai.org&quot;</span>  <span class="c1"># Target URL to map</span>
+<span class="p">)</span>
+
+<span class="c1"># Print the resulting map, which should contain all associated URLs from the website</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">map_result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;success&#39;: True, &#39;links&#39;: [&#39;https://www.camel-ai.org&#39;, &#39;https://www.camel-ai.org/blog&#39;, &#39;https://www.camel-ai.org/checkout&#39;, &#39;https://www.camel-ai.org/news&#39;, &#39;https://www.camel-ai.org/order-confirmation&#39;, &#39;https://www.camel-ai.org/paypal-checkout&#39;, &#39;https://www.camel-ai.org/team&#39;, &#39;https://www.camel-ai.org/integration&#39;, &#39;https://www.camel-ai.org/search&#39;, &#39;https://www.camel-ai.org/about&#39;, &#39;https://www.camel-ai.org/post/crab&#39;, &#39;https://www.camel-ai.org/post/releasenotes-sprint4&#39;, &#39;https://www.camel-ai.org/post/releasenotes-sprint56&#39;, &#39;https://www.camel-ai.org/post/tool-usage&#39;, &#39;https://www.camel-ai.org/post/releasenotes-9&#39;, &#39;https://www.camel-ai.org/post/release-notes-10&#39;, &#39;https://www.camel-ai.org/post/realise-notes-9&#39;, &#39;https://www.camel-ai.org/post/realise-notes-8&#39;, &#39;https://www.camel-ai.org/post/getting-started-with-camel-ai&#39;, &#39;https://www.camel-ai.org/post/camel-release-notes-sprint-13&#39;, &#39;https://www.camel-ai.org/post/camel-release-notes-sprint-7&#39;, &#39;https://www.camel-ai.org/post/camel-release-notes-sprint-11&#39;, &#39;https://www.camel-ai.org/post/camel-release-notes-sprint-12&#39;, &#39;https://www.camel-ai.org/post/get-started-with-retrieval-augmented-generation&#39;, &#39;https://www.camel-ai.org/post/get-started-with-models---camel-101&#39;, &#39;https://www.camel-ai.org/post/week-4-of-may-camel-ai-release-notes&#39;, &#39;https://www.camel-ai.org/post/week-1-of-june-camel-ai-release-notes&#39;, &#39;https://www.camel-ai.org/post/3-ways-to-supercharge-camel-agents-with-web-data-using-firecrawl&#39;, &#39;https://www.camel-ai.org/post/mission-at-camel-ai-org-finding-the-scaling-laws-of-agents&#39;]}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the ChatAgent to generate a response based on the Firecrawl crawl data</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Based on </span><span class="si">{</span><span class="n">map_result</span><span class="si">}</span><span class="s2">, which one is the main website for CAMEL-AI.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Print the content of the first message in the response, which contains the assistant&#39;s answer</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The main website for CAMEL-AI is [https://www.camel-ai.org](https://www.camel-ai.org).
+</pre></div></div>
+</div>
+</section>
+<section id="Conclusion">
+<h2>Conclusion<a class="headerlink" href="#Conclusion" title="Link to this heading">#</a></h2>
+<p>In conclusion, using Firecrawl within the CAMEL framework streamlines the process of web data extraction and enhances your agents capabilities. With Firecrawl’s powerful features like Scrape, Crawl, and Map, you can efficiently gather content in formats ready for LLMs to use, directly feeding into CAMEL-AI’s multi-agent workflows. This setup not only simplifies data collection but also enables more intelligent and insightful agents.</p>
+<p>⭐ <strong>Star the Repo</strong></p>
+<p>If you find CAMEL useful or interesting, please consider giving it a star on <a class="reference external" href="https://github.com/camel-ai/camel">GitHub</a>! Your stars help others find this project and motivate us to continue improving it.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="agent_with_chunkr_for_pdf_parsing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../modules.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">camel</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Table-of-Content:">Table of Content:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Introduction"><strong>Introduction</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Features-of-Firecrawl:"><strong>Features of Firecrawl</strong>:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#🔥-Firecrawl:-To-crawl">🔥 <strong>Firecrawl: To crawl</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#🔥-Firecrawl:-To-Scrape">🔥 Firecrawl: To Scrape</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#🔥-Firecrawl:-To-Map">🔥 Firecrawl: To Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1596 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>camel.types.enums &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=30d83864"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/camel/types/enums';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../camel.html">camel package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2F_modules/camel/types/enums.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for camel.types.enums</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="c1"># ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">EnumMeta</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types.unified_model_type</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnifiedModelType</span>
+
+
+<div class="viewcode-block" id="RoleType">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.RoleType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">RoleType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">ASSISTANT</span> <span class="o">=</span> <span class="s2">&quot;assistant&quot;</span>
+    <span class="n">USER</span> <span class="o">=</span> <span class="s2">&quot;user&quot;</span>
+    <span class="n">CRITIC</span> <span class="o">=</span> <span class="s2">&quot;critic&quot;</span>
+    <span class="n">EMBODIMENT</span> <span class="o">=</span> <span class="s2">&quot;embodiment&quot;</span>
+    <span class="n">DEFAULT</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span></div>
+
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ModelType</span><span class="p">(</span><span class="n">UnifiedModelType</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+    <span class="n">DEFAULT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DEFAULT_MODEL_TYPE&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">)</span>
+
+    <span class="n">GPT_3_5_TURBO</span> <span class="o">=</span> <span class="s2">&quot;gpt-3.5-turbo&quot;</span>
+    <span class="n">GPT_4</span> <span class="o">=</span> <span class="s2">&quot;gpt-4&quot;</span>
+    <span class="n">GPT_4_TURBO</span> <span class="o">=</span> <span class="s2">&quot;gpt-4-turbo&quot;</span>
+    <span class="n">GPT_4O</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o&quot;</span>
+    <span class="n">GPT_4O_MINI</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-mini&quot;</span>
+    <span class="n">O1</span> <span class="o">=</span> <span class="s2">&quot;o1&quot;</span>
+    <span class="n">O1_PREVIEW</span> <span class="o">=</span> <span class="s2">&quot;o1-preview&quot;</span>
+    <span class="n">O1_MINI</span> <span class="o">=</span> <span class="s2">&quot;o1-mini&quot;</span>
+    <span class="n">O3_MINI</span> <span class="o">=</span> <span class="s2">&quot;o3-mini&quot;</span>
+
+    <span class="n">GLM_4</span> <span class="o">=</span> <span class="s2">&quot;glm-4&quot;</span>
+    <span class="n">GLM_4V</span> <span class="o">=</span> <span class="s2">&quot;glm-4v&quot;</span>
+    <span class="n">GLM_4V_FLASH</span> <span class="o">=</span> <span class="s2">&quot;glm-4v-flash&quot;</span>
+    <span class="n">GLM_4V_PLUS_0111</span> <span class="o">=</span> <span class="s2">&quot;glm-4v-plus-0111&quot;</span>
+    <span class="n">GLM_4_PLUS</span> <span class="o">=</span> <span class="s2">&quot;glm-4-plus&quot;</span>
+    <span class="n">GLM_4_AIR</span> <span class="o">=</span> <span class="s2">&quot;glm-4-air&quot;</span>
+    <span class="n">GLM_4_AIR_0111</span> <span class="o">=</span> <span class="s2">&quot;glm-4-air-0111&quot;</span>
+    <span class="n">GLM_4_AIRX</span> <span class="o">=</span> <span class="s2">&quot;glm-4-airx&quot;</span>
+    <span class="n">GLM_4_LONG</span> <span class="o">=</span> <span class="s2">&quot;glm-4-long&quot;</span>
+    <span class="n">GLM_4_FLASHX</span> <span class="o">=</span> <span class="s2">&quot;glm-4-flashx&quot;</span>
+    <span class="n">GLM_4_FLASH</span> <span class="o">=</span> <span class="s2">&quot;glm-4-flash&quot;</span>
+    <span class="n">GLM_ZERO_PREVIEW</span> <span class="o">=</span> <span class="s2">&quot;glm-zero-preview&quot;</span>
+    <span class="n">GLM_3_TURBO</span> <span class="o">=</span> <span class="s2">&quot;glm-3-turbo&quot;</span>
+
+    <span class="c1"># Groq platform models</span>
+    <span class="n">GROQ_LLAMA_3_1_8B</span> <span class="o">=</span> <span class="s2">&quot;llama-3.1-8b-instant&quot;</span>
+    <span class="n">GROQ_LLAMA_3_3_70B</span> <span class="o">=</span> <span class="s2">&quot;llama-3.3-70b-versatile&quot;</span>
+    <span class="n">GROQ_LLAMA_3_3_70B_PREVIEW</span> <span class="o">=</span> <span class="s2">&quot;llama-3.3-70b-specdec&quot;</span>
+    <span class="n">GROQ_LLAMA_3_8B</span> <span class="o">=</span> <span class="s2">&quot;llama3-8b-8192&quot;</span>
+    <span class="n">GROQ_LLAMA_3_70B</span> <span class="o">=</span> <span class="s2">&quot;llama3-70b-8192&quot;</span>
+    <span class="n">GROQ_MIXTRAL_8_7B</span> <span class="o">=</span> <span class="s2">&quot;mixtral-8x7b-32768&quot;</span>
+    <span class="n">GROQ_GEMMA_2_9B_IT</span> <span class="o">=</span> <span class="s2">&quot;gemma2-9b-it&quot;</span>
+
+    <span class="c1"># TogetherAI platform models support tool calling</span>
+    <span class="n">TOGETHER_LLAMA_3_1_8B</span> <span class="o">=</span> <span class="s2">&quot;meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo&quot;</span>
+    <span class="n">TOGETHER_LLAMA_3_1_70B</span> <span class="o">=</span> <span class="s2">&quot;meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo&quot;</span>
+    <span class="n">TOGETHER_LLAMA_3_1_405B</span> <span class="o">=</span> <span class="s2">&quot;meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo&quot;</span>
+    <span class="n">TOGETHER_LLAMA_3_3_70B</span> <span class="o">=</span> <span class="s2">&quot;meta-llama/Llama-3.3-70B-Instruct-Turbo&quot;</span>
+    <span class="n">TOGETHER_MIXTRAL_8_7B</span> <span class="o">=</span> <span class="s2">&quot;mistralai/Mixtral-8x7B-Instruct-v0.1&quot;</span>
+    <span class="n">TOGETHER_MISTRAL_7B</span> <span class="o">=</span> <span class="s2">&quot;mistralai/Mistral-7B-Instruct-v0.1&quot;</span>
+
+    <span class="c1"># SambaNova Cloud platform models support tool calling</span>
+    <span class="n">SAMBA_LLAMA_3_1_8B</span> <span class="o">=</span> <span class="s2">&quot;Meta-Llama-3.1-8B-Instruct&quot;</span>
+    <span class="n">SAMBA_LLAMA_3_1_70B</span> <span class="o">=</span> <span class="s2">&quot;Meta-Llama-3.1-70B-Instruct&quot;</span>
+    <span class="n">SAMBA_LLAMA_3_1_405B</span> <span class="o">=</span> <span class="s2">&quot;Meta-Llama-3.1-405B-Instruct&quot;</span>
+
+    <span class="c1"># SGLang models support tool calling</span>
+    <span class="n">SGLANG_LLAMA_3_1_8B</span> <span class="o">=</span> <span class="s2">&quot;meta-llama/Meta-Llama-3.1-8B-Instruct&quot;</span>
+    <span class="n">SGLANG_LLAMA_3_1_70B</span> <span class="o">=</span> <span class="s2">&quot;meta-llama/Meta-Llama-3.1-70B-Instruct&quot;</span>
+    <span class="n">SGLANG_LLAMA_3_1_405B</span> <span class="o">=</span> <span class="s2">&quot;meta-llama/Meta-Llama-3.1-405B-Instruct&quot;</span>
+    <span class="n">SGLANG_LLAMA_3_2_1B</span> <span class="o">=</span> <span class="s2">&quot;meta-llama/Llama-3.2-1B-Instruct&quot;</span>
+    <span class="n">SGLANG_MIXTRAL_NEMO</span> <span class="o">=</span> <span class="s2">&quot;mistralai/Mistral-Nemo-Instruct-2407&quot;</span>
+    <span class="n">SGLANG_MISTRAL_7B</span> <span class="o">=</span> <span class="s2">&quot;mistralai/Mistral-7B-Instruct-v0.3&quot;</span>
+    <span class="n">SGLANG_QWEN_2_5_7B</span> <span class="o">=</span> <span class="s2">&quot;Qwen/Qwen2.5-7B-Instruct&quot;</span>
+    <span class="n">SGLANG_QWEN_2_5_32B</span> <span class="o">=</span> <span class="s2">&quot;Qwen/Qwen2.5-32B-Instruct&quot;</span>
+    <span class="n">SGLANG_QWEN_2_5_72B</span> <span class="o">=</span> <span class="s2">&quot;Qwen/Qwen2.5-72B-Instruct&quot;</span>
+
+    <span class="n">STUB</span> <span class="o">=</span> <span class="s2">&quot;stub&quot;</span>
+
+    <span class="c1"># Legacy anthropic models</span>
+    <span class="c1"># NOTE: anthropic legacy models only Claude 2.1 has system prompt support</span>
+    <span class="n">CLAUDE_2_1</span> <span class="o">=</span> <span class="s2">&quot;claude-2.1&quot;</span>
+    <span class="n">CLAUDE_2_0</span> <span class="o">=</span> <span class="s2">&quot;claude-2.0&quot;</span>
+    <span class="n">CLAUDE_INSTANT_1_2</span> <span class="o">=</span> <span class="s2">&quot;claude-instant-1.2&quot;</span>
+
+    <span class="c1"># Claude3 models</span>
+    <span class="n">CLAUDE_3_OPUS</span> <span class="o">=</span> <span class="s2">&quot;claude-3-opus-latest&quot;</span>
+    <span class="n">CLAUDE_3_SONNET</span> <span class="o">=</span> <span class="s2">&quot;claude-3-sonnet-20240229&quot;</span>
+    <span class="n">CLAUDE_3_HAIKU</span> <span class="o">=</span> <span class="s2">&quot;claude-3-haiku-20240307&quot;</span>
+    <span class="n">CLAUDE_3_5_SONNET</span> <span class="o">=</span> <span class="s2">&quot;claude-3-5-sonnet-latest&quot;</span>
+    <span class="n">CLAUDE_3_5_HAIKU</span> <span class="o">=</span> <span class="s2">&quot;claude-3-5-haiku-latest&quot;</span>
+
+    <span class="c1"># Nvidia models</span>
+    <span class="n">NVIDIA_NEMOTRON_340B_INSTRUCT</span> <span class="o">=</span> <span class="s2">&quot;nvidia/nemotron-4-340b-instruct&quot;</span>
+    <span class="n">NVIDIA_NEMOTRON_340B_REWARD</span> <span class="o">=</span> <span class="s2">&quot;nvidia/nemotron-4-340b-reward&quot;</span>
+    <span class="n">NVIDIA_YI_LARGE</span> <span class="o">=</span> <span class="s2">&quot;01-ai/yi-large&quot;</span>
+    <span class="n">NVIDIA_MISTRAL_LARGE</span> <span class="o">=</span> <span class="s2">&quot;mistralai/mistral-large&quot;</span>
+    <span class="n">NVIDIA_MIXTRAL_8X7B</span> <span class="o">=</span> <span class="s2">&quot;mistralai/mixtral-8x7b-instruct&quot;</span>
+    <span class="n">NVIDIA_LLAMA3_70B</span> <span class="o">=</span> <span class="s2">&quot;meta/llama3-70b&quot;</span>
+    <span class="n">NVIDIA_LLAMA3_1_8B_INSTRUCT</span> <span class="o">=</span> <span class="s2">&quot;meta/llama-3.1-8b-instruct&quot;</span>
+    <span class="n">NVIDIA_LLAMA3_1_70B_INSTRUCT</span> <span class="o">=</span> <span class="s2">&quot;meta/llama-3.1-70b-instruct&quot;</span>
+    <span class="n">NVIDIA_LLAMA3_1_405B_INSTRUCT</span> <span class="o">=</span> <span class="s2">&quot;meta/llama-3.1-405b-instruct&quot;</span>
+    <span class="n">NVIDIA_LLAMA3_2_1B_INSTRUCT</span> <span class="o">=</span> <span class="s2">&quot;meta/llama-3.2-1b-instruct&quot;</span>
+    <span class="n">NVIDIA_LLAMA3_2_3B_INSTRUCT</span> <span class="o">=</span> <span class="s2">&quot;meta/llama-3.2-3b-instruct&quot;</span>
+    <span class="n">NVIDIA_LLAMA3_3_70B_INSTRUCT</span> <span class="o">=</span> <span class="s2">&quot;meta/llama-3.3-70b-instruct&quot;</span>
+
+    <span class="c1"># Gemini models</span>
+    <span class="n">GEMINI_2_0_FLASH</span> <span class="o">=</span> <span class="s2">&quot;gemini-2.0-flash-exp&quot;</span>
+    <span class="n">GEMINI_2_0_FLASH_THINKING</span> <span class="o">=</span> <span class="s2">&quot;gemini-2.0-flash-thinking-exp&quot;</span>
+    <span class="n">GEMINI_2_0_PRO_EXP</span> <span class="o">=</span> <span class="s2">&quot;gemini-2.0-pro-exp-02-05&quot;</span>
+    <span class="n">GEMINI_2_0_FLASH_LITE_PREVIEW</span> <span class="o">=</span> <span class="s2">&quot;gemini-2.0-flash-lite-preview-02-05&quot;</span>
+    <span class="n">GEMINI_1_5_FLASH</span> <span class="o">=</span> <span class="s2">&quot;gemini-1.5-flash&quot;</span>
+    <span class="n">GEMINI_1_5_PRO</span> <span class="o">=</span> <span class="s2">&quot;gemini-1.5-pro&quot;</span>
+
+    <span class="c1"># Mistral AI models</span>
+    <span class="n">MISTRAL_3B</span> <span class="o">=</span> <span class="s2">&quot;ministral-3b-latest&quot;</span>
+    <span class="n">MISTRAL_7B</span> <span class="o">=</span> <span class="s2">&quot;open-mistral-7b&quot;</span>
+    <span class="n">MISTRAL_8B</span> <span class="o">=</span> <span class="s2">&quot;ministral-8b-latest&quot;</span>
+    <span class="n">MISTRAL_CODESTRAL</span> <span class="o">=</span> <span class="s2">&quot;codestral-latest&quot;</span>
+    <span class="n">MISTRAL_CODESTRAL_MAMBA</span> <span class="o">=</span> <span class="s2">&quot;open-codestral-mamba&quot;</span>
+    <span class="n">MISTRAL_LARGE</span> <span class="o">=</span> <span class="s2">&quot;mistral-large-latest&quot;</span>
+    <span class="n">MISTRAL_MIXTRAL_8x7B</span> <span class="o">=</span> <span class="s2">&quot;open-mixtral-8x7b&quot;</span>
+    <span class="n">MISTRAL_MIXTRAL_8x22B</span> <span class="o">=</span> <span class="s2">&quot;open-mixtral-8x22b&quot;</span>
+    <span class="n">MISTRAL_NEMO</span> <span class="o">=</span> <span class="s2">&quot;open-mistral-nemo&quot;</span>
+    <span class="n">MISTRAL_PIXTRAL_12B</span> <span class="o">=</span> <span class="s2">&quot;pixtral-12b-2409&quot;</span>
+
+    <span class="c1"># Reka models</span>
+    <span class="n">REKA_CORE</span> <span class="o">=</span> <span class="s2">&quot;reka-core&quot;</span>
+    <span class="n">REKA_FLASH</span> <span class="o">=</span> <span class="s2">&quot;reka-flash&quot;</span>
+    <span class="n">REKA_EDGE</span> <span class="o">=</span> <span class="s2">&quot;reka-edge&quot;</span>
+
+    <span class="c1"># Cohere models</span>
+    <span class="n">COHERE_COMMAND_R_PLUS</span> <span class="o">=</span> <span class="s2">&quot;command-r-plus&quot;</span>
+    <span class="n">COHERE_COMMAND_R</span> <span class="o">=</span> <span class="s2">&quot;command-r&quot;</span>
+    <span class="n">COHERE_COMMAND_LIGHT</span> <span class="o">=</span> <span class="s2">&quot;command-light&quot;</span>
+    <span class="n">COHERE_COMMAND</span> <span class="o">=</span> <span class="s2">&quot;command&quot;</span>
+    <span class="n">COHERE_COMMAND_NIGHTLY</span> <span class="o">=</span> <span class="s2">&quot;command-nightly&quot;</span>
+
+    <span class="c1"># Qwen models (Aliyun)</span>
+    <span class="n">QWEN_MAX</span> <span class="o">=</span> <span class="s2">&quot;qwen-max&quot;</span>
+    <span class="n">QWEN_PLUS</span> <span class="o">=</span> <span class="s2">&quot;qwen-plus&quot;</span>
+    <span class="n">QWEN_TURBO</span> <span class="o">=</span> <span class="s2">&quot;qwen-turbo&quot;</span>
+    <span class="n">QWEN_LONG</span> <span class="o">=</span> <span class="s2">&quot;qwen-long&quot;</span>
+    <span class="n">QWEN_VL_MAX</span> <span class="o">=</span> <span class="s2">&quot;qwen-vl-max&quot;</span>
+    <span class="n">QWEN_VL_PLUS</span> <span class="o">=</span> <span class="s2">&quot;qwen-vl-plus&quot;</span>
+    <span class="n">QWEN_MATH_PLUS</span> <span class="o">=</span> <span class="s2">&quot;qwen-math-plus&quot;</span>
+    <span class="n">QWEN_MATH_TURBO</span> <span class="o">=</span> <span class="s2">&quot;qwen-math-turbo&quot;</span>
+    <span class="n">QWEN_CODER_TURBO</span> <span class="o">=</span> <span class="s2">&quot;qwen-coder-turbo&quot;</span>
+    <span class="n">QWEN_2_5_CODER_32B</span> <span class="o">=</span> <span class="s2">&quot;qwen2.5-coder-32b-instruct&quot;</span>
+    <span class="n">QWEN_2_5_VL_72B</span> <span class="o">=</span> <span class="s2">&quot;qwen2.5-vl-72b-instruct&quot;</span>
+    <span class="n">QWEN_2_5_72B</span> <span class="o">=</span> <span class="s2">&quot;qwen2.5-72b-instruct&quot;</span>
+    <span class="n">QWEN_2_5_32B</span> <span class="o">=</span> <span class="s2">&quot;qwen2.5-32b-instruct&quot;</span>
+    <span class="n">QWEN_2_5_14B</span> <span class="o">=</span> <span class="s2">&quot;qwen2.5-14b-instruct&quot;</span>
+    <span class="n">QWEN_QWQ_32B</span> <span class="o">=</span> <span class="s2">&quot;qwq-32b-preview&quot;</span>
+    <span class="n">QWEN_QVQ_72B</span> <span class="o">=</span> <span class="s2">&quot;qvq-72b-preview&quot;</span>
+
+    <span class="c1"># Yi models (01-ai)</span>
+    <span class="n">YI_LIGHTNING</span> <span class="o">=</span> <span class="s2">&quot;yi-lightning&quot;</span>
+    <span class="n">YI_LARGE</span> <span class="o">=</span> <span class="s2">&quot;yi-large&quot;</span>
+    <span class="n">YI_MEDIUM</span> <span class="o">=</span> <span class="s2">&quot;yi-medium&quot;</span>
+    <span class="n">YI_LARGE_TURBO</span> <span class="o">=</span> <span class="s2">&quot;yi-large-turbo&quot;</span>
+    <span class="n">YI_VISION</span> <span class="o">=</span> <span class="s2">&quot;yi-vision&quot;</span>
+    <span class="n">YI_MEDIUM_200K</span> <span class="o">=</span> <span class="s2">&quot;yi-medium-200k&quot;</span>
+    <span class="n">YI_SPARK</span> <span class="o">=</span> <span class="s2">&quot;yi-spark&quot;</span>
+    <span class="n">YI_LARGE_RAG</span> <span class="o">=</span> <span class="s2">&quot;yi-large-rag&quot;</span>
+    <span class="n">YI_LARGE_FC</span> <span class="o">=</span> <span class="s2">&quot;yi-large-fc&quot;</span>
+
+    <span class="c1"># DeepSeek models</span>
+    <span class="n">DEEPSEEK_CHAT</span> <span class="o">=</span> <span class="s2">&quot;deepseek-chat&quot;</span>
+    <span class="n">DEEPSEEK_REASONER</span> <span class="o">=</span> <span class="s2">&quot;deepseek-reasoner&quot;</span>
+    <span class="c1"># InternLM models</span>
+    <span class="n">INTERNLM3_LATEST</span> <span class="o">=</span> <span class="s2">&quot;internlm3-latest&quot;</span>
+    <span class="n">INTERNLM3_8B_INSTRUCT</span> <span class="o">=</span> <span class="s2">&quot;internlm3-8b-instruct&quot;</span>
+    <span class="n">INTERNLM2_5_LATEST</span> <span class="o">=</span> <span class="s2">&quot;internlm2.5-latest&quot;</span>
+    <span class="n">INTERNLM2_PRO_CHAT</span> <span class="o">=</span> <span class="s2">&quot;internlm2-pro-chat&quot;</span>
+
+    <span class="c1"># Moonshot models</span>
+    <span class="n">MOONSHOT_V1_8K</span> <span class="o">=</span> <span class="s2">&quot;moonshot-v1-8k&quot;</span>
+    <span class="n">MOONSHOT_V1_32K</span> <span class="o">=</span> <span class="s2">&quot;moonshot-v1-32k&quot;</span>
+    <span class="n">MOONSHOT_V1_128K</span> <span class="o">=</span> <span class="s2">&quot;moonshot-v1-128k&quot;</span>
+
+    <span class="c1"># SiliconFlow models support tool calling</span>
+    <span class="n">SILICONFLOW_DEEPSEEK_V2_5</span> <span class="o">=</span> <span class="s2">&quot;deepseek-ai/DeepSeek-V2.5&quot;</span>
+    <span class="n">SILICONFLOW_DEEPSEEK_V3</span> <span class="o">=</span> <span class="s2">&quot;deepseek-ai/DeepSeek-V3&quot;</span>
+    <span class="n">SILICONFLOW_INTERN_LM2_5_20B_CHAT</span> <span class="o">=</span> <span class="s2">&quot;internlm/internlm2_5-20b-chat&quot;</span>
+    <span class="n">SILICONFLOW_INTERN_LM2_5_7B_CHAT</span> <span class="o">=</span> <span class="s2">&quot;internlm/internlm2_5-7b-chat&quot;</span>
+    <span class="n">SILICONFLOW_PRO_INTERN_LM2_5_7B_CHAT</span> <span class="o">=</span> <span class="s2">&quot;Pro/internlm/internlm2_5-7b-chat&quot;</span>
+    <span class="n">SILICONFLOW_QWEN2_5_72B_INSTRUCT</span> <span class="o">=</span> <span class="s2">&quot;Qwen/Qwen2.5-72B-Instruct&quot;</span>
+    <span class="n">SILICONFLOW_QWEN2_5_32B_INSTRUCT</span> <span class="o">=</span> <span class="s2">&quot;Qwen/Qwen2.5-32B-Instruct&quot;</span>
+    <span class="n">SILICONFLOW_QWEN2_5_14B_INSTRUCT</span> <span class="o">=</span> <span class="s2">&quot;Qwen/Qwen2.5-14B-Instruct&quot;</span>
+    <span class="n">SILICONFLOW_QWEN2_5_7B_INSTRUCT</span> <span class="o">=</span> <span class="s2">&quot;Qwen/Qwen2.5-7B-Instruct&quot;</span>
+    <span class="n">SILICONFLOW_PRO_QWEN2_5_7B_INSTRUCT</span> <span class="o">=</span> <span class="s2">&quot;Pro/Qwen/Qwen2.5-7B-Instruct&quot;</span>
+    <span class="n">SILICONFLOW_THUDM_GLM_4_9B_CHAT</span> <span class="o">=</span> <span class="s2">&quot;THUDM/glm-4-9b-chat&quot;</span>
+    <span class="n">SILICONFLOW_PRO_THUDM_GLM_4_9B_CHAT</span> <span class="o">=</span> <span class="s2">&quot;Pro/THUDM/glm-4-9b-chat&quot;</span>
+
+    <span class="c1"># AIML models support tool calling</span>
+    <span class="n">AIML_MIXTRAL_8X7B</span> <span class="o">=</span> <span class="s2">&quot;mistralai/Mixtral-8x7B-Instruct-v0.1&quot;</span>
+    <span class="n">AIML_MISTRAL_7B_INSTRUCT</span> <span class="o">=</span> <span class="s2">&quot;mistralai/Mistral-7B-Instruct-v0.1&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ModelType&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">&quot;ModelType&quot;</span><span class="p">,</span> <span class="n">UnifiedModelType</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">value_for_tiktoken</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_openai</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="s2">&quot;gpt-4o-mini&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">support_native_structured_output</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_openai</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">support_native_tool_calling</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_openai</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_gemini</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_mistral</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_qwen</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_deepseek</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_cohere</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_internlm</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_together</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_sambanova</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_groq</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_sglang</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_moonshot</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_siliconflow</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_zhipuai</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_aiml</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_openai</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is an OpenAI-released model.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_3_5_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4O</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4O_MINI</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">O1</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">O1_PREVIEW</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">O1_MINI</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">O3_MINI</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_azure_openai</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is an OpenAI-released model</span>
+<span class="sd">        from Azure.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_3_5_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4O</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4O_MINI</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_zhipuai</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is an ZhipuAI model.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_3_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4V</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4V_FLASH</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4V_PLUS_0111</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4_PLUS</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4_AIR</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4_AIR_0111</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4_AIRX</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4_LONG</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4_FLASHX</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4_FLASH</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_ZERO_PREVIEW</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_anthropic</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is Anthropic-released model.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether this type of models is anthropic.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_INSTANT_1_2</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_2_0</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_2_1</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_3_OPUS</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_3_SONNET</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_3_HAIKU</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_3_5_SONNET</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_3_5_HAIKU</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_groq</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is served by Groq.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GROQ_LLAMA_3_1_8B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GROQ_LLAMA_3_3_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GROQ_LLAMA_3_3_70B_PREVIEW</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GROQ_LLAMA_3_8B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GROQ_LLAMA_3_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GROQ_MIXTRAL_8_7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GROQ_GEMMA_2_9B_IT</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_together</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is served by Together AI.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">TOGETHER_LLAMA_3_1_405B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">TOGETHER_LLAMA_3_1_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">TOGETHER_LLAMA_3_3_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">TOGETHER_LLAMA_3_3_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">TOGETHER_MISTRAL_7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">TOGETHER_MIXTRAL_8_7B</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_sambanova</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of model is served by SambaNova AI.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SAMBA_LLAMA_3_1_8B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SAMBA_LLAMA_3_1_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SAMBA_LLAMA_3_1_405B</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_mistral</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is served by Mistral.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_LARGE</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_NEMO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_CODESTRAL</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_MIXTRAL_8x7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_MIXTRAL_8x22B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_CODESTRAL_MAMBA</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_PIXTRAL_12B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_8B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_3B</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_nvidia</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is a NVIDIA model.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_NEMOTRON_340B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_NEMOTRON_340B_REWARD</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_YI_LARGE</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_MISTRAL_LARGE</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_LLAMA3_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_MIXTRAL_8X7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_LLAMA3_1_8B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_LLAMA3_1_70B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_LLAMA3_1_405B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_LLAMA3_2_1B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_LLAMA3_2_3B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_LLAMA3_3_70B_INSTRUCT</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_gemini</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is Gemini model.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether this type of models is gemini.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GEMINI_2_0_FLASH</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GEMINI_1_5_FLASH</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GEMINI_1_5_PRO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GEMINI_2_0_FLASH_THINKING</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GEMINI_2_0_PRO_EXP</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GEMINI_2_0_FLASH_LITE_PREVIEW</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_reka</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is Reka model.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether this type of models is Reka.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">REKA_CORE</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">REKA_EDGE</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">REKA_FLASH</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_cohere</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is a Cohere model.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether this type of models is Cohere.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">COHERE_COMMAND_R_PLUS</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">COHERE_COMMAND_R</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">COHERE_COMMAND_LIGHT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">COHERE_COMMAND</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">COHERE_COMMAND_NIGHTLY</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_yi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is Yi model.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether this type of models is Yi.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_LIGHTNING</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_LARGE</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_MEDIUM</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_LARGE_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_VISION</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_MEDIUM_200K</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_SPARK</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_LARGE_RAG</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_LARGE_FC</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_qwen</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_MAX</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_PLUS</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_LONG</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_VL_MAX</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_VL_PLUS</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_MATH_PLUS</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_MATH_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_CODER_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_2_5_CODER_32B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_2_5_VL_72B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_2_5_72B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_2_5_32B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_2_5_14B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_QWQ_32B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_QVQ_72B</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_deepseek</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">DEEPSEEK_CHAT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">DEEPSEEK_REASONER</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_internlm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">INTERNLM3_LATEST</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">INTERNLM3_8B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">INTERNLM2_5_LATEST</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">INTERNLM2_PRO_CHAT</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_moonshot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MOONSHOT_V1_8K</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MOONSHOT_V1_32K</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MOONSHOT_V1_128K</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_sglang</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_LLAMA_3_1_8B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_LLAMA_3_1_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_LLAMA_3_1_405B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_LLAMA_3_2_1B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_MIXTRAL_NEMO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_MISTRAL_7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_QWEN_2_5_7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_QWEN_2_5_32B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_QWEN_2_5_72B</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_siliconflow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SILICONFLOW_DEEPSEEK_V2_5</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SILICONFLOW_DEEPSEEK_V3</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SILICONFLOW_INTERN_LM2_5_20B_CHAT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SILICONFLOW_INTERN_LM2_5_7B_CHAT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SILICONFLOW_PRO_INTERN_LM2_5_7B_CHAT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SILICONFLOW_QWEN2_5_72B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SILICONFLOW_QWEN2_5_32B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SILICONFLOW_QWEN2_5_14B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SILICONFLOW_QWEN2_5_7B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SILICONFLOW_PRO_QWEN2_5_7B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SILICONFLOW_THUDM_GLM_4_9B_CHAT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SILICONFLOW_PRO_THUDM_GLM_4_9B_CHAT</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_aiml</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">AIML_MIXTRAL_8X7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">AIML_MISTRAL_7B_INSTRUCT</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">token_limit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the maximum token limit for a given model.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The maximum token limit for the given model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4V</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1024</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">STUB</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">REKA_CORE</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">REKA_EDGE</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">REKA_FLASH</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_MATH_PLUS</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_MATH_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">COHERE_COMMAND</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">COHERE_COMMAND_LIGHT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_NEMOTRON_340B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_NEMOTRON_340B_REWARD</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">4_096</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GROQ_LLAMA_3_8B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GROQ_LLAMA_3_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GROQ_LLAMA_3_3_70B_PREVIEW</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GROQ_GEMMA_2_9B_IT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_3_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_VL_PLUS</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_LLAMA3_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">TOGETHER_MISTRAL_7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MOONSHOT_V1_8K</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4V_FLASH</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4_AIRX</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">8_192</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_3_5_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_LIGHTNING</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_MEDIUM</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_LARGE_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_VISION</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_SPARK</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_LARGE_RAG</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SAMBA_LLAMA_3_1_8B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SAMBA_LLAMA_3_1_405B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4V_PLUS_0111</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_ZERO_PREVIEW</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">16_384</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_CODESTRAL</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_MIXTRAL_8x7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GROQ_MIXTRAL_8_7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_LARGE</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_LARGE_FC</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_MAX</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_VL_MAX</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_YI_LARGE</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_MISTRAL_LARGE</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_MIXTRAL_8X7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_QWQ_32B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_QVQ_72B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">INTERNLM3_8B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">INTERNLM3_LATEST</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">INTERNLM2_5_LATEST</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">INTERNLM2_PRO_CHAT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">TOGETHER_MIXTRAL_8_7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_MISTRAL_7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MOONSHOT_V1_32K</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">AIML_MIXTRAL_8X7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">AIML_MISTRAL_7B_INSTRUCT</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">32_768</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_MIXTRAL_8x22B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">DEEPSEEK_CHAT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">DEEPSEEK_REASONER</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">64_000</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_2_0</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_INSTANT_1_2</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">100_000</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4O</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4O_MINI</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">O1_PREVIEW</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">O1_MINI</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_LARGE</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_NEMO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_PIXTRAL_12B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_8B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_3B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_2_5_CODER_32B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_2_5_VL_72B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_2_5_72B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_2_5_32B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_2_5_14B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">COHERE_COMMAND_R</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">COHERE_COMMAND_R_PLUS</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">COHERE_COMMAND_NIGHTLY</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_LLAMA3_1_8B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_LLAMA3_1_70B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_LLAMA3_1_405B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_LLAMA3_2_1B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_LLAMA3_2_3B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">NVIDIA_LLAMA3_3_70B_INSTRUCT</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GROQ_LLAMA_3_3_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SAMBA_LLAMA_3_1_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_LLAMA_3_1_8B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_LLAMA_3_1_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_LLAMA_3_1_405B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_LLAMA_3_2_1B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_MIXTRAL_NEMO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MOONSHOT_V1_128K</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4_PLUS</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4_AIR</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4_AIR_0111</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4_FLASHX</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4_FLASH</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">128_000</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GROQ_LLAMA_3_1_8B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_PLUS</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_CODER_TURBO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">TOGETHER_LLAMA_3_1_8B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">TOGETHER_LLAMA_3_1_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">TOGETHER_LLAMA_3_1_405B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">TOGETHER_LLAMA_3_3_70B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_QWEN_2_5_7B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_QWEN_2_5_32B</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">SGLANG_QWEN_2_5_72B</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">131_072</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">O1</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">O3_MINI</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_2_1</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_3_OPUS</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_3_SONNET</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_3_HAIKU</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_3_5_SONNET</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">CLAUDE_3_5_HAIKU</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">YI_MEDIUM_200K</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">200_000</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">MISTRAL_CODESTRAL_MAMBA</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">256_000</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GEMINI_2_0_FLASH</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GEMINI_1_5_FLASH</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GEMINI_1_5_PRO</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GEMINI_2_0_FLASH_THINKING</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GEMINI_2_0_FLASH_LITE_PREVIEW</span><span class="p">,</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GEMINI_2_0_PRO_EXP</span><span class="p">,</span>  <span class="c1"># Not given in doc, assume the same</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">GLM_4_LONG</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">1_048_576</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">ModelType</span><span class="o">.</span><span class="n">QWEN_LONG</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">10_000_000</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unknown model type&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="EmbeddingModelType">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.EmbeddingModelType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">EmbeddingModelType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">TEXT_EMBEDDING_ADA_2</span> <span class="o">=</span> <span class="s2">&quot;text-embedding-ada-002&quot;</span>
+    <span class="n">TEXT_EMBEDDING_3_SMALL</span> <span class="o">=</span> <span class="s2">&quot;text-embedding-3-small&quot;</span>
+    <span class="n">TEXT_EMBEDDING_3_LARGE</span> <span class="o">=</span> <span class="s2">&quot;text-embedding-3-large&quot;</span>
+
+    <span class="n">JINA_EMBEDDINGS_V3</span> <span class="o">=</span> <span class="s2">&quot;jina-embeddings-v3&quot;</span>
+    <span class="n">JINA_CLIP_V2</span> <span class="o">=</span> <span class="s2">&quot;jina-clip-v2&quot;</span>
+    <span class="n">JINA_COLBERT_V2</span> <span class="o">=</span> <span class="s2">&quot;jina-colbert-v2&quot;</span>
+    <span class="n">JINA_EMBEDDINGS_V2_BASE_CODE</span> <span class="o">=</span> <span class="s2">&quot;jina-embeddings-v2-base-code&quot;</span>
+
+    <span class="n">MISTRAL_EMBED</span> <span class="o">=</span> <span class="s2">&quot;mistral-embed&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_openai</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is an OpenAI-released model.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">TEXT_EMBEDDING_ADA_2</span><span class="p">,</span>
+            <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">TEXT_EMBEDDING_3_SMALL</span><span class="p">,</span>
+            <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">TEXT_EMBEDDING_3_LARGE</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_jina</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is an Jina model.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">JINA_EMBEDDINGS_V3</span><span class="p">,</span>
+            <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">JINA_CLIP_V2</span><span class="p">,</span>
+            <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">JINA_COLBERT_V2</span><span class="p">,</span>
+            <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">JINA_EMBEDDINGS_V2_BASE_CODE</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_mistral</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of models is an Mistral-released</span>
+<span class="sd">        model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">MISTRAL_EMBED</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">output_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">JINA_COLBERT_V2</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">128</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">JINA_EMBEDDINGS_V2_BASE_CODE</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">768</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">JINA_EMBEDDINGS_V3</span><span class="p">,</span>
+            <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">JINA_CLIP_V2</span><span class="p">,</span>
+        <span class="p">}:</span>
+            <span class="k">return</span> <span class="mi">1024</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">TEXT_EMBEDDING_ADA_2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1536</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">TEXT_EMBEDDING_3_SMALL</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1536</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">TEXT_EMBEDDING_3_LARGE</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">3072</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">EmbeddingModelType</span><span class="o">.</span><span class="n">MISTRAL_EMBED</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1024</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown model type </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="TaskType">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.TaskType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">AI_SOCIETY</span> <span class="o">=</span> <span class="s2">&quot;ai_society&quot;</span>
+    <span class="n">CODE</span> <span class="o">=</span> <span class="s2">&quot;code&quot;</span>
+    <span class="n">MISALIGNMENT</span> <span class="o">=</span> <span class="s2">&quot;misalignment&quot;</span>
+    <span class="n">TRANSLATION</span> <span class="o">=</span> <span class="s2">&quot;translation&quot;</span>
+    <span class="n">EVALUATION</span> <span class="o">=</span> <span class="s2">&quot;evaluation&quot;</span>
+    <span class="n">SOLUTION_EXTRACTION</span> <span class="o">=</span> <span class="s2">&quot;solution_extraction&quot;</span>
+    <span class="n">ROLE_DESCRIPTION</span> <span class="o">=</span> <span class="s2">&quot;role_description&quot;</span>
+    <span class="n">GENERATE_TEXT_EMBEDDING_DATA</span> <span class="o">=</span> <span class="s2">&quot;generate_text_embedding_data&quot;</span>
+    <span class="n">OBJECT_RECOGNITION</span> <span class="o">=</span> <span class="s2">&quot;object_recognition&quot;</span>
+    <span class="n">IMAGE_CRAFT</span> <span class="o">=</span> <span class="s2">&quot;image_craft&quot;</span>
+    <span class="n">MULTI_CONDITION_IMAGE_CRAFT</span> <span class="o">=</span> <span class="s2">&quot;multi_condition_image_craft&quot;</span>
+    <span class="n">DEFAULT</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
+    <span class="n">VIDEO_DESCRIPTION</span> <span class="o">=</span> <span class="s2">&quot;video_description&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="VectorDistance">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.VectorDistance">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">VectorDistance</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Distance metrics used in a vector database.&quot;&quot;&quot;</span>
+
+    <span class="n">DOT</span> <span class="o">=</span> <span class="s2">&quot;dot&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Dot product. https://en.wikipedia.org/wiki/Dot_product&quot;&quot;&quot;</span>
+
+    <span class="n">COSINE</span> <span class="o">=</span> <span class="s2">&quot;cosine&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Cosine similarity. https://en.wikipedia.org/wiki/Cosine_similarity&quot;&quot;&quot;</span>
+
+    <span class="n">EUCLIDEAN</span> <span class="o">=</span> <span class="s2">&quot;euclidean&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Euclidean distance. https://en.wikipedia.org/wiki/Euclidean_distance&quot;&quot;&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="OpenAIBackendRole">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.OpenAIBackendRole">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">OpenAIBackendRole</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">ASSISTANT</span> <span class="o">=</span> <span class="s2">&quot;assistant&quot;</span>
+    <span class="n">SYSTEM</span> <span class="o">=</span> <span class="s2">&quot;system&quot;</span>
+    <span class="n">USER</span> <span class="o">=</span> <span class="s2">&quot;user&quot;</span>
+    <span class="n">FUNCTION</span> <span class="o">=</span> <span class="s2">&quot;function&quot;</span>
+    <span class="n">TOOL</span> <span class="o">=</span> <span class="s2">&quot;tool&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="TerminationMode">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.TerminationMode">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TerminationMode</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">ANY</span> <span class="o">=</span> <span class="s2">&quot;any&quot;</span>
+    <span class="n">ALL</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="OpenAIImageTypeMeta">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.OpenAIImageTypeMeta">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">OpenAIImageTypeMeta</span><span class="p">(</span><span class="n">EnumMeta</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">image_type</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="p">(</span><span class="n">image_type</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+
+<div class="viewcode-block" id="OpenAIImageType">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.OpenAIImageType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">OpenAIImageType</span><span class="p">(</span><span class="n">Enum</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">OpenAIImageTypeMeta</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Image types supported by OpenAI vision model.&quot;&quot;&quot;</span>
+
+    <span class="c1"># https://platform.openai.com/docs/guides/vision</span>
+    <span class="n">PNG</span> <span class="o">=</span> <span class="s2">&quot;png&quot;</span>
+    <span class="n">JPEG</span> <span class="o">=</span> <span class="s2">&quot;jpeg&quot;</span>
+    <span class="n">JPG</span> <span class="o">=</span> <span class="s2">&quot;jpg&quot;</span>
+    <span class="n">WEBP</span> <span class="o">=</span> <span class="s2">&quot;webp&quot;</span>
+    <span class="n">GIF</span> <span class="o">=</span> <span class="s2">&quot;gif&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="OpenAIVisionDetailType">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.OpenAIVisionDetailType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">OpenAIVisionDetailType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">AUTO</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
+    <span class="n">LOW</span> <span class="o">=</span> <span class="s2">&quot;low&quot;</span>
+    <span class="n">HIGH</span> <span class="o">=</span> <span class="s2">&quot;high&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="StorageType">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.StorageType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">StorageType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">MILVUS</span> <span class="o">=</span> <span class="s2">&quot;milvus&quot;</span>
+    <span class="n">QDRANT</span> <span class="o">=</span> <span class="s2">&quot;qdrant&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="OpenAPIName">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.OpenAPIName">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">OpenAPIName</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">COURSERA</span> <span class="o">=</span> <span class="s2">&quot;coursera&quot;</span>
+    <span class="n">KLARNA</span> <span class="o">=</span> <span class="s2">&quot;klarna&quot;</span>
+    <span class="n">SPEAK</span> <span class="o">=</span> <span class="s2">&quot;speak&quot;</span>
+    <span class="n">NASA_APOD</span> <span class="o">=</span> <span class="s2">&quot;nasa_apod&quot;</span>
+    <span class="n">BIZTOC</span> <span class="o">=</span> <span class="s2">&quot;biztoc&quot;</span>
+    <span class="n">CREATE_QR_CODE</span> <span class="o">=</span> <span class="s2">&quot;create_qr_code&quot;</span>
+    <span class="n">OUTSCHOOL</span> <span class="o">=</span> <span class="s2">&quot;outschool&quot;</span>
+    <span class="n">WEB_SCRAPER</span> <span class="o">=</span> <span class="s2">&quot;web_scraper&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="ModelPlatformType">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.ModelPlatformType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ModelPlatformType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">DEFAULT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DEFAULT_MODEL_PLATFORM_TYPE&quot;</span><span class="p">,</span> <span class="s2">&quot;openai&quot;</span><span class="p">)</span>
+
+    <span class="n">OPENAI</span> <span class="o">=</span> <span class="s2">&quot;openai&quot;</span>
+    <span class="n">AZURE</span> <span class="o">=</span> <span class="s2">&quot;azure&quot;</span>
+    <span class="n">ANTHROPIC</span> <span class="o">=</span> <span class="s2">&quot;anthropic&quot;</span>
+    <span class="n">GROQ</span> <span class="o">=</span> <span class="s2">&quot;groq&quot;</span>
+    <span class="n">OLLAMA</span> <span class="o">=</span> <span class="s2">&quot;ollama&quot;</span>
+    <span class="n">LITELLM</span> <span class="o">=</span> <span class="s2">&quot;litellm&quot;</span>
+    <span class="n">ZHIPU</span> <span class="o">=</span> <span class="s2">&quot;zhipuai&quot;</span>
+    <span class="n">GEMINI</span> <span class="o">=</span> <span class="s2">&quot;gemini&quot;</span>
+    <span class="n">VLLM</span> <span class="o">=</span> <span class="s2">&quot;vllm&quot;</span>
+    <span class="n">MISTRAL</span> <span class="o">=</span> <span class="s2">&quot;mistral&quot;</span>
+    <span class="n">REKA</span> <span class="o">=</span> <span class="s2">&quot;reka&quot;</span>
+    <span class="n">TOGETHER</span> <span class="o">=</span> <span class="s2">&quot;together&quot;</span>
+    <span class="n">OPENAI_COMPATIBLE_MODEL</span> <span class="o">=</span> <span class="s2">&quot;openai-compatible-model&quot;</span>
+    <span class="n">SAMBA</span> <span class="o">=</span> <span class="s2">&quot;samba-nova&quot;</span>
+    <span class="n">COHERE</span> <span class="o">=</span> <span class="s2">&quot;cohere&quot;</span>
+    <span class="n">YI</span> <span class="o">=</span> <span class="s2">&quot;lingyiwanwu&quot;</span>
+    <span class="n">QWEN</span> <span class="o">=</span> <span class="s2">&quot;tongyi-qianwen&quot;</span>
+    <span class="n">NVIDIA</span> <span class="o">=</span> <span class="s2">&quot;nvidia&quot;</span>
+    <span class="n">DEEPSEEK</span> <span class="o">=</span> <span class="s2">&quot;deepseek&quot;</span>
+    <span class="n">SGLANG</span> <span class="o">=</span> <span class="s2">&quot;sglang&quot;</span>
+    <span class="n">INTERNLM</span> <span class="o">=</span> <span class="s2">&quot;internlm&quot;</span>
+    <span class="n">MOONSHOT</span> <span class="o">=</span> <span class="s2">&quot;moonshot&quot;</span>
+    <span class="n">SILICONFLOW</span> <span class="o">=</span> <span class="s2">&quot;siliconflow&quot;</span>
+    <span class="n">AIML</span> <span class="o">=</span> <span class="s2">&quot;aiml&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_openai</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is openai.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">OPENAI</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_azure</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is azure.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">AZURE</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_anthropic</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is anthropic.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">ANTHROPIC</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_groq</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is groq.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">GROQ</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_ollama</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is ollama.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">OLLAMA</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_vllm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is vllm.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">VLLM</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_sglang</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is sglang.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">SGLANG</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_together</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is together.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">TOGETHER</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_litellm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is litellm.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">LITELLM</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_zhipuai</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is zhipu.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">ZHIPU</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_mistral</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is mistral.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">MISTRAL</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_openai_compatible_model</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this is a platform supporting openai</span>
+<span class="sd">        compatibility&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">OPENAI_COMPATIBLE_MODEL</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_gemini</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is Gemini.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">GEMINI</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_reka</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is Reka.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">REKA</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_samba</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is Samba Nova.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">SAMBA</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_cohere</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is Cohere.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">COHERE</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_yi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is Yi.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">YI</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_qwen</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is Qwen.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">QWEN</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_nvidia</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is Nvidia.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">NVIDIA</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_deepseek</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is DeepSeek.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">DEEPSEEK</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_internlm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is InternLM.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">INTERNLM</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_moonshot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is Moonshot model.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">MOONSHOT</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_siliconflow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is SiliconFlow.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">SILICONFLOW</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_aiml</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this platform is AIML.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">ModelPlatformType</span><span class="o">.</span><span class="n">AIML</span></div>
+
+
+
+<div class="viewcode-block" id="AudioModelType">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.AudioModelType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">AudioModelType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">TTS_1</span> <span class="o">=</span> <span class="s2">&quot;tts-1&quot;</span>
+    <span class="n">TTS_1_HD</span> <span class="o">=</span> <span class="s2">&quot;tts-1-hd&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_openai</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of audio models is an OpenAI-released</span>
+<span class="sd">        model.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">AudioModelType</span><span class="o">.</span><span class="n">TTS_1</span><span class="p">,</span>
+            <span class="n">AudioModelType</span><span class="o">.</span><span class="n">TTS_1_HD</span><span class="p">,</span>
+        <span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="VoiceType">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.VoiceType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">VoiceType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">ALLOY</span> <span class="o">=</span> <span class="s2">&quot;alloy&quot;</span>
+    <span class="n">ECHO</span> <span class="o">=</span> <span class="s2">&quot;echo&quot;</span>
+    <span class="n">FABLE</span> <span class="o">=</span> <span class="s2">&quot;fable&quot;</span>
+    <span class="n">ONYX</span> <span class="o">=</span> <span class="s2">&quot;onyx&quot;</span>
+    <span class="n">NOVA</span> <span class="o">=</span> <span class="s2">&quot;nova&quot;</span>
+    <span class="n">SHIMMER</span> <span class="o">=</span> <span class="s2">&quot;shimmer&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_openai</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns whether this type of voice is an OpenAI-released voice.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="n">VoiceType</span><span class="o">.</span><span class="n">ALLOY</span><span class="p">,</span>
+            <span class="n">VoiceType</span><span class="o">.</span><span class="n">ECHO</span><span class="p">,</span>
+            <span class="n">VoiceType</span><span class="o">.</span><span class="n">FABLE</span><span class="p">,</span>
+            <span class="n">VoiceType</span><span class="o">.</span><span class="n">ONYX</span><span class="p">,</span>
+            <span class="n">VoiceType</span><span class="o">.</span><span class="n">NOVA</span><span class="p">,</span>
+            <span class="n">VoiceType</span><span class="o">.</span><span class="n">SHIMMER</span><span class="p">,</span>
+        <span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="JinaReturnFormat">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.JinaReturnFormat">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">JinaReturnFormat</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">DEFAULT</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">MARKDOWN</span> <span class="o">=</span> <span class="s2">&quot;markdown&quot;</span>
+    <span class="n">HTML</span> <span class="o">=</span> <span class="s2">&quot;html&quot;</span>
+    <span class="n">TEXT</span> <span class="o">=</span> <span class="s2">&quot;text&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="HuggingFaceRepoType">
+<a class="viewcode-back" href="../../../camel.types.html#camel.types.enums.HuggingFaceRepoType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">HuggingFaceRepoType</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+    <span class="n">DATASET</span> <span class="o">=</span> <span class="s2">&quot;dataset&quot;</span>
+    <span class="n">MODEL</span> <span class="o">=</span> <span class="s2">&quot;model&quot;</span>
+    <span class="n">SPACE</span> <span class="o">=</span> <span class="s2">&quot;space&quot;</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

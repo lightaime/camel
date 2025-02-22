@@ -1,0 +1,1601 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>camel.utils.commons &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=30d83864"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/camel/utils/commons';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/tasks.html">Task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/loaders.html">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../key_modules/workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cookbooks/data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../cookbooks/data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../camel.html">camel package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2F_modules/camel/utils/commons.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for camel.utils.commons</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="c1"># ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">importlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">platform</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">http</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPStatus</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Any</span><span class="p">,</span>
+    <span class="n">Callable</span><span class="p">,</span>
+    <span class="n">Dict</span><span class="p">,</span>
+    <span class="n">List</span><span class="p">,</span>
+    <span class="n">Mapping</span><span class="p">,</span>
+    <span class="n">Optional</span><span class="p">,</span>
+    <span class="n">Set</span><span class="p">,</span>
+    <span class="n">Tuple</span><span class="p">,</span>
+    <span class="n">Type</span><span class="p">,</span>
+    <span class="n">TypeVar</span><span class="p">,</span>
+    <span class="n">cast</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">urllib.parse</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlparse</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pydantic</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskType</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">Constants</span>
+
+<span class="n">F</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="print_text_animated">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.print_text_animated">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_text_animated</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">delay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Prints the given text with an animated effect.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text (str): The text to print.</span>
+<span class="sd">        delay (float, optional): The delay between each character printed.</span>
+<span class="sd">            (default: :obj:`0.02`)</span>
+<span class="sd">        end (str, optional): The end character to print after each</span>
+<span class="sd">            character of text. (default: :obj:`&quot;&quot;`)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_prompt_template_key_words">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.get_prompt_template_key_words">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_prompt_template_key_words</span><span class="p">(</span><span class="n">template</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Given a string template containing curly braces {}, return a set of</span>
+<span class="sd">    the words inside the braces.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        template (str): A string containing curly braces.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[str]: A list of the words inside the curly braces.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; get_prompt_template_key_words(&#39;Hi, {name}! How are you {status}?&#39;)</span>
+<span class="sd">        {&#39;name&#39;, &#39;status&#39;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;{([^}]*)}&#39;</span><span class="p">,</span> <span class="n">template</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="get_first_int">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.get_first_int">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_first_int</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the first integer number found in the given string.</span>
+
+<span class="sd">    If no integer number is found, returns None.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        string (str): The input string.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int or None: The first integer number found in the string, or None if</span>
+<span class="sd">            no integer number is found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="download_tasks">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.download_tasks">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">download_tasks</span><span class="p">(</span><span class="n">task</span><span class="p">:</span> <span class="n">TaskType</span><span class="p">,</span> <span class="n">folder_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Downloads task-related files from a specified URL and extracts them.</span>
+
+<span class="sd">    This function downloads a zip file containing tasks based on the specified</span>
+<span class="sd">    `task` type from a predefined URL, saves it to `folder_path`, and then</span>
+<span class="sd">    extracts the contents of the zip file into the same folder. After</span>
+<span class="sd">    extraction, the zip file is deleted.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        task (TaskType): An enum representing the type of task to download.</span>
+<span class="sd">        folder_path (str): The path of the folder where the zip file will be</span>
+<span class="sd">                           downloaded and extracted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Define the path to save the zip file</span>
+    <span class="n">zip_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="s2">&quot;tasks.zip&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Download the zip file from the Google Drive link</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s2">&quot;https://huggingface.co/datasets/camel-ai/&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;metadata/resolve/main/</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">_tasks.zip&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Save the zip file</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">zip_file_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+        <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
+
+    <span class="c1"># Delete the zip file</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">zip_file_path</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_task_list">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.get_task_list">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_task_list</span><span class="p">(</span><span class="n">task_response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Parse the response of the Agent and return task list.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        task_response (str): The string response of the Agent.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[str]: A list of the string tasks.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">new_tasks_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">task_string_list</span> <span class="o">=</span> <span class="n">task_response</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># each task starts with #.</span>
+    <span class="k">for</span> <span class="n">task_string</span> <span class="ow">in</span> <span class="n">task_string_list</span><span class="p">:</span>
+        <span class="n">task_parts</span> <span class="o">=</span> <span class="n">task_string</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">task_parts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">task_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">task_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">())</span>
+            <span class="n">task_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s_]+&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">task_parts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">task_name</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">and</span> <span class="n">task_id</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">():</span>
+                <span class="n">new_tasks_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_tasks_list</span></div>
+
+
+
+<div class="viewcode-block" id="check_server_running">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.check_server_running">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">check_server_running</span><span class="p">(</span><span class="n">server_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check whether the port refered by the URL to the server</span>
+<span class="sd">    is open.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        server_url (str): The URL to the server running LLM inference</span>
+<span class="sd">            service.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: Whether the port is open for packets (server is running).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parsed_url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">server_url</span><span class="p">)</span>
+    <span class="n">url_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span> <span class="n">parsed_url</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+
+    <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">connect_ex</span><span class="p">(</span><span class="n">url_tuple</span><span class="p">)</span>
+    <span class="n">sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="c1"># if the port is open, the result should be 0.</span>
+    <span class="k">return</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">0</span></div>
+
+
+
+<div class="viewcode-block" id="dependencies_required">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.dependencies_required">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">dependencies_required</span><span class="p">(</span><span class="o">*</span><span class="n">required_modules</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">F</span><span class="p">],</span> <span class="n">F</span><span class="p">]:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;A decorator to ensure that specified Python modules</span>
+<span class="sd">    are available before a function executes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        required_modules (str): The required modules to be checked for</span>
+<span class="sd">            availability.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Callable[[F], F]: The original function with the added check for</span>
+<span class="sd">            required module dependencies.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ImportError: If any of the required modules are not available.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        ::</span>
+
+<span class="sd">            @dependencies_required(&#39;numpy&#39;, &#39;pandas&#39;)</span>
+<span class="sd">            def data_processing_function():</span>
+<span class="sd">                # Function implementation...</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">F</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">F</span><span class="p">:</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+            <span class="n">missing_modules</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">required_modules</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">is_module_available</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+            <span class="p">]</span>
+            <span class="k">if</span> <span class="n">missing_modules</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Missing required modules: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">missing_modules</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">wrapper</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">decorator</span></div>
+
+
+
+<div class="viewcode-block" id="is_module_available">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.is_module_available">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_module_available</span><span class="p">(</span><span class="n">module_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check if a module is available for import.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        module_name (str): The name of the module to check for availability.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True if the module can be imported, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+
+<div class="viewcode-block" id="api_keys_required">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.api_keys_required">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">api_keys_required</span><span class="p">(</span>
+    <span class="n">param_env_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">]],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">F</span><span class="p">],</span> <span class="n">F</span><span class="p">]:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;A decorator to check if the required API keys are provided in the</span>
+<span class="sd">    environment variables or as function arguments.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        param_env_list (List[Tuple[Optional[str], str]]): A list of tuples</span>
+<span class="sd">            where each tuple contains a function argument name (as the first</span>
+<span class="sd">            element, or None) and the corresponding environment variable name</span>
+<span class="sd">            (as the second element) that holds the API key.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Callable[[F], F]: The original function wrapped with the added check</span>
+<span class="sd">            for the required API keys.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If any of the required API keys are missing, either</span>
+<span class="sd">            from the function arguments or environment variables.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        ::</span>
+
+<span class="sd">            @api_keys_required([</span>
+<span class="sd">                (&#39;api_key_arg&#39;, &#39;API_KEY_1&#39;),</span>
+<span class="sd">                (&#39;another_key_arg&#39;, &#39;API_KEY_2&#39;),</span>
+<span class="sd">                (None, &#39;API_KEY_3&#39;),</span>
+<span class="sd">            ])</span>
+<span class="sd">            def some_api_function(api_key_arg=None, another_key_arg=None):</span>
+<span class="sd">                # Function implementation that requires API keys</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">F</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">F</span><span class="p">:</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+            <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+            <span class="n">bound_arguments</span> <span class="o">=</span> <span class="n">signature</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">bound_arguments</span><span class="o">.</span><span class="n">apply_defaults</span><span class="p">()</span>
+            <span class="n">arguments</span> <span class="o">=</span> <span class="n">bound_arguments</span><span class="o">.</span><span class="n">arguments</span>
+
+            <span class="n">missing_keys</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">env_var_name</span> <span class="ow">in</span> <span class="n">param_env_list</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">env_var_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Environment variable name must be a string, got&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">env_var_name</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+
+                <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">if</span> <span class="p">(</span>
+                    <span class="n">param_name</span>
+                <span class="p">):</span>  <span class="c1"># If param_name is provided, check function argument first</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;Parameter name must be a string, &quot;</span>
+                            <span class="sa">f</span><span class="s2">&quot;got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">param_name</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="p">)</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">arguments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">param_name</span><span class="p">)</span>
+                    <span class="c1"># If we found a valid value in arguments, continue to next</span>
+                    <span class="c1"># item</span>
+                    <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+                        <span class="k">continue</span>
+
+                <span class="c1"># Check environment variable if no valid value found yet</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">env_var_name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="ow">or</span> <span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                    <span class="n">missing_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">env_var_name</span><span class="p">)</span>
+
+            <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;the official website&quot;</span>
+            <span class="k">if</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;ANTHROPIC_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="s2">&quot;https://docs.anthropic.com/zh-CN/api/getting-started&quot;</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;AIML_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://aimlapi.com/&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;COHERE_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://cohere.com/&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;DEEPSEEK_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://www.deepseek.com/&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;AZURE_OPENAI_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://portal.azure.com/&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;OPENAI_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://platform.openai.com/docs/overview&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;FISHAUDIO_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://fish.audio/&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;GEMINI_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://gemini.google.com/&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;INTERNLM_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://internlm-chat.intern-ai.org.cn/puyu/api/v1&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;GROQ_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://api.groq.com/openai/v1&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;MISTRAL_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://mistral.ai/&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;MOONSHOT_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://api.moonshot.cn/v1&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;NVIDIA_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://integrate.api.nvidia.com/&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;OPENAI_COMPATIBILIY_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://platform.openai.com/docs/overview&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;QWEN_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://tongyi.aliyun.com/&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;REKA_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://docs.reka.ai/quick-start&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;SAMBA_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://community.sambanova.ai/t/looking-for-api-key-and-url-for-sambanova/576&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;TOGETHER_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://docs.together.ai/docs/quickstart&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;YI_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://platform.lingyiwanwu.com/docs&quot;</span>
+            <span class="k">elif</span> <span class="n">env_var_name</span> <span class="o">==</span> <span class="s1">&#39;ZHIPUAI_API_KEY&#39;</span><span class="p">:</span>
+                <span class="n">key_way</span> <span class="o">=</span> <span class="s2">&quot;https://www.zhipuai.cn/&quot;</span>
+
+            <span class="k">if</span> <span class="n">missing_keys</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Missing or empty required API keys in &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;environment variables: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">missing_keys</span><span class="p">)</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;You can obtain the API key from </span><span class="si">{</span><span class="n">key_way</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">wrapper</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">decorator</span></div>
+
+
+
+<div class="viewcode-block" id="get_system_information">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.get_system_information">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_system_information</span><span class="p">():</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Gathers information about the operating system.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: A dictionary containing various pieces of OS information.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sys_info</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;OS Name&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="s2">&quot;System&quot;</span><span class="p">:</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">(),</span>
+        <span class="s2">&quot;Release&quot;</span><span class="p">:</span> <span class="n">platform</span><span class="o">.</span><span class="n">release</span><span class="p">(),</span>
+        <span class="s2">&quot;Version&quot;</span><span class="p">:</span> <span class="n">platform</span><span class="o">.</span><span class="n">version</span><span class="p">(),</span>
+        <span class="s2">&quot;Machine&quot;</span><span class="p">:</span> <span class="n">platform</span><span class="o">.</span><span class="n">machine</span><span class="p">(),</span>
+        <span class="s2">&quot;Processor&quot;</span><span class="p">:</span> <span class="n">platform</span><span class="o">.</span><span class="n">processor</span><span class="p">(),</span>
+        <span class="s2">&quot;Platform&quot;</span><span class="p">:</span> <span class="n">platform</span><span class="o">.</span><span class="n">platform</span><span class="p">(),</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">sys_info</span></div>
+
+
+
+<div class="viewcode-block" id="to_pascal">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.to_pascal">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">to_pascal</span><span class="p">(</span><span class="n">snake</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a snake_case string to PascalCase.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        snake (str): The snake_case string to be converted.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The converted PascalCase string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check if the string is already in PascalCase</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^[A-Z][a-zA-Z0-9]*([A-Z][a-zA-Z0-9]*)*$&#39;</span><span class="p">,</span> <span class="n">snake</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">snake</span>
+    <span class="c1"># Remove leading and trailing underscores</span>
+    <span class="n">snake</span> <span class="o">=</span> <span class="n">snake</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="c1"># Replace multiple underscores with a single one</span>
+    <span class="n">snake</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;_+&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">snake</span><span class="p">)</span>
+    <span class="c1"># Convert to PascalCase</span>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span>
+        <span class="s1">&#39;_([0-9A-Za-z])&#39;</span><span class="p">,</span>
+        <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
+        <span class="n">snake</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_pydantic_major_version">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.get_pydantic_major_version">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_pydantic_major_version</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Get the major version of Pydantic.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: The major version number of Pydantic if installed, otherwise 0.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">pydantic</span><span class="o">.</span><span class="n">__version__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span></div>
+
+
+
+<div class="viewcode-block" id="get_pydantic_object_schema">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.get_pydantic_object_schema">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_pydantic_object_schema</span><span class="p">(</span><span class="n">pydantic_params</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseModel</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Get the JSON schema of a Pydantic model.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pydantic_params (Type[BaseModel]): The Pydantic model class to retrieve</span>
+<span class="sd">            the schema for.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: The JSON schema of the Pydantic model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pydantic_params</span><span class="o">.</span><span class="n">model_json_schema</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="func_string_to_callable">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.func_string_to_callable">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">func_string_to_callable</span><span class="p">(</span><span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Convert a function code string to a callable function object.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        code (str): The function code as a string.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Callable[..., Any]: The callable function object extracted from the</span>
+<span class="sd">            code string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">local_vars</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">exec</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="nb">globals</span><span class="p">(),</span> <span class="n">local_vars</span><span class="p">)</span>
+    <span class="n">func</span> <span class="o">=</span> <span class="n">local_vars</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Constants</span><span class="o">.</span><span class="n">FUNC_NAME_FOR_STRUCTURED_OUTPUT</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">func</span></div>
+
+
+
+<div class="viewcode-block" id="json_to_function_code">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.json_to_function_code">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">json_to_function_code</span><span class="p">(</span><span class="n">json_obj</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Generate a Python function code from a JSON schema.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        json_obj (dict): The JSON schema object containing properties and</span>
+<span class="sd">            required fields, and json format is follow openai tools schema</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The generated Python function code as a string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">properties</span> <span class="o">=</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;properties&#39;</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">required</span> <span class="o">=</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;required&#39;</span><span class="p">,</span> <span class="p">[])</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">properties</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">required</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;JSON schema must contain &#39;properties&#39; and &#39;required&#39; fields&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">docstring_args</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">return_keys</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">prop_to_python</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;string&#39;</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;number&#39;</span><span class="p">:</span> <span class="s1">&#39;float&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;integer&#39;</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;boolean&#39;</span><span class="p">:</span> <span class="s1">&#39;bool&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">required</span><span class="p">:</span>
+        <span class="c1"># if no description, return empty string</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="n">prop</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">prop_type</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="n">prop</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+        <span class="n">python_type</span> <span class="o">=</span> <span class="n">prop_to_python</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prop_type</span><span class="p">,</span> <span class="n">prop_type</span><span class="p">)</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">python_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">docstring_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;        </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">python_type</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">description</span><span class="si">}</span><span class="s2">.&quot;</span>
+        <span class="p">)</span>
+        <span class="n">return_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+
+    <span class="c1"># extract entity of schema</span>
+    <span class="n">args_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">docstring_args_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">docstring_args</span><span class="p">)</span>
+    <span class="n">return_keys_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">return_keys</span><span class="p">)</span>
+
+    <span class="c1"># function template</span>
+    <span class="n">function_code</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">def </span><span class="si">{</span><span class="n">Constants</span><span class="o">.</span><span class="n">FUNC_NAME_FOR_STRUCTURED_OUTPUT</span><span class="si">}</span><span class="s1">(</span><span class="si">{</span><span class="n">args_str</span><span class="si">}</span><span class="s1">):</span>
+<span class="s1">    r&quot;&quot;&quot;Return response with a specified json format.</span>
+<span class="s1">    Args:</span>
+<span class="si">{</span><span class="n">docstring_args_str</span><span class="si">}</span>
+<span class="s1">    Returns:</span>
+<span class="s1">        Dict: A dictionary containing </span><span class="si">{</span><span class="n">return_keys_str</span><span class="si">}</span><span class="s1">.</span>
+<span class="s1">    &quot;&quot;&quot;</span>
+<span class="s1">    return </span><span class="se">{{</span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s1">&quot;: </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s1">&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">prop</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">required</span><span class="p">])</span><span class="si">}</span><span class="se">}}</span>
+<span class="s1">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="n">function_code</span></div>
+
+
+
+<div class="viewcode-block" id="text_extract_from_web">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.text_extract_from_web">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">text_extract_from_web</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Get the text information from given url.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        url (str): The website you want to search.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: All texts extract from the web.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">newspaper</span><span class="w"> </span><span class="kn">import</span> <span class="n">Article</span>
+
+        <span class="c1"># Request the target page</span>
+        <span class="n">article</span> <span class="o">=</span> <span class="n">Article</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">article</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
+        <span class="n">article</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">text</span>
+
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Can&#39;t access </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">, error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Can&#39;t extract text from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">, error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">return</span> <span class="n">text</span></div>
+
+
+
+<div class="viewcode-block" id="create_chunks">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.create_chunks">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_chunks</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns successive n-sized chunks from provided text. Split a text</span>
+<span class="sd">    into smaller chunks of size n&quot;.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text (str): The text to be split.</span>
+<span class="sd">        n (int): The max length of a single chunk.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[str]: A list of split texts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+        <span class="c1"># Find the nearest end of sentence within a range of 0.5 * n</span>
+        <span class="c1"># and 1.5 * n tokens</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1.2</span> <span class="o">*</span> <span class="n">n</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="n">i</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">n</span><span class="p">):</span>
+            <span class="c1"># Decode the tokens and check for full stop or newline</span>
+            <span class="n">chunk</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">chunk</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">chunk</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
+                <span class="k">break</span>
+            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="c1"># If no end of sentence found, use n tokens as the chunk size</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="n">i</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+        <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">j</span>
+    <span class="k">return</span> <span class="n">chunks</span></div>
+
+
+
+<div class="viewcode-block" id="is_docker_running">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.is_docker_running">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_docker_running</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Check if the Docker daemon is running.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True if the Docker daemon is running, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&quot;docker&quot;</span><span class="p">,</span> <span class="s2">&quot;info&quot;</span><span class="p">],</span>
+            <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+            <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">returncode</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">except</span> <span class="p">(</span><span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">,</span> <span class="ne">FileNotFoundError</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AGENTOPS_API_KEY&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">agentops</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+            <span class="n">ToolEvent</span><span class="p">,</span>
+            <span class="n">record</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span>
+<span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+    <span class="n">ToolEvent</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="agentops_decorator">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.agentops_decorator">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">agentops_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Decorator that records the execution of a function if ToolEvent is</span>
+<span class="sd">    available.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        func (callable): The function to be decorated.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        callable: The wrapped function which records its execution details.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ToolEvent</span><span class="p">:</span>
+            <span class="n">tool_event</span> <span class="o">=</span> <span class="n">ToolEvent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">tool_event</span><span class="o">.</span><span class="n">returns</span> <span class="o">=</span> <span class="n">result</span>
+            <span class="n">record</span><span class="p">(</span><span class="n">tool_event</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">result</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span></div>
+
+
+
+<div class="viewcode-block" id="AgentOpsMeta">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.AgentOpsMeta">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">AgentOpsMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Metaclass that automatically decorates all callable attributes with</span>
+<span class="sd">    the agentops_decorator,</span>
+<span class="sd">    except for the &#39;get_tools&#39; method.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">    __new__(cls, name, bases, dct):</span>
+<span class="sd">        Creates a new class with decorated methods.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ToolEvent</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">dct</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">and</span> <span class="n">attr</span> <span class="o">!=</span> <span class="s1">&#39;get_tools&#39;</span><span class="p">:</span>
+                    <span class="n">dct</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">agentops_decorator</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="track_agent">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.track_agent">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">track_agent</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Mock track agent decorator for AgentOps.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">noop</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span>
+
+    <span class="k">return</span> <span class="n">noop</span></div>
+
+
+
+<div class="viewcode-block" id="handle_http_error">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.handle_http_error">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">handle_http_error</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Handles the HTTP errors based on the status code of the response.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        response (requests.Response): The HTTP response from the API call.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The error type, based on the status code.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">HTTPStatus</span><span class="o">.</span><span class="n">UNAUTHORIZED</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Unauthorized. Check your access token.&quot;</span>
+    <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">HTTPStatus</span><span class="o">.</span><span class="n">FORBIDDEN</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Forbidden. You do not have permission to perform this action.&quot;</span>
+    <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">HTTPStatus</span><span class="o">.</span><span class="n">NOT_FOUND</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Not Found. The resource could not be located.&quot;</span>
+    <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">HTTPStatus</span><span class="o">.</span><span class="n">TOO_MANY_REQUESTS</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Too Many Requests. You have hit the rate limit.&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;HTTP Error&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="retry_on_error">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.retry_on_error">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">retry_on_error</span><span class="p">(</span>
+    <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">initial_delay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Decorator to retry function calls on exception with exponential</span>
+<span class="sd">    backoff.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        max_retries (int): Maximum number of retry attempts</span>
+<span class="sd">        initial_delay (float): Initial delay between retries in seconds</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Callable: Decorated function with retry logic</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">delay</span> <span class="o">=</span> <span class="n">initial_delay</span>
+            <span class="n">last_exception</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_retries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">last_exception</span> <span class="o">=</span> <span class="n">e</span>
+                    <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">max_retries</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;Failed after </span><span class="si">{</span><span class="n">max_retries</span><span class="si">}</span><span class="s2"> retries: </span><span class="si">{</span><span class="n">e</span><span class="si">!s}</span><span class="s2">&quot;</span>
+                        <span class="p">)</span>
+                        <span class="k">raise</span>
+
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> failed: </span><span class="si">{</span><span class="n">e</span><span class="si">!s}</span><span class="s2">. &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;Retrying in </span><span class="si">{</span><span class="n">delay</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">s...&quot;</span>
+                    <span class="p">)</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+                    <span class="n">delay</span> <span class="o">*=</span> <span class="mi">2</span>  <span class="c1"># Exponential backoff</span>
+
+            <span class="k">raise</span> <span class="n">last_exception</span>
+
+        <span class="k">return</span> <span class="n">wrapper</span>
+
+    <span class="k">return</span> <span class="n">decorator</span></div>
+
+
+
+<div class="viewcode-block" id="BatchProcessor">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.BatchProcessor">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BatchProcessor</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Handles batch processing with dynamic sizing and error handling based</span>
+<span class="sd">    on system load.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">max_workers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">initial_batch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">monitoring_interval</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span>
+        <span class="n">cpu_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">80.0</span><span class="p">,</span>
+        <span class="n">memory_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">85.0</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Initialize the BatchProcessor with dynamic worker allocation.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            max_workers: Maximum number of workers. If None, will be</span>
+<span class="sd">                determined dynamically based on system resources.</span>
+<span class="sd">                (default: :obj:`None`)</span>
+<span class="sd">            initial_batch_size: Initial size of each batch. If `None`,</span>
+<span class="sd">                defaults to `10`. (default: :obj:`None`)</span>
+<span class="sd">            monitoring_interval: Interval in seconds between resource checks.</span>
+<span class="sd">                (default: :obj:`5.0`)</span>
+<span class="sd">            cpu_threshold: CPU usage percentage threshold for scaling down.</span>
+<span class="sd">                (default: :obj:`80.0`)</span>
+<span class="sd">            memory_threshold: Memory usage percentage threshold for scaling</span>
+<span class="sd">                down. (default: :obj:`85.0`)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">psutil</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">monitoring_interval</span> <span class="o">=</span> <span class="n">monitoring_interval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cpu_threshold</span> <span class="o">=</span> <span class="n">cpu_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">memory_threshold</span> <span class="o">=</span> <span class="n">memory_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_check_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">psutil</span> <span class="o">=</span> <span class="n">psutil</span>
+
+        <span class="c1"># Initialize performance metrics</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_processed</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_errors</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">processing_times</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">max_workers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_workers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_optimal_workers</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_workers</span> <span class="o">=</span> <span class="n">max_workers</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="mi">10</span> <span class="k">if</span> <span class="n">initial_batch_size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">initial_batch_size</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_batch_size</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_batch_size</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">backoff_factor</span> <span class="o">=</span> <span class="mf">0.8</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">success_factor</span> <span class="o">=</span> <span class="mf">1.2</span>
+
+        <span class="c1"># Initial resource check</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_resource_metrics</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calculate_optimal_workers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate optimal number of workers based on system resources.&quot;&quot;&quot;</span>
+        <span class="n">cpu_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psutil</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+        <span class="n">cpu_percent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psutil</span><span class="o">.</span><span class="n">cpu_percent</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">memory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span>
+
+        <span class="c1"># Base number of workers on CPU count and current load</span>
+        <span class="k">if</span> <span class="n">cpu_percent</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">cpu_threshold</span><span class="p">:</span>
+            <span class="n">workers</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cpu_count</span> <span class="o">//</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">cpu_percent</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">:</span>
+            <span class="n">workers</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cpu_count</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">workers</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cpu_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Further reduce if memory is constrained</span>
+        <span class="k">if</span> <span class="n">memory</span><span class="o">.</span><span class="n">percent</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">memory_threshold</span><span class="p">:</span>
+            <span class="n">workers</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">workers</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">workers</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_resource_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Update current resource usage metrics.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_cpu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psutil</span><span class="o">.</span><span class="n">cpu_percent</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_memory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span><span class="o">.</span><span class="n">percent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_check_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_should_check_resources</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Determine if it&#39;s time to check resource usage again.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_check_time</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">monitoring_interval</span>
+
+<div class="viewcode-block" id="BatchProcessor.adjust_batch_size">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.BatchProcessor.adjust_batch_size">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">adjust_batch_size</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">success</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">processing_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Adjust batch size based on success/failure and system resources.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            success (bool): Whether the last batch completed successfully</span>
+<span class="sd">            processing_time (Optional[float]): Time taken to process the last</span>
+<span class="sd">                batch. (default: :obj:`None`)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Update metrics</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_processed</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">total_errors</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">processing_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">processing_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">processing_time</span><span class="p">)</span>
+
+        <span class="c1"># Check system resources if interval has elapsed</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_should_check_resources</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update_resource_metrics</span><span class="p">()</span>
+
+            <span class="c1"># Adjust based on resource usage</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">current_cpu</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">cpu_threshold</span>
+                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_memory</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">memory_threshold</span>
+            <span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+                    <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">backoff_factor</span><span class="p">),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">min_batch_size</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">max_workers</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_workers</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">return</span>
+
+        <span class="c1"># Adjust based on success/failure</span>
+        <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+                <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">success_factor</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_batch_size</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+                <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">backoff_factor</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_batch_size</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BatchProcessor.get_performance_metrics">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.BatchProcessor.get_performance_metrics">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_performance_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Get current performance metrics.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict containing performance metrics including:</span>
+<span class="sd">            - total_processed: Total number of batches processed</span>
+<span class="sd">            - error_rate: Percentage of failed batches</span>
+<span class="sd">            - avg_processing_time: Average time per batch</span>
+<span class="sd">            - current_batch_size: Current batch size</span>
+<span class="sd">            - current_workers: Current number of workers</span>
+<span class="sd">            - current_cpu: Current CPU usage percentage</span>
+<span class="sd">            - current_memory: Current memory usage percentage</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">metrics</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;total_processed&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_processed</span><span class="p">,</span>
+            <span class="s2">&quot;error_rate&quot;</span><span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">total_errors</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_processed</span><span class="p">))</span>
+            <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
+            <span class="s2">&quot;avg_processing_time&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processing_times</span><span class="p">)</span>
+            <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processing_times</span><span class="p">)),</span>
+            <span class="s2">&quot;current_batch_size&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+            <span class="s2">&quot;current_workers&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_workers</span><span class="p">,</span>
+            <span class="s2">&quot;current_cpu&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_cpu</span><span class="p">,</span>
+            <span class="s2">&quot;current_memory&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_memory</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">metrics</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="download_github_subdirectory">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.download_github_subdirectory">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">download_github_subdirectory</span><span class="p">(</span>
+    <span class="n">repo</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">subdir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">branch</span><span class="o">=</span><span class="s2">&quot;main&quot;</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Download subdirectory of the Github repo of</span>
+<span class="sd">    the benchmark.</span>
+
+<span class="sd">    This function downloads all files and subdirectories from a</span>
+<span class="sd">    specified subdirectory of a GitHub repository and</span>
+<span class="sd">    saves them to a local directory.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        repo (str): The name of the GitHub repository</span>
+<span class="sd">                in the format &quot;owner/repo&quot;.</span>
+<span class="sd">        subdir (str): The path to the subdirectory</span>
+<span class="sd">            within the repository to download.</span>
+<span class="sd">        data_dir (Path): The local directory where</span>
+<span class="sd">            the files will be saved.</span>
+<span class="sd">        branch (str, optional): The branch of the repository to use.</span>
+<span class="sd">            Defaults to &quot;main&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+
+    <span class="n">api_url</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;https://api.github.com/repos/</span><span class="si">{</span><span class="n">repo</span><span class="si">}</span><span class="s2">/contents/</span><span class="si">{</span><span class="n">subdir</span><span class="si">}</span><span class="s2">?ref=</span><span class="si">{</span><span class="n">branch</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Accept&quot;</span><span class="p">:</span> <span class="s2">&quot;application/vnd.github.v3+json&quot;</span><span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Downloading&quot;</span><span class="p">):</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="n">file</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">file</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;file&quot;</span><span class="p">:</span>
+            <span class="n">file_url</span> <span class="o">=</span> <span class="n">file</span><span class="p">[</span><span class="s2">&quot;download_url&quot;</span><span class="p">]</span>
+            <span class="n">file_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">file_url</span><span class="p">)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file_response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">file</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;dir&quot;</span><span class="p">:</span>
+            <span class="n">download_github_subdirectory</span><span class="p">(</span>
+                <span class="n">repo</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">subdir</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">file</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">branch</span>
+            <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="generate_prompt_for_structured_output">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.generate_prompt_for_structured_output">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_prompt_for_structured_output</span><span class="p">(</span>
+    <span class="n">response_format</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">BaseModel</span><span class="p">]],</span>
+    <span class="n">user_message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function generates a prompt based on the provided Pydantic model and</span>
+<span class="sd">    user message.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        response_format (Type[BaseModel]): The Pydantic model class.</span>
+<span class="sd">        user_message (str): The user message to be used in the prompt.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: A prompt string for the LLM.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">response_format</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">user_message</span>
+
+    <span class="n">json_schema</span> <span class="o">=</span> <span class="n">response_format</span><span class="o">.</span><span class="n">model_json_schema</span><span class="p">()</span>
+    <span class="n">sys_prompt</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Given the user message, please generate a JSON response adhering &quot;</span>
+        <span class="s2">&quot;to the following JSON schema:</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">json_schema</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;Make sure the JSON response is valid and matches the EXACT structure &quot;</span>
+        <span class="s2">&quot;defined in the schema. Your result should only be a valid json &quot;</span>
+        <span class="s2">&quot;object, without any other text or comments.</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="n">user_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;User message: </span><span class="si">{</span><span class="n">user_message</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="n">final_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    </span><span class="si">{</span><span class="n">sys_prompt</span><span class="si">}</span>
+<span class="s2">    </span><span class="si">{</span><span class="n">user_prompt</span><span class="si">}</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">final_prompt</span></div>
+
+
+
+<div class="viewcode-block" id="with_timeout">
+<a class="viewcode-back" href="../../../camel.utils.html#camel.utils.commons.with_timeout">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">with_timeout</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Decorator that adds timeout functionality to functions.</span>
+
+<span class="sd">    Executes functions with a specified timeout value. Returns a timeout</span>
+<span class="sd">    message if execution time is exceeded.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        timeout (float, optional): The timeout duration in seconds. If None,</span>
+<span class="sd">            will try to get timeout from the instance&#39;s timeout attribute.</span>
+<span class="sd">            (default: :obj:`None`)</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; @with_timeout(5)</span>
+<span class="sd">        ... def my_function():</span>
+<span class="sd">        ...     return &quot;Success&quot;</span>
+<span class="sd">        &gt;&gt;&gt; my_function()</span>
+
+<span class="sd">        &gt;&gt;&gt; class MyClass:</span>
+<span class="sd">        ...     timeout = 5</span>
+<span class="sd">        ...     @with_timeout()</span>
+<span class="sd">        ...     def my_method(self):</span>
+<span class="sd">        ...         return &quot;Success&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="c1"># Determine the effective timeout value</span>
+            <span class="n">effective_timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+            <span class="k">if</span> <span class="n">effective_timeout</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">args</span><span class="p">:</span>
+                <span class="n">effective_timeout</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;timeout&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+            <span class="c1"># If no timeout value is provided, execute function normally</span>
+            <span class="k">if</span> <span class="n">effective_timeout</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+            <span class="c1"># Container to hold the result of the function call</span>
+            <span class="n">result_container</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">def</span><span class="w"> </span><span class="nf">target</span><span class="p">():</span>
+                <span class="n">result_container</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+
+            <span class="c1"># Start the function in a new thread</span>
+            <span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
+            <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+            <span class="n">thread</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">effective_timeout</span><span class="p">)</span>
+
+            <span class="c1"># Check if the thread is still alive after the timeout</span>
+            <span class="k">if</span> <span class="n">thread</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+                <span class="k">return</span> <span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Function `</span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">` execution timed out, &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;exceeded </span><span class="si">{</span><span class="n">effective_timeout</span><span class="si">}</span><span class="s2"> seconds.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">result_container</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">wrapper</span>
+
+    <span class="c1"># Handle both @with_timeout and @with_timeout() usage</span>
+    <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
+        <span class="c1"># If timeout is passed as a function, apply it to the decorator</span>
+        <span class="n">func</span><span class="p">,</span> <span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">decorator</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

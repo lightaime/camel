@@ -1,0 +1,1008 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Loaders &#8212; CAMEL 0.2.22 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3c972f42" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=30d83864"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'key_modules/loaders';</script>
+    <link rel="icon" href="https://raw.githubusercontent.com/camel-ai/camel/master/misc/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Storages" href="storages.html" />
+    <link rel="prev" title="Task" href="tasks.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">CAMEL 0.2.22</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/setup.html">API Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Key Modules</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="agents.html">Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datagen.html">Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages.html">Message</a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompts.html">Prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tasks.html">Task</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="storages.html">Storages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="society.html">Society</a></li>
+<li class="toctree-l1"><a class="reference internal" href="embeddings.html">Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="retrievers.html">Retrievers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workforce.html">Workforce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cookbooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cookbooks/basic_concepts/index.html">Basic Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/basic_concepts/create_your_first_agent.html">Creating Your First Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/basic_concepts/create_your_first_agents_society.html">Creating Your First Agent Society</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/basic_concepts/agents_message.html">Message Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/basic_concepts/agents_prompting.html">Prompting Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/basic_concepts/model_speed_comparison.html">Model Speed Comparison Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cookbooks/advanced_features/index.html">Advanced Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/agents_with_tools.html">Tools Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/agents_with_tools_from_Composio.html">Using Tools from Composio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/agents_with_human_in_loop_and_tool_approval.html">Agents with Human-in-loop and Tool Approval from HumanLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/agents_with_memory.html">Memory Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/agents_with_rag.html">RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/agents_with_graph_rag.html">Graph RAG Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/agents_tracking.html">Track CAMEL Agents with AgentOps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/critic_agents_and_tree_search.html">Critic Agents and Tree Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/advanced_features/embodied_agents.html">Embodied Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cookbooks/multi_agent_society/index.html">Multi-agent Society</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/multi_agent_society/agents_society.html">Develop Trading Bot with Role Playing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/multi_agent_society/workforce_judge_committee.html">Create A Hackathon Judge Committee with Workforce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/multi_agent_society/task_generation.html">Task Generation Cookbook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cookbooks/data_generation/index.html">Agentic Data Generation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_mistral_7b_instruct.html">Agenetic SFT Data generation with CAMEL and finetuning Mistral models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_Qwen2_5_7B.html">Agenetic Data generation with CAMEL and finetuning Qwen models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/sft_data_generation_and_unsloth_finetuning_tinyllama.html">Agenetic SFT Data generation with CAMEL and finetuning Meta models with Unsloth</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/data_gen_with_real_function_calls_and_hermes_format.html">Real Function Calls and Hermes Format Data Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/self_instruct_data_generation.html">Self-instruct Data Generation Using Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/cot_data_gen_sft_qwen_unsolth_upload_huggingface.html">CoT Data Generation and SFT Qwen With Unsloth</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/synthetic_dataevaluation%26filter_with_reward_model.html">Agentic Data Generation, Evaluation &amp; Filtering with Reward Models</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/data_model_generation_and_structured_output_with_qwen.html">Agentic Data Model Generation and Structured Output Powered by CAMEL &amp; Qwen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/distill_math_reasoning_data_from_deepseek_r1.html">Distill Math Reasoning Data from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/self_improving_math_reasoning_data_distillation_from_deepSeek_r1.html">Self-Improving Math Reasoning Data Distillation from DeepSeek R1 with CAMEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_generation/self_improving_cot_generation.html">Deep Dive into CAMEL’s Practices for Self-Improving CoT Generation 🚀</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cookbooks/applications/index.html">Applications</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/applications/roleplaying_scraper.html">Role-Playing Scraper for Report &amp; Knowledge Graph Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/applications/dynamic_travel_planner.html">Dynamic Travel Planner Role-Playing: Multi-Agent System with Real-Time Insights Powered by Dappier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/applications/customer_service_Discord_bot_with_agentic_RAG.html">Customer Service Discord Bot with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/applications/customer_service_Discord_bot_using_SambaNova_with_agentic_RAG.html">Customer Service Discord Bot Using SambaNova with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/applications/customer_service_Discord_bot_using_local_model_with_agentic_RAG.html">Customer Service Discord Bot Using Local Models with Agentic RAG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/applications/finance_discord_bot.html">Customer Service Discord Bot for Finance with OpenBB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cookbooks/data_processing/index.html">Data Processing and Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_processing/video_analysis.html">Video Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_processing/agent_with_chunkr_for_pdf_parsing.html">Create AI Agents that work with your PDFs using Chunkr &amp; Mistral AI</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../cookbooks/data_processing/ingest_data_from_websites_with_Firecrawl.html">3 ways to ingest data from websites with Firecrawl</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../modules.html">camel</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../camel.html">camel package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../camel.agents.html">camel.agents package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../camel.agents.tool_agents.html">camel.agents.tool_agents package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.configs.html">camel.configs package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.embeddings.html">camel.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.interpreters.html">camel.interpreters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.loaders.html">camel.loaders package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../camel.memories.html">camel.memories package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../camel.memories.blocks.html">camel.memories.blocks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../camel.memories.context_creators.html">camel.memories.context_creators package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.messages.html">camel.messages package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.models.html">camel.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.prompts.html">camel.prompts package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.responses.html">camel.responses package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.retrievers.html">camel.retrievers package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../camel.societies.html">camel.societies package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../camel.societies.workforce.html">camel.societies.workforce package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../camel.storages.html">camel.storages package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../camel.storages.graph_storages.html">camel.storages.graph_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../camel.storages.key_value_storages.html">camel.storages.key_value_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../camel.storages.object_storages.html">camel.storages.object_storages package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../camel.storages.vectordb_storages.html">camel.storages.vectordb_storages package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.tasks.html">camel.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.terminators.html">camel.terminators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.toolkits.html">camel.toolkits package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.types.html">camel.types package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camel.utils.html">camel.utils package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/edit/main/key_modules/loaders.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/camel-ai/camel/issues/new?title=Issue%20on%20page%20%2Fkey_modules/loaders.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/key_modules/loaders.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Loaders</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> On this page </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concept">1. Concept</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types">2. Types</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-io">2.1. Base IO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unstructured-io">2.2. Unstructured IO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apify-reader">2.3. Apify Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunkr-reader">2.4. Chunkr Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#firecrawl-reader">2.5. Firecrawl Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jina-url-reader">2.6. Jina_url Reader</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started">3. Get Started</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-base-io">3.1. Using <code class="docutils literal notranslate"><span class="pre">Base</span> <span class="pre">IO</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-unstructured-io">3.2. Using <code class="docutils literal notranslate"><span class="pre">Unstructured</span> <span class="pre">IO</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-apify-reader">3.3. Using <code class="docutils literal notranslate"><span class="pre">Apify</span> <span class="pre">Reader</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-firecrawl-reader">3.4. Using <code class="docutils literal notranslate"><span class="pre">Firecrawl</span> <span class="pre">Reader</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-chunkr-reader">3.5. Using <code class="docutils literal notranslate"><span class="pre">Chunkr</span> <span class="pre">Reader</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-jina-reader">3.6. Using <code class="docutils literal notranslate"><span class="pre">Jina</span> <span class="pre">Reader</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="loaders">
+<h1>Loaders<a class="headerlink" href="#loaders" title="Link to this heading">#</a></h1>
+<section id="concept">
+<h2>1. Concept<a class="headerlink" href="#concept" title="Link to this heading">#</a></h2>
+<p>CAMEL introduced two IO modules, <code class="docutils literal notranslate"><span class="pre">Base</span> <span class="pre">IO</span></code> and <code class="docutils literal notranslate"><span class="pre">Unstructured</span> <span class="pre">IO</span></code> which are designed for handling various file types and unstructured data processing.
+Additionally, four new data readers were added, <code class="docutils literal notranslate"><span class="pre">Apify</span> <span class="pre">Reader</span></code>,<code class="docutils literal notranslate"><span class="pre">Chunkr</span> <span class="pre">Reader</span></code>, <code class="docutils literal notranslate"><span class="pre">Firecrawl</span> <span class="pre">Reader</span></code>, and <code class="docutils literal notranslate"><span class="pre">Jina_url</span> <span class="pre">Reader</span></code>, which enable retrieval of external data for improved data integration and analysis.</p>
+</section>
+<section id="types">
+<h2>2. Types<a class="headerlink" href="#types" title="Link to this heading">#</a></h2>
+<section id="base-io">
+<h3>2.1. Base IO<a class="headerlink" href="#base-io" title="Link to this heading">#</a></h3>
+<p>Base IO module is focused on fundamental input/output operations related to files. It includes functionalities for representing, reading, and processing different file formats.</p>
+</section>
+<section id="unstructured-io">
+<h3>2.2. Unstructured IO<a class="headerlink" href="#unstructured-io" title="Link to this heading">#</a></h3>
+<p>Unstructured IO module deals with the handling, parsing, and processing of unstructured data. It provides tools for parsing files or URLs, cleaning data, extracting specific information, staging elements for different platforms, and chunking elements. The core of this module lies in its advanced ETL capabilities to manipulate unstructured data to make it usable for various applications like Retrieval-Augmented Generation(RAG).</p>
+</section>
+<section id="apify-reader">
+<h3>2.3. Apify Reader<a class="headerlink" href="#apify-reader" title="Link to this heading">#</a></h3>
+<p>Apify Reader provides a Python interface to interact with the Apify platform for automating web workflows. It allows users to authenticate via an API key and offers methods to execute and manage actors (automated web tasks) and datasets on the platform.
+It includes functionalities for client initialization, actor management, dataset operation.</p>
+</section>
+<section id="chunkr-reader">
+<h3>2.4. Chunkr Reader<a class="headerlink" href="#chunkr-reader" title="Link to this heading">#</a></h3>
+<p>Chunkr Reader is a Python client for interacting with the Chunkr API, which processes documents and returns content in various formats. It includes functionalities for client intialization, task management, formating response.</p>
+</section>
+<section id="firecrawl-reader">
+<h3>2.5. Firecrawl Reader<a class="headerlink" href="#firecrawl-reader" title="Link to this heading">#</a></h3>
+<p>Firecrawl Reader provides a Python interface to interact with the Firecrawl API, allowing users to turn websites into large language model (LLM)-ready markdown format.</p>
+</section>
+<section id="jina-url-reader">
+<h3>2.6. Jina_url Reader<a class="headerlink" href="#jina-url-reader" title="Link to this heading">#</a></h3>
+<p>JinaURL Reader is a Python client for Jina AI’s URL reading service, optimized to provide cleaner, LLM-friendly content from URLs.</p>
+</section>
+</section>
+<section id="get-started">
+<h2>3. Get Started<a class="headerlink" href="#get-started" title="Link to this heading">#</a></h2>
+<section id="using-base-io">
+<h3>3.1. Using <code class="docutils literal notranslate"><span class="pre">Base</span> <span class="pre">IO</span></code><a class="headerlink" href="#using-base-io" title="Link to this heading">#</a></h3>
+<p>This module is designed to read files of various formats, extract their contents, and represent them as <code class="docutils literal notranslate"><span class="pre">File</span></code> objects, each tailored to handle a specific file type.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_file_from_raw_bytes</span>
+
+<span class="c1"># Read a pdf file from disk</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test.pdf&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file_content</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="c1"># Use the create_file function to create an object based on the file extension</span>
+<span class="n">file_obj</span> <span class="o">=</span> <span class="n">create_file_from_raw_bytes</span><span class="p">(</span><span class="n">file_content</span><span class="p">,</span> <span class="s2">&quot;test.pdf&quot;</span><span class="p">)</span>
+
+<span class="c1"># Once you have the File object, you can access its content</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">file_obj</span><span class="o">.</span><span class="n">docs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;page_content&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="using-unstructured-io">
+<h3>3.2. Using <code class="docutils literal notranslate"><span class="pre">Unstructured</span> <span class="pre">IO</span></code><a class="headerlink" href="#using-unstructured-io" title="Link to this heading">#</a></h3>
+<p>To get started with the <code class="docutils literal notranslate"><span class="pre">Unstructured</span> <span class="pre">IO</span></code> module, you first need to import the module and initialize an instance of it. Once initialized, you can utilize this module to handle a variety of functionalities such as parsing, cleaning, extracting data, and integrating with cloud services like AWS S3 and Azure. Here’s a basic guide to help you begin:</p>
+<p>Utilize <code class="docutils literal notranslate"><span class="pre">parse_file_or_url</span></code> to load and parse unstructured data from a file or URL</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnstructuredIO</span>
+
+<span class="n">uio</span> <span class="o">=</span> <span class="n">UnstructuredIO</span><span class="p">()</span>
+<span class="c1"># Set example url</span>
+<span class="n">example_url</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;https://www.cnn.com/2023/01/30/sport/empire-state-building-green-&quot;</span>
+    <span class="s2">&quot;philadelphia-eagles-spt-intl/index.html&quot;</span><span class="p">)</span>
+<span class="n">elements</span> <span class="o">=</span> <span class="n">uio</span><span class="o">.</span><span class="n">parse_file_or_url</span><span class="p">(</span><span class="n">example_url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">((</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">])))</span>
+</pre></div>
+</div>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; The Empire State Building was lit in green and white to celebrate the Philadelphia Eagles’ victory in the NFC Championship game on Sunday – a decision that’s sparked a bit of a backlash in the Big Apple.
+
+&gt;&gt;&gt;  The Eagles advanced to the Super Bowl for the first time since 2018 after defeating the San Francisco 49ers 31-7, and the Empire State Building later tweeted how it was marking the occasion.
+
+&gt;&gt;&gt;  Fly <span class="ni">@Eagles</span> Fly! We’re going Green and White in honor of the Eagles NFC Championship Victory. pic.twitter.com/RNiwbCIkt7— Empire State Building (@EmpireStateBldg)
+
+&gt;&gt;&gt;  January 29, 2023...
+</pre></div>
+</div>
+<p>Utilize <code class="docutils literal notranslate"><span class="pre">clean_text_data</span></code> to do various text cleaning operations</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set example dirty text</span>
+<span class="n">example_dirty_text</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="se">\x93</span><span class="s2">Some dirty text â€™ with extra spaces and – dashes.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set clean options   </span>
+<span class="n">options</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;replace_unicode_quotes&#39;</span><span class="p">,</span> <span class="p">{}),</span>
+    <span class="p">(</span><span class="s1">&#39;clean_dashes&#39;</span><span class="p">,</span> <span class="p">{}),</span>
+    <span class="p">(</span><span class="s1">&#39;clean_non_ascii_chars&#39;</span><span class="p">,</span> <span class="p">{}),</span>
+    <span class="p">(</span><span class="s1">&#39;clean_extra_whitespace&#39;</span><span class="p">,</span> <span class="p">{}),</span>
+<span class="p">]</span>
+
+<span class="n">cleaned_text</span> <span class="o">=</span> <span class="n">uio</span><span class="o">.</span><span class="n">clean_text_data</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">example_dirty_text</span><span class="p">,</span><span class="n">clean_options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cleaned_text</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; Some dirty text with extra spaces and dashes.
+</pre></div>
+</div>
+<p>Utilize <code class="docutils literal notranslate"><span class="pre">extract_data_from_text</span></code> to do text extraction operation</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set example email to extract</span>
+<span class="n">example_email_text</span> <span class="o">=</span> <span class="s2">&quot;Contact me at example@email.com.&quot;</span>
+
+<span class="n">extracted_text</span> <span class="o">=</span> <span class="n">uio</span><span class="o">.</span><span class="n">extract_data_from_text</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">example_email_text</span><span class="p">,</span>
+<span class="n">extract_type</span><span class="o">=</span><span class="s2">&quot;extract_email_address&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">extracted_text</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; [&#39;example@email.com&#39;]
+</pre></div>
+</div>
+<p>Utilize <code class="docutils literal notranslate"><span class="pre">chunk_elements</span></code> to chunk the content</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chunks</span> <span class="o">=</span> <span class="n">uio</span><span class="o">.</span><span class="n">chunk_elements</span><span class="p">(</span><span class="n">elements</span><span class="o">=</span><span class="n">elements</span><span class="p">,</span><span class="n">chunk_type</span><span class="o">=</span><span class="s2">&quot;chunk_by_title&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; The Empire State Building was lit in green and white to celebrate the Philadelphia Eagles’ victory in the NFC Championship game on Sunday – a decision that’s sparked a bit of a backlash in the Big Apple.
+
+&gt;&gt;&gt;  The Eagles advanced to the Super Bowl for the first time since 2018 after defeating the San Francisco 49ers 31-7, and the Empire State Building later tweeted how it was marking the occasion.
+
+&gt;&gt;&gt;  --------------------------------------------------------------------------------
+&gt;&gt;&gt;  Fly <span class="ni">@Eagles</span> Fly! We’re going Green and White in honor of the Eagles NFC Championship Victory. pic.twitter.com/RNiwbCIkt7— Empire State Building (@EmpireStateBldg)
+
+&gt;&gt;&gt;  --------------------------------------------------------------------------------
+&gt;&gt;&gt;  January 29, 2023
+</pre></div>
+</div>
+<p>Utilize <code class="docutils literal notranslate"><span class="pre">stage_elements</span></code> to do element staging</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">staged_element</span> <span class="o">=</span> <span class="n">uio</span><span class="o">.</span><span class="n">stage_elements</span><span class="p">(</span><span class="n">elements</span><span class="o">=</span><span class="n">elements</span><span class="p">,</span><span class="n">stage_type</span><span class="o">=</span><span class="s2">&quot;stage_for_baseplate&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">staged_element</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; {&#39;rows&#39;: [{&#39;data&#39;: {&#39;type&#39;: &#39;UncategorizedText&#39;, &#39;element_id&#39;: &#39;e78902d05b0cb1e4c38fc7a79db450d5&#39;, &#39;text&#39;: &#39;CNN\n        \xa0—&#39;}, &#39;metadata&#39;: {&#39;filetype&#39;: &#39;text/html&#39;, &#39;languages&#39;: [&#39;eng&#39;], &#39;page_number&#39;: 1, &#39;url&#39;: &#39;https://www.cnn.com/2023/01/30/sport/empire-state-building-green-philadelphia-eagles-spt-intl/index.html&#39;, &#39;emphasized_text_contents&#39;: [&#39;CNN&#39;], &#39;emphasized_text_tags&#39;: [&#39;span&#39;]}}, ...
+</pre></div>
+</div>
+<p>This is a basic guide to get you started with the <code class="docutils literal notranslate"><span class="pre">Unstructured</span> <span class="pre">IO</span></code> module. For more advanced usage, refer to the specific method documentation and the <a class="reference external" href="https://docs.unstructured.io">Unstructured IO Documentation</a>.</p>
+</section>
+<section id="using-apify-reader">
+<h3>3.3. Using <code class="docutils literal notranslate"><span class="pre">Apify</span> <span class="pre">Reader</span></code><a class="headerlink" href="#using-apify-reader" title="Link to this heading">#</a></h3>
+<p>Initialize the client, set up the required actors and parameters.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">Apify</span>
+
+<span class="n">apify</span> <span class="o">=</span> <span class="n">Apify</span><span class="p">()</span>
+
+<span class="n">run_input</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;startUrls&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.camel-ai.org/&quot;</span><span class="p">}],</span>
+    <span class="s2">&quot;maxCrawlDepth&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;maxCrawlPages&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">actor_result</span> <span class="o">=</span> <span class="n">apify</span><span class="o">.</span><span class="n">run_actor</span><span class="p">(</span>
+    <span class="n">actor_id</span><span class="o">=</span><span class="s2">&quot;apify/website-content-crawler&quot;</span><span class="p">,</span> <span class="n">run_input</span><span class="o">=</span><span class="n">run_input</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Retrieve the result database ID and access it using the get_dataset_items method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset_result</span> <span class="o">=</span> <span class="n">apify</span><span class="o">.</span><span class="n">get_dataset_items</span><span class="p">(</span>
+    <span class="n">dataset_id</span><span class="o">=</span><span class="n">actor_result</span><span class="p">[</span><span class="s2">&quot;defaultDatasetId&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;[{&#39;url&#39;: &#39;https://www.camel-ai.org/&#39;, &#39;crawl&#39;: {&#39;loadedUrl&#39;: &#39;https://www.camel
+-ai.org/&#39;, &#39;loadedTime&#39;: &#39;2024-10-27T04:51:16.651Z&#39;, &#39;referrerUrl&#39;: &#39;https://ww
+w.camel-ai.org/&#39;, &#39;depth&#39;: 0, &#39;httpStatusCode&#39;: 200}, &#39;metadata&#39;: {&#39;canonicalUr
+l&#39;: &#39;https://www.camel-ai.org/&#39;, &#39;title&#39;: &#39;CAMEL-AI&#39;, &#39;description&#39;: &#39;CAMEL-AI.
+org is the 1st LLM multi-agent framework and an open-source community dedicated
+ to finding the scaling law of agents.&#39;, &#39;author&#39;: None, &#39;keywords&#39;: None, &#39;lan
+ guageCode&#39;: &#39;en&#39;, &#39;openGraph&#39;: [{&#39;property&#39;: &#39;og:title&#39;, &#39;content&#39;: &#39;CAMEL-AI&#39;
+ }, {&#39;property&#39;: &#39;og:description&#39;, &#39;content&#39;: &#39;CAMEL-AI.org is the 1st LLM mult
+ i-agent framework and an open-source community dedicated to finding the scalin
+ g law of agents.&#39;}, {&#39;property&#39;: &#39;twitter:title&#39;, &#39;content&#39;: &#39;CAMEL-AI&#39;}, {&#39;pr
+ operty&#39;: &#39;twitter:description&#39;, &#39;content&#39;: &#39;CAMEL-AI.org is the 1st LLM multi-
+ agent framework and an open-source community dedicated to finding the scaling 
+ law of agents.&#39;}, {&#39;property&#39;: &#39;og:type&#39;, &#39;content&#39;: &#39;website&#39;}], &#39;jsonLd&#39;: No
+ ne, &#39;headers&#39;: {&#39;date&#39;: &#39;Sun, 27 Oct 2024 04:50:18 GMT&#39;, &#39;content-type&#39;: &#39;text
+ /html&#39;, &#39;cf-ray&#39;: &#39;8d901082dae7efbe-PDX&#39;, &#39;cf-cache-status&#39;: &#39;HIT&#39;, &#39;age&#39;: &#39;10
+ 81&#39;, &#39;content-encoding&#39;: &#39;gzip&#39;, &#39;last-modified&#39;: &#39;Sat, 26 Oct 2024 11:51:32 G
+ MT&#39;, &#39;strict-transport-security&#39;: &#39;max-age=31536000&#39;, &#39;surrogate-control&#39;: &#39;ma
+ x-age=432000&#39;, &#39;surrogate-key&#39;: &#39;www.camel-ai.org 6659a154491a54a40551bc78 pag
+ eId:6686a2bcb7ece5fb40457491 668181a0a818ade34e653b24 6659a155491a54a40551bd7e
+ &#39;, &#39;x-lambda-id&#39;: &#39;d6c4424b-ac67-4c54-b52a-cb2a22ca09f0&#39;, &#39;vary&#39;: &#39;Accept-Enco
+ ding&#39;, &#39;set-cookie&#39;: &#39;__cf_bm=oX5EmZ2SNJDOBQXI8dL_reCYlCpp1FMzu40qCNxiopU-1730
+ 004618-1.0.1.1-3teEeqUoemzHWAeGCtlPJVqdmAbiFkyu3JxopKfQFFndSCi_Z56RR.UDjLGZiq.
+ L_4LvAZYmNKxQ.k6VRhbA7g; path=/; expires=Sun, 27-Oct-24 05:20:18 GMT; domain=.
+ cdn.webflow.com; HttpOnly; Secure; SameSite=None\n<span class="ge">_cfuvid=om_</span>8lj9jNMIh.HEIxEAq
+ gszhEWaKlyS2kdXKwqGedSM-1730004618924-0.0.1.1-604800000; path=/; domain=.cdn.w
+ ebflow.com; HttpOnly; Secure; SameSite=None&#39;, &#39;alt-svc&#39;: &#39;h3=&quot;:443&quot;; ma=86400&#39;
+ , &#39;x-cluster-name&#39;: &#39;us-west-2-prod-hosting-red&#39;, &#39;x-firefox-spdy&#39;: &#39;h2&#39;}}, &#39;s
+ creenshotUrl&#39;: None, &#39;text&#39;: &#39;Build Multi-Agent Systems for _\nFEATURES &amp; Inte
+ grations\nSeamless integrations with\npopular platforms \nScroll to explore ou
+ r features &amp; integrations.&#39;, &#39;markdown&#39;: &#39;# Build Multi-Agent Systems for \\_
+ \n\nFEATURES &amp; Integrations\n\n## Seamless integrations with  \npopular platfo
+ rms\n\nScroll to explore our features &amp; integrations.&#39;}]
+</pre></div>
+</div>
+</section>
+<section id="using-firecrawl-reader">
+<h3>3.4. Using <code class="docutils literal notranslate"><span class="pre">Firecrawl</span> <span class="pre">Reader</span></code><a class="headerlink" href="#using-firecrawl-reader" title="Link to this heading">#</a></h3>
+<p>Initialize the client and set the URL from which we want to retrieve information. When the status is “completed,” the information retrieval is finished and ready for reading.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">firecrawl</span> <span class="o">=</span> <span class="n">Firecrawl</span><span class="p">()</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">firecrawl</span><span class="o">.</span><span class="n">crawl</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://www.camel-ai.org/about&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;completed
+</pre></div>
+</div>
+<p>Directly retrieve information from the returned results.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;markdown&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;Camel-AI Team
+
+We are finding the  
+scaling law of agent
+
+🐫 CAMEL is an open-source library designed for the study of autonomous and 
+communicative agents. We believe that studying these agents on a large scale 
+offers valuable insights into their behaviors, capabilities, and potential 
+risks. To facilitate research in this field, we implement and support various 
+types of agents, tasks, prompts, models, and simulated environments.
+
+<span class="gs">**We are**</span> always looking for more <span class="gs">**contributors**</span> and <span class="gs">**collaborators**</span>.  
+Contact us to join forces via [<span class="nt">Slack</span>](<span class="na">https://join.slack.com/t/camel-kwr1314/</span>
+<span class="na">shared_invite/zt-1vy8u9lbo-ZQmhIAyWSEfSwLCl2r2eKA</span>)
+ or [<span class="nt">Discord</span>](<span class="na">https://discord.gg/CNcNpquyDc</span>)...
+</pre></div>
+</div>
+</section>
+<section id="using-chunkr-reader">
+<h3>3.5. Using <code class="docutils literal notranslate"><span class="pre">Chunkr</span> <span class="pre">Reader</span></code><a class="headerlink" href="#using-chunkr-reader" title="Link to this heading">#</a></h3>
+<p>Initialize the client and set the local PDF file path, then use the generated task id to featch the output.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChunkrReader</span>
+
+<span class="n">chunkr</span> <span class="o">=</span> <span class="n">ChunkrReader</span><span class="p">()</span>
+
+<span class="n">task_id</span> <span class="o">=</span> <span class="n">chunkr</span><span class="o">.</span><span class="n">submit_task</span><span class="p">(</span>
+    <span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;/Users/enrei/Large Language Model based Multi-Agents- A Survey of Progress and Challenges.pdf&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;Fast&quot;</span><span class="p">,</span>
+    <span class="n">ocr_strategy</span><span class="o">=</span><span class="s2">&quot;Auto&quot;</span><span class="p">,</span>
+    <span class="n">target_chunk_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">task_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;&quot;7becf001-6f07-4f63-bddf-5633df363bbb&quot;
+</pre></div>
+</div>
+<p>Featch the output.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">task_output</span> <span class="o">=</span> <span class="n">chunkr</span><span class="o">.</span><span class="n">get_task_output</span><span class="p">(</span>
+    <span class="n">task_id</span><span class="o">=</span><span class="s2">&quot;7becf001-6f07-4f63-bddf-5633df363bbb&quot;</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">task_output</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;{
+    &quot;task_id&quot;: &quot;7becf001-6f07-4f63-bddf-5633df363bbb&quot;,
+    &quot;status&quot;: &quot;Succeeded&quot;,
+    &quot;created_at&quot;: &quot;2024-11-08T12:45:04.260765Z&quot;,
+    &quot;finished_at&quot;: &quot;2024-11-08T12:45:48.942365Z&quot;,
+    &quot;expires_at&quot;: null,
+    &quot;message&quot;: &quot;Task succeeded&quot;,
+    &quot;output&quot;: {
+        &quot;chunks&quot;: [
+            {
+                &quot;segments&quot;: [
+                    {
+                        &quot;segment_id&quot;: &quot;d53ec931-3779-41be-a220-3fe4da2770c5&quot;,
+                        &quot;bbox&quot;: {
+                            &quot;left&quot;: 224.16666,
+                            &quot;top&quot;: 370.0,
+                            &quot;width&quot;: 2101.6665,
+                            &quot;height&quot;: 64.166664
+                        },
+                        &quot;page_number&quot;: 1,
+                        &quot;page_width&quot;: 2550.0,
+                        &quot;page_height&quot;: 3300.0,
+                        &quot;content&quot;: &quot;Large Language Model based Multi-Agents: A Survey of Progress and Challenges&quot;,
+                        &quot;segment_type&quot;: &quot;Title&quot;,
+                        &quot;ocr&quot;: null,
+                        &quot;image&quot;: &quot;https://chunkmydocs-bucket-prod.storage.googleapis.com/e68161bd-5d39-4cbf-afb2-5c6640a05522/7becf001-6f07-4f63-bddf-5633df363bbb/images/d53ec931-3779-41be-a220-3fe4da2770c5.jpg?x-id=GetObject&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=GOOG1E67ULNM7PPHKQDVSRZD64OWC4CJTKOHXCOIDKI5QCMJK4U6ROEJQSOJM%2F20241108%2Fauto%2Fs3%2Faws4_request&amp;X-Amz-Date=20241108T125023Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=7d2854d7d87ef0b152ac342dfdc0caa7c2ac10418e9445b73c584a9b34736fbf&quot;,
+                        &quot;html&quot;: &quot;&lt;h1&gt;Large Language Model based Multi-Agents: A Survey of Progress and Challenges&lt;/h1&gt;&quot;,
+                        &quot;markdown&quot;: &quot;# Large Language Model based Multi-Agents: A Survey of Progress and Challenges\n\n&quot;
+                    }
+                ],
+                &quot;chunk_length&quot;: 11
+            },
+            {
+                &quot;segments&quot;: [
+                    {
+                        &quot;segment_id&quot;: &quot;7bb38fc7-c1b3-4153-a3cc-116c0b9caa0a&quot;,
+                        &quot;bbox&quot;: {
+                            &quot;left&quot;: 432.49997,
+                            &quot;top&quot;: 474.16666,
+                            &quot;width&quot;: 1659.9999,
+                            &quot;height&quot;: 122.49999
+                        },
+                        &quot;page_number&quot;: 1,
+                        &quot;page_width&quot;: 2550.0,
+                        &quot;page_height&quot;: 3300.0,
+                        &quot;content&quot;: &quot;Taicheng Guo 1 , Xiuying Chen 2 , Yaqi Wang 3 \u2217 , Ruidi Chang , Shichao Pei 4 , Nitesh V. Chawla 1 , Olaf Wiest 1 , Xiangliang Zhang 1 \u2020&quot;,
+                        &quot;segment_type&quot;: &quot;Text&quot;,
+                        &quot;ocr&quot;: null,
+                        &quot;image&quot;: &quot;https://chunkmydocs-bucket-prod.storage.googleapis.com/e68161bd-5d39-4cbf-afb2-5c6640a05522/7becf001-6f07-4f63-bddf-5633df363bbb/images/7bb38fc7-c1b3-4153-a3cc-116c0b9caa0a.jpg?x-id=GetObject&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=GOOG1E67ULNM7PPHKQDVSRZD64OWC4CJTKOHXCOIDKI5QCMJK4U6ROEJQSOJM%2F20241108%2Fauto%2Fs3%2Faws4_request&amp;X-Amz-Date=20241108T125023Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=14b9a5048ff052a3641d100ec60da1b1a26e512e9863d09619bfe8237a2bdf80&quot;,
+                        &quot;html&quot;: &quot;&lt;p&gt;Taicheng Guo 1 , Xiuying Chen 2 , Yaqi Wang 3 \u2217 , Ruidi Chang , Shichao Pei 4 , Nitesh V. Chawla 1 , Olaf Wiest 1 , Xiangliang Zhang 1 \u2020&lt;/p&gt;&quot;,
+                        &quot;markdown&quot;: &quot;Taicheng Guo 1 , Xiuying Chen 2 , Yaqi Wang 3 \u2217 , Ruidi Chang , Shichao Pei 4 , Nitesh V. Chawla 1 , Olaf Wiest 1 , Xiangliang Zhang 1 \u2020\n\n&quot;
+                    },
+                    {
+                        &quot;segment_id&quot;: &quot;35c9e3ab-399c-43af-8f9e-60f5d9263c80&quot;,
+                        &quot;bbox&quot;: {
+                            &quot;left&quot;: 440.8333,
+                            &quot;top&quot;: 599.1666,
+                            &quot;width&quot;: 1668.3333,
+                            &quot;height&quot;: 64.166664
+                        },
+                        &quot;page_number&quot;: 1,...
+                    }]}]}}
+</pre></div>
+</div>
+</section>
+<section id="using-jina-reader">
+<h3>3.6. Using <code class="docutils literal notranslate"><span class="pre">Jina</span> <span class="pre">Reader</span></code><a class="headerlink" href="#using-jina-reader" title="Link to this heading">#</a></h3>
+<p>Initialize the client and set the URL from which we want to retrieve information, then print the response.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">camel.loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">JinaURLReader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">camel.types.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">JinaReturnFormat</span>
+
+<span class="n">jina_reader</span> <span class="o">=</span> <span class="n">JinaURLReader</span><span class="p">(</span><span class="n">return_format</span><span class="o">=</span><span class="n">JinaReturnFormat</span><span class="o">.</span><span class="n">MARKDOWN</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">jina_reader</span><span class="o">.</span><span class="n">read_content</span><span class="p">(</span><span class="s2">&quot;https://docs.camel-ai.org/&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh">&gt;&gt;&gt;Welcome to CAMEL’s documentation! — CAMEL 0.2.22 documentation</span>
+<span class="gh">===============</span>
+
+[<span class="nt">Skip to main content</span>](<span class="na">https://docs.camel-ai.org/#main-content</span>)
+
+Back to top Ctrl+K
+
+ [<span class="nt">![Image 1</span>](<span class="na">https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png</span>) ![<span class="nt">Image 2</span>](<span class="na">https://raw.githubusercontent.com/camel-ai/camel/master/misc/logo_light.png</span>)CAMEL 0.2.22](https://docs.camel-ai.org/#)
+
+Search Ctrl+K
+
+Get Started
+
+<span class="k">*</span><span class="w"> </span>  [<span class="nt">Installation</span>](<span class="na">https://docs.camel-ai.org/get_started/installation.html</span>)
+<span class="k">*</span><span class="w"> </span>  [<span class="nt">API Setup</span>](<span class="na">https://docs.camel-ai.org/get_started/setup.html</span>)
+
+Agents
+
+<span class="k">*</span><span class="w"> </span>  [<span class="nt">Creating Your First Agent</span>](<span class="na">https://docs.camel-ai.org/cookbooks/create_your_first_agent.html</span>)
+<span class="k">*</span><span class="w"> </span>  [<span class="nt">Creating Your First Agent Society</span>](<span class="na">https://docs.camel-ai.org/cookbooks/create_your_first_agents_society.html</span>)
+<span class="k">*</span><span class="w"> </span>  [<span class="nt">Embodied Agents</span>](<span class="na">https://docs.camel-ai.org/cookbooks/embodied_agents.html</span>)
+<span class="k">*</span><span class="w"> </span>  [<span class="nt">Critic Agents and Tree Search</span>](<span class="na">https://docs.camel-ai.org/cookbooks/critic_agents_and_tree_search.html</span>)
+
+Key Modules
+
+<span class="k">*</span><span class="w"> </span>  [<span class="nt">Models</span>](<span class="na">https://docs.camel-ai...</span>)
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tasks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Task</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="storages.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Storages</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concept">1. Concept</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types">2. Types</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-io">2.1. Base IO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unstructured-io">2.2. Unstructured IO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apify-reader">2.3. Apify Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chunkr-reader">2.4. Chunkr Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#firecrawl-reader">2.5. Firecrawl Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jina-url-reader">2.6. Jina_url Reader</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started">3. Get Started</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-base-io">3.1. Using <code class="docutils literal notranslate"><span class="pre">Base</span> <span class="pre">IO</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-unstructured-io">3.2. Using <code class="docutils literal notranslate"><span class="pre">Unstructured</span> <span class="pre">IO</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-apify-reader">3.3. Using <code class="docutils literal notranslate"><span class="pre">Apify</span> <span class="pre">Reader</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-firecrawl-reader">3.4. Using <code class="docutils literal notranslate"><span class="pre">Firecrawl</span> <span class="pre">Reader</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-chunkr-reader">3.5. Using <code class="docutils literal notranslate"><span class="pre">Chunkr</span> <span class="pre">Reader</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-jina-reader">3.6. Using <code class="docutils literal notranslate"><span class="pre">Jina</span> <span class="pre">Reader</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CAMEL-AI.org
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, CAMEL-AI.org.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

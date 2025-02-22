@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 import numpy as np
 
@@ -48,12 +48,50 @@ class BM25Retriever(BaseRetriever):
 
         self.bm25: BM25Okapi = None
         self.content_input_path: str = ""
-        self.unstructured_modules: UnstructuredIO = UnstructuredIO()
+
+    def bm25_chunks(
+        self,
+        chunks: Optional[List[Dict[str, Any]]] = None,
+    ) -> None:
+        r"""Build a BM25 index from text chunks. Allows for loading chunks
+        from different chunk tools.
+
+        Uses BM25Okapi from the rank_bm25 library to create a BM25 model based
+        on tokenized text. If no chunks are provided, `self.chunks` is used.
+        Raises a ValueError if both are empty.
+
+        Args:
+            chunks (Optional[List[Dict[str, Any]]]): A list of chunks, where
+                each chunk is a dict containing:
+                - "text" (str): The text to be embedded.
+                - "metadata" (dict): Additional metadata for the chunk.
+        Raises:
+            ValueError: If neither `chunks` nor `self.chunks` is available.
+        """
+        if chunks is None:
+            chunks = self.chunks
+
+        if not chunks:
+            raise ValueError("No chunks provided.")
+
+        from rank_bm25 import BM25Okapi
+
+        tokenized_corpus = []
+        for chunk in chunks:
+            if "text" not in chunk:
+                raise ValueError("Each chunk must have a 'text' key.")
+            assert isinstance(
+                chunk["text"], str
+            ), f"Expected 'text' to be a str, but got {type(chunk['text'])}."
+            tokenized_corpus.append(chunk["text"].split(" "))
+
+        self.bm25 = BM25Okapi(tokenized_corpus)
 
     def process(
         self,
         content_input_path: str,
         chunk_type: str = "chunk_by_title",
+        extra_info: Optional[dict] = None,
         **kwargs: Any,
     ) -> None:
         r"""Processes content from a file or URL, divides it into chunks by
@@ -67,7 +105,7 @@ class BM25Retriever(BaseRetriever):
                 "chunk_by_title".
             **kwargs (Any): Additional keyword arguments for content parsing.
         """
-        from rank_bm25 import BM25Okapi
+        self.unstructured_modules: UnstructuredIO = UnstructuredIO()
 
         # Load and preprocess documents
         self.content_input_path = content_input_path
@@ -75,13 +113,27 @@ class BM25Retriever(BaseRetriever):
             content_input_path, **kwargs
         )
         if elements:
-            self.chunks = self.unstructured_modules.chunk_elements(
+            uio_chunks = self.unstructured_modules.chunk_elements(
                 chunk_type=chunk_type, elements=elements
             )
 
-            # Convert chunks to a list of strings for tokenization
-            tokenized_corpus = [str(chunk).split(" ") for chunk in self.chunks]
-            self.bm25 = BM25Okapi(tokenized_corpus)
+            self.chunks = [
+                {
+                    "text": str(uio_chunk),
+                    "metadata": {
+                        **{
+                            key: value
+                            for key, value in (
+                                uio_chunk.metadata.to_dict().items()
+                            )
+                            if key != "orig_elements"
+                        },
+                        "extra_info": extra_info or {},
+                    },
+                }
+                for uio_chunk in uio_chunks
+            ]
+            self.bm25_chunks()
         else:
             self.bm25 = None
 
@@ -126,8 +178,8 @@ class BM25Retriever(BaseRetriever):
             result_dict = {
                 'similarity score': scores[i],
                 'content path': self.content_input_path,
-                'metadata': self.chunks[i].metadata.to_dict(),
-                'text': str(self.chunks[i]),
+                'metadata': self.chunks[i]['metadata'],
+                'text': self.chunks[i]['text'],
             }
             formatted_results.append(result_dict)
 

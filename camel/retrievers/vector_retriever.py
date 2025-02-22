@@ -67,7 +67,56 @@ class VectorRetriever(BaseRetriever):
                 vector_dim=self.embedding_model.get_output_dim()
             )
         )
-        self.uio: UnstructuredIO = UnstructuredIO()
+
+    def embed_chunks(
+        self,
+        chunks: List[Dict[str, Any]],
+        content_path_info: str,
+        embed_batch: int = 50,
+    ) -> None:
+        r"""Embed and store text chunks in batches. Allows for loading chunks
+        from different chunk tools.
+
+        Embeds the text in each chunk using the configured embedding model and
+        creates vector records with the embedding, content path, metadata, and
+        text. Processes chunks in batches for efficiency.
+
+        Args:
+            chunks (List[Dict[str, Any]]): A list of chunks, where
+                each chunk is a dict containing:
+                - "text": The text(str) to be embedded.
+                - "metadata": A dictionary with additional metadata for the
+                    chunk.
+            content_path_info (str): The content path information to be
+                included in each vector record's payload.
+            embed_batch (int, optional): The number of chunks to process in
+                each batch. Defaults to 50.
+
+        Returns:
+            None
+        """
+        # Process chunks in batches and store embeddings
+        for i in range(0, len(chunks), embed_batch):
+            batch_chunks = chunks[i : i + embed_batch]
+            batch_vectors = self.embedding_model.embed_list(
+                objs=[chunk["text"] for chunk in batch_chunks]
+            )
+
+            records = []
+            # Prepare the payload for each vector record, includes the
+            # content path, chunk metadata, and chunk text
+            for vector, chunk in zip(batch_vectors, batch_chunks):
+                combined_dict = {
+                    "content path": content_path_info,
+                    **chunk["metadata"],
+                    "text": chunk["text"],
+                }
+
+                records.append(
+                    VectorRecord(vector=vector, payload=combined_dict)
+                )
+
+            self.storage.add(records=records)
 
     def process(
         self,
@@ -103,9 +152,17 @@ class VectorRetriever(BaseRetriever):
         """
         from unstructured.documents.elements import Element
 
+        self.uio: UnstructuredIO = UnstructuredIO()
+
         if isinstance(content, Element):
+            content_path_info = (
+                content.metadata.file_directory[:100]
+                if content.metadata.file_directory
+                else ""
+            )
             elements = [content]
         elif isinstance(content, IOBase):
+            content_path_info = "From file bytes"
             elements = (
                 self.uio.parse_bytes(
                     file=content, metadata_filename=metadata_filename, **kwargs
@@ -113,6 +170,7 @@ class VectorRetriever(BaseRetriever):
                 or []
             )
         elif isinstance(content, str):
+            content_path_info = content[:100]
             # Check if the content is URL
             parsed_url = urlparse(content)
             is_url = all([parsed_url.scheme, parsed_url.netloc])
@@ -139,7 +197,7 @@ class VectorRetriever(BaseRetriever):
             )
         else:
             # Chunk the content if required
-            chunks = (
+            uio_chunks = (
                 self.uio.chunk_elements(
                     chunk_type=chunk_type,
                     elements=elements,
@@ -149,46 +207,28 @@ class VectorRetriever(BaseRetriever):
                 else elements
             )
 
-            # Process chunks in batches and store embeddings
-            for i in range(0, len(chunks), embed_batch):
-                batch_chunks = chunks[i : i + embed_batch]
-                batch_vectors = self.embedding_model.embed_list(
-                    objs=[str(chunk) for chunk in batch_chunks]
-                )
+            chunks = [
+                {
+                    "text": str(uio_chunk),
+                    "metadata": {
+                        **{
+                            key: value
+                            for key, value in (
+                                uio_chunk.metadata.to_dict().items()
+                            )
+                            if key != "orig_elements"
+                        },
+                        "extra_info": extra_info or {},
+                    },
+                }
+                for uio_chunk in uio_chunks
+            ]
 
-                records = []
-                # Prepare the payload for each vector record, includes the
-                # content path, chunk metadata, and chunk text
-                for vector, chunk in zip(batch_vectors, batch_chunks):
-                    if isinstance(content, str):
-                        content_path_info = {"content path": content[:100]}
-                    elif isinstance(content, IOBase):
-                        content_path_info = {"content path": "From file bytes"}
-                    elif isinstance(content, Element):
-                        content_path_info = {
-                            "content path": content.metadata.file_directory[
-                                :100
-                            ]
-                            if content.metadata.file_directory
-                            else ""
-                        }
-
-                    chunk_metadata = {"metadata": chunk.metadata.to_dict()}
-                    # Remove the 'orig_elements' key if it exists
-                    chunk_metadata["metadata"].pop("orig_elements", "")
-                    chunk_metadata["extra_info"] = extra_info or {}
-                    chunk_text = {"text": str(chunk)}
-                    combined_dict = {
-                        **content_path_info,
-                        **chunk_metadata,
-                        **chunk_text,
-                    }
-
-                    records.append(
-                        VectorRecord(vector=vector, payload=combined_dict)
-                    )
-
-                self.storage.add(records=records)
+            self.embed_chunks(
+                chunks=chunks,
+                content_path_info=content_path_info,
+                embed_batch=embed_batch,
+            )
 
     def query(
         self,

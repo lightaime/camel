@@ -56,11 +56,11 @@ def test_query(mock_bm25):
     mock_bm25_instance = mock_bm25.return_value
     mock_bm25_instance.get_scores.return_value = [0.8, 0.5]  # Mock scores
 
-    # Create mock chunks with `metadata` attribute
-    mock_chunk1 = MagicMock(text='Chunk 1 text')
-    mock_chunk1.metadata.to_dict.return_value = {'id': 'chunk1'}
-    mock_chunk2 = MagicMock(text='Chunk 2 text')
-    mock_chunk2.metadata.to_dict.return_value = {'id': 'chunk2'}
+    # Create mock chunks as dictionaries with 'text' and 'metadata'
+    # It is the standard format for different chunk types
+    mock_chunk1 = {'text': 'Chunk 1 text', 'metadata': {'id': 'chunk1'}}
+
+    mock_chunk2 = {'text': 'Chunk 2 text', 'metadata': {'id': 'chunk2'}}
 
     retriever = BM25Retriever()
     retriever.bm25 = mock_bm25_instance

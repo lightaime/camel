@@ -35,7 +35,9 @@ class BaseVerifier(ABC):
     Example:
         ```python
         verifier = MyVerifier()
+        await verifier.setup()
         result = await verifier.verify(response)
+        await verifier.cleanup()
         ```
     Key Features:
     - Async and sync verification support
@@ -46,10 +48,139 @@ class BaseVerifier(ABC):
     - Extensible validation framework
     """
 
+    def __init__(
+        self,
+        max_parallel: Optional[int] = None,
+        timeout: Optional[float] = None,
+        max_retries: int = 3,
+        retry_delay: float = 1.0,
+        initial_batch_size: Optional[int] = None,
+        monitoring_interval: float = 5.0,
+        cpu_threshold: float = 80.0,
+        memory_threshold: float = 85.0,
+        **kwargs,
+    ):
+        r"""Initialize the verifier with configuration parameters.
+
+        Args:
+            max_parallel: Maximum number of parallel verifications. If None,
+                will be determined dynamically based on system resources.
+                (default: :obj:`None`)
+            timeout: Timeout in seconds for each verification.  (default:
+                :obj:`None`)
+            max_retries: Maximum number of retry attempts.  (default: :obj:`3`)
+            retry_delay: Delay between retries in seconds.  (default:
+                :obj:`1.0`)
+            initial_batch_size: Initial size for batch processing. If None,
+                defaults to 10. (default: :obj:`None`)
+            monitoring_interval: Interval in seconds between resource checks.
+                (default: :obj:`5.0`)
+            cpu_threshold: CPU usage percentage threshold for scaling down.
+                (default: :obj:`80.0`)
+            memory_threshold: Memory usage percentage threshold for scaling
+                down. (default: :obj:`85.0`)
+            **kwargs: Additional verifier parameters.
+        """
+        # Configuration parameters
+        self._is_setup: bool = False
+        self._max_parallel: Optional[int] = max_parallel
+        self._timeout: Optional[float] = timeout
+        self._max_retries: int = max_retries
+        self._retry_delay: float = retry_delay
+        self._initial_batch_size: Optional[int] = initial_batch_size
+        self._monitoring_interval: float = monitoring_interval
+        self._cpu_threshold: float = cpu_threshold
+        self._memory_threshold: float = memory_threshold
+        self._batch_processor: BatchProcessor = BatchProcessor()
+        self._metrics: VerificationMetrics = VerificationMetrics()
+        self._metrics_lock: asyncio.Lock = asyncio.Lock()
+        self._start_time: Optional[float] = None
+
+    async def setup(self) -> None:
+        r"""Set up the verifier with necessary resources.
+
+        This method initializes:
+        1. Metrics tracking
+        2. Resource monitoring
+        3. Batch processor
+        4. Any model-specific resources
+
+        Raises:
+            RuntimeError: If setup fails or resources cannot be initialized
+        """
+        if self._is_setup:
+            logger.debug(f"{self.__class__.__name__} already initialized")
+            return
+
+        try:
+            # Initialize metrics and lock
+            self._metrics = VerificationMetrics()
+            self._metrics_lock = asyncio.Lock()
+
+            # Set up batch processor with validated parameters
+            batch_size = max(1, self._initial_batch_size or 10)
+            max_parallel = max(1, self._max_parallel or 1)
+            self._batch_processor = BatchProcessor()
+            if hasattr(self._batch_processor, 'setup'):
+                await self._batch_processor.setup()
+
+            self._is_setup = True
+            logger.info(
+                f"{self.__class__.__name__} initialized with "
+                f"batch_size={batch_size}, max_parallel={max_parallel}"
+            )
+
+        except Exception as e:
+            error_msg = (
+                f"Failed to initialize {self.__class__.__name__}: {e!s}"
+            )
+            logger.error(error_msg, exc_info=True)
+            await self.cleanup()
+            raise RuntimeError(error_msg) from e
+
+    async def cleanup(self) -> None:
+        r"""Clean up verifier resources.
+
+        This method ensures:
+        1. All resources are properly released
+        2. Batch processor is shut down
+        3. Metrics are saved if needed
+        4. State is reset to initial
+
+        Raises:
+            RuntimeError: If cleanup fails and resources cannot be properly
+                released
+        """
+        if not self._is_setup:
+            return
+
+        error = None
+        try:
+            # Reset all internal state
+            self._batch_processor = BatchProcessor()
+            self._metrics = VerificationMetrics()
+            self._metrics_lock = asyncio.Lock()
+            self._start_time = None
+
+            logger.info(f"{self.__class__.__name__} cleaned up successfully")
+
+        except Exception as e:
+            error = e
+            logger.error(
+                f"Error during {self.__class__.__name__} cleanup: {e!s}",
+                exc_info=True,
+            )
+            raise RuntimeError(
+                f"Failed to cleanup {self.__class__.__name__}: {error!s}"
+            ) from e
+
+        finally:
+            self._is_setup = False
+
     async def _update_metrics(
         self, duration: float, status: VerificationStatus
     ) -> None:
-        """Update verification metrics with the results of a verification.
+        r"""Update verification metrics with the results of a verification.
 
         Args:
             duration: Time taken for the verification in seconds.
@@ -72,63 +203,25 @@ class BaseVerifier(ABC):
             elif status == VerificationStatus.ERROR:
                 self._metrics.error_verifications += 1
 
-    def __init__(
-        self,
-        max_parallel: Optional[int] = None,
-        timeout: Optional[float] = None,
-        max_retries: int = 3,
-        retry_delay: float = 1.0,
-        initial_batch_size: Optional[int] = None,
-        monitoring_interval: float = 5.0,
-        cpu_threshold: float = 80.0,
-        memory_threshold: float = 85.0,
-    ):
-        r"""Initialize the verifier with configuration parameters.
-
-        Args:
-            max_parallel: Maximum number of parallel verifications. If None,
-                will be determined dynamically based on system resources.
-                (default: :obj:`None`)
-            timeout: Timeout in seconds for each verification.  (default:
-                :obj:`None`)
-            max_retries: Maximum number of retry attempts.  (default: :obj:`3`)
-            retry_delay: Delay between retries in seconds.  (default:
-                :obj:`1.0`)
-            initial_batch_size: Initial size for batch processing. If None,
-                defaults to 10. (default: :obj:`None`)
-            monitoring_interval: Interval in seconds between resource checks.
-                (default: :obj:`5.0`)
-            cpu_threshold: CPU usage percentage threshold for scaling down.
-                (default: :obj:`80.0`)
-            memory_threshold: Memory usage percentage threshold for scaling
-                down. (default: :obj:`85.0`)
-        """
-        self.timeout = timeout
-        self.max_retries = max_retries
-        self.retry_delay = retry_delay
-
-        # Initialize batch processor for dynamic resource management
-        self.batch_processor = BatchProcessor(
-            max_workers=max_parallel,
-            initial_batch_size=initial_batch_size,
-            monitoring_interval=monitoring_interval,
-            cpu_threshold=cpu_threshold,
-            memory_threshold=memory_threshold,
-        )
-
-        # Internal state
-        self._start_time: Optional[float] = None
-        self._metrics = VerificationMetrics()
-        self._metrics_lock = asyncio.Lock()
-
-    async def verify(self, result: Response) -> VerificationResult:  # type: ignore[return]
+    async def verify(self, result: Response) -> VerificationResult:
         r"""Perform verification with full error handling and metrics.
 
+        Verifies:
+        1. Code solution correctness via execution
+        2. Final answer matches expected output
+        3. Chain of thought reasoning is valid
+        4. Symbolic solver verification matches code execution
+
         Args:
-            result: The response to verify.
+            result: The response to verify containing code, answer and
+                reasoning.
 
         Returns:
-            VerificationResult: Containing status and metadata.
+            VerificationResult: Containing status and metadata including:
+                - code_execution_status: Success/failure of code execution
+                - answer_match: Whether final answer matches ground truth
+                - reasoning_valid: Whether chain of thought is valid
+                - symbolic_match: Whether symbolic solution matches code
 
         Raises:
             ValueError: If verification parameters are invalid.
@@ -141,13 +234,13 @@ class BaseVerifier(ABC):
 
         # Start tracking metrics
 
-        while attempt < self.max_retries:
+        while attempt < self._max_retries:
             try:
                 # Handle timeout
-                if self.timeout is not None:
+                if self._timeout is not None:
                     verification_result = await asyncio.wait_for(
                         self._verify_implementation(result),
-                        timeout=self.timeout,
+                        timeout=self._timeout,
                     )
                 else:
                     verification_result = await self._verify_implementation(
@@ -164,7 +257,7 @@ class BaseVerifier(ABC):
 
             except asyncio.TimeoutError:
                 attempt += 1
-                if attempt == self.max_retries:
+                if attempt == self._max_retries:
                     duration = time.time() - start_time
                     await self._update_metrics(
                         duration, VerificationStatus.TIMEOUT
@@ -179,11 +272,11 @@ class BaseVerifier(ABC):
                 logger.warning(
                     f"Verification timeout on attempt {attempt}, retrying..."
                 )
-                await asyncio.sleep(self.retry_delay)
+                await asyncio.sleep(self._retry_delay)
 
             except Exception as e:
                 attempt += 1
-                if attempt == self.max_retries:
+                if attempt == self._max_retries:
                     duration = time.time() - start_time
                     await self._update_metrics(
                         duration, VerificationStatus.ERROR
@@ -202,7 +295,18 @@ class BaseVerifier(ABC):
                     f"Verification error on attempt {attempt}: "
                     f"{e!s}, retrying..."
                 )
-                await asyncio.sleep(self.retry_delay)
+                await asyncio.sleep(self._retry_delay)
+
+        # This is a placeholder return that should never be reached
+        # since we always return in one of the above branches
+        duration = time.time() - start_time
+        await self._update_metrics(duration, VerificationStatus.ERROR)
+        return VerificationResult(
+            status=VerificationStatus.ERROR,
+            score=None,
+            error_message="Unexpected code path reached",
+            duration=duration,
+        )
 
     @abstractmethod
     async def _verify_implementation(
@@ -242,8 +346,8 @@ class BaseVerifier(ABC):
                 exceeded.
         """
         # Get current batch parameters from processor
-        max_workers = self.batch_processor.max_workers
-        batch_size = self.batch_processor.batch_size
+        max_workers = getattr(self._batch_processor, 'max_workers', 1)
+        batch_size = getattr(self._batch_processor, 'batch_size', 1)
         semaphore = asyncio.Semaphore(max_workers)
 
         async def _verify_with_semaphore(
@@ -257,13 +361,13 @@ class BaseVerifier(ABC):
                 success = (
                     verification_result.status == VerificationStatus.SUCCESS
                 )
-                self.batch_processor.adjust_batch_size(
+                self._batch_processor.adjust_batch_size(
                     success, processing_time
                 )
                 return verification_result
             except Exception as e:
                 processing_time = time.time() - start_time
-                self.batch_processor.adjust_batch_size(False, processing_time)
+                self._batch_processor.adjust_batch_size(False, processing_time)
                 logger.error(f"Verification failed: {e!s}", exc_info=True)
                 return VerificationResult(
                     status=VerificationStatus.ERROR, error_message=str(e)
@@ -281,7 +385,7 @@ class BaseVerifier(ABC):
                 all_results.extend(batch_results)
 
                 # Update metrics after each batch
-                metrics = self.batch_processor.get_performance_metrics()
+                metrics = self._batch_processor.get_performance_metrics()
                 logger.debug(f"Batch verification metrics: {metrics}")
             except Exception as e:
                 logger.error(

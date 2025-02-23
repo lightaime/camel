@@ -114,6 +114,10 @@ class VectorDBMemory(AgentMemory):
     def get_context_creator(self) -> BaseContextCreator:
         return self._context_creator
 
+    def clear(self) -> None:
+        r"""Removes all records from the vector database memory."""
+        self._vectordb_block.clear()
+
 
 class LongtermAgentMemory(AgentMemory):
     r"""An implementation of the :obj:`AgentMemory` abstract base class for

@@ -74,6 +74,7 @@ class VectorDBBlock(MemoryBlock):
             ContextRecord(
                 memory_record=MemoryRecord.from_dict(result.record.payload),
                 score=result.similarity,
+                timestamp=result.record.payload['timestamp'],
             )
             for result in results
             if result.record.payload is not None

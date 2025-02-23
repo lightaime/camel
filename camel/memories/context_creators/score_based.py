@@ -104,6 +104,10 @@ class ScoreBasedContextCreator(BaseContextCreator):
         # If not exceed token limit, simply return
         total_tokens = sum([unit.num_tokens for unit in context_units])
         if total_tokens <= self.token_limit:
+            context_units = sorted(
+                context_units,
+                key=lambda unit: (unit.record.timestamp, unit.record.score),
+            )
             return self._create_output(context_units)
 
         # Log warning about token limit being exceeded
@@ -114,7 +118,8 @@ class ScoreBasedContextCreator(BaseContextCreator):
 
         # Sort by score
         context_units = sorted(
-            context_units, key=lambda unit: unit.record.score
+            context_units,
+            key=lambda unit: (unit.record.timestamp, unit.record.score),
         )
 
         # Remove the least score messages until total token number is smaller
@@ -144,7 +149,9 @@ class ScoreBasedContextCreator(BaseContextCreator):
         for output, specifically a list of OpenAIMessages and an integer
         representing the total token count.
         """
-        context_units = sorted(context_units, key=lambda unit: unit.idx)
+        context_units = sorted(
+            context_units, key=lambda unit: unit.record.timestamp
+        )
         return [
             unit.record.memory_record.to_openai_message()
             for unit in context_units

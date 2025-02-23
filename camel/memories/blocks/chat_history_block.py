@@ -85,13 +85,21 @@ class ChatHistoryBlock(MemoryBlock):
             if record.role_at_backend == OpenAIBackendRole.SYSTEM:
                 # System messages are always kept.
                 output_records.append(
-                    ContextRecord(memory_record=record, score=1.0)
+                    ContextRecord(
+                        memory_record=record,
+                        score=1.0,
+                        timestamp=record.timestamp,
+                    )
                 )
             else:
                 # Other messages' score drops down gradually
                 score *= self.keep_rate
                 output_records.append(
-                    ContextRecord(memory_record=record, score=score)
+                    ContextRecord(
+                        memory_record=record,
+                        score=score,
+                        timestamp=record.timestamp,
+                    )
                 )
 
         output_records.reverse()

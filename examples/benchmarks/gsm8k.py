@@ -12,26 +12,25 @@
 # limitations under the License.
 # ========= Copyright 2023-2024 @ CAMEL-AI.org. All Rights Reserved. =========
 
-from .apibank import APIBankBenchmark
-from .apibench import APIBenchBenchmark
-from .base import BaseBenchmark
-from .gaia import DefaultGAIARetriever, GAIABenchmark
-from .math_benchmarks.gsm8k import GSM8KBenchmark
-from .math_benchmarks.math_base import MathBenchmark, Mode
-from .math_benchmarks.math_bench import MATHBenchmark
-from .nexus import NexusBenchmark
-from .ragbench import RAGBenchBenchmark
+from camel.agents import ChatAgent
+from camel.benchmarks import GSM8KBenchmark
 
-__all__ = [
-    "BaseBenchmark",
-    "MathBenchmark",
-    "Mode",
-    "MATHBenchmark",
-    "GSM8KBenchmark",
-    "GAIABenchmark",
-    "DefaultGAIARetriever",
-    "NexusBenchmark",
-    "APIBenchBenchmark",
-    "APIBankBenchmark",
-    "RAGBenchBenchmark",
-]
+# Set up the agent to be benchmarked
+agent = ChatAgent()
+
+# Set up the Gradeschool Math Benchmark
+benchmark = GSM8KBenchmark(
+    data_dir="GSM8KDataset", save_to="GSM8KResults.jsonl"
+)
+benchmark.download()
+
+# TODO run benchmark with API Key to get the value for correct answers
+result = benchmark.run(agent, on="test", subset=20)
+print("Total:", result["total"])
+print("Correct:", result["correct"])
+'''
+===============================================================================
+Total: 20
+Correct: ?
+===============================================================================
+'''
